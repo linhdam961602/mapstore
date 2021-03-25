@@ -1,25 +1,13 @@
-import logo from './logo.svg';
-import './App.scss';
+import { createTranslatedText } from 'utils/text';
+import { useIntl } from 'react-intl';
 
-function App() {
+const App = () => {
+  const intl = useIntl();
+  const getText = createTranslatedText('common.title', intl);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <p>{getText('template')}</p>
   );
-}
+};
 
 export default App;
