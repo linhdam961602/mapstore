@@ -8,7 +8,7 @@ import { translationMessages } from 'translations/i18n';
 
 import LanguageProvider from 'containers/LanguageProvider';
 
-import './index.css';
+import './index.scss';
 
 const MOUNT_NODE = document.getElementById('root');
 
