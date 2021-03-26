@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import './index.css';
-import LanguageProvider from 'containers/LanguageProvider';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 
 import { translationMessages } from 'translations/i18n';
 
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import LanguageProvider from 'containers/LanguageProvider';
+
+import './index.css';
 
 const MOUNT_NODE = document.getElementById('root');
 

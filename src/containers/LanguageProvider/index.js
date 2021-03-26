@@ -1,3 +1,4 @@
+/* eslint-disable import/no-mutable-exports */
 /*
  *
  * LanguageProvider
@@ -7,13 +8,13 @@
  */
 import React, { useEffect } from 'react';
 import { createIntl, createIntlCache, IntlProvider } from 'react-intl';
+
 import * as dayjs from 'dayjs';
+
 import { translationMessages, DEFAULT_LOCALE } from 'translations/i18n';
 
 dayjs.locale(DEFAULT_LOCALE);
 
-// Disable ESLint for this line to pass exporting mutable 'let' binding
-// eslint-disable-next-line import/no-mutable-exports
 export let intl = createIntl(
   {
     locale: DEFAULT_LOCALE,
@@ -22,7 +23,7 @@ export let intl = createIntl(
   createIntlCache(),
 );
 
-export const formatMessageUtil = (intlObj = intl) => id =>
+export const formatMessageUtil = (intlObj = intl) => (id) =>
   intlObj.formatMessage({ id });
 
 function LanguageProvider({ messages, children }) {
