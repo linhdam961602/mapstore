@@ -1,24 +1,35 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { ConnectedRouter } from 'connected-react-router';
+import { Provider } from 'react-redux';
 
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+import App from 'containers/App';
+
+import createStore from 'store';
+
+import history from 'utils/history';
 
 import { translationMessages } from 'translations/i18n';
 
-import LanguageProvider from 'containers/LanguageProvider';
+import LanguageProvider from 'containers/LanguageProviderContainer';
 
 import './index.scss';
 
 const MOUNT_NODE = document.getElementById('root');
 
+const store = createStore();
+
 const render = (messages) => {
   ReactDOM.render(
-    <React.StrictMode>
+    <Provider store={store}>
       <LanguageProvider messages={messages}>
-        <App />
+        <ConnectedRouter history={history}>
+          <App />
+        </ConnectedRouter>
       </LanguageProvider>
-    </React.StrictMode>,
+    </Provider>,
     MOUNT_NODE,
   );
 };
