@@ -6,22 +6,26 @@
  */
 import React, { useCallback } from 'react';
 import { useIntl } from 'react-intl';
-
 import { useDispatch } from 'react-redux';
 
-import { authActions } from '../slices';
+import { authActions, authReducer, authSaga, authSliceName } from '../slices';
 
 import { LOGIN_FORM_FIELDS } from './constants';
+import styles from './styles.module.scss';
 
 import Form from 'components/BasicComponent/Form';
 import Input from 'components/BasicComponent/Input';
 import Checkbox from 'components/BasicComponent/Checkbox';
 import Button from 'components/BasicComponent/Button';
+import { useInjectReducer, useInjectSaga } from 'hooks/useInjector';
 
 const LoginPage = () => {
   const intl = useIntl();
   const dispatch = useDispatch();
   const [form] = Form.useForm();
+
+  useInjectReducer({ key: authSliceName, reducer: authReducer });
+  useInjectSaga({ key: authSliceName, saga: authSaga });
 
   const onFinish = useCallback(() => {
     const values = form.getFieldsValue();
@@ -29,12 +33,12 @@ const LoginPage = () => {
   }, [dispatch, form]);
 
   return (
-    <div>
-      <div>
+    <div className={styles.login__container}>
+      <h1 className={styles.login__title}>
         {intl.formatMessage({
           id: 'login.title',
         })}
-      </div>
+      </h1>
       <Form
         className="login-form"
         initialValues={{
@@ -47,8 +51,12 @@ const LoginPage = () => {
           name={LOGIN_FORM_FIELDS.USERNAME}
           rules={[
             {
+              type: 'email',
+              message: 'The input is not valid E-mail!',
+            },
+            {
               required: true,
-              message: 'Please input your Username!',
+              message: 'Please input your E-mail!',
             },
           ]}
         >
@@ -74,7 +82,7 @@ const LoginPage = () => {
             })}
           />
         </Form.Item>
-        <Form.Item>
+        <div className={styles['login__remember-me']}>
           <Form.Item
             name={LOGIN_FORM_FIELDS.REMEMBER}
             valuePropName="checked"
@@ -92,20 +100,35 @@ const LoginPage = () => {
               id: 'login.text.forgotPassword',
             })}
           </a>
-        </Form.Item>
+        </div>
 
         <Form.Item>
           <Button
             type="primary"
             htmlType="submit"
-            className="login-form-button"
+            className={styles.login__button}
+            block
           >
             {intl.formatMessage({
               id: 'login.buttons.login',
             })}
           </Button>
-          Or <a href="">register now!</a>
         </Form.Item>
+        <div className={styles['login__create-account']}>
+          {intl.formatMessage({
+            id: 'login.text.notAMember',
+          })}
+          <a href="">
+            {intl.formatMessage({
+              id: 'login.text.createAcc',
+            })}
+          </a>
+        </div>
+        <Button className={styles['login__button-with-google']} block>
+          {intl.formatMessage({
+            id: 'login.buttons.loginWGoogle',
+          })}
+        </Button>
       </Form>
     </div>
   );

@@ -24,7 +24,7 @@ export const USER_SAVED_EMPNO = 'savedEmpNo';
 
 // Accept language header
 export const ACCEPT_LANGUAGE_HEADER = {
-  KO: 'ko-kr',
+  VI: 'vi',
   EN: 'en',
 };
 

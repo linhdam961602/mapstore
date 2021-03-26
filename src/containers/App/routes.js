@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 
-import { HOME_URI, SIGN_IN_URI } from 'constants/routes';
+import { HOME_URI, LOGIN_URL } from 'constants/routes';
 
 const routes = [
   {
@@ -10,8 +10,8 @@ const routes = [
   },
   {
     exact: true,
-    path: SIGN_IN_URI,
-    component: lazy(() => import('pages/Auth/LoginPage')),
+    path: LOGIN_URL,
+    component: lazy(() => import('pages/auth/LoginPage')),
   },
 ];
 
