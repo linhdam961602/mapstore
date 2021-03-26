@@ -1,6 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope */
-import { createTranslatedText } from 'utils/text';
 import { useIntl } from 'react-intl';
+
+import { createTranslatedText } from 'utils/text';
 
 const App = () => {
   const intl = useIntl();

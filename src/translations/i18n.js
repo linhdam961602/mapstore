@@ -9,11 +9,11 @@
  *   You CANNOT use import/export in this file.
  */
 
-import enTranslationMessages from 'translations/en';
 import viTranslationMessages from 'translations/vi';
+import enTranslationMessages from 'translations/en';
 
 const DEFAULT_LOCALE = 'vi';
-const appLocales = ['en', 'vi'];
+const appLocales = ['vi', 'en'];
 
 /**
  * this function use to flatten the object nested in language json file
@@ -37,8 +37,8 @@ const flattenMessages = (nestedMessages, prefix = '') =>
   }, {});
 
 const translationMessages = {
-  en: flattenMessages(enTranslationMessages),
   vi: flattenMessages(viTranslationMessages),
+  en: flattenMessages(enTranslationMessages),
 };
 
 export { appLocales, translationMessages, DEFAULT_LOCALE };
