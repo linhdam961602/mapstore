@@ -1,5 +1,3 @@
-import { SIGNIN_URL } from 'constants/routes';
-
 import { put, takeLatest } from 'redux-saga/effects';
 import get from 'lodash/get';
 
@@ -8,12 +6,15 @@ import {
   EXISTING_SESSION,
   INVALID_SESSION_TIMEOUT,
   HAVE_BEEN_KICKED_OUT,
-} from 'features/auth/LoginPage/constants';
+} from 'constants/auth';
 import { notificationActions } from 'containers/NotificationContainer/slices';
+
 import {
   ERROR_TYPE,
   WARNING_TYPE,
-} from 'components/BasicComponents/Notification';
+} from 'components/BasicComponent/Notification';
+
+import { SIGN_IN_URI } from 'constants/routes';
 
 import * as authHelper from 'helpers/authHelper';
 import { intl } from 'containers/LanguageProviderContainer';
@@ -42,7 +43,7 @@ function* handler(action) {
         );
         setTimeout(() => {
           authHelper.clearUserCredential();
-          window.location.href = SIGNIN_URL;
+          window.location.href = SIGN_IN_URI;
         }, INVALID_SESSION_TIMEOUT);
         break;
       case HAVE_BEEN_KICKED_OUT: {
@@ -56,7 +57,7 @@ function* handler(action) {
         );
         setTimeout(() => {
           authHelper.clearUserCredential();
-          window.location.href = SIGNIN_URL;
+          window.location.href = SIGN_IN_URI;
         }, INVALID_SESSION_TIMEOUT);
 
         break;

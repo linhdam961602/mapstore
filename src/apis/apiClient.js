@@ -2,11 +2,12 @@
 /* eslint-disable prefer-promise-reject-errors */
 /* eslint-disable no-throw-literal */
 // TODO: fix eslint
-import {
-  BASE_API_URL,
-  API_TIMEOUT,
-  DOWNLOAD_FILE_TIMEOUT,
-} from 'constants/appConfig';
+
+import axios from 'axios';
+import { ResponseHeader } from 'models/ResponseHeaderModel';
+
+import mime from 'mime-types';
+import unescape from 'lodash/unescape';
 
 import {
   ACCEPT_LANGUAGE_HEADER,
@@ -14,12 +15,11 @@ import {
   FILENAME_REGEX,
   FILE_EXTENSION_REGEX,
 } from 'constants/common';
-
-import axios from 'axios';
-import { ResponseHeader } from 'models/ResponseHeaderModel';
-
-import mime from 'mime-types';
-import unescape from 'lodash/unescape';
+import {
+  BASE_API_URL,
+  API_TIMEOUT,
+  DOWNLOAD_FILE_TIMEOUT,
+} from 'constants/appConfig';
 
 const apiClient = axios.create({
   baseURL: BASE_API_URL,

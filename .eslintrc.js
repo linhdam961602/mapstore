@@ -84,6 +84,8 @@ module.exports = {
     'react/self-closing-comp': 0,
     'react/sort-comp': 0,
     'react/destructuring-assignment': 0,
+    'react/jsx-props-no-spreading': 0,
+    'react/react-in-jsx-scope': 0,
     'redux-saga/no-yield-in-race': 2,
     'redux-saga/yield-effects': 2,
     'require-yield': 0,
