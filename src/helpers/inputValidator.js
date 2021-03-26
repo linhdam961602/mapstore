@@ -1,21 +1,12 @@
-/* eslint-disable no-plusplus */
-/* eslint-disable radix */
-/* eslint-disable consistent-return */
-// TODO: Fix eslint
-
 import {
   KEY_CODES,
-  MAX_LENGTH,
-  MAX_SALARY,
-  SSN_WEIGHT,
+  REGEX_DUPLICATE,
+  REGEX_EMAIL_BACK,
+  REGEX_EMAIL_FRONT,
+  REGEX_PASSWORD,
 } from 'constants/common';
 
 import { intl } from 'containers/LanguageProviderContainer';
-
-const REGEX_PASSWORD = /^(?!.*(\w)\1{2,})(?=.*[A-Za-z])(?=.*\d)(?=.*[-@#$!%*#?&(\\/)^_+|~=`{}\\[\]:";'<>?,.])[A-Za-z\d\\\-@#$!%*#?&(\\/)^_+|~=`{}\\[\]:";'<>?,.].{7,19}$/;
-const REGEX_DUPLICATE = /^(?!.*(\w)\1{2,}).+$/;
-const REGEX_EMAIL_FRONT = /(^[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*)$/;
-const REGEX_EMAIL_BACK = /(^[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)+)$/;
 
 export const passwordValidator = async (rule, value) => {
   if (value) {
@@ -80,52 +71,6 @@ export const lengthValidator = async (rule, value, label) => {
       ),
     );
   }
-};
-
-export const salaryValidator = async (rule, value) => {
-  if (value) {
-    if (value > MAX_SALARY) {
-      return Promise.reject(
-        intl.formatMessage(
-          {
-            id: 'common.form.validate.maximum',
-          },
-          {
-            field: intl.formatMessage({
-              id: 'employment.salaryDeduct.monthlyPayAmt',
-            }),
-            length: MAX_LENGTH.SPECIFIC_15,
-          },
-        ),
-      );
-    }
-    return Promise.resolve();
-  }
-};
-export const isValidSSN = (ssn) => {
-  const bare =
-    ssn &&
-    ssn
-      .replaceAll('-', '')
-      .split('')
-      .map((item) => parseInt(item));
-  if (
-    !bare ||
-    bare.length !== 13 ||
-    (bare[2] === 1 && bare[3] > 2) || // wrong month format
-    (bare[4] === 3 && bare[5] > 1) || // wrong day format
-    bare[6] > 4
-  ) {
-    return false;
-  }
-  let tmp = 0;
-  for (let i = 0; i < bare.length - 1; i++) {
-    tmp += bare[i] * SSN_WEIGHT[i];
-  }
-  if (bare[bare.length - 1] === 11 - (tmp % 11)) {
-    return true;
-  }
-  return false;
 };
 
 export const emailValidator = async (value) => {

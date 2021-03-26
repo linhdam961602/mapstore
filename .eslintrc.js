@@ -40,6 +40,7 @@ module.exports = {
   rules: {
     'arrow-body-style': [2, 'as-needed'],
     'class-methods-use-this': 0,
+    'consistent-return': 0,
     'import/imports-first': 0,
     'import/newline-after-import': 0,
     'import/no-dynamic-require': 0,
@@ -70,6 +71,7 @@ module.exports = {
     'no-console': ['error', { allow: ['warn', 'error'] }],
     'no-unused-vars': 2,
     'no-use-before-define': 0,
+    'no-throw-literal': 0,
     'prefer-template': 2,
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'error',
@@ -91,6 +93,7 @@ module.exports = {
     'require-yield': 0,
     'func-names': 0,
     'prettier/prettier': ['error', prettierOptions],
+    'prefer-promise-reject-errors': 0,
   },
   settings: {
     react: {
