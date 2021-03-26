@@ -1,34 +1,11 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import {
-  mainTabsSliceName,
-  mainTabsReducer,
-} from 'features/frameBody/MainTabs/slices';
-import { authSliceName, authReducer } from 'features/auth/slices';
-import {
-  dirtyManagementName,
-  dirtyManagementReducer,
-} from 'features/dirtyManagement/slices';
-import {
-  modalSlicesName,
-  modalReducer,
-} from 'containers/ModalContainer/slices';
-import {
-  commonCodeSliceName,
-  commonCodeReducer,
-} from 'features/common/CommonCode/slices';
-import {
-  helpFileSliceName,
-  helpFileReducer,
-} from 'containers/HelpContainer/slices';
+import { connectRouter } from 'connected-react-router';
+
+import history from 'utils/history';
 
 function createReducer(injectedReducers = {}) {
   const rootReducer = combineReducers({
-    [mainTabsSliceName]: mainTabsReducer,
-    [authSliceName]: authReducer,
-    [dirtyManagementName]: dirtyManagementReducer,
-    [modalSlicesName]: modalReducer,
-    [commonCodeSliceName]: commonCodeReducer,
-    [helpFileSliceName]: helpFileReducer,
+    router: connectRouter(history),
     ...injectedReducers,
   });
   return rootReducer;

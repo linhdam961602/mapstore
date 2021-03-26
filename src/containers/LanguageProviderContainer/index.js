@@ -1,3 +1,4 @@
+/* eslint-disable import/no-mutable-exports */
 /*
  *
  * LanguageProvider
@@ -6,19 +7,14 @@
  * IntlProvider component and i18n messages
  */
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
-import { useInjectReducer } from 'hooks/useInjector';
 import { createIntl, createIntlCache, IntlProvider } from 'react-intl';
 
-import { translationMessages, DEFAULT_LOCALE } from 'i18n';
-import get from 'lodash/get';
-import dayjs from 'dayjs';
+import * as dayjs from 'dayjs';
 
-import { selectReducer, selectSliceName, initialState } from './slices';
+import { translationMessages, DEFAULT_LOCALE } from 'translations/i18n';
 
 dayjs.locale(DEFAULT_LOCALE);
-// eslint-disable-next-line import/no-mutable-exports
+
 export let intl = createIntl(
   {
     locale: DEFAULT_LOCALE,
@@ -30,11 +26,8 @@ export let intl = createIntl(
 export const formatMessageUtil = (intlObj = intl) => (id) =>
   intlObj.formatMessage({ id });
 
-export function LanguageProviderContainer({ messages, children }) {
-  useInjectReducer({ key: selectSliceName, reducer: selectReducer });
-  const locale = useSelector((state) =>
-    get(state, [selectSliceName, 'locale'], initialState.locale),
-  );
+function LanguageProvider({ messages, children }) {
+  const locale = 'vi';
 
   useEffect(() => {
     if (!messages) return;
@@ -51,19 +44,11 @@ export function LanguageProviderContainer({ messages, children }) {
     );
     dayjs.locale(locale);
   }, [locale, messages]);
-
   return (
     <IntlProvider locale={locale} messages={messages[locale]}>
-      {React.Children.only(children)}
+      {children}
     </IntlProvider>
   );
 }
 
-LanguageProviderContainer.propTypes = {
-  // eslint-disable-next-line react/no-unused-prop-types
-  locale: PropTypes.string,
-  messages: PropTypes.object,
-  children: PropTypes.element.isRequired,
-};
-
-export default LanguageProviderContainer;
+export default LanguageProvider;

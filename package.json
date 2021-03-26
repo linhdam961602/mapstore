@@ -3,12 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ant-design/icons": "^4.6.2",
     "@reduxjs/toolkit": "^1.5.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "antd": "^4.14.1",
     "axios": "^0.21.1",
+    "connected-react-router": "^6.9.1",
     "dayjs": "^1.10.4",
     "intl": "^1.2.5",
     "node-sass": "^5.0.0",
@@ -22,6 +24,7 @@
     "redux-injectors": "^1.3.0",
     "redux-saga": "^1.1.3",
     "redux-toolkit-saga": "^1.2.0",
+    "universal-cookie": "^4.0.4",
     "web-vitals": "^1.0.1"
   },
   "scripts": {

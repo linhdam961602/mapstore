@@ -1,13 +1,18 @@
-/* eslint-disable react/react-in-jsx-scope */
 import { useIntl } from 'react-intl';
 
 import { createTranslatedText } from 'utils/text';
 
-const App = () => {
+import './styles.scss';
+
+const HomePage = () => {
   const intl = useIntl();
   const getText = createTranslatedText('common.title', intl);
 
-  return <p>{getText('template')}</p>;
+  return (
+    <div className="home">
+      <p>{getText('template')}</p>
+    </div>
+  );
 };
 
-export default App;
+export default HomePage;

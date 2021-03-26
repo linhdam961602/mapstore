@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { DEFAULT_LOCALE } from '../../i18n';
+import { DEFAULT_LOCALE } from 'i18n';
 
 const selectSliceName = 'i18n';
 
