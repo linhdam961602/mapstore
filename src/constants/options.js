@@ -1,76 +1,57 @@
 import { intl } from 'containers/LanguageProviderContainer';
+import { createTranslatedText } from 'utils/text';
+
+const getText = createTranslatedText('common.labels', intl);
 
 export const TYPES_OF_SUBJECT = {
   PERSONAL: {
     value: 'personal',
-    label: intl.formatMessage({
-      id: 'common.labels.personal',
-    }),
+    label: getText('personal'),
   },
   COMPANY: {
     value: 'company',
-    label: intl.formatMessage({
-      id: 'common.labels.company',
-    }),
+    label: getText('company'),
   },
 };
 
 export const TYPES_OF_PERSONAL_TITLE = {
   MR: {
     value: 'mr',
-    label: intl.formatMessage({
-      id: 'common.labels.mr',
-    }),
+    label: getText('mr'),
   },
   MRS: {
     value: 'mrs',
-    label: intl.formatMessage({
-      id: 'common.labels.mrs',
-    }),
+    label: getText('mrs'),
   },
   MISS: {
     value: 'miss',
-    label: intl.formatMessage({
-      id: 'common.labels.miss',
-    }),
+    label: getText('miss'),
   },
 };
 
 export const TYPES_OF_HOW_TO_FIND = {
   FACEBOOK: {
     value: 'facebook',
-    label: intl.formatMessage({
-      id: 'common.labels.facebook',
-    }),
+    label: getText('facebook'),
   },
   GOOGLE: {
     value: 'google',
-    label: intl.formatMessage({
-      id: 'common.labels.google',
-    }),
+    label: getText('google'),
   },
   FRIENDS: {
     value: 'friendAdvise',
-    label: intl.formatMessage({
-      id: 'common.labels.friendAdvise',
-    }),
+    label: getText('friendAdvise'),
   },
   ADS: {
     value: 'ads',
-    label: intl.formatMessage({
-      id: 'common.labels.ads',
-    }),
+    label: getText('ads'),
   },
   SEARCH_ENGINES: {
     value: 'searchEngines',
-    label: intl.formatMessage({
-      id: 'common.labels.searchEngines',
-    }),
+    label: getText('searchEngines'),
   },
   OTHERS: {
     value: 'otherSources',
-    label: intl.formatMessage({
-      id: 'common.labels.otherSources',
-    }),
+    label: getText('otherSources'),
   },
 };
