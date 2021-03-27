@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
+import { useIntl } from 'react-intl';
 
-import { HomeOutlined } from '@ant-design/icons';
+import Navigation from './Navigation';
+
+import menusData from './menusData';
 
 import Layout from 'components/BasicComponent/Layout';
-import Menu from 'components/BasicComponent/Menu';
 
 const { Sider } = Layout;
-const { Item } = Menu;
 
 const MainLayout = () => {
+  const intl = useIntl();
   const [collapsed, setCollapsed] = useState(false);
+  const menusDataIntl = useMemo(() => menusData(intl), [intl]);
 
   const onCollapse = (collapsedValue) => {
     setCollapsed(collapsedValue);
@@ -18,11 +21,7 @@ const MainLayout = () => {
   return (
     <>
       <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
-        <Menu defaultSelectedKeys={['1']} mode="inline" theme="dark">
-          <Item key="1" icon={<HomeOutlined />}>
-            Trang Chủ
-          </Item>
-        </Menu>
+        <Navigation menusData={menusDataIntl} />
       </Sider>
     </>
   );
