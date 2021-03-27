@@ -107,12 +107,7 @@ const LoginPage = () => {
           </div>
 
           <Form.Item>
-            <Button
-              type="primary"
-              htmlType="submit"
-              className={styles.login__button}
-              block
-            >
+            <Button type="primary" htmlType="submit" block>
               {intl.formatMessage({
                 id: 'login.buttons.login',
               })}

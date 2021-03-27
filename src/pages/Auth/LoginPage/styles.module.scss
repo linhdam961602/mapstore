@@ -8,17 +8,17 @@
   }
 
   &__container {
-    box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.02);
+    box-shadow: 0 0.2rem 2rem 0 rgba(0, 0, 0, 0.02);
     margin: 0 auto;
-    width: 800px;
-    height: 500px;
+    width: 80rem;
+    height: 50rem;
     display: flex;
   }
 
   &__form {
     background-color: #fff;
     width: 50%;
-    padding: 50px 66px 84px 66px !important;
+    padding: 5rem 6.6rem 8.4rem 6.6rem !important;
   }
 
   &__title {
@@ -26,13 +26,8 @@
     font-weight: 600;
   }
 
-  &__button {
-    height: 54px;
-  }
-
   &__button-with-google {
     border: none;
-    // height: 54px !important;
     background-color: #f6f7f8 !important;
     span {
       color: #ec5741;
@@ -42,13 +37,13 @@
   &__remember-me {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 40px;
+    margin-bottom: 4rem;
   }
 
   &__create-account {
     text-align: center;
     :not(:first-child) {
-      margin-left: 3px;
+      margin-left: 0.3rem;
     }
   }
 
