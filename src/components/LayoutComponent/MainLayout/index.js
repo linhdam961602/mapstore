@@ -1,5 +1,7 @@
 import React from 'react';
 
+import styles from './styles.module.scss';
+
 import Layout from 'components/BasicComponent/Layout';
 import Sider from 'containers/SidebarLeft';
 
@@ -7,14 +9,12 @@ const { Header, Content, Footer } = Layout;
 
 const MainLayout = (props) => (
   <>
-    <Layout style={{ minHeight: '100vh' }}>
+    <Layout className={styles.main__layout}>
       <Sider />
       <Layout className="site-layout">
-        <Header className="site-layout-background" style={{ padding: 0 }} />
-        <Content style={{ margin: '0 16px' }}>{props.children}</Content>
-        <Footer style={{ textAlign: 'center' }}>
-          Ant Design ©2018 Created by Ant UED
-        </Footer>
+        <Header className={styles.main__header} />
+        <Content className={styles.main__content}>{props.children}</Content>
+        <Footer>Ant Design ©2018 Created by Ant UED</Footer>
       </Layout>
     </Layout>
   </>
