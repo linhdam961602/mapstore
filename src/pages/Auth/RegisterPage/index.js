@@ -37,6 +37,7 @@ const RegisterPage = () => {
   const [form] = Form.useForm();
 
   const [, setCurPassword] = useState('');
+  const [curType, setCurType] = useState(null);
 
   useInjectSaga({ key: authSliceName, saga: authSaga });
 
@@ -51,6 +52,10 @@ const RegisterPage = () => {
 
   const onPasswordChange = useCallback((value) => {
     setCurPassword(value);
+  }, []);
+
+  const onTypeChange = useCallback((value) => {
+    setCurType(value);
   }, []);
 
   return (
@@ -77,159 +82,162 @@ const RegisterPage = () => {
               id: 'registration.labels.typeOfSubj',
             })}
           >
-            <Select options={Object.values(TYPES_OF_SUBJECT)} />
+            <Select
+              options={Object.values(TYPES_OF_SUBJECT)}
+              onChange={onTypeChange}
+            />
           </Form.Item>
           {/* Company Information */}
-          <h3 className={styles['register__form-section--title']}>
-            {intl.formatMessage({
-              id: 'registration.headings.compInfo',
-            })}
-          </h3>
-          <Row gutter={16}>
-            <Col span={12}>
-              <Form.Item
-                name={REGISTER_FORM_FIELDS.COMPANY_NAME}
-                label={intl.formatMessage({
-                  id: 'registration.labels.compName',
+          {curType === TYPES_OF_SUBJECT.COMPANY.value && (
+            <div>
+              <h3 className={styles['register__form-section--title']}>
+                {intl.formatMessage({
+                  id: 'registration.headings.compInfo',
                 })}
-              >
-                <Input />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item
-                name={REGISTER_FORM_FIELDS.TAX_ID}
-                label={intl.formatMessage({
-                  id: 'registration.labels.taxCode',
-                })}
-              >
-                <Input />
-              </Form.Item>
-            </Col>
-          </Row>
-
+              </h3>
+              <Row gutter={16}>
+                <Col span={12}>
+                  <Form.Item
+                    name={REGISTER_FORM_FIELDS.COMPANY_NAME}
+                    label={intl.formatMessage({
+                      id: 'registration.labels.compName',
+                    })}
+                  >
+                    <Input />
+                  </Form.Item>
+                </Col>
+                <Col span={12}>
+                  <Form.Item
+                    name={REGISTER_FORM_FIELDS.TAX_ID}
+                    label={intl.formatMessage({
+                      id: 'registration.labels.taxCode',
+                    })}
+                  >
+                    <Input />
+                  </Form.Item>
+                </Col>
+              </Row>
+            </div>
+          )}
           {/* Personal Information */}
-          <h3 className={styles['register__form-section--title']}>
-            {intl.formatMessage({
-              id: 'registration.headings.perInfo',
-            })}
-          </h3>
-          <Row gutter={16}>
-            <Col span={8}>
-              <Form.Item
-                name={REGISTER_FORM_FIELDS.PERSONAL_TITLE}
-                label={intl.formatMessage({
-                  id: 'registration.labels.youAre',
-                })}
-              >
-                <Select options={Object.values(TYPES_OF_PERSONAL_TITLE)} />
-              </Form.Item>
-            </Col>
-            <Col span={8}>
-              <Form.Item
-                name={REGISTER_FORM_FIELDS.LAST_NAME}
-                label={intl.formatMessage({
-                  id: 'registration.labels.lastName',
-                })}
-              >
-                <Input />
-              </Form.Item>
-            </Col>
-            <Col span={8}>
-              <Form.Item
-                name={REGISTER_FORM_FIELDS.FIRST_NAME}
-                label={intl.formatMessage({
-                  id: 'registration.labels.firstName',
-                })}
-              >
-                <Input />
-              </Form.Item>
-            </Col>
-          </Row>
-
-          <Row gutter={16}>
-            <Col span={12}>
-              <Form.Item
-                name={REGISTER_FORM_FIELDS.EMAIL}
-                label={intl.formatMessage({
-                  id: 'registration.labels.email',
-                })}
-              >
-                <Input />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item
-                name={REGISTER_FORM_FIELDS.PHONE}
-                label={intl.formatMessage({
-                  id: 'registration.labels.phone',
-                })}
-              >
-                {/* TODO: Select dial code */}
-                <Input
-                  addonBefore={<div>+84</div>}
-                  className={styles['register__phone-input']}
-                />
-              </Form.Item>
-            </Col>
-          </Row>
-
-          <Row gutter={16}>
-            <Col span={12}>
-              <Form.Item
-                name={REGISTER_FORM_FIELDS.NATIONAL_ID}
-                label={intl.formatMessage({
-                  id: 'registration.labels.idPp',
-                })}
-              >
-                <Input />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item
-                name={REGISTER_FORM_FIELDS.COUNTRY}
-                label={intl.formatMessage({
-                  id: 'registration.labels.country',
-                })}
-              >
-                <Select />
-              </Form.Item>
-            </Col>
-          </Row>
-
-          <Row gutter={16}>
-            <Col span={12}>
-              <Form.Item
-                name={REGISTER_FORM_FIELDS.CITY}
-                label={intl.formatMessage({
-                  id: 'registration.labels.province',
-                })}
-              >
-                <Select />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item
-                name={REGISTER_FORM_FIELDS.STATE}
-                label={intl.formatMessage({
-                  id: 'registration.labels.district',
-                })}
-              >
-                <Select />
-              </Form.Item>
-            </Col>
-          </Row>
-
-          <Divider />
-          <Form.Item
-            name={REGISTER_FORM_FIELDS.HOW_TO_FIND}
-            label={intl.formatMessage({
-              id: 'registration.labels.howFindUs',
-            })}
-          >
-            <Select options={Object.values(TYPES_OF_HOW_TO_FIND)} />
-          </Form.Item>
-
+          <div>
+            <h3 className={styles['register__form-section--title']}>
+              {intl.formatMessage({
+                id: 'registration.headings.perInfo',
+              })}
+            </h3>
+            <Row gutter={16}>
+              <Col span={8}>
+                <Form.Item
+                  name={REGISTER_FORM_FIELDS.PERSONAL_TITLE}
+                  label={intl.formatMessage({
+                    id: 'registration.labels.youAre',
+                  })}
+                >
+                  <Select options={Object.values(TYPES_OF_PERSONAL_TITLE)} />
+                </Form.Item>
+              </Col>
+              <Col span={8}>
+                <Form.Item
+                  name={REGISTER_FORM_FIELDS.LAST_NAME}
+                  label={intl.formatMessage({
+                    id: 'registration.labels.lastName',
+                  })}
+                >
+                  <Input />
+                </Form.Item>
+              </Col>
+              <Col span={8}>
+                <Form.Item
+                  name={REGISTER_FORM_FIELDS.FIRST_NAME}
+                  label={intl.formatMessage({
+                    id: 'registration.labels.firstName',
+                  })}
+                >
+                  <Input />
+                </Form.Item>
+              </Col>
+            </Row>
+            <Row gutter={16}>
+              <Col span={12}>
+                <Form.Item
+                  name={REGISTER_FORM_FIELDS.EMAIL}
+                  label={intl.formatMessage({
+                    id: 'registration.labels.email',
+                  })}
+                >
+                  <Input />
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item
+                  name={REGISTER_FORM_FIELDS.PHONE}
+                  label={intl.formatMessage({
+                    id: 'registration.labels.phone',
+                  })}
+                >
+                  {/* TODO: Select dial code */}
+                  <Input
+                    addonBefore={<div>+84</div>}
+                    className={styles['register__phone-input']}
+                  />
+                </Form.Item>
+              </Col>
+            </Row>
+            <Row gutter={16}>
+              <Col span={12}>
+                <Form.Item
+                  name={REGISTER_FORM_FIELDS.NATIONAL_ID}
+                  label={intl.formatMessage({
+                    id: 'registration.labels.idPp',
+                  })}
+                >
+                  <Input />
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item
+                  name={REGISTER_FORM_FIELDS.COUNTRY}
+                  label={intl.formatMessage({
+                    id: 'registration.labels.country',
+                  })}
+                >
+                  <Select />
+                </Form.Item>
+              </Col>
+            </Row>
+            <Row gutter={16}>
+              <Col span={12}>
+                <Form.Item
+                  name={REGISTER_FORM_FIELDS.CITY}
+                  label={intl.formatMessage({
+                    id: 'registration.labels.province',
+                  })}
+                >
+                  <Select />
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item
+                  name={REGISTER_FORM_FIELDS.STATE}
+                  label={intl.formatMessage({
+                    id: 'registration.labels.district',
+                  })}
+                >
+                  <Select />
+                </Form.Item>
+              </Col>
+            </Row>
+            <Divider />
+            <Form.Item
+              name={REGISTER_FORM_FIELDS.HOW_TO_FIND}
+              label={intl.formatMessage({
+                id: 'registration.labels.howFindUs',
+              })}
+            >
+              <Select options={Object.values(TYPES_OF_HOW_TO_FIND)} />
+            </Form.Item>
+          </div>
           {/* Account Security */}
           <h3 className={styles['register__form-section--title']}>
             {intl.formatMessage({
@@ -283,7 +291,6 @@ const RegisterPage = () => {
               </a>
             </Checkbox>
           </Form.Item>
-
           <div className={styles['register__button-wrapper']}>
             <Button type="primary" htmlType="submit">
               {intl.formatMessage({
