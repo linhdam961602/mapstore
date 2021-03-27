@@ -15,7 +15,7 @@ import { translationMessages } from 'translations/i18n';
 
 import LanguageProvider from 'containers/LanguageProviderContainer';
 
-import './index.css';
+import './index.scss';
 
 const MOUNT_NODE = document.getElementById('root');
 

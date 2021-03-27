@@ -1,0 +1,57 @@
+.login {
+  &__background {
+    background-color: #f5f7f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  &__container {
+    box-shadow: 0 0.2rem 2rem 0 rgba(0, 0, 0, 0.02);
+    margin: 0 auto;
+    width: 80rem;
+    height: 50rem;
+    display: flex;
+  }
+
+  &__form {
+    background-color: #fff;
+    width: 50%;
+    padding: 5rem 6.6rem 8.4rem 6.6rem !important;
+  }
+
+  &__title {
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  &__button-with-google {
+    border: none;
+    background-color: #f6f7f8 !important;
+    span {
+      color: #ec5741;
+    }
+  }
+
+  &__remember-me {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+  }
+
+  &__create-account {
+    text-align: center;
+    :not(:first-child) {
+      margin-left: 0.3rem;
+    }
+  }
+
+  &__foreground {
+    width: 50%;
+    background-image: url('./login.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+}

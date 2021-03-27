@@ -14,7 +14,7 @@ import {
   WARNING_TYPE,
 } from 'components/BasicComponent/Notification';
 
-import { SIGN_IN_URI } from 'constants/routes';
+import { LOGIN_URL } from 'constants/routes';
 
 import * as authHelper from 'helpers/authHelper';
 import { intl } from 'containers/LanguageProviderContainer';
@@ -43,7 +43,7 @@ function* handler(action) {
         );
         setTimeout(() => {
           authHelper.clearUserCredential();
-          window.location.href = SIGN_IN_URI;
+          window.location.href = LOGIN_URL;
         }, INVALID_SESSION_TIMEOUT);
         break;
       case HAVE_BEEN_KICKED_OUT: {
@@ -57,7 +57,7 @@ function* handler(action) {
         );
         setTimeout(() => {
           authHelper.clearUserCredential();
-          window.location.href = SIGN_IN_URI;
+          window.location.href = LOGIN_URL;
         }, INVALID_SESSION_TIMEOUT);
 
         break;
