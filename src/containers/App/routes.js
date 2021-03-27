@@ -11,7 +11,7 @@ const routes = [
   {
     exact: true,
     path: LOGIN_URL,
-    component: lazy(() => import('pages/auth/LoginPage')),
+    component: lazy(() => import('pages/Auth/LoginPage')),
   },
 ];
 
