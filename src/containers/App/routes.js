@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 
-import { HOME_URI, LOGIN_URL } from 'constants/routes';
+import { HOME_URI, LOGIN_URL, REGISTER_URL } from 'constants/routes';
 
 const routes = [
   {
@@ -12,6 +12,11 @@ const routes = [
     exact: true,
     path: LOGIN_URL,
     component: lazy(() => import('pages/Auth/LoginPage')),
+  },
+  {
+    exact: true,
+    path: REGISTER_URL,
+    component: lazy(() => import('pages/Auth/RegisterPage')),
   },
 ];
 

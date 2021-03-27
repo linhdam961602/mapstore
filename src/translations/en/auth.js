@@ -19,6 +19,33 @@ const login = {
 
 const registration = {
   title: 'Registration',
+  headings: {
+    compInfo: 'Company information',
+    perInfo: 'Personal information',
+    accSec: 'Account security',
+  },
+  labels: {
+    typeOfSubj: 'Type of subject',
+    compName: 'Company name',
+    taxCode: 'Tax code',
+    youAre: 'You are',
+    firstName: 'First name',
+    lastName: 'Last name',
+    email: 'Email Address',
+    phone: 'Phone',
+    idPp: 'ID/Passport',
+    country: 'Country',
+    province: 'Province/City',
+    district: 'District',
+    howFindUs: 'How did you find us?',
+    password: 'Password',
+    repassword: 'Re-password',
+    agreement: 'I have read and agree to the ',
+    termsOfService: 'terms of service',
+  },
+  buttons: {
+    register: 'Register an account',
+  },
 };
 
 export { login, registration };

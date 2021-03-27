@@ -9,7 +9,7 @@ import { useIntl } from 'react-intl';
 import { useDispatch } from 'react-redux';
 import { GoogleOutlined } from '@ant-design/icons';
 
-import { authActions, authReducer, authSaga, authSliceName } from '../slices';
+import { authActions, authSaga, authSliceName } from '../slices';
 
 import { LOGIN_FORM_FIELDS } from './constants';
 import styles from './styles.module.scss';
@@ -18,7 +18,7 @@ import Form from 'components/BasicComponent/Form';
 import Input from 'components/BasicComponent/Input';
 import Checkbox from 'components/BasicComponent/Checkbox';
 import Button from 'components/BasicComponent/Button';
-import { useInjectReducer, useInjectSaga } from 'hooks/useInjector';
+import { useInjectSaga } from 'hooks/useInjector';
 import Divider from 'components/BasicComponent/Divider';
 import { REGISTER_URL } from 'constants/routes';
 
@@ -27,7 +27,6 @@ const LoginPage = () => {
   const dispatch = useDispatch();
   const [form] = Form.useForm();
 
-  useInjectReducer({ key: authSliceName, reducer: authReducer });
   useInjectSaga({ key: authSliceName, saga: authSaga });
 
   const onFinish = useCallback(() => {
