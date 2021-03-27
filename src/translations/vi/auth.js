@@ -19,6 +19,37 @@ const login = {
 
 const registration = {
   title: 'Đăng ký',
+  headings: {
+    compInfo: 'Thông tin công ty',
+    perInfo: 'Thông tin cá nhân',
+    accSec: 'Bảo mật tài khoản',
+  },
+  labels: {
+    typeOfSubj: 'Loại chủ thể',
+    compName: 'Tên công ty',
+    taxCode: 'Mã số thuế',
+    youAre: 'Danh xưng',
+    firstName: 'Tên',
+    lastName: 'Họ',
+    email: 'Địa chỉ email',
+    phone: 'Số điện thoại',
+    idPp: 'CMND/Hộ chiếu',
+    country: 'Quốc gia',
+    province: 'Tỉnh/Thành phố',
+    district: 'Quận/Huyện',
+    howFindUs: 'Bạn biết chúng tôi từ đâu?',
+    password: 'Mật khẩu',
+    repassword: 'Xác nhận mật khẩu',
+    agreement: 'Tôi đã đọc và đồng ý với các ',
+    termsOfService: 'điều khoản sử dụng dịch vụ',
+  },
+  buttons: {
+    register: 'Đăng ký tài khoản',
+  },
+  tooltip: {
+    password:
+      'Bí quyết để có mật khẩu tốt: Sử dụng cả kí tự thường và hoa. Bao gồm ít nhất một kí tự đặc biệt như (# $ ! % & etc...)',
+  },
 };
 
 export { login, registration };

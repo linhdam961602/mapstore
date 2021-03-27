@@ -1,0 +1,38 @@
+.register {
+  &__background {
+    background-color: #f5f7f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__container {
+    box-shadow: 0 0.2rem 2rem 0 rgba(0, 0, 0, 0.02);
+    margin: 0 auto;
+    width: 100rem;
+    background-color: #fff;
+  }
+
+  &__form {
+    padding: 5rem 6.6rem 8.4rem 6.6rem !important;
+  }
+
+  &__form-section--title {
+    font-weight: 600;
+  }
+
+  &__title {
+    text-transform: uppercase;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  &__phone-input {
+    border: none !important;
+  }
+
+  &__button-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+}
