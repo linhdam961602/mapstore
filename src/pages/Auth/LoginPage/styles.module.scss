@@ -1,4 +1,12 @@
 .login {
+  &__background {
+    background-color: #f5f7f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
   &__container {
     box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.02);
     margin: 0 auto;
@@ -8,7 +16,9 @@
   }
 
   &__form {
-    flex: 1;
+    background-color: #fff;
+    width: 50%;
+    padding: 50px 66px 84px 66px !important;
   }
 
   &__title {
@@ -32,6 +42,7 @@
   &__remember-me {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 40px;
   }
 
   &__create-account {
@@ -41,8 +52,8 @@
     }
   }
 
-  &__background {
-    flex: 1;
+  &__foreground {
+    width: 50%;
     background-image: url('./login.png');
     background-repeat: no-repeat;
     background-size: cover;
