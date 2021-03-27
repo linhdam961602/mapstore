@@ -4,9 +4,10 @@
  *
  * This is the Register page.
  */
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useIntl } from 'react-intl';
 // import { useDispatch } from 'react-redux';
+import { InfoCircleOutlined } from '@ant-design/icons';
 
 import { authSaga, authSliceName } from '../slices';
 
@@ -21,6 +22,7 @@ import Divider from 'components/BasicComponent/Divider';
 import Select from 'components/BasicComponent/Select';
 import Row from 'components/BasicComponent/Grid/Row';
 import Col from 'components/BasicComponent/Grid/Col';
+import Tooltip from 'components/BasicComponent/Tooltip';
 import { useInjectSaga } from 'hooks/useInjector';
 import {
   TYPES_OF_PERSONAL_TITLE,
@@ -34,6 +36,8 @@ const RegisterPage = () => {
   // const dispatch = useDispatch();
   const [form] = Form.useForm();
 
+  const [, setCurPassword] = useState('');
+
   useInjectSaga({ key: authSliceName, saga: authSaga });
 
   const onFinish = useCallback(() => {
@@ -43,6 +47,10 @@ const RegisterPage = () => {
 
   const onConfirmPassword = useCallback(() => {
     // Confirm password
+  }, []);
+
+  const onPasswordChange = useCallback((value) => {
+    setCurPassword(value);
   }, []);
 
   return (
@@ -236,7 +244,21 @@ const RegisterPage = () => {
                   id: 'registration.labels.password',
                 })}
               >
-                <Input.Password />
+                <Input
+                  type="password"
+                  onChange={onPasswordChange}
+                  suffix={
+                    <Tooltip
+                      title={intl.formatMessage({
+                        id: 'registration.tooltip.password',
+                      })}
+                    >
+                      <InfoCircleOutlined
+                        style={{ color: 'rgba(0,0,0,.45)' }}
+                      />
+                    </Tooltip>
+                  }
+                />
               </Form.Item>
             </Col>
             <Col span={12}>
@@ -245,7 +267,7 @@ const RegisterPage = () => {
                   id: 'registration.labels.repassword',
                 })}
               >
-                <Input.Password onChange={onConfirmPassword} />
+                <Input type="password" onChange={onConfirmPassword} />
               </Form.Item>
             </Col>
           </Row>

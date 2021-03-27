@@ -46,6 +46,10 @@ const registration = {
   buttons: {
     register: 'Đăng ký tài khoản',
   },
+  tooltip: {
+    password:
+      'Bí quyết để có mật khẩu tốt: Sử dụng cả kí tự thường và hoa. Bao gồm ít nhất một kí tự đặc biệt như (# $ ! % & etc...)',
+  },
 };
 
 export { login, registration };

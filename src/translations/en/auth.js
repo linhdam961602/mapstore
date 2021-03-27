@@ -46,6 +46,10 @@ const registration = {
   buttons: {
     register: 'Register an account',
   },
+  tooltip: {
+    password:
+      'The secret to good passwords: Use both lowercase and uppercase letters. Include at least one special character like (# $!% & Etc ...)',
+  },
 };
 
 export { login, registration };
