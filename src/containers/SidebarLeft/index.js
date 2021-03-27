@@ -5,6 +5,8 @@ import Navigation from './Navigation';
 
 import menusData from './menusData';
 
+import styles from './styles.module.scss';
+
 import Layout from 'components/BasicComponent/Layout';
 
 const { Sider } = Layout;
@@ -20,7 +22,12 @@ const MainLayout = () => {
 
   return (
     <>
-      <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
+      <Sider
+        className={styles.sidebarLeft__wrapper}
+        collapsible
+        collapsed={collapsed}
+        onCollapse={onCollapse}
+      >
         <Navigation menusData={menusDataIntl} />
       </Sider>
     </>
