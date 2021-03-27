@@ -30,11 +30,13 @@ import {
   TYPES_OF_HOW_TO_FIND,
 } from 'constants/options';
 import { LAYOUT_8_16 } from 'constants/form';
+import { createTranslatedText } from 'utils/text';
 
 const RegisterPage = () => {
   const intl = useIntl();
   // const dispatch = useDispatch();
   const [form] = Form.useForm();
+  const getText = createTranslatedText('registration', intl);
 
   const [, setCurPassword] = useState('');
   const [curType, setCurType] = useState(null);
@@ -71,16 +73,10 @@ const RegisterPage = () => {
           {...LAYOUT_8_16}
           labelAlign="left"
         >
-          <h1 className={styles.register__title}>
-            {intl.formatMessage({
-              id: 'registration.title',
-            })}
-          </h1>
+          <h1 className={styles.register__title}>{getText('title')}</h1>
           <Form.Item
             name={REGISTER_FORM_FIELDS.TYPE}
-            label={intl.formatMessage({
-              id: 'registration.labels.typeOfSubj',
-            })}
+            label={getText('labels.typeOfSubj')}
           >
             <Select
               options={Object.values(TYPES_OF_SUBJECT)}
@@ -91,17 +87,13 @@ const RegisterPage = () => {
           {curType === TYPES_OF_SUBJECT.COMPANY.value && (
             <div>
               <h3 className={styles['register__form-section--title']}>
-                {intl.formatMessage({
-                  id: 'registration.headings.compInfo',
-                })}
+                {getText('headings.compInfo')}
               </h3>
               <Row gutter={16}>
                 <Col span={12}>
                   <Form.Item
                     name={REGISTER_FORM_FIELDS.COMPANY_NAME}
-                    label={intl.formatMessage({
-                      id: 'registration.labels.compName',
-                    })}
+                    label={getText('labels.compName')}
                   >
                     <Input />
                   </Form.Item>
@@ -109,9 +101,7 @@ const RegisterPage = () => {
                 <Col span={12}>
                   <Form.Item
                     name={REGISTER_FORM_FIELDS.TAX_ID}
-                    label={intl.formatMessage({
-                      id: 'registration.labels.taxCode',
-                    })}
+                    label={getText('labels.taxCode')}
                   >
                     <Input />
                   </Form.Item>
@@ -122,17 +112,13 @@ const RegisterPage = () => {
           {/* Personal Information */}
           <div>
             <h3 className={styles['register__form-section--title']}>
-              {intl.formatMessage({
-                id: 'registration.headings.perInfo',
-              })}
+              {getText('headings.perInfo')}
             </h3>
             <Row gutter={16}>
               <Col span={8}>
                 <Form.Item
                   name={REGISTER_FORM_FIELDS.PERSONAL_TITLE}
-                  label={intl.formatMessage({
-                    id: 'registration.labels.youAre',
-                  })}
+                  label={getText('labels.youAre')}
                 >
                   <Select options={Object.values(TYPES_OF_PERSONAL_TITLE)} />
                 </Form.Item>
@@ -140,9 +126,7 @@ const RegisterPage = () => {
               <Col span={8}>
                 <Form.Item
                   name={REGISTER_FORM_FIELDS.LAST_NAME}
-                  label={intl.formatMessage({
-                    id: 'registration.labels.lastName',
-                  })}
+                  label={getText('labels.lastName')}
                 >
                   <Input />
                 </Form.Item>
@@ -150,9 +134,7 @@ const RegisterPage = () => {
               <Col span={8}>
                 <Form.Item
                   name={REGISTER_FORM_FIELDS.FIRST_NAME}
-                  label={intl.formatMessage({
-                    id: 'registration.labels.firstName',
-                  })}
+                  label={getText('labels.firstName')}
                 >
                   <Input />
                 </Form.Item>
@@ -162,9 +144,7 @@ const RegisterPage = () => {
               <Col span={12}>
                 <Form.Item
                   name={REGISTER_FORM_FIELDS.EMAIL}
-                  label={intl.formatMessage({
-                    id: 'registration.labels.email',
-                  })}
+                  label={getText('labels.email')}
                 >
                   <Input />
                 </Form.Item>
@@ -172,9 +152,7 @@ const RegisterPage = () => {
               <Col span={12}>
                 <Form.Item
                   name={REGISTER_FORM_FIELDS.PHONE}
-                  label={intl.formatMessage({
-                    id: 'registration.labels.phone',
-                  })}
+                  label={getText('labels.phone')}
                 >
                   {/* TODO: Select dial code */}
                   <Input
@@ -188,9 +166,7 @@ const RegisterPage = () => {
               <Col span={12}>
                 <Form.Item
                   name={REGISTER_FORM_FIELDS.NATIONAL_ID}
-                  label={intl.formatMessage({
-                    id: 'registration.labels.idPp',
-                  })}
+                  label={getText('labels.idPp')}
                 >
                   <Input />
                 </Form.Item>
@@ -198,9 +174,7 @@ const RegisterPage = () => {
               <Col span={12}>
                 <Form.Item
                   name={REGISTER_FORM_FIELDS.COUNTRY}
-                  label={intl.formatMessage({
-                    id: 'registration.labels.country',
-                  })}
+                  label={getText('labels.country')}
                 >
                   <Select />
                 </Form.Item>
@@ -210,9 +184,7 @@ const RegisterPage = () => {
               <Col span={12}>
                 <Form.Item
                   name={REGISTER_FORM_FIELDS.CITY}
-                  label={intl.formatMessage({
-                    id: 'registration.labels.province',
-                  })}
+                  label={getText('labels.province')}
                 >
                   <Select />
                 </Form.Item>
@@ -220,9 +192,7 @@ const RegisterPage = () => {
               <Col span={12}>
                 <Form.Item
                   name={REGISTER_FORM_FIELDS.STATE}
-                  label={intl.formatMessage({
-                    id: 'registration.labels.district',
-                  })}
+                  label={getText('labels.district')}
                 >
                   <Select />
                 </Form.Item>
@@ -231,36 +201,26 @@ const RegisterPage = () => {
             <Divider />
             <Form.Item
               name={REGISTER_FORM_FIELDS.HOW_TO_FIND}
-              label={intl.formatMessage({
-                id: 'registration.labels.howFindUs',
-              })}
+              label={getText('labels.howFindUs')}
             >
               <Select options={Object.values(TYPES_OF_HOW_TO_FIND)} />
             </Form.Item>
           </div>
           {/* Account Security */}
           <h3 className={styles['register__form-section--title']}>
-            {intl.formatMessage({
-              id: 'registration.headings.accSec',
-            })}
+            {getText('headings.accSec')}
           </h3>
           <Row gutter={16}>
             <Col span={12}>
               <Form.Item
                 name={REGISTER_FORM_FIELDS.PASSWORD}
-                label={intl.formatMessage({
-                  id: 'registration.labels.password',
-                })}
+                label={getText('labels.password')}
               >
                 <Input
                   type="password"
                   onChange={onPasswordChange}
                   suffix={
-                    <Tooltip
-                      title={intl.formatMessage({
-                        id: 'registration.tooltip.password',
-                      })}
-                    >
+                    <Tooltip title={getText('tooltip.password')}>
                       <InfoCircleOutlined
                         style={{ color: 'rgba(0,0,0,.45)' }}
                       />
@@ -270,32 +230,20 @@ const RegisterPage = () => {
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item
-                label={intl.formatMessage({
-                  id: 'registration.labels.repassword',
-                })}
-              >
+              <Form.Item label={getText('labels.repassword')}>
                 <Input type="password" onChange={onConfirmPassword} />
               </Form.Item>
             </Col>
           </Row>
           <Form.Item valuePropName="checked">
             <Checkbox>
-              {intl.formatMessage({
-                id: 'registration.labels.agreement',
-              })}
-              <a href="">
-                {intl.formatMessage({
-                  id: 'registration.labels.termsOfService',
-                })}
-              </a>
+              {getText('labels.agreement')}
+              <a href="">{getText('labels.termsOfService')}</a>
             </Checkbox>
           </Form.Item>
           <div className={styles['register__button-wrapper']}>
             <Button type="primary" htmlType="submit">
-              {intl.formatMessage({
-                id: 'registration.buttons.register',
-              })}
+              {getText('buttons.register')}
             </Button>
           </div>
         </Form>

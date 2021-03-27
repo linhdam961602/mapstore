@@ -21,9 +21,12 @@ import Button from 'components/BasicComponent/Button';
 import { useInjectSaga } from 'hooks/useInjector';
 import Divider from 'components/BasicComponent/Divider';
 import { REGISTER_URL } from 'constants/routes';
+import { createTranslatedText } from 'utils/text';
 
 const LoginPage = () => {
   const intl = useIntl();
+  const getText = createTranslatedText('login', intl);
+
   const dispatch = useDispatch();
   const [form] = Form.useForm();
 
@@ -45,11 +48,7 @@ const LoginPage = () => {
           onFinish={onFinish}
           form={form}
         >
-          <h1 className={styles.login__title}>
-            {intl.formatMessage({
-              id: 'login.title',
-            })}
-          </h1>
+          <h1 className={styles.login__title}>{getText('title')}</h1>
           <Form.Item
             name={LOGIN_FORM_FIELDS.USERNAME}
             rules={[
@@ -63,11 +62,7 @@ const LoginPage = () => {
               },
             ]}
           >
-            <Input
-              placeholder={intl.formatMessage({
-                id: 'login.placeholders.email',
-              })}
-            />
+            <Input placeholder={getText('placeholders.email')} />
           </Form.Item>
           <Form.Item
             name={LOGIN_FORM_FIELDS.PASSWORD}
@@ -80,9 +75,7 @@ const LoginPage = () => {
           >
             <Input
               type="password"
-              placeholder={intl.formatMessage({
-                id: 'login.placeholders.password',
-              })}
+              placeholder={getText('placeholders.password')}
             />
           </Form.Item>
           <div className={styles['login__remember-me']}>
@@ -91,52 +84,30 @@ const LoginPage = () => {
               valuePropName="checked"
               noStyle
             >
-              <Checkbox>
-                {intl.formatMessage({
-                  id: 'login.text.rememberMe',
-                })}
-              </Checkbox>
+              <Checkbox>{getText('text.rememberMe')}</Checkbox>
             </Form.Item>
 
             <a className="login-form-forgot" href="">
-              {intl.formatMessage({
-                id: 'login.text.forgotPassword',
-              })}
+              {getText('text.forgotPassword')}
             </a>
           </div>
 
           <Form.Item>
             <Button type="primary" htmlType="submit" block>
-              {intl.formatMessage({
-                id: 'login.buttons.login',
-              })}
+              {getText('buttons.login')}
             </Button>
           </Form.Item>
           <div className={styles['login__create-account']}>
-            <span>
-              {intl.formatMessage({
-                id: 'login.text.notAMember',
-              })}
-            </span>
-            <a href={REGISTER_URL}>
-              {intl.formatMessage({
-                id: 'login.text.createAcc',
-              })}
-            </a>
+            <span>{getText('text.notAMember')}</span>
+            <a href={REGISTER_URL}>{getText('text.createAcc')}</a>
           </div>
-          <Divider plain>
-            {intl.formatMessage({
-              id: 'login.text.useAcc',
-            })}
-          </Divider>
+          <Divider plain>{getText('text.useAcc')}</Divider>
           <Button
             className={styles['login__button-with-google']}
             block
             icon={<GoogleOutlined style={{ color: '#ec5741' }} />}
           >
-            {intl.formatMessage({
-              id: 'login.buttons.loginWGoogle',
-            })}
+            {getText('buttons.loginWGoogle')}
           </Button>
         </Form>
 
