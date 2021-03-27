@@ -1,0 +1,11 @@
+.main {
+    &__layout {
+        min-height: 100vh !important;
+    }
+    &__header{
+        padding: 0;
+    }
+    &__content{
+        margin: 16px;
+    }
+}
