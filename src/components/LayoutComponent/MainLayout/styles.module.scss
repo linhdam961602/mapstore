@@ -1,11 +1,16 @@
+@import 'styles/mixins.scss';
+
 .main {
     &__layout {
-        min-height: 100vh !important;
+        min-height: $min-height-page !important;
     }
     &__header{
         padding: 0;
     }
+    &__content_wrapper{
+        margin: 1.4rem 1.4rem 1.4rem 20rem;
+    }
     &__content{
-        margin: 16px;
+        overflow: 'initial';
     }
 }

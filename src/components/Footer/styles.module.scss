@@ -1,0 +1,16 @@
+@import 'styles/mixins.scss';
+
+.footer {
+    &__wrapper{
+        margin: $base-space;
+    }
+    &__primary_title {
+        font-weight: bold;
+        text-transform: uppercase;
+        color: $green;
+        margin: 0 0 0.8rem 0;
+    }
+    &__text{
+        font-size: 1.4rem;
+    }
+}

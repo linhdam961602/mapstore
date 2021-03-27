@@ -1,0 +1,10 @@
+@import 'styles/mixins.scss';
+
+.sidebarLeft {
+    &__wrapper {
+        position: fixed;
+        height: $min-height-page;
+        overflow: 'auto';
+        left: 0;
+    }
+}
