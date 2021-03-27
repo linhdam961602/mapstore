@@ -1,4 +1,4 @@
-import { LOGIN_URL } from 'constants/apiUrl';
+import { LOGIN_URL } from 'constants/routes';
 
 import apiClient from 'apis/apiClient';
 

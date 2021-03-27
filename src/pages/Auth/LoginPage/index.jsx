@@ -7,6 +7,7 @@
 import React, { useCallback } from 'react';
 import { useIntl } from 'react-intl';
 import { useDispatch } from 'react-redux';
+import { GoogleOutlined } from '@ant-design/icons';
 
 import { authActions, authReducer, authSaga, authSliceName } from '../slices';
 
@@ -18,6 +19,8 @@ import Input from 'components/BasicComponent/Input';
 import Checkbox from 'components/BasicComponent/Checkbox';
 import Button from 'components/BasicComponent/Button';
 import { useInjectReducer, useInjectSaga } from 'hooks/useInjector';
+import Divider from 'components/BasicComponent/Divider';
+import { REGISTER_URL } from 'constants/routes';
 
 const LoginPage = () => {
   const intl = useIntl();
@@ -34,19 +37,19 @@ const LoginPage = () => {
 
   return (
     <div className={styles.login__container}>
-      <h1 className={styles.login__title}>
-        {intl.formatMessage({
-          id: 'login.title',
-        })}
-      </h1>
       <Form
-        className="login-form"
+        className={styles.login__form}
         initialValues={{
           remember: true,
         }}
         onFinish={onFinish}
         form={form}
       >
+        <h1 className={styles.login__title}>
+          {intl.formatMessage({
+            id: 'login.title',
+          })}
+        </h1>
         <Form.Item
           name={LOGIN_FORM_FIELDS.USERNAME}
           rules={[
@@ -115,21 +118,34 @@ const LoginPage = () => {
           </Button>
         </Form.Item>
         <div className={styles['login__create-account']}>
-          {intl.formatMessage({
-            id: 'login.text.notAMember',
-          })}
-          <a href="">
+          <span>
+            {intl.formatMessage({
+              id: 'login.text.notAMember',
+            })}
+          </span>
+          <a href={REGISTER_URL}>
             {intl.formatMessage({
               id: 'login.text.createAcc',
             })}
           </a>
         </div>
-        <Button className={styles['login__button-with-google']} block>
+        <Divider plain>
+          {intl.formatMessage({
+            id: 'login.text.useAcc',
+          })}
+        </Divider>
+        <Button
+          className={styles['login__button-with-google']}
+          block
+          icon={<GoogleOutlined style={{ color: '#ec5741' }} />}
+        >
           {intl.formatMessage({
             id: 'login.buttons.loginWGoogle',
           })}
         </Button>
       </Form>
+
+      <div className={styles.login__background} />
     </div>
   );
 };
