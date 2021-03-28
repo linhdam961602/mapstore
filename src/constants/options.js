@@ -15,6 +15,10 @@ export const TYPES_OF_SUBJECT = {
 };
 
 export const TYPES_OF_PERSONAL_TITLE = {
+  NONE: {
+    value: '',
+    label: getText('none'),
+  },
   MR: {
     value: 'mr',
     label: getText('mr'),

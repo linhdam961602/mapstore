@@ -3,4 +3,46 @@ $base-space: 1.6rem !default;
 $min-height-page: 100vh;
 
 // Colors
-$green: #0FA54A;
+$green: #0fa54a;
+$white: #ffffff;
+$light-gray: #f5f7f9;
+
+/** Breakpoints */
+// xs sm md lg xl
+$breakpoints: (
+  'xs': (
+    max-width: 575px,
+  ),
+  'sm': (
+    max-width: 767px,
+  ),
+  'md': (
+    max-width: 991px,
+  ),
+  'lg': (
+    max-width: 1199px,
+  ),
+  'xl': (
+    max-width: 1599px,
+  ),
+) !default;
+
+/// Mixin to manage responsive breakpoints
+/// @author Hugo Giraudel
+/// @param {String} $breakpoint - Breakpoint name
+/// @require $breakpoints
+@mixin respond-to($breakpoint) {
+  // If the key exists in the map
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Prints a media query based on the value
+    @media #{inspect(map-get($breakpoints, $breakpoint))} {
+      @content;
+    }
+  }
+
+  // If the key doesn't exist in the map
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+          + "Available breakpoints are: #{map-keys($breakpoints)}.";
+  }
+}

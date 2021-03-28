@@ -5,6 +5,7 @@ const common = {
   labels: {
     personal: 'Cá nhân',
     company: 'Doanh nghiệp',
+    none: 'Không',
     mr: 'Ông',
     mrs: 'Bà',
     miss: 'Cô',
