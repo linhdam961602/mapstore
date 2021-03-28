@@ -8,6 +8,7 @@ import React, { useCallback, useState } from 'react';
 import { useIntl } from 'react-intl';
 // import { useDispatch } from 'react-redux';
 import { InfoCircleOutlined } from '@ant-design/icons';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 import { authSaga, authSliceName } from '../slices';
 
@@ -31,6 +32,9 @@ import {
 } from 'constants/options';
 import { LAYOUT_8_16 } from 'constants/form';
 import { createTranslatedText } from 'utils/text';
+// import PasswordStrengthMeter from 'components/BasicComponent/PasswordStrengthMeter';
+import { RECAPTCHA_SITE_KEY } from 'constants/common';
+import PhoneInput from 'containers/PhoneInput';
 
 const RegisterPage = () => {
   const intl = useIntl();
@@ -155,10 +159,7 @@ const RegisterPage = () => {
                   label={getText('labels.phone')}
                 >
                   {/* TODO: Select dial code */}
-                  <Input
-                    addonBefore={<div>+84</div>}
-                    className={styles['register__phone-input']}
-                  />
+                  <PhoneInput className={styles['register__phone-input']} />
                 </Form.Item>
               </Col>
             </Row>
@@ -227,6 +228,7 @@ const RegisterPage = () => {
                     </Tooltip>
                   }
                 />
+                {/* <PasswordStrengthMeter password={curPassword} /> */}
               </Form.Item>
             </Col>
             <Col span={12}>
@@ -235,6 +237,11 @@ const RegisterPage = () => {
               </Form.Item>
             </Col>
           </Row>
+
+          <Form.Item name={REGISTER_FORM_FIELDS.RECAPTCHA}>
+            <ReCAPTCHA sitekey={RECAPTCHA_SITE_KEY} onChange={() => {}} />
+          </Form.Item>
+
           <Form.Item valuePropName="checked">
             <Checkbox>
               {getText('labels.agreement')}

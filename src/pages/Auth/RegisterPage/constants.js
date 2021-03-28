@@ -18,4 +18,5 @@ export const REGISTER_FORM_FIELDS = {
   // TODO: update later
   PERSONAL_TITLE: 'title',
   HOW_TO_FIND: 'howToFind',
+  RECAPTCHA: 'reCaptcha',
 };
