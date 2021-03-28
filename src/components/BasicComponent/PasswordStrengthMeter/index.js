@@ -1,27 +1,16 @@
 import React, { useMemo } from 'react';
 import zxcvbn from 'zxcvbn';
 
-const PasswordStrengthMeter = ({ password }) => {
+import styles from './styles.module.scss';
+
+const PasswordStrengthMeter = ({
+  password = '',
+  onStrengthChange = () => {},
+}) => {
   const testResult = useMemo(() => zxcvbn(password), [password]);
 
-  const createPassLabel = useMemo(() => {
-    switch (testResult.score) {
-      case 0:
-        return 'Very weak';
-      case 1:
-        return 'Weak';
-      case 2:
-        return 'Fear';
-      case 3:
-        return 'Good';
-      case 4:
-        return 'Strong';
-      default:
-        return '';
-    }
-  }, [testResult.score]);
-
   const funcProgressColor = useMemo(() => {
+    onStrengthChange(testResult.score);
     switch (testResult.score) {
       case 0:
         return '#828282';
@@ -36,24 +25,25 @@ const PasswordStrengthMeter = ({ password }) => {
       default:
         return 'none';
     }
-  }, [testResult.score]);
+  }, [onStrengthChange, testResult.score]);
 
   const changePasswordColor = useMemo(
     () => ({
       width: `${(testResult.score * 100) / 4}%`,
       background: funcProgressColor,
-      height: '7px',
     }),
     [funcProgressColor, testResult.score],
   );
 
   return (
-    <>
-      <div className="progress" style={{ height: '7px' }}>
-        <div className="progress-bar" style={changePasswordColor}></div>
+    <div className={styles['password-meter__container']}>
+      <div className={styles['password-meter__progress']}>
+        <div
+          className={styles['password-meter__progress-bar']}
+          style={changePasswordColor}
+        ></div>
       </div>
-      <p style={{ color: funcProgressColor }}>{createPassLabel}</p>
-    </>
+    </div>
   );
 };
 

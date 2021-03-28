@@ -5,6 +5,7 @@ const common = {
   labels: {
     personal: 'Personal',
     company: 'Company',
+    none: 'None',
     mr: 'Mr.',
     mrs: 'Mrs.',
     miss: 'Miss',

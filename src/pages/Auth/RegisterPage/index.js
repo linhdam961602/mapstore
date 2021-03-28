@@ -4,7 +4,7 @@
  *
  * This is the Register page.
  */
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { useIntl } from 'react-intl';
 // import { useDispatch } from 'react-redux';
 import { InfoCircleOutlined } from '@ant-design/icons';
@@ -12,7 +12,7 @@ import ReCAPTCHA from 'react-google-recaptcha';
 
 import { authSaga, authSliceName } from '../slices';
 
-import { REGISTER_FORM_FIELDS } from './constants';
+import { INITIAL_VALUES, REGISTER_FORM_FIELDS } from './constants';
 import styles from './styles.module.scss';
 
 import Form from 'components/BasicComponent/Form';
@@ -21,9 +21,10 @@ import Checkbox from 'components/BasicComponent/Checkbox';
 import Button from 'components/BasicComponent/Button';
 import Divider from 'components/BasicComponent/Divider';
 import Select from 'components/BasicComponent/Select';
-import Row from 'components/BasicComponent/Grid/Row';
-import Col from 'components/BasicComponent/Grid/Col';
+import Grid from 'components/BasicComponent/Grid';
 import Tooltip from 'components/BasicComponent/Tooltip';
+import PasswordStrengthMeter from 'components/BasicComponent/PasswordStrengthMeter';
+import PhoneInput from 'containers/PhoneInputContainer';
 import { useInjectSaga } from 'hooks/useInjector';
 import {
   TYPES_OF_PERSONAL_TITLE,
@@ -32,9 +33,9 @@ import {
 } from 'constants/options';
 import { LAYOUT_8_16 } from 'constants/form';
 import { createTranslatedText } from 'utils/text';
-// import PasswordStrengthMeter from 'components/BasicComponent/PasswordStrengthMeter';
 import { RECAPTCHA_SITE_KEY } from 'constants/common';
-import PhoneInput from 'containers/PhoneInput';
+
+const { Row, Col } = Grid;
 
 const RegisterPage = () => {
   const intl = useIntl();
@@ -42,8 +43,9 @@ const RegisterPage = () => {
   const [form] = Form.useForm();
   const getText = createTranslatedText('registration', intl);
 
-  const [, setCurPassword] = useState('');
+  const [curPassword, setCurPassword] = useState('');
   const [curType, setCurType] = useState(null);
+  const [passwordScore, setPasswordScore] = useState(0);
 
   useInjectSaga({ key: authSliceName, saga: authSaga });
 
@@ -56,22 +58,37 @@ const RegisterPage = () => {
     // Confirm password
   }, []);
 
-  const onPasswordChange = useCallback((value) => {
-    setCurPassword(value);
+  const onPasswordChange = useCallback((e) => {
+    setCurPassword(e.target.value);
   }, []);
 
   const onTypeChange = useCallback((value) => {
     setCurType(value);
   }, []);
 
+  const passwordStrength = useMemo(() => {
+    switch (passwordScore) {
+      case 0:
+        return 'Very weak';
+      case 1:
+        return 'Weak';
+      case 2:
+        return 'Fear';
+      case 3:
+        return 'Good';
+      case 4:
+        return 'Strong';
+      default:
+        return '';
+    }
+  }, [passwordScore]);
+
   return (
     <div className={styles.register__background}>
       <div className={styles.register__container}>
         <Form
           className={styles.register__form}
-          initialValues={{
-            remember: true,
-          }}
+          initialValues={INITIAL_VALUES}
           onFinish={onFinish}
           form={form}
           {...LAYOUT_8_16}
@@ -221,14 +238,22 @@ const RegisterPage = () => {
                   type="password"
                   onChange={onPasswordChange}
                   suffix={
-                    <Tooltip title={getText('tooltip.password')}>
-                      <InfoCircleOutlined
-                        style={{ color: 'rgba(0,0,0,.45)' }}
-                      />
-                    </Tooltip>
+                    <>
+                      <span>{passwordStrength}</span>
+                      <Tooltip title={getText('tooltip.password')}>
+                        <InfoCircleOutlined
+                          style={{ color: 'rgba(0,0,0,.45)' }}
+                        />
+                      </Tooltip>
+                    </>
                   }
                 />
-                {/* <PasswordStrengthMeter password={curPassword} /> */}
+                <PasswordStrengthMeter
+                  password={curPassword}
+                  onStrengthChange={(score) => {
+                    setPasswordScore(score);
+                  }}
+                />
               </Form.Item>
             </Col>
             <Col span={12}>
@@ -249,7 +274,11 @@ const RegisterPage = () => {
             </Checkbox>
           </Form.Item>
           <div className={styles['register__button-wrapper']}>
-            <Button type="primary" htmlType="submit">
+            <Button
+              type="primary"
+              htmlType="submit"
+              className={styles.register__button}
+            >
               {getText('buttons.register')}
             </Button>
           </div>

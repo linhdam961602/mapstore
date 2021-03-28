@@ -36,7 +36,11 @@ const PhoneInput = ({ className, ...props }) => {
       const { name, nativeName, callingCodes, flag } = country;
 
       return (
-        <Select.Option key={name} value={name} label={`+${callingCodes}`}>
+        <Select.Option
+          key={name}
+          value={`+${callingCodes}`}
+          label={`+${callingCodes}`}
+        >
           <div>
             <span role="img" aria-label={name}>
               <img src={flag} alt={name} style={{ width: '2rem' }} />
