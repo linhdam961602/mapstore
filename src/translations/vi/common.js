@@ -16,6 +16,11 @@ const common = {
     searchEngines: 'Công cụ tìm kiếm',
     otherSources: 'Nguồn khác',
   },
+  error: {
+    networkError: 'Lỗi mạng',
+    internalServerError: 'Lỗi máy chủ nội bộ',
+    resourceNotFound: 'Không tìm thấy tài nguyên được yêu cầu.',
+  },
 };
 
 export { common };

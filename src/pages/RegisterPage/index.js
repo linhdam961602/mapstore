@@ -10,7 +10,7 @@ import { useIntl } from 'react-intl';
 import { InfoCircleOutlined } from '@ant-design/icons';
 import ReCAPTCHA from 'react-google-recaptcha';
 
-import { authSaga, authSliceName } from '../slices';
+import { authSaga, authSliceName } from '../LoginPage/slices';
 
 import { INITIAL_VALUES, REGISTER_FORM_FIELDS } from './constants';
 import styles from './styles.module.scss';

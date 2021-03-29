@@ -1,7 +1,7 @@
 import { combineReducers } from '@reduxjs/toolkit';
 import { connectRouter } from 'connected-react-router';
 
-import { authReducer, authSliceName } from 'pages/Auth/slices';
+import { authReducer, authSliceName } from 'pages/LoginPage/slices';
 
 import history from 'utils/history';
 

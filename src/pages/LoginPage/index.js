@@ -9,7 +9,7 @@ import { useIntl } from 'react-intl';
 import { useDispatch } from 'react-redux';
 import { GoogleOutlined } from '@ant-design/icons';
 
-import { authActions, authSaga, authSliceName } from '../slices';
+import { authActions, authSaga, authSliceName } from './slices';
 
 import { LOGIN_FORM_FIELDS } from './constants';
 import styles from './styles.module.scss';
@@ -34,6 +34,7 @@ const LoginPage = () => {
 
   const onFinish = useCallback(() => {
     const values = form.getFieldsValue();
+
     dispatch(authActions.login(values));
   }, [dispatch, form]);
 

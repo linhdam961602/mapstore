@@ -11,12 +11,12 @@ const routes = [
   {
     exact: true,
     path: LOGIN_URL,
-    component: lazy(() => import('pages/Auth/LoginPage')),
+    component: lazy(() => import('pages/LoginPage')),
   },
   {
     exact: true,
     path: REGISTER_URL,
-    component: lazy(() => import('pages/Auth/RegisterPage')),
+    component: lazy(() => import('pages/RegisterPage')),
   },
 ];
 

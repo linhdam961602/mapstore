@@ -94,5 +94,6 @@
       "prettier --write",
       "git add --force"
     ]
-  }
+  },
+  "proxy": "https://eto.tino.org/"
 }

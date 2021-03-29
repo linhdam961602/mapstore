@@ -16,6 +16,11 @@ const common = {
     searchEngines: 'Search engines',
     otherSources: 'Other souces',
   },
+  error: {
+    networkError: 'Network Error',
+    internalServerError: 'Internal Server Error',
+    resourceNotFound: 'Requested resource is not found.',
+  },
 };
 
 export { common };

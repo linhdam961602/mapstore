@@ -45,6 +45,7 @@ const authSliceSaga = createSliceSaga({
       try {
         yield put(reducerActions.loginProcessing());
         const { token } = yield call(authApis.login, action.payload);
+
         if (token) {
           /**
            * TODO: handle token
