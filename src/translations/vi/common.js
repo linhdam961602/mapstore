@@ -15,6 +15,20 @@ const common = {
     ads: 'Quảng cáo',
     searchEngines: 'Công cụ tìm kiếm',
     otherSources: 'Nguồn khác',
+    usd: 'USD',
+    vnd: 'VND',
+  },
+  tooltip: {
+    password:
+      'Bí quyết để có mật khẩu tốt: Sử dụng cả kí tự thường và hoa. Bao gồm ít nhất một kí tự đặc biệt như (# $ ! % & etc...)',
+    passwordStrength: {
+      placeholder: 'Mật khẩu ít nhất 6 ký tự',
+      veryWeak: 'Rất yếu',
+      weak: 'Yếu',
+      fair: 'Trung bình',
+      good: 'Tốt',
+      strong: 'Mạnh',
+    },
   },
   error: {
     networkError: 'Lỗi mạng',

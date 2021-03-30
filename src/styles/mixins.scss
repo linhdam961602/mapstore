@@ -5,10 +5,27 @@ $min-height-page: 100vh;
 // Colors
 $green: #0fa54a;
 $white: #ffffff;
+$black: #000000;
 $light-gray: #f5f7f9;
+$light-gray-2: #f6f7f8; // Default button background
+$google-red: #ec5741;
+$onyx: #363b3c;
+// Icewall Theme
+$primary: #142e71;
+$secondary: #edf2f7;
+$secondary-text: #718096;
+$success: #91c714;
+$warning: #fbc500;
+$warning-text: #1a202c;
+$danger: #d32929;
+$dark: #2d3748;
+$pale-blue: #e2e8f0; // Input Border color
+
+// Opacity
+$bg-hover-opacity: 0.8;
 
 /** Breakpoints */
-// xs sm md lg xl
+// Desktop first
 $breakpoints: (
   'xs': (
     max-width: 575px,
@@ -28,7 +45,6 @@ $breakpoints: (
 ) !default;
 
 /// Mixin to manage responsive breakpoints
-/// @author Hugo Giraudel
 /// @param {String} $breakpoint - Breakpoint name
 /// @require $breakpoints
 @mixin respond-to($breakpoint) {

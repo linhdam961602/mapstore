@@ -9,6 +9,7 @@ export const REGISTER_FORM_FIELDS = {
   FIRST_NAME: 'firstname',
   LAST_NAME: 'lastname',
   PHONE: 'phonenumber',
+  CALLING_CODE: 'country-calling-code-phonenumber',
   EMAIL: 'email',
   BIRTHDAY: 'birthday',
   NATIONAL_ID: 'nationalid',
@@ -19,18 +20,22 @@ export const REGISTER_FORM_FIELDS = {
   STATE: 'state',
   COUNTRY: 'country',
   PASSWORD: 'password',
+  PASSWORD_2: 'password2',
   CURRENCY: 'currency',
 
   // TODO: update later
   PERSONAL_TITLE: 'title',
   HOW_TO_FIND: 'howToFind',
-  RECAPTCHA: 'reCaptcha',
 };
+
+export const TERMS_OF_SERVICE_URL =
+  'https://tinohost.com/dieu-khoan-su-dung-dich-vu/';
 
 export const INITIAL_VALUES = {
   [REGISTER_FORM_FIELDS.TYPE]: TYPES_OF_SUBJECT.PERSONAL.value,
   [REGISTER_FORM_FIELDS.FIRST_NAME]: '',
   [REGISTER_FORM_FIELDS.LAST_NAME]: '',
+  [REGISTER_FORM_FIELDS.CALLING_CODE]: '+84',
   [REGISTER_FORM_FIELDS.PHONE]: '',
   [REGISTER_FORM_FIELDS.EMAIL]: '',
   [REGISTER_FORM_FIELDS.BIRTHDAY]: '',
@@ -42,7 +47,7 @@ export const INITIAL_VALUES = {
   [REGISTER_FORM_FIELDS.STATE]: '',
   [REGISTER_FORM_FIELDS.COUNTRY]: '',
   [REGISTER_FORM_FIELDS.PASSWORD]: '',
-  [REGISTER_FORM_FIELDS.CURRENCY]: '',
+  [REGISTER_FORM_FIELDS.CURRENCY]: 'VND',
 
   [REGISTER_FORM_FIELDS.PERSONAL_TITLE]: TYPES_OF_PERSONAL_TITLE.NONE.value,
   [REGISTER_FORM_FIELDS.HOW_TO_FIND]: TYPES_OF_HOW_TO_FIND.FACEBOOK.value,

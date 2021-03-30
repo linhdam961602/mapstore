@@ -15,6 +15,20 @@ const common = {
     ads: 'Ads',
     searchEngines: 'Search engines',
     otherSources: 'Other souces',
+    usd: 'USD',
+    vnd: 'VND',
+  },
+  tooltip: {
+    password:
+      'The secret to good passwords: Use both lowercase and uppercase letters. Include at least one special character like (# $!% & Etc ...)',
+    passwordStrength: {
+      placeholder: 'Password at least 6 characters',
+      veryWeak: 'Very Weak',
+      weak: 'Weak',
+      fair: 'Fair',
+      good: 'Good',
+      strong: 'Strong',
+    },
   },
   error: {
     networkError: 'Network Error',

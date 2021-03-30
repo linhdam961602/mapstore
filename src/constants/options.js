@@ -5,11 +5,11 @@ const getText = createTranslatedText('common.labels', intl);
 
 export const TYPES_OF_SUBJECT = {
   PERSONAL: {
-    value: 'personal',
+    value: 'Private',
     label: getText('personal'),
   },
   COMPANY: {
-    value: 'company',
+    value: 'Company',
     label: getText('company'),
   },
 };
@@ -57,5 +57,16 @@ export const TYPES_OF_HOW_TO_FIND = {
   OTHERS: {
     value: 'otherSources',
     label: getText('otherSources'),
+  },
+};
+
+export const TYPES_OF_CURRENCY = {
+  VND: {
+    value: 'VND',
+    label: getText('vnd'),
+  },
+  USD: {
+    value: 'USD',
+    label: getText('usd'),
   },
 };

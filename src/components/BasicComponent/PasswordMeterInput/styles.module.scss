@@ -1,0 +1,43 @@
+@import 'styles/mixins.scss';
+
+.password-meter {
+  &__progress {
+    height: 0.7rem;
+    background-color: $secondary;
+  }
+
+  &__progress-bar {
+    height: 0.7rem;
+  }
+  // Score
+  &__score--0 {
+    width: 0;
+  }
+  &__score--1 {
+    width: 25%;
+    background-color: $danger;
+  }
+  &__score--2 {
+    width: 50%;
+    background-color: $warning;
+  }
+  &__score--3 {
+    width: 75%;
+    background-color: $success;
+  }
+  &__score--4 {
+    width: 100%;
+    background-color: $success;
+  }
+
+  &__container {
+    margin-top: 1rem;
+  }
+}
+
+.password-strength-label {
+  position: absolute;
+  width: fit-content;
+  right: 3.2rem;
+  color: gray;
+}

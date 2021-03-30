@@ -7,7 +7,6 @@
 /* eslint-disable no-restricted-syntax */
 // TODO: Fix eslint
 
-import React from 'react';
 import dayjs from 'dayjs';
 import isEmpty from 'lodash/isEmpty';
 import _isInteger from 'lodash/isInteger';
@@ -15,10 +14,6 @@ import toNumber from 'lodash/toNumber';
 import flattenDeep from 'lodash/flattenDeep';
 import isArray from 'lodash/isArray';
 
-import Select from 'components/BasicComponents/Select';
-import { Radio } from 'components/BasicComponents/RadioGroup';
-
-import { intl } from 'containers/LanguageProviderContainer';
 import {
   isNumber,
   isCtrlCVA,
@@ -114,17 +109,6 @@ export const trimSearchData = (value, excludedKeys = []) => {
   return mappedData;
 };
 
-export const renderOptions = (options) =>
-  options.map((option) => (
-    // eslint-disable-next-line react/react-in-jsx-scope
-    <Select.Option
-      value={option.key ?? option.value}
-      key={option.key ?? option.value}
-    >
-      {option.title ?? option.value}
-    </Select.Option>
-  ));
-
 /**
  * Indicates the difference between two date-time in the specified unit
  * Based on dayjs#diff
@@ -200,20 +184,6 @@ export const getBase64 = (file) =>
 // For datepicker
 export const disabledWhen = (current, startBound, endBound) =>
   (startBound && current < startBound) || (endBound && endBound < current);
-
-export const radioItemWithIntl = (item, index, type) => (
-  <Radio value={item.value} key={index}>
-    {intl.formatMessage({
-      id: `payroll.${type}.${item.title}`,
-    })}
-  </Radio>
-);
-
-export const radioItem = (item, index) => (
-  <Radio value={item.value} key={index}>
-    {item.title}
-  </Radio>
-);
 
 export const onlyNumberAndHyphen = (e) => {
   // allow only hyphen, numbers, ctrl C V A

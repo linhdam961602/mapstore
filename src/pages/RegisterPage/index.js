@@ -4,16 +4,23 @@
  *
  * This is the Register page.
  */
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useIntl } from 'react-intl';
-// import { useDispatch } from 'react-redux';
-import { InfoCircleOutlined } from '@ant-design/icons';
+import { useDispatch } from 'react-redux';
 import ReCAPTCHA from 'react-google-recaptcha';
 
-import { authSaga, authSliceName } from '../LoginPage/slices';
-
-import { INITIAL_VALUES, REGISTER_FORM_FIELDS } from './constants';
+import {
+  INITIAL_VALUES,
+  REGISTER_FORM_FIELDS,
+  TERMS_OF_SERVICE_URL,
+} from './constants';
 import styles from './styles.module.scss';
+import {
+  registerSliceName,
+  registerReducer,
+  registerSaga,
+  registerActions,
+} from './slices';
 
 import Form from 'components/BasicComponent/Form';
 import Input from 'components/BasicComponent/Input';
@@ -22,66 +29,46 @@ import Button from 'components/BasicComponent/Button';
 import Divider from 'components/BasicComponent/Divider';
 import Select from 'components/BasicComponent/Select';
 import Grid from 'components/BasicComponent/Grid';
-import Tooltip from 'components/BasicComponent/Tooltip';
-import PasswordStrengthMeter from 'components/BasicComponent/PasswordStrengthMeter';
+import PasswordMeterInput from 'components/BasicComponent/PasswordMeterInput';
 import PhoneInput from 'containers/PhoneInputContainer';
-import { useInjectSaga } from 'hooks/useInjector';
+import { useInjectReducer, useInjectSaga } from 'hooks/useInjector';
 import {
   TYPES_OF_PERSONAL_TITLE,
   TYPES_OF_SUBJECT,
   TYPES_OF_HOW_TO_FIND,
+  TYPES_OF_CURRENCY,
 } from 'constants/options';
-import { LAYOUT_8_16 } from 'constants/form';
+import { LAYOUT_12_12, LAYOUT_8_16 } from 'constants/form';
 import { createTranslatedText } from 'utils/text';
 import { RECAPTCHA_SITE_KEY } from 'constants/common';
+import { onlyNumber } from 'helpers';
+import DatePicker from 'components/BasicComponent/DatePicker';
 
 const { Row, Col } = Grid;
 
 const RegisterPage = () => {
+  useInjectReducer({ key: registerSliceName, reducer: registerReducer });
+  useInjectSaga({ key: registerSliceName, saga: registerSaga });
+
   const intl = useIntl();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [form] = Form.useForm();
   const getText = createTranslatedText('registration', intl);
 
-  const [curPassword, setCurPassword] = useState('');
   const [curType, setCurType] = useState(null);
-  const [passwordScore, setPasswordScore] = useState(0);
-
-  useInjectSaga({ key: authSliceName, saga: authSaga });
 
   const onFinish = useCallback(() => {
-    // const values = form.getFieldsValue();
-    // dispatch(authActions.signup(values));
-  }, []);
+    const values = form.getFieldsValue();
+    dispatch(registerActions.signup(values));
+  }, [dispatch, form]);
 
   const onConfirmPassword = useCallback(() => {
     // Confirm password
   }, []);
 
-  const onPasswordChange = useCallback((e) => {
-    setCurPassword(e.target.value);
-  }, []);
-
   const onTypeChange = useCallback((value) => {
     setCurType(value);
   }, []);
-
-  const passwordStrength = useMemo(() => {
-    switch (passwordScore) {
-      case 0:
-        return 'Very weak';
-      case 1:
-        return 'Weak';
-      case 2:
-        return 'Fear';
-      case 3:
-        return 'Good';
-      case 4:
-        return 'Strong';
-      default:
-        return '';
-    }
-  }, [passwordScore]);
 
   return (
     <div className={styles.register__background}>
@@ -95,15 +82,21 @@ const RegisterPage = () => {
           labelAlign="left"
         >
           <h1 className={styles.register__title}>{getText('title')}</h1>
-          <Form.Item
-            name={REGISTER_FORM_FIELDS.TYPE}
-            label={getText('labels.typeOfSubj')}
-          >
-            <Select
-              options={Object.values(TYPES_OF_SUBJECT)}
-              onChange={onTypeChange}
-            />
-          </Form.Item>
+
+          <Row gutter={16}>
+            <Col lg={12} xs={24}>
+              <Form.Item
+                name={REGISTER_FORM_FIELDS.TYPE}
+                label={getText('labels.typeOfSubj')}
+              >
+                <Select
+                  options={Object.values(TYPES_OF_SUBJECT)}
+                  onChange={onTypeChange}
+                />
+              </Form.Item>
+            </Col>
+          </Row>
+
           {/* Company Information */}
           {curType === TYPES_OF_SUBJECT.COMPANY.value && (
             <div>
@@ -111,7 +104,7 @@ const RegisterPage = () => {
                 {getText('headings.compInfo')}
               </h3>
               <Row gutter={16}>
-                <Col span={12}>
+                <Col md={12} xs={24}>
                   <Form.Item
                     name={REGISTER_FORM_FIELDS.COMPANY_NAME}
                     label={getText('labels.compName')}
@@ -119,24 +112,25 @@ const RegisterPage = () => {
                     <Input />
                   </Form.Item>
                 </Col>
-                <Col span={12}>
+                <Col md={12} xs={24}>
                   <Form.Item
                     name={REGISTER_FORM_FIELDS.TAX_ID}
                     label={getText('labels.taxCode')}
                   >
-                    <Input />
+                    <Input onKeyDown={onlyNumber} />
                   </Form.Item>
                 </Col>
               </Row>
             </div>
           )}
+
           {/* Personal Information */}
           <div>
             <h3 className={styles['register__form-section--title']}>
               {getText('headings.perInfo')}
             </h3>
             <Row gutter={16}>
-              <Col span={8}>
+              <Col lg={8} xs={24}>
                 <Form.Item
                   name={REGISTER_FORM_FIELDS.PERSONAL_TITLE}
                   label={getText('labels.youAre')}
@@ -144,44 +138,68 @@ const RegisterPage = () => {
                   <Select options={Object.values(TYPES_OF_PERSONAL_TITLE)} />
                 </Form.Item>
               </Col>
-              <Col span={8}>
+              <Col lg={8} md={12} xs={24}>
                 <Form.Item
                   name={REGISTER_FORM_FIELDS.LAST_NAME}
                   label={getText('labels.lastName')}
+                  rules={[{ required: true }]}
                 >
                   <Input />
                 </Form.Item>
               </Col>
-              <Col span={8}>
+              <Col lg={8} md={12} xs={24}>
                 <Form.Item
                   name={REGISTER_FORM_FIELDS.FIRST_NAME}
                   label={getText('labels.firstName')}
+                  rules={[{ required: true }]}
                 >
                   <Input />
                 </Form.Item>
               </Col>
             </Row>
             <Row gutter={16}>
-              <Col span={12}>
+              <Col lg={12} xs={24}>
                 <Form.Item
                   name={REGISTER_FORM_FIELDS.EMAIL}
                   label={getText('labels.email')}
+                  rules={[{ required: true }]}
                 >
                   <Input />
                 </Form.Item>
               </Col>
-              <Col span={12}>
+              <Col lg={12} xs={24}>
+                <Form.Item name={REGISTER_FORM_FIELDS.CALLING_CODE} hidden>
+                  <Input />
+                </Form.Item>
                 <Form.Item
                   name={REGISTER_FORM_FIELDS.PHONE}
                   label={getText('labels.phone')}
+                  rules={[{ required: true }]}
                 >
-                  {/* TODO: Select dial code */}
-                  <PhoneInput className={styles['register__phone-input']} />
+                  <PhoneInput
+                    className={styles['register__phone-input']}
+                    countryCode={form.getFieldValue(
+                      REGISTER_FORM_FIELDS.CALLING_CODE,
+                    )}
+                    onChangeCountry={(value) => {
+                      form.setFieldsValue({
+                        [REGISTER_FORM_FIELDS.CALLING_CODE]: value,
+                      });
+                    }}
+                  />
                 </Form.Item>
               </Col>
             </Row>
             <Row gutter={16}>
-              <Col span={12}>
+              <Col lg={12} xs={24}>
+                <Form.Item
+                  name={REGISTER_FORM_FIELDS.BIRTHDAY}
+                  label={getText('labels.birthday')}
+                >
+                  <DatePicker />
+                </Form.Item>
+              </Col>
+              <Col lg={12} xs={24}>
                 <Form.Item
                   name={REGISTER_FORM_FIELDS.NATIONAL_ID}
                   label={getText('labels.idPp')}
@@ -189,7 +207,9 @@ const RegisterPage = () => {
                   <Input />
                 </Form.Item>
               </Col>
-              <Col span={12}>
+            </Row>
+            <Row gutter={16}>
+              <Col lg={12} xs={24}>
                 <Form.Item
                   name={REGISTER_FORM_FIELDS.COUNTRY}
                   label={getText('labels.country')}
@@ -197,9 +217,7 @@ const RegisterPage = () => {
                   <Select />
                 </Form.Item>
               </Col>
-            </Row>
-            <Row gutter={16}>
-              <Col span={12}>
+              <Col lg={12} xs={24}>
                 <Form.Item
                   name={REGISTER_FORM_FIELDS.CITY}
                   label={getText('labels.province')}
@@ -207,7 +225,9 @@ const RegisterPage = () => {
                   <Select />
                 </Form.Item>
               </Col>
-              <Col span={12}>
+            </Row>
+            <Row gutter={16}>
+              <Col lg={12} xs={24}>
                 <Form.Item
                   name={REGISTER_FORM_FIELDS.STATE}
                   label={getText('labels.district')}
@@ -215,62 +235,77 @@ const RegisterPage = () => {
                   <Select />
                 </Form.Item>
               </Col>
+              <Col lg={12} xs={24}>
+                <Form.Item
+                  name={REGISTER_FORM_FIELDS.ADDRESS_1}
+                  label={getText('labels.address')}
+                >
+                  <Input />
+                </Form.Item>
+              </Col>
             </Row>
-            <Divider />
-            <Form.Item
-              name={REGISTER_FORM_FIELDS.HOW_TO_FIND}
-              label={getText('labels.howFindUs')}
-            >
-              <Select options={Object.values(TYPES_OF_HOW_TO_FIND)} />
-            </Form.Item>
+            <Row gutter={16}>
+              <Col lg={12} xs={24}>
+                <Form.Item
+                  name={REGISTER_FORM_FIELDS.CURRENCY}
+                  label={getText('labels.currency')}
+                >
+                  <Select options={Object.values(TYPES_OF_CURRENCY)} />
+                </Form.Item>
+              </Col>
+            </Row>
           </div>
+          <Divider />
+          <Row gutter={16}>
+            <Col lg={12} xs={24}>
+              <Form.Item
+                name={REGISTER_FORM_FIELDS.HOW_TO_FIND}
+                label={getText('labels.howFindUs')}
+                {...LAYOUT_12_12}
+              >
+                <Select options={Object.values(TYPES_OF_HOW_TO_FIND)} />
+              </Form.Item>
+            </Col>
+          </Row>
           {/* Account Security */}
           <h3 className={styles['register__form-section--title']}>
             {getText('headings.accSec')}
           </h3>
           <Row gutter={16}>
-            <Col span={12}>
+            <Col lg={12} xs={24}>
               <Form.Item
                 name={REGISTER_FORM_FIELDS.PASSWORD}
                 label={getText('labels.password')}
+                rules={[{ required: true }]}
               >
-                <Input
-                  type="password"
-                  onChange={onPasswordChange}
-                  suffix={
-                    <>
-                      <span>{passwordStrength}</span>
-                      <Tooltip title={getText('tooltip.password')}>
-                        <InfoCircleOutlined
-                          style={{ color: 'rgba(0,0,0,.45)' }}
-                        />
-                      </Tooltip>
-                    </>
-                  }
-                />
-                <PasswordStrengthMeter
-                  password={curPassword}
-                  onStrengthChange={(score) => {
-                    setPasswordScore(score);
-                  }}
-                />
+                <PasswordMeterInput />
               </Form.Item>
             </Col>
-            <Col span={12}>
-              <Form.Item label={getText('labels.repassword')}>
+            <Col lg={12} xs={24}>
+              <Form.Item
+                label={getText('labels.repassword')}
+                rules={[{ required: true }]}
+              >
                 <Input type="password" onChange={onConfirmPassword} />
               </Form.Item>
             </Col>
           </Row>
 
-          <Form.Item name={REGISTER_FORM_FIELDS.RECAPTCHA}>
-            <ReCAPTCHA sitekey={RECAPTCHA_SITE_KEY} onChange={() => {}} />
+          <Form.Item>
+            <ReCAPTCHA
+              sitekey={RECAPTCHA_SITE_KEY}
+              onChange={() => {
+                // Handle Check captcha
+              }}
+            />
           </Form.Item>
 
           <Form.Item valuePropName="checked">
             <Checkbox>
               {getText('labels.agreement')}
-              <a href="">{getText('labels.termsOfService')}</a>
+              <a href={TERMS_OF_SERVICE_URL} target="_blank">
+                {getText('labels.termsOfService')}
+              </a>
             </Checkbox>
           </Form.Item>
           <div className={styles['register__button-wrapper']}>

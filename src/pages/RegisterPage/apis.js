@@ -1,10 +1,10 @@
-import { LOGIN_API_URL } from 'constants/apiUrl';
+import { REGISTER_API_URL } from 'constants/apiUrl';
 
 import apiClient from 'apis/apiClient';
 
-export const login = (payload) =>
+export const signup = (payload) =>
   apiClient
-    .post(LOGIN_API_URL, payload)
+    .post(REGISTER_API_URL, payload)
     .then((response) => response)
     .catch((err) => {
       console.error('Error Login Error:', err);

@@ -42,13 +42,12 @@ const registration = {
     repassword: 'Re-password',
     agreement: 'I have read and agree to the ',
     termsOfService: 'terms of service',
+    currency: 'Currency',
+    birthday: 'Birthday',
+    address: 'Address',
   },
   buttons: {
     register: 'Register an account',
-  },
-  tooltip: {
-    password:
-      'The secret to good passwords: Use both lowercase and uppercase letters. Include at least one special character like (# $!% & Etc ...)',
   },
 };
 

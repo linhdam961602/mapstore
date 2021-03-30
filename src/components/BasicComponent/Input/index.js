@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import AntdInput from 'antd/es/input';
 import 'antd/es/input/style/css';
 import classNames from 'classnames';

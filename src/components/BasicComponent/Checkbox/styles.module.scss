@@ -1,0 +1,11 @@
+@import 'styles/mixins.scss';
+
+.tino__checkbox {
+  & > .ant-checkbox-checked > .ant-checkbox-inner {
+    background-color: $primary !important;
+    border-color: $primary;
+  }
+  .ant-checkbox-checked::after {
+    border-color: $primary;
+  }
+}

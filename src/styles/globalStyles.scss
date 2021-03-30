@@ -1,3 +1,5 @@
+@import 'styles/mixins.scss';
+
 html {
   font-size: 62.5%; /* 1rem = 10px */
 }
@@ -16,4 +18,10 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+// Override Antd's classes
+.ant-select-selector {
+  border-radius: 0.6rem !important;
+  border: 1px solid $pale-blue !important;
 }

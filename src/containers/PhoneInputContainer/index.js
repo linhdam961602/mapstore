@@ -10,12 +10,22 @@ import {
   countryActions,
   initialState,
 } from './slices';
+import styles from './styles.module.scss';
 
 import Input from 'components/BasicComponent/Input';
 import { useInjectSaga, useInjectReducer } from 'hooks/useInjector';
 import Select from 'components/BasicComponent/Select';
 
-const PhoneInput = ({ className, ...props }) => {
+const FlagIcon = ({ flag, name }) => (
+  <img src={flag} alt={name} className={styles.flag} />
+);
+
+const PhoneInput = ({
+  className,
+  countryCode = '+84',
+  onChangeCountry,
+  ...props
+}) => {
   useInjectReducer({ key: countrySliceName, reducer: countryReducer });
   useInjectSaga({ key: countrySliceName, saga: countrySaga });
   const dispatch = useDispatch();
@@ -39,11 +49,16 @@ const PhoneInput = ({ className, ...props }) => {
         <Select.Option
           key={name}
           value={`+${callingCodes}`}
-          label={`+${callingCodes}`}
+          label={
+            <span>
+              <FlagIcon flag={flag} name={name} />
+              {`+${callingCodes}`}
+            </span>
+          }
         >
           <div>
             <span role="img" aria-label={name}>
-              <img src={flag} alt={name} style={{ width: '2rem' }} />
+              <FlagIcon flag={flag} name={name} />
             </span>
             <span>
               {name} ({nativeName})
@@ -60,7 +75,14 @@ const PhoneInput = ({ className, ...props }) => {
 
   return (
     <Input.Group compact className={classes}>
-      <Select style={{ width: '30%' }} optionLabelProp="label">
+      <Select
+        style={{ width: '30%' }}
+        optionLabelProp="label"
+        showArrow={false}
+        dropdownClassName={styles['phone-input__dropdown']}
+        onChange={onChangeCountry}
+        defaultValue={countryCode}
+      >
         {renderOptions()}
       </Select>
       <Input style={{ width: '70%' }} {...props} />

@@ -42,13 +42,12 @@ const registration = {
     repassword: 'Xác nhận mật khẩu',
     agreement: 'Tôi đã đọc và đồng ý với các ',
     termsOfService: 'điều khoản sử dụng dịch vụ',
+    currency: 'Tiền tệ',
+    birthday: 'Ngày sinh',
+    address: 'Địa chỉ',
   },
   buttons: {
     register: 'Đăng ký tài khoản',
-  },
-  tooltip: {
-    password:
-      'Bí quyết để có mật khẩu tốt: Sử dụng cả kí tự thường và hoa. Bao gồm ít nhất một kí tự đặc biệt như (# $ ! % & etc...)',
   },
 };
 
