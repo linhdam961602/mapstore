@@ -5,7 +5,6 @@ import { REQUEST_HEADER_COOKIE } from './constants';
 
 import * as auth from 'utils/authHelper';
 
-import { NETWORK_ERROR } from 'constants/common';
 import { BASE_API_URL, API_TIMEOUT } from 'constants/appConfig';
 import { LOGIN_API_URL, REGISTER_API_URL } from 'constants/apiUrl';
 
@@ -61,29 +60,29 @@ apiClient.interceptors.response.use(
     if (error.response) {
       const { status } = error.response;
 
-      if (status >= 400 && status <= 499) {
-        return Promise.reject({
-          messageContent: {
-            id: 'common.error.resourceNotFound',
-          },
-        });
-      }
+      // if (status >= 400 && status <= 499) {
+      //   return Promise.reject({
+      //     messageContent: {
+      //       id: 'common.error.resourceNotFound',
+      //     },
+      //   });
+      // }
 
-      if (status >= 500 && status <= 599) {
-        return Promise.reject({
-          messageContent: {
-            id: 'common.error.internalServerError',
-          },
-        });
-      }
+      // if (status >= 500 && status <= 599) {
+      //   return Promise.reject({
+      //     messageContent: {
+      //       id: 'common.error.internalServerError',
+      //     },
+      //   });
+      // }
 
-      if (error.message === NETWORK_ERROR) {
-        return Promise.reject({
-          messageContent: {
-            id: 'common.error.networkError',
-          },
-        });
-      }
+      // if (error.message === NETWORK_ERROR) {
+      //   return Promise.reject({
+      //     messageContent: {
+      //       id: 'common.error.networkError',
+      //     },
+      //   });
+      // }
 
       return Promise.reject(error);
     }

@@ -1,7 +1,6 @@
 import {
   EXPIRE_IN,
   COOKIE,
-  USER_SAVED_EMPNO,
   ACCESS_TOKEN,
   REFRESH_TOKEN,
 } from 'constants/common';

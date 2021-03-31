@@ -14,7 +14,6 @@ import history from 'utils/history';
 import { translationMessages } from 'translations/i18n';
 
 import LanguageProvider from 'containers/LanguageProviderContainer';
-import MainLayout from 'components/LayoutComponent/MainLayout';
 
 import 'styles/globalStyles.scss';
 
@@ -27,9 +26,7 @@ const render = (messages) => {
     <Provider store={store}>
       <LanguageProvider messages={messages}>
         <ConnectedRouter history={history}>
-          <MainLayout>
-            <App />
-          </MainLayout>
+          <App />
         </ConnectedRouter>
       </LanguageProvider>
     </Provider>,
