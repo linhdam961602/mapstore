@@ -21,7 +21,7 @@ import {
   isArrows,
   isShift,
   isBackspaceOrDelete,
-} from 'helpers/inputValidator';
+} from 'utils/inputValidator';
 
 export const encodeToBase64 = (input) => btoa(input);
 export const decodeFromBase64 = (input) => atob(input);

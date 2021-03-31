@@ -41,7 +41,7 @@ import {
 import { LAYOUT_12_12, LAYOUT_8_16 } from 'constants/form';
 import { createTranslatedText } from 'utils/text';
 import { RECAPTCHA_SITE_KEY } from 'constants/common';
-import { onlyNumber } from 'helpers';
+import { onlyNumber } from 'utils';
 import DatePicker from 'components/BasicComponent/DatePicker';
 
 const { Row, Col } = Grid;
