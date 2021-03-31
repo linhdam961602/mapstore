@@ -18,6 +18,10 @@ export const EXPIRE_IN = 'expire_in';
 
 export const COOKIE = 'JSESSIONID';
 
+// Token
+export const ACCESS_TOKEN = 'token';
+export const REFRESH_TOKEN = 'refresh_token';
+
 // storage
 export const USER_LOGIN_INFO = 'userLoginInfo';
 export const USER_SAVED_EMPNO = 'savedEmpNo';

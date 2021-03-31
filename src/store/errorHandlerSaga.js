@@ -16,7 +16,7 @@ import {
 
 import { LOGIN_URL } from 'constants/routes';
 
-import * as authHelper from 'helpers/authHelper';
+import * as authHelper from 'utils/authHelper';
 import { intl } from 'containers/LanguageProviderContainer';
 
 const ERROR_HANDLER = 'ERROR_HANDLER';

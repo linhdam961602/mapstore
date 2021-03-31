@@ -1,7 +1,13 @@
 import axios from 'axios';
+import clone from 'lodash/clone';
+
+import { REQUEST_HEADER_COOKIE } from './constants';
+
+import * as auth from 'utils/authHelper';
 
 import { NETWORK_ERROR } from 'constants/common';
 import { BASE_API_URL, API_TIMEOUT } from 'constants/appConfig';
+import { LOGIN_API_URL, REGISTER_API_URL } from 'constants/apiUrl';
 
 const apiClient = axios.create({
   baseURL: BASE_API_URL,
@@ -26,7 +32,23 @@ const multipartConfig = {
 
 // REQUEST INTERCEPTOR
 apiClient.interceptors.request.use(
-  (config) => config,
+  (axiosConfig) => {
+    const config = clone(axiosConfig);
+    if (
+      config.url &&
+      config.url.indexOf(LOGIN_API_URL) !== -1 &&
+      config.url.indexOf(REGISTER_API_URL) !== -1
+    ) {
+      // Don't pass token with public API
+      return config;
+    }
+    const token = auth.getAccessToken();
+    if (token) {
+      config.headers[REQUEST_HEADER_COOKIE] = `Bearer ${token}`;
+    }
+
+    return config;
+  },
   (error) => {
     Promise.reject(error);
   },
@@ -34,17 +56,7 @@ apiClient.interceptors.request.use(
 
 // RESPONSE INTERCEPTOR
 apiClient.interceptors.response.use(
-  (response) => {
-    const { headers, data } = response;
-    const { messageCode } = data;
-    const messageContent = unescape(data.messageContent);
-
-    if (data.isSuccess) {
-      return { headers, data, messageCode, messageContent };
-    }
-
-    throw { messageContent, messageCode };
-  },
+  (response) => response,
   (error) => {
     if (error.response) {
       const { status } = error.response;

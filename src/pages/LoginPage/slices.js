@@ -4,6 +4,7 @@ import { put, call } from 'redux-saga/effects';
 
 import * as authApis from './apis';
 
+import * as auth from 'utils/authHelper';
 import { errorHandler } from 'store/errorHandlerSaga';
 
 const authSliceName = 'auth';
@@ -44,12 +45,13 @@ const authSliceSaga = createSliceSaga({
     *login(action) {
       try {
         yield put(reducerActions.loginProcessing());
-        const { token } = yield call(authApis.login, action.payload);
+        const { data } = yield call(authApis.login, action.payload);
 
-        if (token) {
-          /**
-           * TODO: handle token
-           */
+        if (data.token) {
+          // set token to cookie
+          const expireIn = auth.getExpireInByToken(data.token);
+          auth.setAccessToken(data.token, expireIn);
+          auth.setExpireIn(expireIn);
         }
       } catch (error) {
         yield put(reducerActions.loginFailure(error));
