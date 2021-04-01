@@ -25,6 +25,7 @@ export const REFRESH_TOKEN = 'refresh_token';
 // storage
 export const USER_LOGIN_INFO = 'userLoginInfo';
 export const USER_SAVED_EMPNO = 'savedEmpNo';
+export const LANGUAGE = 'language';
 
 // Accept language header
 export const ACCEPT_LANGUAGE_HEADER = {

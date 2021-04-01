@@ -21,13 +21,13 @@ export const clearAccessToken = () => {
 
 // refresh token
 export const setRefreshToken = (refreshToken) => {
-  localStorage.setItem(REFRESH_TOKEN, refreshToken);
+  localStorageService.setItem(REFRESH_TOKEN, refreshToken);
 };
 
-export const getRefreshToken = () => localStorage.getItem(REFRESH_TOKEN);
+export const getRefreshToken = () => localStorageService.getItem(REFRESH_TOKEN);
 
 export const clearRefreshToken = () => {
-  localStorage.removeItem(REFRESH_TOKEN);
+  localStorageService.removeItem(REFRESH_TOKEN);
 };
 
 // cookie
