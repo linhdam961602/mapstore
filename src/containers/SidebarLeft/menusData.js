@@ -1,3 +1,5 @@
+import { HomeOutlined, CloudServerOutlined } from '@ant-design/icons';
+
 import { createTranslatedText } from 'utils/text';
 
 const menusData = (intl) => {
@@ -8,14 +10,14 @@ const menusData = (intl) => {
       key: 1,
       path: '/',
       name: getText('homePage'),
-      icon: '',
+      icon: <HomeOutlined />,
       role: 'user',
       hideInmenu: false,
     },
     {
       key: 2,
       name: getText('service'),
-      icon: '',
+      icon: <CloudServerOutlined />,
       role: 'admin',
       children: [
         {

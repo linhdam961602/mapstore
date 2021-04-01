@@ -58,7 +58,7 @@ const Navigation = (props) => {
 
   const { menusData } = props;
   return (
-    <Menu key="Menu" theme="dark" mode="inline">
+    <Menu key="Menu" theme="dark" mode="inline" className="navigation">
       {getNavMenuItems(menusData)}
     </Menu>
   );
