@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { createSliceSaga, SagaType } from 'redux-toolkit-saga';
 import { put, call } from 'redux-saga/effects';
+import { push } from 'connected-react-router';
 
 import * as authApis from './apis';
 
 import * as auth from 'utils/authHelper';
 import { errorHandler } from 'store/errorHandlerSaga';
-import history from 'utils/history';
 import { HOME_URI } from 'constants/routes';
 
 const authSliceName = 'auth';
@@ -81,8 +81,9 @@ const authSliceSaga = createSliceSaga({
           auth.setAccessToken(data.token, expireIn);
           auth.setExpireIn(expireIn);
           yield put(reducerActions.loginSuccess());
-          history.push(HOME_URI);
-          yield put(authSliceSaga.actions.getUserInfo());
+
+          // redirect to home page
+          yield put(push(HOME_URI));
         }
       } catch (error) {
         yield put(reducerActions.loginFailure(error));

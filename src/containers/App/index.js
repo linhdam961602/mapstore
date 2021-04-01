@@ -7,19 +7,19 @@
  */
 
 import React, { Suspense } from 'react';
-import { Switch } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 import LoadingContainer from 'containers/LoadingContainer';
-import MenuContainer from 'containers/MenuContainer';
+import MenuContainer from 'containers/App/components/MenuContainer';
 
 export default function App() {
   return (
-    <LoadingContainer>
-      <Suspense fallback={<></>}>
-        <Switch>
+    <BrowserRouter>
+      <LoadingContainer>
+        <Suspense fallback={<></>}>
           <MenuContainer />
-        </Switch>
-      </Suspense>
-    </LoadingContainer>
+        </Suspense>
+      </LoadingContainer>
+    </BrowserRouter>
   );
 }

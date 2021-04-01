@@ -10,7 +10,7 @@ export const layoutRoutes = [
   },
 ];
 
-export const routes = [
+export const publicRoutes = [
   {
     exact: true,
     path: REGISTER_URL,
