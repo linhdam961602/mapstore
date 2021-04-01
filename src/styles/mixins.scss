@@ -10,6 +10,10 @@ $light-gray: #f5f7f9;
 $light-gray-2: #f6f7f8; // Default button background
 $google-red: #ec5741;
 $onyx: #363b3c;
+$black: #0000000b;
+$black-o4: rgba(0,0,0,0.4); // Black and opacity 0.4
+$grey: #718096;
+$grey-main: #f1f5f8;
 // Icewall Theme
 $primary: #142e71;
 $secondary: #edf2f7;
@@ -20,6 +24,11 @@ $warning-text: #1a202c;
 $danger: #d32929;
 $dark: #2d3748;
 $pale-blue: #e2e8f0; // Input Border color
+$blue-1: #1c3271;
+$blue-2: #2b4286;
+$blue-3: #102765;
+$blue-4: #071a50;
+$link: #203f90;
 
 // Opacity
 $bg-hover-opacity: 0.8;
@@ -27,6 +36,9 @@ $bg-hover-opacity: 0.8;
 /** Breakpoints */
 // Desktop first
 $breakpoints: (
+  'xxs': (
+    max-width: 320px,
+  ),
   'xs': (
     max-width: 575px,
   ),

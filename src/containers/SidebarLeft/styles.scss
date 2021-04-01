@@ -1,0 +1,40 @@
+@import 'styles/mixins.scss';
+
+.sidebarLeft_wrapper {
+    position: relative;
+    height: $min-height-page;
+    background-color: $blue-4;
+    width: 27rem !important;
+    min-width: 27rem !important;
+    max-width: 27rem !important;
+    padding: 2rem 3.6rem 2rem 1.6rem;
+    border-radius: 2rem 0 0 2rem;
+    @include respond-to('md') {
+        display: none;
+    }
+    .ant-menu.ant-menu-dark {
+        background-color: $blue-4;
+    }
+    .navigation.ant-menu.ant-menu-dark {
+        .ant-menu-inline.ant-menu-sub {
+            background-color: $blue-3;
+            border-radius: 0.8rem;
+        }
+        .ant-menu-item-active {
+            background-color: $primary;
+            border-radius: 0.8rem;
+        }
+        .ant-menu-submenu-active {
+            background-color: $primary;
+            border-radius: 0.8rem;
+        }
+        .ant-menu-submenu-active.ant-menu-submenu-open{
+            background-color: transparent;
+        }
+        .ant-menu-item-selected {
+            background-color: $primary;
+            border-radius: 0.8rem;
+        }
+    }
+    
+}
