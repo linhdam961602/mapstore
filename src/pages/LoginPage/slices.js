@@ -7,7 +7,7 @@ import * as authApis from './apis';
 
 import * as auth from 'utils/authHelper';
 import { errorHandler } from 'store/errorHandlerSaga';
-import { HOME_URI } from 'constants/routes';
+import { HOME_URI, LOGIN_URL } from 'constants/routes';
 
 const authSliceName = 'auth';
 
@@ -88,6 +88,20 @@ const authSliceSaga = createSliceSaga({
       } catch (error) {
         yield put(reducerActions.loginFailure(error));
         yield put(errorHandler(error));
+      }
+    },
+    *logout() {
+      try {
+        const { data } = yield call(authApis.logout);
+        if (data.status) {
+          // Log out success
+          auth.clearUserCredential();
+
+          // push to login
+          yield put(push(LOGIN_URL));
+        }
+      } catch (err) {
+        yield put(errorHandler(err));
       }
     },
   },
