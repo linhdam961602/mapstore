@@ -15,11 +15,11 @@ import MenuContainer from 'containers/App/components/MenuContainer';
 export default function App() {
   return (
     <BrowserRouter>
-      <LoadingContainer>
-        <Suspense fallback={<></>}>
-          <MenuContainer />
-        </Suspense>
-      </LoadingContainer>
+      {/* <LoadingContainer> */}
+      <Suspense fallback={<></>}>
+        <MenuContainer />
+      </Suspense>
+      {/* </LoadingContainer> */}
     </BrowserRouter>
   );
 }
