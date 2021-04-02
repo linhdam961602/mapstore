@@ -7,8 +7,8 @@ import history from 'utils/history';
 
 function createReducer(injectedReducers = {}) {
   const rootReducer = combineReducers({
-    [authSliceName]: authReducer,
     router: connectRouter(history),
+    [authSliceName]: authReducer,
     ...injectedReducers,
   });
   return rootReducer;

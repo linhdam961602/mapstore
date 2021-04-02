@@ -1,6 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { DEFAULT_LOCALE } from 'i18n';
+import { DEFAULT_LOCALE } from 'translations/i18n';
+
+import { LANGUAGE } from 'constants/common';
+import localStorageService from 'utils/localStorage';
 
 const selectSliceName = 'i18n';
 
@@ -12,10 +15,15 @@ const selectSlice = createSlice({
   name: selectSliceName,
   initialState,
   reducers: {
-    changeLocale: (state, action) => ({
-      ...state,
-      locale: action.payload,
-    }),
+    changeLocale: (state, action) => {
+      // Save to local storage
+      localStorageService.setItem(LANGUAGE, action.payload);
+
+      return {
+        ...state,
+        locale: action.payload,
+      };
+    },
   },
 });
 

@@ -1,11 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { createSliceSaga, SagaType } from 'redux-toolkit-saga';
 import { put, call } from 'redux-saga/effects';
+import { push } from 'connected-react-router';
 
 import * as authApis from './apis';
 
 import * as auth from 'utils/authHelper';
 import { errorHandler } from 'store/errorHandlerSaga';
+import { HOME_URI } from 'constants/routes';
 
 const authSliceName = 'auth';
 
@@ -23,15 +25,28 @@ const authSlice = createSlice({
       ...state,
       isLoading: true,
     }),
-    loginSuccess: (state, action) => ({
+    loginSuccess: (state) => ({
       ...state,
       isLoading: false,
-      userInfo: action.payload,
     }),
     loginFailure: (state, action) => ({
       ...state,
       isLoading: false,
       error: action.payload,
+    }),
+    getUserInfoProcessing: (state) => ({
+      ...state,
+      isLoading: true,
+    }),
+    getUserInfoFailure: (state, action) => ({
+      ...state,
+      isLoading: false,
+      error: action.payload,
+    }),
+    getUserInfoSuccess: (state, action) => ({
+      ...state,
+      isLoading: true,
+      userInfo: action.payload,
     }),
     resetAuthReducer: () => initialState,
   },
@@ -42,6 +57,18 @@ const { actions: reducerActions, reducer: authReducer } = authSlice;
 const authSliceSaga = createSliceSaga({
   name: authSliceName,
   caseSagas: {
+    *getUserInfo() {
+      try {
+        yield put(reducerActions.getUserInfoProcessing());
+        const { data } = yield call(authApis.getUserInfo);
+        const { client } = data;
+
+        yield put(reducerActions.getUserInfoSuccess(client));
+      } catch (err) {
+        yield put(reducerActions.getUserInfoFailure(err));
+        yield put(errorHandler(err));
+      }
+    },
     *login(action) {
       try {
         yield put(reducerActions.loginProcessing());
@@ -50,8 +77,13 @@ const authSliceSaga = createSliceSaga({
         if (data.token) {
           // set token to cookie
           const expireIn = auth.getExpireInByToken(data.token);
+
           auth.setAccessToken(data.token, expireIn);
           auth.setExpireIn(expireIn);
+          yield put(reducerActions.loginSuccess());
+
+          // redirect to home page
+          yield put(push(HOME_URI));
         }
       } catch (error) {
         yield put(reducerActions.loginFailure(error));

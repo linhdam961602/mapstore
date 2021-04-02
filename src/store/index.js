@@ -1,10 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
+import { routerMiddleware } from 'connected-react-router';
 
 import { createInjectorsEnhancer } from 'redux-injectors';
 
 import createReducer from './rootReducer';
 import rootSaga from './rootSaga';
+
+import history from 'utils/history';
 
 const createStore = () => {
   const saga = createSagaMiddleware();
@@ -33,7 +36,7 @@ const createStore = () => {
   const store = configureStore({
     reducer: createReducer(),
     devTools,
-    middleware: [saga],
+    middleware: [saga, routerMiddleware(history)],
     enhancers: [injectorEnhancer],
   });
   store.injectedReducers = {}; // Reducer registry

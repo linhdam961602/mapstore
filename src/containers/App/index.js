@@ -7,28 +7,19 @@
  */
 
 import React, { Suspense } from 'react';
-import { Switch, Route } from 'react-router-dom';
-import { v4 as uuid } from 'uuid';
-
-import routes from './routes';
+import { BrowserRouter } from 'react-router-dom';
 
 import LoadingContainer from 'containers/LoadingContainer';
+import MenuContainer from 'containers/App/components/MenuContainer';
 
 export default function App() {
   return (
-    <LoadingContainer>
-      <Suspense fallback={<></>}>
-        <Switch>
-          {routes.map((route) => (
-            <Route
-              key={uuid()}
-              path={route.path}
-              exact={route.exact}
-              component={route.component}
-            />
-          ))}
-        </Switch>
-      </Suspense>
-    </LoadingContainer>
+    <BrowserRouter>
+      <LoadingContainer>
+        <Suspense fallback={<></>}>
+          <MenuContainer />
+        </Suspense>
+      </LoadingContainer>
+    </BrowserRouter>
   );
 }

@@ -1,20 +1,25 @@
 import axios from 'axios';
 import clone from 'lodash/clone';
 
-import { REQUEST_HEADER_COOKIE } from './constants';
+import {
+  REQUEST_HEADER_ACCEPT_LANGUAGE,
+  REQUEST_HEADER_CONTENT_TYPE,
+  REQUEST_HEADER_COOKIE,
+} from './constants';
 
 import * as auth from 'utils/authHelper';
 
-import { NETWORK_ERROR } from 'constants/common';
+import { LANGUAGE } from 'constants/common';
 import { BASE_API_URL, API_TIMEOUT } from 'constants/appConfig';
 import { LOGIN_API_URL, REGISTER_API_URL } from 'constants/apiUrl';
+import localStorageService from 'utils/localStorage';
+import { DEFAULT_LOCALE } from 'translations/i18n';
 
 const apiClient = axios.create({
   baseURL: BASE_API_URL,
   timeout: API_TIMEOUT,
   headers: {
-    'Content-Type': 'application/json;charset=UTF-8',
-    iso_code: 'VN',
+    [REQUEST_HEADER_CONTENT_TYPE]: 'application/json;charset=UTF-8',
   },
 });
 
@@ -26,7 +31,7 @@ const downloadClient = axios.create({
 
 const multipartConfig = {
   headers: {
-    'content-type': 'multipart/form-data',
+    [REQUEST_HEADER_CONTENT_TYPE]: 'multipart/form-data',
   },
 };
 
@@ -47,6 +52,12 @@ apiClient.interceptors.request.use(
       config.headers[REQUEST_HEADER_COOKIE] = `Bearer ${token}`;
     }
 
+    const acceptLanguage =
+      localStorageService.getItem(LANGUAGE) || DEFAULT_LOCALE;
+    if (acceptLanguage) {
+      config.headers[REQUEST_HEADER_ACCEPT_LANGUAGE] = acceptLanguage;
+    }
+
     return config;
   },
   (error) => {
@@ -59,31 +70,31 @@ apiClient.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response) {
-      const { status } = error.response;
+      // const { status } = error.response;
 
-      if (status >= 400 && status <= 499) {
-        return Promise.reject({
-          messageContent: {
-            id: 'common.error.resourceNotFound',
-          },
-        });
-      }
+      // if (status >= 400 && status <= 499) {
+      //   return Promise.reject({
+      //     messageContent: {
+      //       id: 'common.error.resourceNotFound',
+      //     },
+      //   });
+      // }
 
-      if (status >= 500 && status <= 599) {
-        return Promise.reject({
-          messageContent: {
-            id: 'common.error.internalServerError',
-          },
-        });
-      }
+      // if (status >= 500 && status <= 599) {
+      //   return Promise.reject({
+      //     messageContent: {
+      //       id: 'common.error.internalServerError',
+      //     },
+      //   });
+      // }
 
-      if (error.message === NETWORK_ERROR) {
-        return Promise.reject({
-          messageContent: {
-            id: 'common.error.networkError',
-          },
-        });
-      }
+      // if (error.message === NETWORK_ERROR) {
+      //   return Promise.reject({
+      //     messageContent: {
+      //       id: 'common.error.networkError',
+      //     },
+      //   });
+      // }
 
       return Promise.reject(error);
     }
