@@ -1,10 +1,10 @@
 import React from 'react';
 
+import './styles.scss';
+
 import Layout from 'components/BasicComponent/Layout';
 import Footer from 'components/Footer';
 import Sider from 'containers/SidebarLeft';
-
-import './styles.scss';
 
 const { Header, Content } = Layout;
 

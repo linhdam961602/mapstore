@@ -22,6 +22,7 @@ import { useInjectSaga } from 'hooks/useInjector';
 import Divider from 'components/BasicComponent/Divider';
 import { REGISTER_URL } from 'constants/routes';
 import { createTranslatedText } from 'utils/text';
+import illustration from 'assets/images/illustration.svg';
 
 const LoginPage = () => {
   const intl = useIntl();
@@ -41,6 +42,13 @@ const LoginPage = () => {
   return (
     <div className={styles.login__background}>
       <div className={styles.login__container}>
+        <div className={styles['login__left-container']}>
+          <img
+            alt="Icewall Tailwind HTML Admin Template"
+            className="-intro-x w-1/2 -mt-16"
+            src={illustration}
+          />
+        </div>
         <Form
           className={styles.login__form}
           initialValues={{
@@ -111,8 +119,6 @@ const LoginPage = () => {
             {getText('buttons.loginWGoogle')}
           </Button>
         </Form>
-
-        <div className={styles.login__foreground} />
       </div>
     </div>
   );

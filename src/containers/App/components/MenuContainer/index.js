@@ -7,7 +7,7 @@
  */
 
 import React, { useEffect } from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { v4 as uuid } from 'uuid';
 
@@ -17,7 +17,6 @@ import PrivateRoute from '../PrivateRoute';
 import * as routes from 'containers/App/routes';
 import MainLayout from 'components/LayoutComponent/MainLayout';
 import { authActions, authSliceName, authSaga } from 'pages/LoginPage/slices';
-import { LOGIN_URL } from 'constants/routes';
 import { useInjectSaga } from 'hooks/useInjector';
 import { useAuth } from 'hooks/useAuth';
 
@@ -41,7 +40,6 @@ export default function MenuContainer() {
           path={route.path}
           exact={route.exact}
           component={route.component}
-          authenticated={isAuthenticated}
         />
       ))}
       <MainLayout>
@@ -51,13 +49,9 @@ export default function MenuContainer() {
             path={route.path}
             exact={route.exact}
             component={route.component}
-            authenticated={isAuthenticated}
           />
         ))}
       </MainLayout>
-      <Route path="*">
-        <Redirect to={LOGIN_URL} />
-      </Route>
     </Switch>
   );
 

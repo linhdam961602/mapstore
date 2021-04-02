@@ -1,58 +1,62 @@
 @import 'styles/mixins.scss';
 
 body {
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-image: url('/assets/images/bg-main.svg');
-    padding-top: 1.25rem;
-    padding-bottom: 1.25rem;
-    background-color: $blue-1;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-image: url('/assets/images/bg-main.svg');
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  background-color: $blue-1;
 }
 .layout_main {
-    min-height: $min-height-page !important;
+  min-height: $min-height-page !important;
+  position: relative;
+  background-color: transparent;
+  padding: 1.6rem 2rem;
+  @include respond-to('md') {
+    padding: 0.8rem 1rem;
+  }
+  .header {
+    padding: 0;
+  }
+  .site-layout {
     position: relative;
+    margin: 5rem 0 0 0;
     background-color: transparent;
-    padding: 1.6rem 2rem;
+    &:before {
+      content: '';
+      height: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      position: absolute;
+      right: 0;
+      left: 0;
+      background: $blue-2;
+      width: 95%;
+      z-index: -1;
+      top: -1.6rem;
+      border-radius: 2rem;
+      @include respond-to('md') {
+        display: none;
+      }
+    }
+  }
+  .content_wrapper {
+    padding: 2.8rem 1.6rem;
+    background-color: $grey-main;
+    width: 100%;
+    border-radius: 2rem;
+    margin-left: -2rem;
+    position: relative;
     @include respond-to('md') {
-        padding: 0.8rem 1rem;
+      margin-left: 0;
     }
-    .header{
-        padding: 0;
-    }
-    .site-layout {
-        position: relative;
-        margin: 5rem 0 0 0;
-        background-color: transparent;
-        &:before {
-            content: '';
-            height: 100%;
-            margin-left: auto;
-            margin-right: auto;
-            position: absolute;
-            right: 0;
-            left: 0;
-            background: $blue-2;
-            width: 95%;
-            z-index: -1;
-            top: -1.6rem;
-            border-radius: 2rem;
-            @include respond-to('md') {
-                display: none;
-            }
-        }
-    }
-    .content_wrapper {
-        padding: 2.8rem 1.6rem;
-        background-color: $grey-main;
-        width: 100%;
-        border-radius: 2rem;
-        margin-left: -2rem;
-        position: relative;
-        @include respond-to('md') {
-            margin-left: 0;
-        }
-    }
-    .content{
-        overflow: initial;
-    }
+  }
+  .content {
+    overflow: initial;
+  }
+}
+
+#root {
+  height: 100%;
 }
