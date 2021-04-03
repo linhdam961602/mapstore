@@ -3,6 +3,7 @@ import { createTranslatedText } from 'utils/text';
 // TODO: remove when use API.
 const dataSource = [
   {
+    key: 1,
     id: '1',
     invoiceDate: '01/01/2021',
     dateDue: '01/01/2021',

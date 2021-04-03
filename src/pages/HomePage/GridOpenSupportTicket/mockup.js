@@ -3,6 +3,7 @@ import { createTranslatedText } from 'utils/text';
 // TODO: remove when use API.
 const dataSource = [
   {
+    key: 1,
     id: '1',
     subject: 'Hệ thốn bị chậm',
     department: 'Kỹ thuật',

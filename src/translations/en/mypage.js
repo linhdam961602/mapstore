@@ -27,6 +27,15 @@ const mypage = {
     },
     mySupportTicket: 'My support ticket',
   },
+  dropdownMenu: {
+    persionnalInfo: 'Persional Information',
+    contactList: 'Contact List',
+    emailHistory: 'Email history',
+    changePass: 'Change Password',
+    securitySetting: 'Security Settings',
+    logout: 'Logout',
+    emmtyNoti: 'No Notification',
+  },
 };
 
 export { mypage };

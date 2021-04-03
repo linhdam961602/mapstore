@@ -1,16 +1,17 @@
 import React from 'react';
 
-import './styles.scss';
-
 import Layout from 'components/BasicComponent/Layout';
 import Footer from 'components/Footer';
+import TopBar from 'containers/TopBar';
 import Sider from 'containers/SidebarLeft';
 
-const { Header, Content } = Layout;
+import './styles.scss';
+
+const { Content } = Layout;
 
 const MainLayout = (props) => (
   <Layout className="layout_main">
-    <Header className="header" />
+    <TopBar className="header" />
     <Layout className="site-layout">
       <Sider />
       <div className="content_wrapper">

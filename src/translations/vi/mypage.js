@@ -27,6 +27,15 @@ const mypage = {
     },
     mySupportTicket: 'Quản lý ticket',
   },
+  dropdownMenu: {
+    persionnalInfo: 'Thông tin cá nhân',
+    contactList: 'Danh sách liên hệ',
+    emailHistory: 'Lịch sử email',
+    changePass: 'Thay đổi mật khẩu',
+    securitySetting: 'Cài đặt bảo mật',
+    logout: 'Đăng xuất',
+    emmtyNoti: 'Không có thông báo nào',
+  },
 };
 
 export { mypage };

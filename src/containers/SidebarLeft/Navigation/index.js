@@ -15,7 +15,7 @@ const Navigation = (props) => {
     return menusData
       .filter((item) => item.name && !item.hideInMenu)
       .map((item) => {
-        const { children, path, target, name, icon } = item;
+        const { children, path, target, name, icon, key } = item;
         if (children && children.some((child) => child.name)) {
           // If have children item, callback getNavMenuItems
           const childrenItems = getNavMenuItems(children);
@@ -33,7 +33,7 @@ const Navigation = (props) => {
                     name
                   )
                 }
-                key={path}
+                key={key}
               >
                 {childrenItems}
               </SubMenu>
