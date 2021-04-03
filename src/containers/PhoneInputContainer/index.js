@@ -10,14 +10,14 @@ import {
   countryActions,
   initialState,
 } from './slices';
-import styles from './styles.module.scss';
+import './styles.scss';
 
 import Input from 'components/BasicComponent/Input';
 import { useInjectSaga, useInjectReducer } from 'hooks/useInjector';
 import Select from 'components/BasicComponent/Select';
 
 const FlagIcon = ({ flag, name }) => (
-  <img src={flag} alt={name} className={styles.flag} />
+  <img src={flag} alt={name} className="flag" />
 );
 
 const PhoneInput = ({
@@ -76,16 +76,16 @@ const PhoneInput = ({
   return (
     <Input.Group compact className={classes}>
       <Select
-        style={{ width: '30%' }}
         optionLabelProp="label"
         showArrow={false}
-        dropdownClassName={styles['phone-input__dropdown']}
+        dropdownClassName="phone-input__dropdown"
         onChange={onChangeCountry}
         defaultValue={countryCode}
+        className="phone-input__select"
       >
         {renderOptions()}
       </Select>
-      <Input style={{ width: '70%' }} {...props} />
+      <Input {...props} className="phone-input" />
     </Input.Group>
   );
 };

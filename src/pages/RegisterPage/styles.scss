@@ -1,13 +1,12 @@
 @import 'styles/mixins.scss';
 
-.login {
+.register {
   &__background {
     display: flex;
     justify-content: center;
     align-items: center;
     display: flex;
     height: 100vh;
-    margin-top: -1.25rem;
 
     &::before {
       content: '';
@@ -39,7 +38,7 @@
       box-shadow: 0 0.2rem 2rem 0 rgba(0, 0, 0, 0.02);
       border-radius: 0.6rem;
       width: auto;
-      height: auto;
+      // height: auto;
     }
   }
 
@@ -53,35 +52,26 @@
   }
 
   &__form {
-    margin: auto 0 !important;
     padding: 5rem 6.6rem 8.4rem 6.6rem !important;
-    // width: 48rem;
+  }
+
+  &__form-section--title {
+    font-weight: 600;
   }
 
   &__title {
     text-transform: uppercase;
     font-weight: 600;
+    text-align: center;
     font-size: 2.4rem;
   }
 
-  &__button-with-google {
-    border: none;
-    background-color: $light-gray-2 !important;
-    span {
-      color: $google-red;
-    }
+  &__phone-input {
+    border: none !important;
   }
 
-  &__remember-me {
+  &__button-wrapper {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 4rem;
-  }
-
-  &__create-account {
-    text-align: center;
-    :not(:first-child) {
-      margin-left: 0.3rem;
-    }
+    justify-content: center;
   }
 }

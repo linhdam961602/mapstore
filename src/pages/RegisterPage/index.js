@@ -14,7 +14,7 @@ import {
   REGISTER_FORM_FIELDS,
   TERMS_OF_SERVICE_URL,
 } from './constants';
-import styles from './styles.module.scss';
+import './styles.scss';
 import {
   registerSliceName,
   registerReducer,
@@ -43,6 +43,7 @@ import { createTranslatedText } from 'utils/text';
 import { RECAPTCHA_SITE_KEY } from 'constants/common';
 import { onlyNumber } from 'utils';
 import DatePicker from 'components/BasicComponent/DatePicker';
+import illustration from 'assets/images/illustration.svg';
 
 const { Row, Col } = Grid;
 
@@ -71,17 +72,20 @@ const RegisterPage = () => {
   }, []);
 
   return (
-    <div className={styles.register__background}>
-      <div className={styles.register__container}>
+    <div className="register__background">
+      <div className="register__container">
+        <div className="register__left-container">
+          <img alt="Icewall Tailwind HTML Admin Template" src={illustration} />
+        </div>
         <Form
-          className={styles.register__form}
+          className="register__form"
           initialValues={INITIAL_VALUES}
           onFinish={onFinish}
           form={form}
           {...LAYOUT_8_16}
           labelAlign="left"
         >
-          <h1 className={styles.register__title}>{getText('title')}</h1>
+          <h1 className="register__title">{getText('title')}</h1>
 
           <Row gutter={16}>
             <Col lg={12} xs={24}>
@@ -100,7 +104,7 @@ const RegisterPage = () => {
           {/* Company Information */}
           {curType === TYPES_OF_SUBJECT.COMPANY.value && (
             <div>
-              <h3 className={styles['register__form-section--title']}>
+              <h3 className="register__form-section--title">
                 {getText('headings.compInfo')}
               </h3>
               <Row gutter={16}>
@@ -126,7 +130,7 @@ const RegisterPage = () => {
 
           {/* Personal Information */}
           <div>
-            <h3 className={styles['register__form-section--title']}>
+            <h3 className="register__form-section--title">
               {getText('headings.perInfo')}
             </h3>
             <Row gutter={16}>
@@ -177,7 +181,7 @@ const RegisterPage = () => {
                   rules={[{ required: true }]}
                 >
                   <PhoneInput
-                    className={styles['register__phone-input']}
+                    className="register__phone-input"
                     countryCode={form.getFieldValue(
                       REGISTER_FORM_FIELDS.CALLING_CODE,
                     )}
@@ -268,7 +272,7 @@ const RegisterPage = () => {
             </Col>
           </Row>
           {/* Account Security */}
-          <h3 className={styles['register__form-section--title']}>
+          <h3 className="register__form-section--title">
             {getText('headings.accSec')}
           </h3>
           <Row gutter={16}>
@@ -308,11 +312,11 @@ const RegisterPage = () => {
               </a>
             </Checkbox>
           </Form.Item>
-          <div className={styles['register__button-wrapper']}>
+          <div className="register__button-wrapper">
             <Button
               type="primary"
               htmlType="submit"
-              className={styles.register__button}
+              className="register__button"
             >
               {getText('buttons.register')}
             </Button>

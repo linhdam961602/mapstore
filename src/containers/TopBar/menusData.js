@@ -41,13 +41,6 @@ const menusData = (intl) => {
       icon: <CloudServerOutlined />,
       hideInmenu: false,
     },
-    {
-      key: 6,
-      path: '',
-      name: getText('logout'),
-      icon: <CloudServerOutlined />,
-      hideInmenu: false,
-    },
   ];
 };
 

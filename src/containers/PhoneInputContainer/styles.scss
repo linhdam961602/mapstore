@@ -1,0 +1,26 @@
+@import 'styles/mixins.scss';
+
+.flag {
+  width: 2rem;
+  margin-right: 0.5rem;
+}
+
+.phone-input {
+  width: 80% !important;
+  &.ant-input {
+    border-top-right-radius: 0.6rem !important;
+    border-bottom-right-radius: 0.6rem !important;
+  }
+
+  &__dropdown {
+    min-width: 30rem !important;
+  }
+
+  &__select {
+    width: 20% !important;
+    .ant-select-selector {
+      border-top-right-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
+    }
+  }
+}
