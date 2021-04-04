@@ -24,6 +24,7 @@ const PhoneInput = ({
   className,
   countryCode = '+84',
   onChangeCountry,
+  disabledDropdown,
   ...props
 }) => {
   useInjectReducer({ key: countrySliceName, reducer: countryReducer });
@@ -82,6 +83,7 @@ const PhoneInput = ({
         onChange={onChangeCountry}
         defaultValue={countryCode}
         className="phone-input__select"
+        disabled={disabledDropdown}
       >
         {renderOptions()}
       </Select>

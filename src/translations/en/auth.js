@@ -48,6 +48,8 @@ const registration = {
   },
   buttons: {
     register: 'Register an account',
+    next: 'Next',
+    prev: 'Previous',
   },
 };
 

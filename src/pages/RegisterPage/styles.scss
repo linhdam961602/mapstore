@@ -45,6 +45,9 @@
   &__left-container {
     margin: auto 0;
     z-index: 0;
+    width: 80rem;
+    justify-content: center;
+    display: flex;
 
     @include respond-to('lg') {
       display: none;
@@ -53,6 +56,8 @@
 
   &__form {
     padding: 5rem 6.6rem 8.4rem 6.6rem !important;
+    margin: auto 0 !important;
+    width: 80rem;
   }
 
   &__form-section--title {
@@ -60,9 +65,7 @@
   }
 
   &__title {
-    text-transform: uppercase;
     font-weight: 600;
-    text-align: center;
     font-size: 2.4rem;
   }
 
@@ -71,7 +74,12 @@
   }
 
   &__button-wrapper {
-    display: flex;
-    justify-content: center;
+    :not(:first-child) {
+      margin-left: 0.6rem;
+    }
+  }
+
+  &__steps-content {
+    padding: 3rem 0;
   }
 }
