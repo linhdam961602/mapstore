@@ -1,8 +1,10 @@
 import React, { useCallback, useMemo } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useIntl } from 'react-intl';
 
 import menusData from '../menusData';
+
+import * as authSelector from 'pages/LoginPage/selector';
 
 import Menu from 'components/BasicComponent/Menu';
 import { createTranslatedText } from 'utils/text';
@@ -22,13 +24,14 @@ const DropdownMenu = () => {
   const onLogout = useCallback(() => {
     dispatch(authActions.logout());
   }, [dispatch]);
+  const userInfo = useSelector(authSelector.selectUserInfo);
 
   return (
     <div className="dropdown-menu">
       <div className={`information ${isLogin ? 'show' : 'hidden'}`}>
         {/* // TODO: Remove when get API user detail */}
-        <p className="primary-text">Con Gian Phat Sang</p>
-        <p className="secondary-text">danny.thanhtruc@gmail.com</p>
+        <p className="primary-text">{`${userInfo?.firstname} ${userInfo?.lastname}`}</p>
+        <p className="secondary-text">{userInfo?.email}</p>
       </div>
       {menusDataIntl.map((item) => {
         const { key, path, name } = item;
