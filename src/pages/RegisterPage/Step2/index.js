@@ -27,7 +27,7 @@ const Step2 = ({ form, getText, onConfirmPassword }) => (
           <Select options={Object.values(TYPES_OF_PERSONAL_TITLE)} />
         </Form.Item>
       </Col>
-      <Col span={24}>
+      <Col md={12} xs={24}>
         <Form.Item
           name={REGISTER_FORM_FIELDS.LAST_NAME}
           label={getText('labels.lastName')}
@@ -36,7 +36,7 @@ const Step2 = ({ form, getText, onConfirmPassword }) => (
           <Input />
         </Form.Item>
       </Col>
-      <Col span={24}>
+      <Col md={12} xs={24}>
         <Form.Item
           name={REGISTER_FORM_FIELDS.FIRST_NAME}
           label={getText('labels.firstName')}
