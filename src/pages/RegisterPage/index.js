@@ -91,7 +91,6 @@ const RegisterPage = () => {
         >
           <h1 className="register__title">{getText('title')}</h1>
           <Steps
-            type="navigation"
             current={curStep}
             onChange={onChangeStep}
             className="site-navigation-steps"
