@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useIntl } from 'react-intl';
+
+import { useDispatch } from 'react-redux';
+
+import { userActions, userSaga, userSliceName } from './slices';
 
 import GridInvoceDue from './GridInvoceDue';
 import GridOpenSupportTicket from './GridOpenSupportTicket';
+
+// import * as userSelector from './selector';
 
 import { createTranslatedText } from 'utils/text';
 
@@ -17,9 +23,22 @@ import iconDomain from 'assets/icon/icon_domain.png';
 import iconHosting from 'assets/icon/icon_hosting.png';
 import iconSupport from 'assets/icon/icon_support.png';
 
+import { useInjectSaga } from 'hooks/useInjector';
+
 const HomePage = () => {
   const intl = useIntl();
+  const dispatch = useDispatch();
   const getText = createTranslatedText('mypage', intl);
+
+  useInjectSaga({ key: userSliceName, saga: userSaga });
+
+  useEffect(() => {
+    dispatch(userActions.getContactPrivileges());
+  });
+
+  // TODO: waiting check data API.
+  // const contactPrivileges = useSelector(userSelector.selectContactPrivileges);
+  // const { services, domains, billing, support } = contactPrivileges;
 
   return (
     <div className="mypage">
