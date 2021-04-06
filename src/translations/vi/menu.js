@@ -1,4 +1,4 @@
-const menu = {
+const sidebarLeft = {
   homePage: 'Trang chủ',
   service: 'Dịch vụ',
   viewAll: 'Xem tất cả',
@@ -28,4 +28,13 @@ const menu = {
   tinoAccount: 'Tài khoản Tino',
 };
 
-export { menu };
+const sidebarRight = {
+  overView: 'Tổng quan tài khoản',
+  persionnalInfo: 'Thông tin cá nhân',
+  contactList: 'Danh sách liên hệ',
+  emailHistory: 'Lịch sử email',
+  changePass: 'Thay đổi mật khẩu',
+  securitySetting: 'Cài đặt bảo mật',
+};
+
+export { sidebarLeft, sidebarRight };

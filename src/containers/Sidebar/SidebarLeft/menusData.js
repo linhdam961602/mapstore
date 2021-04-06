@@ -3,11 +3,11 @@ import { HomeOutlined, CloudServerOutlined } from '@ant-design/icons';
 import { createTranslatedText } from 'utils/text';
 
 const menusData = (intl) => {
-  const getText = createTranslatedText('menu', intl);
+  const getText = createTranslatedText('sidebarLeft', intl);
 
   return [
     {
-      key: 1,
+      key: '',
       path: '/',
       name: getText('homePage'),
       icon: <HomeOutlined />,

@@ -1,5 +1,4 @@
 const mypage = {
-  titlePage: 'Tổng quan dịch vụ',
   service: 'Dịch vụ',
   domain: 'Tên miền',
   invoiceNotPaid: 'Hóa đơn chưa thanh toán',
@@ -28,11 +27,7 @@ const mypage = {
     mySupportTicket: 'Quản lý ticket',
   },
   dropdownMenu: {
-    persionnalInfo: 'Thông tin cá nhân',
-    contactList: 'Danh sách liên hệ',
-    emailHistory: 'Lịch sử email',
-    changePass: 'Thay đổi mật khẩu',
-    securitySetting: 'Cài đặt bảo mật',
+    profile: 'Thông tin cá nhân',
     logout: 'Đăng xuất',
     emmtyNoti: 'Không có thông báo nào',
   },

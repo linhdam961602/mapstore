@@ -2,13 +2,9 @@ import React from 'react';
 
 import { UserOutlined } from '@ant-design/icons';
 
-import DropdownMenu from '../DropdownMenu';
-
 import Avatar from 'components/BasicComponent/Avatar';
 
-import Dropdown from 'components/BasicComponent/Dropdown';
-
-import { AVATAR_SIZE_32 } from 'constants/common';
+import { AVATAR_SIZE_48 } from 'constants/common';
 
 import '../styles.scss';
 
@@ -16,28 +12,26 @@ const AvatarUser = (props) => {
   const { src } = props;
   const imageAvatar = src ? (
     <Avatar
-      size={AVATAR_SIZE_32}
+      size={AVATAR_SIZE_48}
       src={src}
       onClick={(e) => e.preventDefault()}
     />
   ) : (
     <Avatar
-      size={AVATAR_SIZE_32}
+      size={AVATAR_SIZE_48}
       icon={<UserOutlined />}
       onClick={(e) => e.preventDefault()}
     />
   );
 
   return (
-    <>
-      <Dropdown
-        overlay={<DropdownMenu />}
-        trigger="click"
-        placement="bottomRight"
-      >
-        {imageAvatar}
-      </Dropdown>
-    </>
+    <div className="avatarUser_wrapper">
+      <div>{imageAvatar}</div>
+      <div className="information">
+        <p className="primary-text">Con Gian Phat Sang</p>
+        <p className="secondary-text">danny.thanhtruc@gmail.com</p>
+      </div>
+    </div>
   );
 };
 

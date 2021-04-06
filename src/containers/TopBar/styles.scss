@@ -69,12 +69,6 @@
     border-radius: $radius-normal;
     .information {
         padding: 1rem 2rem;
-        &.show {
-            display: block;
-        }
-        &.hidden {
-            display: none;
-        }
         .primary-text {
             font-weight: 700;
             @extend .reset-space;
@@ -87,7 +81,7 @@
     .ant-menu {
         background-color: $blue-6;
         border: none;
-        padding: 0 1rem;
+        padding: 1rem;
         .ant-menu-item {
             padding: 0 1rem;
             margin: 0;
@@ -95,20 +89,14 @@
             border-radius: $radius-normal;
             display: flex;
             align-items: center;
-            &:hover, &:active {
+            &.ant-menu-item-active, &.ant-menu-item-selected {
                 background-color: $blue-4;
             }
-            a {
+            a, .anticon {
                 color: $white;
             }
         }
-        &:nth-child(2) {
-            border-top: 1px solid $pale-blue-o4;
-            padding: 1rem 1rem 0 1rem;
-        }
-        &:nth-child(6) {
-            padding: 0 1rem 1rem 1rem;
-        }
+       
         &:last-child {
             border-top: 1px solid $pale-blue-o4;
             padding: 1rem;

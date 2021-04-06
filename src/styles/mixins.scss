@@ -13,8 +13,8 @@ $onyx: #363b3c;
 $black: #0000000b;
 $black-o4: rgba($black, 0.4);
 $black-o09: rgba($black, 0.09);
-$grey: #718096;
 $grey-main: #f1f5f8;
+$black-o85: rgba($black, 0.85);
 // Icewall Theme
 $primary: #142e71;
 $secondary: #edf2f7;
@@ -86,4 +86,10 @@ $breakpoints: (
 .reset-space{
   margin: 0;
   padding: 0;
+}
+
+.titlePage{
+  font-weight: bold;
+  font-size: 2rem;
+  margin: 1rem 0 2rem 0;
 }

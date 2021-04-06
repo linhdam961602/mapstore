@@ -61,4 +61,5 @@ export const REGEX_EMAIL_BACK = /(^[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)+)$/;
 export const RECAPTCHA_SITE_KEY = '6LeQzZEaAAAAAF7YBftua2kmrlNuz3qwVyRiO0Zo';
 
 // Avatar
-export const AVATAR_SIZE = 32;
+export const AVATAR_SIZE_32 = 32;
+export const AVATAR_SIZE_48 = 48;

@@ -1,4 +1,4 @@
-const menu = {
+const sidebarLeft = {
   homePage: 'Home page',
   service: 'Service',
   viewAll: 'View all',
@@ -28,4 +28,13 @@ const menu = {
   tinoAccount: 'Account Tino',
 };
 
-export { menu };
+const sidebarRight = {
+  overView: 'Account Overview',
+  persionnalInfo: 'Persional Information',
+  contactList: 'Contact List',
+  emailHistory: 'Email history',
+  changePass: 'Change Password',
+  securitySetting: 'Security Settings',
+};
+
+export { sidebarLeft, sidebarRight };

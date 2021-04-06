@@ -1,12 +1,6 @@
 @import 'styles/mixins.scss';
 
 .mypage {
-  h1 {
-    text-transform: capitalize;
-    font-weight: bold;
-    font-size: 2rem;
-    margin: 1rem 0 2rem 0;
-  }
   .statistic-wrapper {
     @include respond-to('md') {
       margin-bottom: 1.6rem;

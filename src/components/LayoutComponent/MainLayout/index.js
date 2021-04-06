@@ -3,7 +3,7 @@ import React from 'react';
 import Layout from 'components/BasicComponent/Layout';
 import Footer from 'components/Footer';
 import TopBar from 'containers/TopBar';
-import Sider from 'containers/SidebarLeft';
+import Sider from 'containers/Sidebar/SidebarLeft';
 
 import './styles.scss';
 

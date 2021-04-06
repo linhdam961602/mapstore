@@ -28,7 +28,7 @@ import { useInjectSaga } from 'hooks/useInjector';
 const HomePage = () => {
   const intl = useIntl();
   const dispatch = useDispatch();
-  const getText = createTranslatedText('mypage', intl);
+  const getText = createTranslatedText('sidebarRight', intl);
 
   useInjectSaga({ key: userSliceName, saga: userSaga });
 
@@ -42,7 +42,7 @@ const HomePage = () => {
 
   return (
     <div className="mypage">
-      <h1>{getText('titlePage')}</h1>
+      <h1 className="titlePage">{getText('overView')}</h1>
       <Row gutter={16}>
         <Col xs={24} sm={24} md={12} lg={6} xl={6}>
           <Statistic

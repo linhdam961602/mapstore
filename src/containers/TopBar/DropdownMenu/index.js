@@ -1,6 +1,7 @@
 import React, { useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useIntl } from 'react-intl';
+import { Link } from 'react-router-dom';
 
 import menusData from '../menusData';
 
@@ -34,11 +35,14 @@ const DropdownMenu = () => {
         <p className="secondary-text">{userInfo?.email}</p>
       </div>
       {menusDataIntl.map((item) => {
-        const { key, path, name } = item;
+        const { key, path, name, icon, target } = item;
         return (
           <Menu key={key}>
-            <Item>
-              <a href={path}>{name}</a>
+            <Item key={path}>
+              <Link to={path} target={target}>
+                {icon}
+                <span>{name}</span>
+              </Link>
             </Item>
           </Menu>
         );

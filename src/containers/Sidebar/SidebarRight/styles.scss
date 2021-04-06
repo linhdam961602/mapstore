@@ -1,0 +1,62 @@
+@import 'styles/mixins.scss';
+
+.sidebarRight_wrapper {
+    background-color: $white;
+    border-radius: $radius-normal;
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+    width: 100% !important;
+    .ant-layout-sider-children {
+        .avatarUser_wrapper {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 2rem;
+            border-bottom: 1px solid $pale-blue;
+            .information {
+                margin: 0 0 0 2rem;
+                .primary-text {
+                    font-weight: 700;
+                    @extend .reset-space;
+                }
+                .secondary-text {
+                    color: $secondary-text;
+                    @extend .reset-space;
+                }
+            }
+        }
+        .ant-menu.ant-menu-dark.navigation{
+            background-color: $white;
+            border-radius: $radius-normal;
+            .ant-menu-item {
+                a, .anticon {
+                    color: $black-o85;
+                }
+                .anticon {
+                    font-size: 1.6rem;
+                }
+                &.ant-menu-item-active {
+                    a, .anticon {
+                        color: $primary;
+                    }
+                }
+                &.ant-menu-item-selected{
+                    background-color: transparent;
+                    color: $primary;
+                    font-weight: bold;
+                    a {
+                        span {
+                            color: $primary;
+                            font-weight: bold;
+                        }
+                        .anticon {
+                            color: $primary;
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

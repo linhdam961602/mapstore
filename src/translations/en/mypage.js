@@ -1,5 +1,4 @@
 const mypage = {
-  titlePage: 'Account Overview',
   service: 'Service',
   domain: 'Domain',
   invoiceNotPaid: 'Invoice Not Paid',
@@ -28,11 +27,7 @@ const mypage = {
     mySupportTicket: 'My support ticket',
   },
   dropdownMenu: {
-    persionnalInfo: 'Persional Information',
-    contactList: 'Contact List',
-    emailHistory: 'Email history',
-    changePass: 'Change Password',
-    securitySetting: 'Security Settings',
+    profile: 'User profile',
     logout: 'Logout',
     emmtyNoti: 'No Notification',
   },
