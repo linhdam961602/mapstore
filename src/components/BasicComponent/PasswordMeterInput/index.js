@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import Input from '../Input';
 import Tooltip from '../Tooltip';
 
-import styles from './styles.module.scss';
+import './styles.scss';
 
 import { createTranslatedText } from 'utils/text';
 
@@ -28,8 +28,8 @@ const PasswordMeterInput = ({ value = '', onChange = () => {}, ...props }) => {
   );
 
   const progressBarClasses = classNames({
-    [styles['password-meter__progress-bar']]: true,
-    [styles[`password-meter__score--${testResult.score}`]]: testResult.score,
+    'password-meter__progress-bar': true,
+    [`password-meter__score--${testResult.score}`]: testResult.score,
   });
 
   /**
@@ -59,7 +59,7 @@ const PasswordMeterInput = ({ value = '', onChange = () => {}, ...props }) => {
         onChange={handleInputChange}
         suffix={
           <>
-            <span className={styles['password-strength-label']}>
+            <span className="password-strength-label">
               {value !== ''
                 ? passwordStrength
                 : getText('tooltip.passwordStrength.placeholder')}
@@ -71,8 +71,8 @@ const PasswordMeterInput = ({ value = '', onChange = () => {}, ...props }) => {
         }
         {...props}
       />
-      <div className={styles['password-meter__container']}>
-        <div className={styles['password-meter__progress']}>
+      <div className="password-meter__container">
+        <div className="password-meter__progress">
           <div className={progressBarClasses} />
         </div>
       </div>

@@ -48,6 +48,8 @@ const registration = {
   },
   buttons: {
     register: 'Đăng ký tài khoản',
+    next: 'Tiếp',
+    prev: 'Trở về',
   },
 };
 

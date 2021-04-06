@@ -3,12 +3,12 @@ import AntdCheckbox from 'antd/es/checkbox';
 import 'antd/es/checkbox/style/css';
 import classNames from 'classnames';
 
-import styles from './styles.module.scss';
+import './styles.scss';
 
 const CheckboxComponent = forwardRef(
   ({ className, children, autoFocus = false, ...props }, ref) => {
     const classes = classNames({
-      [styles.tino__checkbox]: true,
+      tino__checkbox: true,
       [className]: className,
     });
     return (

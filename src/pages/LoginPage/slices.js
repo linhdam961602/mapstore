@@ -82,6 +82,9 @@ const authSliceSaga = createSliceSaga({
           auth.setExpireIn(expireIn);
           yield put(reducerActions.loginSuccess());
 
+          // Get user info
+          yield put(authSliceSaga.actions.getUserInfo());
+
           // redirect to home page
           yield put(push(HOME_URI));
         }

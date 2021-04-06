@@ -12,7 +12,7 @@ import { GoogleOutlined } from '@ant-design/icons';
 import { authActions, authSaga, authSliceName } from './slices';
 
 import { LOGIN_FORM_FIELDS } from './constants';
-import styles from './styles.module.scss';
+import './styles.scss';
 
 import Form from 'components/BasicComponent/Form';
 import Input from 'components/BasicComponent/Input';
@@ -40,24 +40,20 @@ const LoginPage = () => {
   }, [dispatch, form]);
 
   return (
-    <div className={styles.login__background}>
-      <div className={styles.login__container}>
-        <div className={styles['login__left-container']}>
-          <img
-            alt="Icewall Tailwind HTML Admin Template"
-            className="-intro-x w-1/2 -mt-16"
-            src={illustration}
-          />
+    <div className="login__background">
+      <div className="login__container">
+        <div className="login__left-container">
+          <img alt="Icewall Tailwind HTML Admin Template" src={illustration} />
         </div>
         <Form
-          className={styles.login__form}
+          className="login__form"
           initialValues={{
             remember: true,
           }}
           onFinish={onFinish}
           form={form}
         >
-          <h1 className={styles.login__title}>{getText('title')}</h1>
+          <h1 className="login__title">{getText('title')}</h1>
           <Form.Item
             name={LOGIN_FORM_FIELDS.USERNAME}
             rules={[
@@ -87,7 +83,7 @@ const LoginPage = () => {
               placeholder={getText('placeholders.password')}
             />
           </Form.Item>
-          <div className={styles['login__remember-me']}>
+          <div className="login__remember-me">
             <Form.Item
               name={LOGIN_FORM_FIELDS.REMEMBER}
               valuePropName="checked"
@@ -106,13 +102,13 @@ const LoginPage = () => {
               {getText('buttons.login')}
             </Button>
           </Form.Item>
-          <div className={styles['login__create-account']}>
+          <div className="login__create-account">
             <span>{getText('text.notAMember')}</span>
             <a href={REGISTER_URL}>{getText('text.createAcc')}</a>
           </div>
           <Divider plain>{getText('text.useAcc')}</Divider>
           <Button
-            className={styles['login__button-with-google']}
+            className="login__button-with-google"
             block
             icon={<GoogleOutlined style={{ color: '#ec5741' }} />}
           >

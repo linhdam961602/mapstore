@@ -1,22 +1,29 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useIntl } from 'react-intl';
-
-import { useSelector } from 'react-redux';
 
 import menusData from '../menusData';
 
 import * as authSelector from 'pages/LoginPage/selector';
 
 import Menu from 'components/BasicComponent/Menu';
+import { createTranslatedText } from 'utils/text';
 
 import '../styles.scss';
+import { authActions } from 'pages/LoginPage/slices';
 
 const { Item } = Menu;
 
 const DropdownMenu = () => {
   const isLogin = true;
   const intl = useIntl();
+  const dispatch = useDispatch();
   const menusDataIntl = useMemo(() => menusData(intl), [intl]);
+  const getText = createTranslatedText('mypage.dropdownMenu', intl);
+
+  const onLogout = useCallback(() => {
+    dispatch(authActions.logout());
+  }, [dispatch]);
   const userInfo = useSelector(authSelector.selectUserInfo);
 
   return (
@@ -36,6 +43,13 @@ const DropdownMenu = () => {
           </Menu>
         );
       })}
+      <Menu>
+        <Item>
+          <a role="button" onClick={onLogout} tabIndex={0}>
+            {getText('logout')}
+          </a>
+        </Item>
+      </Menu>
     </div>
   );
 };

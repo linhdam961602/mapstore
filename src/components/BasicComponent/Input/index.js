@@ -3,13 +3,13 @@ import AntdInput from 'antd/es/input';
 import 'antd/es/input/style/css';
 import classNames from 'classnames';
 
-import styles from './styles.module.scss';
+import './styles.scss';
 
 const { Password, Group } = AntdInput;
 
 const Input = ({ className, ...props }) => {
   const classes = classNames({
-    [styles.tino__input]: true,
+    tino__input: true,
     [className]: className || '',
   });
   return (
