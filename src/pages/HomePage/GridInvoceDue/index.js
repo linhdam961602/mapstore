@@ -1,7 +1,10 @@
 import React, { useMemo } from 'react';
 import { useIntl } from 'react-intl';
+import { useSelector } from 'react-redux';
 
-import { dataSource, columns } from './mockup';
+import * as userSelector from '../selector';
+
+import { columns } from './mockup';
 
 import Image from 'components/BasicComponent/Image';
 import Table from 'components/BasicComponent/Table';
@@ -14,6 +17,8 @@ const GridInvoceDue = () => {
   const getText = createTranslatedText('mypage.gridInvoceDue', intl);
   const columnsIntl = useMemo(() => columns(intl), [intl]);
 
+  const listInvoiceOverDue = useSelector(userSelector.selectListInvoiceOverDue);
+
   return (
     <div className="customGrid">
       <div className="headingGrid">
@@ -25,7 +30,11 @@ const GridInvoceDue = () => {
           {getText('myInvoice')} {'>'}
         </a>
       </div>
-      <Table dataSource={dataSource} columns={columnsIntl} pagination={false} />
+      <Table
+        dataSource={listInvoiceOverDue}
+        columns={columnsIntl}
+        pagination={false}
+      />
     </div>
   );
 };

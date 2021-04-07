@@ -31,6 +31,7 @@ const mypage = {
     logout: 'Logout',
     emmtyNoti: 'No Notification',
   },
+  wallet: 'Wallet',
 };
 
 export { mypage };

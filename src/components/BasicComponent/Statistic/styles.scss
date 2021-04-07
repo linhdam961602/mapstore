@@ -15,7 +15,7 @@
     width: 90%;
     background: #f9fafc;
     box-shadow: 0 0.3rem 2rem $black;
-    border-radius: 0.3rem;
+    border-radius: $radius-normal;
     height: 100%;
     margin-left: auto;
     margin-right: auto;
@@ -26,6 +26,7 @@
   }
   &:hover {
     box-shadow: 0 0.3rem 2rem $black-o4;
+    border-radius: $radius-normal;
     cursor: pointer;
   }
   .ant-statistic-title{

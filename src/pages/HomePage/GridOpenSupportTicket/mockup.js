@@ -1,17 +1,5 @@
 import { createTranslatedText } from 'utils/text';
 
-// TODO: remove when use API.
-const dataSource = [
-  {
-    key: 1,
-    id: '1',
-    subject: 'Hệ thốn bị chậm',
-    department: 'Kỹ thuật',
-    lastUpdate: '02/02/2021',
-    status: 'Kích hoạt',
-  },
-];
-
 const columns = (intl) => {
   const getText = createTranslatedText(
     'mypage.gridOpenSupportTicket.columns',
@@ -21,8 +9,8 @@ const columns = (intl) => {
   return [
     {
       title: getText('id'),
-      dataIndex: 'id',
-      key: 'id',
+      dataIndex: 'ticket_number',
+      key: 'ticket_number',
     },
     {
       title: getText('subject'),
@@ -31,13 +19,13 @@ const columns = (intl) => {
     },
     {
       title: getText('department'),
-      dataIndex: 'department',
-      key: 'department',
+      dataIndex: 'deptname',
+      key: 'deptname',
     },
     {
       title: getText('lastUpdate'),
-      dataIndex: 'lastUpdate',
-      key: 'lastUpdate',
+      dataIndex: 'date',
+      key: 'date',
     },
     {
       title: getText('status'),
@@ -46,4 +34,4 @@ const columns = (intl) => {
     },
   ];
 };
-export { dataSource, columns };
+export { columns };

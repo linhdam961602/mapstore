@@ -6,6 +6,30 @@
       margin-bottom: 1.6rem;
     }
   }
+  .userBaicInfo {
+    background-color: $white;
+    margin: 2rem 0 0 0;
+    border-radius: $radius-normal;
+    .avatarUser_wrapper {
+      border: none;
+    }
+    .group-info{
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: center;
+      .info {
+        color: $secondary-text;
+        @extend .reset-space;
+        &.bold {
+          font-weight: bold;
+        }
+        .anticon {
+          margin: 0 1rem 0 0;
+        }
+      }
+    }
+  }
 }
 .customGrid{
   .headingGrid {
