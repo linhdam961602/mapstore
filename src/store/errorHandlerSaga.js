@@ -1,24 +1,18 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import get from 'lodash/get';
 
-import {
-  INVALID_SESSION,
-  EXISTING_SESSION,
-  INVALID_SESSION_TIMEOUT,
-  HAVE_BEEN_KICKED_OUT,
-} from 'constants/auth';
 import { notificationActions } from 'containers/NotificationContainer/slices';
 
-import {
-  ERROR_TYPE,
-  WARNING_TYPE,
-} from 'components/BasicComponent/Notification';
-
-import { LOGIN_URL } from 'constants/routes';
-
-import * as authHelper from 'utils/authHelper';
+import { ERROR_TYPE } from 'components/BasicComponent/Notification';
 import { intl } from 'containers/LanguageProviderContainer';
+import { createTranslatedText } from 'utils/text';
+import * as authHelper from 'utils/authHelper';
+import history from 'utils/history';
+import { LOGIN_URL } from 'constants/routes';
+import { INVALID_TOKEN } from 'constants/auth';
+// import { intl } from 'containers/LanguageProviderContainer';
 
+const getText = createTranslatedText('common.error', intl);
 const ERROR_HANDLER = 'ERROR_HANDLER';
 
 export const errorHandler = (payload) => ({
@@ -29,42 +23,26 @@ export const errorHandler = (payload) => ({
 function* handler(action) {
   const error = get(action, 'payload', {});
 
+  if (error && error.messageCodes) {
+    const message = error.messageCodes.reduce(
+      (con, msg) => `${getText(con)}\n${getText(msg)}`,
+    );
+    yield put(
+      notificationActions.showNotification({
+        type: ERROR_TYPE,
+        message,
+      }),
+    );
+
+    if (error.messageCodes.includes(INVALID_TOKEN)) {
+      // Kickout user
+      authHelper.clearUserCredential();
+      history.push(LOGIN_URL);
+    }
+  }
   // Add ModalContainer on the page that required modal
   if (error) {
-    switch (error.messageCode) {
-      case INVALID_SESSION:
-        yield put(
-          notificationActions.showNotification({
-            type: ERROR_TYPE,
-            message: intl.formatMessage({
-              id: 'login.error.existedSession',
-            }),
-          }),
-        );
-        setTimeout(() => {
-          authHelper.clearUserCredential();
-          window.location.href = LOGIN_URL;
-        }, INVALID_SESSION_TIMEOUT);
-        break;
-      case HAVE_BEEN_KICKED_OUT: {
-        yield put(
-          notificationActions.showNotification({
-            type: WARNING_TYPE,
-            message: intl.formatMessage({
-              id: 'login.error.youHaveBeenKickOut',
-            }),
-          }),
-        );
-        setTimeout(() => {
-          authHelper.clearUserCredential();
-          window.location.href = LOGIN_URL;
-        }, INVALID_SESSION_TIMEOUT);
-
-        break;
-      }
-      // Show no Toast on existing session when login
-      case EXISTING_SESSION:
-        break;
+    switch (error.messageCodes) {
       default: {
         yield put(
           notificationActions.showNotification({

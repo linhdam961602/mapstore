@@ -30,10 +30,23 @@ const common = {
       strong: 'Strong',
     },
   },
+  notification: {
+    messageTitle: {
+      success: 'Success',
+      info: 'Info',
+      warning: 'Warning',
+      error: 'Error',
+    },
+  },
   error: {
     networkError: 'Network Error',
     internalServerError: 'Internal Server Error',
     resourceNotFound: 'Requested resource is not found.',
+    invalid_token: 'The token is invalid.',
+    unauthorized: 'Sorry, you are not authorized to access this page.',
+    ip_banned_already: 'Your IP has been banned!',
+    wronglogin: 'Wrong login!',
+    ipnotallowed: 'Your IP is not allowed!',
   },
 };
 

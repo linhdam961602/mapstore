@@ -30,10 +30,23 @@ const common = {
       strong: 'Mạnh',
     },
   },
+  notification: {
+    messageTitle: {
+      success: 'Thành công',
+      info: 'Thông tin',
+      warning: 'Cảnh báo',
+      error: 'Lỗi',
+    },
+  },
   error: {
     networkError: 'Lỗi mạng',
     internalServerError: 'Lỗi máy chủ nội bộ',
     resourceNotFound: 'Không tìm thấy tài nguyên được yêu cầu.',
+    invalid_token: 'Token không hợp lệ.',
+    unauthorized: 'Xin lỗi, bạn không được phép truy cập vào trang này.',
+    ip_banned_already: 'IP của bạn đã bị cấm!',
+    wronglogin: 'Đăng nhập sai!',
+    ipnotallowed: 'IP của bạn không được phép truy cập!',
   },
 };
 

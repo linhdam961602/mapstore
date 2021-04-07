@@ -1,7 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { useEffect } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
-import showNotification from 'components/BasicComponents/Notification';
 
 import transform from 'lodash/transform';
 import isString from 'lodash/isString';
@@ -16,6 +15,7 @@ import {
   initialState,
 } from './slices';
 
+import showNotification from 'components/BasicComponent/Notification';
 import { useInjectReducer } from 'hooks/useInjector';
 
 // Translate message keys in params object
@@ -37,14 +37,14 @@ const formatMessage = (message, intl) => {
       (msgId) =>
         `${intl.formatMessage({
           id: msgId,
-          defaultMessage: '메시지를 찾을 수 없습니다.',
+          defaultMessage: 'Không thể tìm thấy tin nhắn.',
         })}\n`,
     );
   }
   // Translate an message object with its param
   else if (isPlainObject(message) && isString(message.id)) {
     return intl.formatMessage(
-      { id: message.id, defaultMessage: '메시지를 찾을 수 없습니다.' },
+      { id: message.id, defaultMessage: 'Không thể tìm thấy tin nhắn.' },
       formatParamsMessage(message.params, intl),
     );
   }

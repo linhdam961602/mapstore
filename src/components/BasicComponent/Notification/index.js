@@ -9,7 +9,7 @@ export const INFO_TYPE = 'info';
 export const WARNING_TYPE = 'warning';
 export const ERROR_TYPE = 'error';
 
-const getText = createTranslatedText('notification', intl);
+const getText = createTranslatedText('common.notification', intl);
 
 export function showNotification({
   type,
