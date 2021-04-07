@@ -1,18 +1,5 @@
 import { createTranslatedText } from 'utils/text';
 
-// TODO: remove when use API.
-const dataSource = [
-  {
-    key: 1,
-    id: '1',
-    invoiceDate: '01/01/2021',
-    dateDue: '01/01/2021',
-    total: '200.000đ',
-    balance: '200.000đ',
-    status: 'Kích hoạt',
-  },
-];
-
 const columns = (intl) => {
   const getText = createTranslatedText('mypage.gridInvoceDue.columns', intl);
 
@@ -24,13 +11,13 @@ const columns = (intl) => {
     },
     {
       title: getText('invoiceDate'),
-      dataIndex: 'invoiceDate',
-      key: 'invoiceDate',
+      dataIndex: 'dateorig',
+      key: 'dateorig',
     },
     {
       title: getText('dateDue'),
-      dataIndex: 'dateDue',
-      key: 'dateDue',
+      dataIndex: 'duedate',
+      key: 'duedate',
     },
     {
       title: getText('total'),
@@ -39,8 +26,8 @@ const columns = (intl) => {
     },
     {
       title: getText('balance'),
-      dataIndex: 'balance',
-      key: 'balance',
+      dataIndex: 'subtotal',
+      key: 'subtotal',
     },
     {
       title: getText('status'),
@@ -49,4 +36,4 @@ const columns = (intl) => {
     },
   ];
 };
-export { dataSource, columns };
+export { columns };

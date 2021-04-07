@@ -93,3 +93,21 @@ $breakpoints: (
   font-size: 2rem;
   margin: 1rem 0 2rem 0;
 }
+.avatarUser_wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 2rem;
+  border-bottom: 1px solid $pale-blue;
+  .information {
+      margin: 0 0 0 2rem;
+      .primary-text {
+          font-weight: 700;
+          @extend .reset-space;
+      }
+      .secondary-text {
+          color: $secondary-text;
+          @extend .reset-space;
+      }
+  }
+}

@@ -1,12 +1,15 @@
 import React, { useEffect } from 'react';
 import { useIntl } from 'react-intl';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { userActions, userSaga, userSliceName } from './slices';
 
 import GridInvoceDue from './GridInvoceDue';
 import GridOpenSupportTicket from './GridOpenSupportTicket';
+import UserBasicInfo from './UserBasicInfo';
+
+import * as userSelector from './selector';
 
 // import * as userSelector from './selector';
 
@@ -24,30 +27,31 @@ import iconHosting from 'assets/icon/icon_hosting.png';
 import iconSupport from 'assets/icon/icon_support.png';
 
 import { useInjectSaga } from 'hooks/useInjector';
-
 const HomePage = () => {
   const intl = useIntl();
   const dispatch = useDispatch();
-  const getText = createTranslatedText('sidebarRight', intl);
+  const getText = createTranslatedText('mypage', intl);
+  const getTextTitle = createTranslatedText('sidebarRight', intl);
 
   useInjectSaga({ key: userSliceName, saga: userSaga });
 
-  useEffect(() => {
-    dispatch(userActions.getContactPrivileges());
-  });
+  const statistic = useSelector(userSelector.selectStatistic);
 
-  // TODO: waiting check data API.
-  // const contactPrivileges = useSelector(userSelector.selectContactPrivileges);
-  // const { services, domains, billing, support } = contactPrivileges;
+  useEffect(() => {
+    dispatch(userActions.getListServiceActive());
+    dispatch(userActions.getListDomain());
+    dispatch(userActions.getListInvoice());
+    dispatch(userActions.getListTicket());
+  }, [dispatch]);
 
   return (
     <div className="mypage">
-      <h1 className="titlePage">{getText('overView')}</h1>
+      <h1 className="titlePage">{getTextTitle('overView')}</h1>
       <Row gutter={16}>
         <Col xs={24} sm={24} md={12} lg={6} xl={6}>
           <Statistic
             title={getText('service')}
-            value={0}
+            value={statistic?.serviceActive}
             suffix={<Image width={66} src={iconService} preview={false} />}
             className="statistic-wrapper"
           />
@@ -55,7 +59,7 @@ const HomePage = () => {
         <Col xs={24} sm={24} md={12} lg={6} xl={6}>
           <Statistic
             title={getText('domain')}
-            value={1}
+            value={statistic?.domain}
             suffix={<Image width={66} src={iconDomain} preview={false} />}
             className="statistic-wrapper"
           />
@@ -63,7 +67,7 @@ const HomePage = () => {
         <Col xs={24} sm={24} md={12} lg={6} xl={6}>
           <Statistic
             title={getText('invoiceNotPaid')}
-            value={2}
+            value={statistic?.invoiceUnpaid}
             suffix={<Image width={66} src={iconHosting} preview={false} />}
             className="statistic-wrapper"
           />
@@ -71,10 +75,15 @@ const HomePage = () => {
         <Col xs={24} sm={24} md={12} lg={6} xl={6}>
           <Statistic
             title={getText('support')}
-            value={3}
+            value={statistic?.ticket}
             suffix={<Image width={66} src={iconSupport} preview={false} />}
             className="statistic-wrapper"
           />
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={24} sm={24} md={24} lg={24} xl={24}>
+          <UserBasicInfo />
         </Col>
       </Row>
       <Row>

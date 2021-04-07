@@ -31,6 +31,7 @@ const mypage = {
     logout: 'Đăng xuất',
     emmtyNoti: 'Không có thông báo nào',
   },
+  wallet: 'Số dư',
 };
 
 export { mypage };
