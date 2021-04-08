@@ -48,6 +48,13 @@ const common = {
     wronglogin: 'Đăng nhập sai!',
     ipnotallowed: 'IP của bạn không được phép truy cập!',
   },
+  status: {
+    clientReply: 'KH trả lời',
+    closed: 'Đóng',
+    inProgress: 'Đang xử lý',
+    answered: 'Đã trả lời',
+    open: 'Mở',
+  },
 };
 
 export { common };

@@ -11,6 +11,7 @@ import Table from 'components/BasicComponent/Table';
 import { createTranslatedText } from 'utils/text';
 import '../styles.scss';
 import iconInvoiceDue from 'assets/icon/icon_invoiceDue.png';
+import { PAGE_SIZE_DEFAULT } from 'constants/common';
 
 const GridInvoceDue = () => {
   const intl = useIntl();
@@ -33,7 +34,7 @@ const GridInvoceDue = () => {
       <Table
         dataSource={listInvoiceOverDue}
         columns={columnsIntl}
-        pagination={false}
+        pagination={{ pageSize: PAGE_SIZE_DEFAULT }}
       />
     </div>
   );

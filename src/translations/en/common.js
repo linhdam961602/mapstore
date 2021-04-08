@@ -48,6 +48,13 @@ const common = {
     wronglogin: 'Wrong login!',
     ipnotallowed: 'Your IP is not allowed!',
   },
+  status: {
+    clientReply: 'Client Reply',
+    closed: 'Closed',
+    inProgress: 'In Progress',
+    answered: 'Answered',
+    open: 'Open',
+  },
 };
 
 export { common };

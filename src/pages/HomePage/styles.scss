@@ -53,6 +53,7 @@
     }
     .link{
       color: $link;
+      font-size: 1.4rem;
       @include respond-to('md') {
         display: none;
       }

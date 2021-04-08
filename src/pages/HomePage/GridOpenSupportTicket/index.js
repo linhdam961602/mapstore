@@ -11,6 +11,7 @@ import Table from 'components/BasicComponent/Table';
 import { createTranslatedText } from 'utils/text';
 import '../styles.scss';
 import iconSupportTicket from 'assets/icon/icon_suport_ticket.png';
+import { PAGE_SIZE_DEFAULT } from 'constants/common';
 
 const GridOpenSupportTicket = () => {
   const intl = useIntl();
@@ -32,7 +33,7 @@ const GridOpenSupportTicket = () => {
       <Table
         dataSource={listInvoiceOverDue}
         columns={columnsIntl}
-        pagination={false}
+        pagination={{ pageSize: PAGE_SIZE_DEFAULT }}
       />
     </div>
   );
