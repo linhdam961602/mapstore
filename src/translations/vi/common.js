@@ -39,6 +39,8 @@ const common = {
     },
   },
   error: {
+    noInput: 'Vui lòng nhập {field}.',
+    formValidate: 'Vui lòng nhập {field} hợp lệ.',
     networkError: 'Lỗi mạng',
     internalServerError: 'Lỗi máy chủ nội bộ',
     resourceNotFound: 'Không tìm thấy tài nguyên được yêu cầu.',

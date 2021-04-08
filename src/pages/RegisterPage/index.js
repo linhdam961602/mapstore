@@ -25,7 +25,7 @@ import Form from 'components/BasicComponent/Form';
 import Steps from 'components/BasicComponent/Steps';
 import Button from 'components/BasicComponent/Button';
 import { useInjectReducer, useInjectSaga } from 'hooks/useInjector';
-import { LAYOUT_8_16 } from 'constants/form';
+import { LAYOUT_8_16, VALIDATION_MESSAGES } from 'constants/form';
 import { createTranslatedText } from 'utils/text';
 import illustration from 'assets/images/illustration.svg';
 
@@ -59,21 +59,25 @@ const RegisterPage = () => {
   const [curStep, setCurStep] = useState(0);
 
   const onFinish = useCallback(() => {
-    const values = form.getFieldsValue();
+    const values = form.getFieldsValue(true); // Get all fields
     dispatch(registerActions.signup(values));
   }, [dispatch, form]);
-
-  const onConfirmPassword = useCallback(() => {
-    // Confirm password
-  }, []);
 
   const onTypeChange = useCallback((value) => {
     setCurType(value);
   }, []);
 
-  const onChangeStep = (current) => {
-    setCurStep(current);
-  };
+  const onGoPrev = useCallback(() => {
+    setCurStep(curStep - 1);
+  }, [curStep]);
+
+  const onGoNext = useCallback(async () => {
+    // Validate
+    if (curStep === 1) {
+      await form.validateFields();
+    }
+    setCurStep(curStep + 1);
+  }, [curStep, form]);
 
   return (
     <div className="register__background">
@@ -88,13 +92,10 @@ const RegisterPage = () => {
           form={form}
           {...LAYOUT_8_16}
           labelAlign="left"
+          validateMessages={VALIDATION_MESSAGES}
         >
           <h1 className="register__title">{getText('title')}</h1>
-          <Steps
-            current={curStep}
-            onChange={onChangeStep}
-            className="site-navigation-steps"
-          >
+          <Steps current={curStep} className="site-navigation-steps">
             {steps.map((item) => (
               <Step key={item.key} disabled />
             ))}
@@ -105,17 +106,14 @@ const RegisterPage = () => {
               getText,
               curType,
               onTypeChange,
-              onConfirmPassword,
             })}
           </div>
           <div className="register__button-wrapper">
             {curStep > 0 && (
-              <Button onClick={() => setCurStep(curStep - 1)}>
-                {getText('buttons.prev')}
-              </Button>
+              <Button onClick={onGoPrev}>{getText('buttons.prev')}</Button>
             )}
             {curStep < steps.length - 1 && (
-              <Button type="primary" onClick={() => setCurStep(curStep + 1)}>
+              <Button type="primary" onClick={onGoNext}>
                 {getText('buttons.next')}
               </Button>
             )}

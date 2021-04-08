@@ -107,7 +107,17 @@ const Step3 = ({ getText }) => {
         />
       </Form.Item>
 
-      <Form.Item valuePropName="checked">
+      <Form.Item
+        valuePropName="checked"
+        rules={[
+          {
+            validator: (_, value) =>
+              value
+                ? Promise.resolve()
+                : Promise.reject(new Error('Should accept agreement')),
+          },
+        ]}
+      >
         <Checkbox>
           {getText('labels.agreement')}
           <a href={TERMS_OF_SERVICE_URL} target="_blank">

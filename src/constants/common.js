@@ -52,10 +52,11 @@ export const KEY_CODES = {
 };
 
 // Regular expression
-export const REGEX_PASSWORD = /^(?!.*(\w)\1{2,})(?=.*[A-Za-z])(?=.*\d)(?=.*[-@#$!%*#?&(\\/)^_+|~=`{}\\[\]:";'<>?,.])[A-Za-z\d\\\-@#$!%*#?&(\\/)^_+|~=`{}\\[\]:";'<>?,.].{7,19}$/;
+export const REGEX_PASSWORD = /^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\w!@#$%^&*]{8,}$/;
 export const REGEX_DUPLICATE = /^(?!.*(\w)\1{2,}).+$/;
 export const REGEX_EMAIL_FRONT = /(^[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*)$/;
 export const REGEX_EMAIL_BACK = /(^[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)+)$/;
+export const REGEX_EMAIL = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 // TODO: update site key
 export const RECAPTCHA_SITE_KEY = '6LeQzZEaAAAAAF7YBftua2kmrlNuz3qwVyRiO0Zo';

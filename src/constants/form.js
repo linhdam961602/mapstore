@@ -1,3 +1,6 @@
+/* eslint-disable no-template-curly-in-string */
+import { intl } from 'containers/LanguageProviderContainer';
+
 export const LAYOUT_4_20 = {
   labelCol: {
     span: 4,
@@ -85,5 +88,28 @@ export const LAYOUT_16_8 = {
   },
   wrapperCol: {
     span: 8,
+  },
+};
+
+export const VALIDATION_MESSAGES = {
+  required: intl.formatMessage(
+    { id: 'common.error.noInput' },
+    {
+      field: '${label}',
+    },
+  ),
+  whitespace: intl.formatMessage(
+    { id: 'common.error.noInput' },
+    {
+      field: '${label}',
+    },
+  ),
+  pattern: {
+    mismatch: intl.formatMessage(
+      { id: 'common.error.formValidate' },
+      {
+        field: '${label}',
+      },
+    ),
   },
 };
