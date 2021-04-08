@@ -67,35 +67,24 @@ apiClient.interceptors.request.use(
 
 // RESPONSE INTERCEPTOR
 apiClient.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    const { data } = response;
+    if (data.error) {
+      throw { messageCodes: data.error };
+    }
+    return response;
+  },
   (error) => {
     if (error.response) {
-      // const { status } = error.response;
+      const {
+        data: { error: errorArray },
+      } = error.response;
 
-      // if (status >= 400 && status <= 499) {
-      //   return Promise.reject({
-      //     messageContent: {
-      //       id: 'common.error.resourceNotFound',
-      //     },
-      //   });
-      // }
-
-      // if (status >= 500 && status <= 599) {
-      //   return Promise.reject({
-      //     messageContent: {
-      //       id: 'common.error.internalServerError',
-      //     },
-      //   });
-      // }
-
-      // if (error.message === NETWORK_ERROR) {
-      //   return Promise.reject({
-      //     messageContent: {
-      //       id: 'common.error.networkError',
-      //     },
-      //   });
-      // }
-
+      if (errorArray) {
+        return Promise.reject({
+          messageCodes: errorArray,
+        });
+      }
       return Promise.reject(error);
     }
   },
