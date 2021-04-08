@@ -64,3 +64,6 @@ export const RECAPTCHA_SITE_KEY = '6LeQzZEaAAAAAF7YBftua2kmrlNuz3qwVyRiO0Zo';
 // Avatar
 export const AVATAR_SIZE_32 = 32;
 export const AVATAR_SIZE_48 = 48;
+
+// Table
+export const PAGE_SIZE_DEFAULT = 20;

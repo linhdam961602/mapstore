@@ -54,6 +54,13 @@ const common = {
     generated_reset_request: 'generated_reset_request',
     client_registered: 'client_registered',
   },
+  status: {
+    clientReply: 'Client Reply',
+    closed: 'Closed',
+    inProgress: 'In Progress',
+    answered: 'Answered',
+    open: 'Open',
+  },
 };
 
 export { common };

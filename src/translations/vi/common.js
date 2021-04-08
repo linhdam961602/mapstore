@@ -50,6 +50,17 @@ const common = {
     wronglogin: 'Đăng nhập sai!',
     ipnotallowed: 'IP của bạn không được phép truy cập!',
   },
+  info: {
+    generated_reset_request: 'generated_reset_request',
+    client_registered: 'client_registered',
+  },
+  status: {
+    clientReply: 'KH trả lời',
+    closed: 'Đóng',
+    inProgress: 'Đang xử lý',
+    answered: 'Đã trả lời',
+    open: 'Mở',
+  },
 };
 
 export { common };

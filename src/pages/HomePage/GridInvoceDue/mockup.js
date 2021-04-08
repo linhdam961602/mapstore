@@ -1,3 +1,5 @@
+import dayjs from 'dayjs';
+
 import { createTranslatedText } from 'utils/text';
 
 const columns = (intl) => {
@@ -11,28 +13,27 @@ const columns = (intl) => {
     },
     {
       title: getText('invoiceDate'),
-      dataIndex: 'dateorig',
-      key: 'dateorig',
+      dataIndex: 'date',
+      key: 'date',
+      sorter: (a, b) => dayjs(a.date).unix() - dayjs(b.date).unix(),
     },
     {
       title: getText('dateDue'),
       dataIndex: 'duedate',
       key: 'duedate',
+      sorter: (a, b) => dayjs(a.duedate).unix() - dayjs(b.duedate).unix(),
     },
     {
       title: getText('total'),
       dataIndex: 'total',
       key: 'total',
-    },
-    {
-      title: getText('balance'),
-      dataIndex: 'subtotal',
-      key: 'subtotal',
+      sorter: (a, b) => a.total - b.total,
     },
     {
       title: getText('status'),
-      dataIndex: 'status',
-      key: 'status',
+      dataIndex: 'status_lang',
+      key: 'status_lang',
+      sorter: (a, b) => a.status_lang.localeCompare(b.status_lang),
     },
   ];
 };
