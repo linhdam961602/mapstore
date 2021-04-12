@@ -61,6 +61,10 @@ const common = {
     answered: 'Đã trả lời',
     open: 'Mở',
   },
+  language: {
+    vi: 'Tiếng Việt',
+    en: 'Tiếng Anh',
+  },
 };
 
 export { common };

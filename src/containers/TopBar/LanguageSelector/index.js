@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import get from 'lodash/get';
+import { useIntl } from 'react-intl';
 
 import Select from 'components/BasicComponent/Select';
 import {
@@ -9,9 +10,12 @@ import {
   initialState,
 } from 'containers/LanguageProviderContainer/slices';
 import { appLocales } from 'translations/i18n';
+import { createTranslatedText } from 'utils/text';
 
 const LanguageSelector = () => {
   const dispatch = useDispatch();
+  const intl = useIntl();
+  const getText = createTranslatedText('common.language', intl);
 
   const locale = useSelector((state) =>
     get(state, [languageSliceName, 'locale'], initialState.locale),
@@ -20,7 +24,10 @@ const LanguageSelector = () => {
   return (
     <Select
       value={locale}
-      options={appLocales}
+      options={appLocales.map((language) => ({
+        value: language,
+        label: getText(language),
+      }))}
       onChange={(value) => {
         dispatch(languageActions.changeLocale(value));
       }}

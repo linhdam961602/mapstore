@@ -61,6 +61,10 @@ const common = {
     answered: 'Answered',
     open: 'Open',
   },
+  language: {
+    vi: 'Vietnamese',
+    en: 'English',
+  },
 };
 
 export { common };
