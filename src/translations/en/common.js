@@ -39,6 +39,8 @@ const common = {
     },
   },
   error: {
+    noInput: 'Please input {field}.',
+    formValidate: 'Please enter a valid {field}.',
     networkError: 'Network Error',
     internalServerError: 'Internal Server Error',
     resourceNotFound: 'Requested resource is not found.',
@@ -47,6 +49,10 @@ const common = {
     ip_banned_already: 'Your IP has been banned!',
     wronglogin: 'Wrong login!',
     ipnotallowed: 'Your IP is not allowed!',
+  },
+  info: {
+    generated_reset_request: 'generated_reset_request',
+    client_registered: 'client_registered',
   },
   status: {
     clientReply: 'Client Reply',

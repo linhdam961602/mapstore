@@ -1,4 +1,4 @@
-import { UserOutlined, LogoutOutlined } from '@ant-design/icons';
+import { UserOutlined } from '@ant-design/icons';
 
 import { createTranslatedText } from 'utils/text';
 
@@ -11,12 +11,6 @@ const menusData = (intl) => {
       path: '/profile',
       name: getText('profile'),
       icon: <UserOutlined />,
-    },
-    {
-      key: 1,
-      path: '',
-      name: getText('logout'),
-      icon: <LogoutOutlined />,
     },
   ];
 };

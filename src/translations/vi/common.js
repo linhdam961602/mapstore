@@ -39,6 +39,8 @@ const common = {
     },
   },
   error: {
+    noInput: 'Vui lòng nhập {field}.',
+    formValidate: 'Vui lòng nhập {field} hợp lệ.',
     networkError: 'Lỗi mạng',
     internalServerError: 'Lỗi máy chủ nội bộ',
     resourceNotFound: 'Không tìm thấy tài nguyên được yêu cầu.',
@@ -47,6 +49,10 @@ const common = {
     ip_banned_already: 'IP của bạn đã bị cấm!',
     wronglogin: 'Đăng nhập sai!',
     ipnotallowed: 'IP của bạn không được phép truy cập!',
+  },
+  info: {
+    generated_reset_request: 'generated_reset_request',
+    client_registered: 'client_registered',
   },
   status: {
     clientReply: 'KH trả lời',

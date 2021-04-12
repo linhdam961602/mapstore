@@ -2,6 +2,7 @@ import React, { useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
+import { LogoutOutlined } from '@ant-design/icons';
 
 import menusData from '../menusData';
 
@@ -50,7 +51,7 @@ const DropdownMenu = () => {
       <Menu>
         <Item>
           <a role="button" onClick={onLogout} tabIndex={0}>
-            {getText('logout')}
+            <LogoutOutlined /> {getText('logout')}
           </a>
         </Item>
       </Menu>

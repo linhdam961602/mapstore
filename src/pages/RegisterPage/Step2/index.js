@@ -9,10 +9,11 @@ import Grid from 'components/BasicComponent/Grid';
 import PhoneInput from 'containers/PhoneInputContainer';
 import { TYPES_OF_PERSONAL_TITLE } from 'constants/options';
 import PasswordMeterInput from 'components/BasicComponent/PasswordMeterInput';
+import { REGEX_EMAIL, REGEX_PASSWORD } from 'constants/common';
 
 const { Row, Col } = Grid;
 
-const Step2 = ({ form, getText, onConfirmPassword }) => (
+const Step2 = ({ form, getText }) => (
   <>
     {/* Personal Information */}
     <h3 className="register__form-section--title">
@@ -51,7 +52,12 @@ const Step2 = ({ form, getText, onConfirmPassword }) => (
         <Form.Item
           name={REGISTER_FORM_FIELDS.EMAIL}
           label={getText('labels.email')}
-          rules={[{ required: true }]}
+          rules={[
+            { required: true },
+            {
+              pattern: REGEX_EMAIL,
+            },
+          ]}
         >
           <Input />
         </Form.Item>
@@ -88,17 +94,38 @@ const Step2 = ({ form, getText, onConfirmPassword }) => (
         <Form.Item
           name={REGISTER_FORM_FIELDS.PASSWORD}
           label={getText('labels.password')}
-          rules={[{ required: true }]}
+          rules={[
+            { required: true },
+            {
+              pattern: REGEX_PASSWORD,
+            },
+          ]}
         >
           <PasswordMeterInput />
         </Form.Item>
       </Col>
       <Col span={24}>
         <Form.Item
+          name={REGISTER_FORM_FIELDS.PASSWORD_2}
           label={getText('labels.repassword')}
-          rules={[{ required: true }]}
+          rules={[
+            { required: true },
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (
+                  !value ||
+                  getFieldValue(REGISTER_FORM_FIELDS.PASSWORD) === value
+                ) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(
+                  new Error('The two passwords that you entered do not match!'), // TODO: update translation
+                );
+              },
+            }),
+          ]}
         >
-          <Input type="password" onChange={onConfirmPassword} />
+          <Input type="password" />
         </Form.Item>
       </Col>
     </Row>
