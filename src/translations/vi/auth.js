@@ -51,6 +51,10 @@ const registration = {
     next: 'Tiếp',
     prev: 'Trở về',
   },
+  errors: {
+    agreement: 'Bạn phải đồng ý với các điều khoản và điều kiện.',
+    recaptcha: 'Vui lòng click vào ô xác nhận “Tôi không phải là người máy”.',
+  },
 };
 
 export { login, registration };

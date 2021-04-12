@@ -97,24 +97,32 @@ const Step3 = ({ getText }) => {
         </Col>
       </Row>
 
-      <Form.Item>
+      <Form.Item
+        name={REGISTER_FORM_FIELDS.RECAPTCHA}
+        rules={[
+          {
+            validator: (_, value) =>
+              value
+                ? Promise.resolve()
+                : Promise.reject(new Error(getText('errors.recaptcha'))),
+          },
+        ]}
+      >
         <ReCAPTCHA
           sitekey={RECAPTCHA_SITE_KEY}
-          onChange={() => {
-            // Handle Check captcha
-          }}
           size={width <= 425 ? 'compact' : 'normal'}
         />
       </Form.Item>
 
       <Form.Item
+        name={REGISTER_FORM_FIELDS.AGREEMENT}
         valuePropName="checked"
         rules={[
           {
             validator: (_, value) =>
               value
                 ? Promise.resolve()
-                : Promise.reject(new Error('Should accept agreement')),
+                : Promise.reject(new Error(getText('errors.agreement'))),
           },
         ]}
       >

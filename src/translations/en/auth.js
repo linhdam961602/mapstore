@@ -51,6 +51,10 @@ const registration = {
     next: 'Next',
     prev: 'Previous',
   },
+  errors: {
+    agreement: 'You must agree with the terms and conditions.',
+    recaptcha: 'Please click on the “I am not a robot” confirmation box.',
+  },
 };
 
 export { login, registration };

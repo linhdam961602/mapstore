@@ -122,6 +122,7 @@ const RegisterPage = () => {
                 type="primary"
                 htmlType="submit"
                 className="register__button"
+                // disabled={!curCaptcha}
               >
                 {getText('buttons.register')}
               </Button>
