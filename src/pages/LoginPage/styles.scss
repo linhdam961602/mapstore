@@ -93,4 +93,40 @@
       margin-left: 0.3rem;
     }
   }
+
+  &__language {
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+
+    .ant-select {
+      width: 11rem;
+    }
+
+    .ant-select-selector {
+      background-color: transparent !important;
+      color: $blue-7;
+      border-color: $blue-7 !important;
+    }
+
+    .ant-select-arrow {
+      color: $blue-7;
+    }
+
+    @include respond-to('lg') {
+      top: 4rem;
+      left: unset;
+    }
+
+    @include respond-to('xxs') {
+      .ant-select-selector {
+        color: $primary;
+        border-color: $primary !important;
+      }
+
+      .ant-select-arrow {
+        color: $primary;
+      }
+    }
+  }
 }

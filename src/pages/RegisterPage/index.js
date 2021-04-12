@@ -28,6 +28,7 @@ import { useInjectReducer, useInjectSaga } from 'hooks/useInjector';
 import { LAYOUT_8_16, VALIDATION_MESSAGES } from 'constants/form';
 import { createTranslatedText } from 'utils/text';
 import illustration from 'assets/images/illustration.svg';
+import LanguageSelector from 'containers/TopBar/LanguageSelector';
 
 const { Step } = Steps;
 
@@ -81,6 +82,9 @@ const RegisterPage = () => {
 
   return (
     <div className="register__background">
+      <div className="register__language">
+        <LanguageSelector />
+      </div>
       <div className="register__container">
         <div className="register__left-container">
           <img alt="Icewall Tailwind HTML Admin Template" src={illustration} />

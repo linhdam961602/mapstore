@@ -88,4 +88,38 @@
   &__steps-content {
     padding: 3rem 0;
   }
+
+  &__language {
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+
+    .ant-select {
+      width: 11rem;
+    }
+
+    .ant-select-selector {
+      background-color: transparent !important;
+      color: $blue-7;
+      border-color: $blue-7 !important;
+    }
+
+    .ant-select-arrow {
+      color: $blue-7;
+    }
+
+    @include respond-to('lg') {
+      top: 4rem;
+      left: unset;
+
+      .ant-select-selector {
+        color: $primary;
+        border-color: $primary !important;
+      }
+
+      .ant-select-arrow {
+        color: $primary;
+      }
+    }
+  }
 }

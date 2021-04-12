@@ -10,8 +10,6 @@ import {
 } from 'containers/LanguageProviderContainer/slices';
 import { appLocales } from 'translations/i18n';
 
-import '../styles.scss';
-
 const LanguageSelector = () => {
   const dispatch = useDispatch();
 
@@ -20,15 +18,13 @@ const LanguageSelector = () => {
   );
 
   return (
-    <div className="language__container">
-      <Select
-        value={locale}
-        options={appLocales}
-        onChange={(value) => {
-          dispatch(languageActions.changeLocale(value));
-        }}
-      />
-    </div>
+    <Select
+      value={locale}
+      options={appLocales}
+      onChange={(value) => {
+        dispatch(languageActions.changeLocale(value));
+      }}
+    />
   );
 };
 

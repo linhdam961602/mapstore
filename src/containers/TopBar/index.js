@@ -28,7 +28,9 @@ const TopBar = () => (
               <TopCenter />
             </div>
             <div className="user-info">
-              <LanguageSelector />
+              <div className="language__container">
+                <LanguageSelector />
+              </div>
               <NotficationRing />
               <AvatarUser />
             </div>
