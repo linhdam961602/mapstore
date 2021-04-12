@@ -8,8 +8,11 @@
  */
 import React, { useEffect } from 'react';
 import { createIntl, createIntlCache, IntlProvider } from 'react-intl';
-
 import * as dayjs from 'dayjs';
+import { useSelector } from 'react-redux';
+import get from 'lodash/get';
+
+import { languageSliceName, initialState } from './slices';
 
 import { translationMessages, DEFAULT_LOCALE } from 'translations/i18n';
 
@@ -27,7 +30,9 @@ export const formatMessageUtil = (intlObj = intl) => (id) =>
   intlObj.formatMessage({ id });
 
 function LanguageProvider({ messages, children }) {
-  const locale = 'vi';
+  const locale = useSelector((state) =>
+    get(state, [languageSliceName, 'locale'], initialState.locale),
+  );
 
   useEffect(() => {
     if (!messages) return;

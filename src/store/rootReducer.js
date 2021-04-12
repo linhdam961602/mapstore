@@ -3,6 +3,10 @@ import { connectRouter } from 'connected-react-router';
 
 import { authReducer, authSliceName } from 'pages/LoginPage/slices';
 import { userReducer, userSliceName } from 'pages/HomePage/slices';
+import {
+  languageReducer,
+  languageSliceName,
+} from 'containers/LanguageProviderContainer/slices';
 
 import history from 'utils/history';
 
@@ -11,6 +15,7 @@ function createReducer(injectedReducers = {}) {
     router: connectRouter(history),
     [authSliceName]: authReducer,
     [userSliceName]: userReducer,
+    [languageSliceName]: languageReducer,
     ...injectedReducers,
   });
   return rootReducer;

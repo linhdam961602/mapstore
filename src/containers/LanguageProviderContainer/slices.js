@@ -5,14 +5,14 @@ import { DEFAULT_LOCALE } from 'translations/i18n';
 import { LANGUAGE } from 'constants/common';
 import localStorageService from 'utils/localStorage';
 
-const selectSliceName = 'i18n';
+const languageSliceName = 'i18n';
 
 const initialState = {
-  locale: DEFAULT_LOCALE,
+  locale: localStorageService.getItem(LANGUAGE) || DEFAULT_LOCALE,
 };
 
-const selectSlice = createSlice({
-  name: selectSliceName,
+const languageSlice = createSlice({
+  name: languageSliceName,
   initialState,
   reducers: {
     changeLocale: (state, action) => {
@@ -27,6 +27,6 @@ const selectSlice = createSlice({
   },
 });
 
-const { actions: selectActions, reducer: selectReducer } = selectSlice;
+const { actions: languageActions, reducer: languageReducer } = languageSlice;
 
-export { selectSliceName, selectActions, selectReducer, initialState };
+export { languageSliceName, languageActions, languageReducer, initialState };

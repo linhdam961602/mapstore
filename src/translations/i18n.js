@@ -13,7 +13,13 @@ import viTranslationMessages from 'translations/vi';
 import enTranslationMessages from 'translations/en';
 
 const DEFAULT_LOCALE = 'vi';
-const appLocales = ['vi', 'en'];
+const appLocales = [
+  {
+    label: 'Tiếng Việt',
+    value: 'vi',
+  },
+  { label: 'English', value: 'en' },
+];
 
 /**
  * this function use to flatten the object nested in language json file
