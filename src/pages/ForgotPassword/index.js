@@ -55,27 +55,26 @@ const ForgotPasswordPage = () => {
 
   return (
     <Spinner spinning={isLoading}>
-      <div className="login__background">
-        <div className="login__language">
+      <div className="forgot-password__background">
+        <div className="forgot-password__language">
           <LanguageSelector />
         </div>
-        <div className="login__container">
-          <div className="login__left-container">
+        <div className="forgot-password__container">
+          <div className="forgot-password__left-container">
             <img
               alt="Icewall Tailwind HTML Admin Template"
               src={illustration}
             />
-            {/* TODO: logo */}
           </div>
           <Form
-            className="login__form"
+            className="forgot-password__form"
             initialValues={INITIAL_VALUES}
             onFinish={onFinish}
             form={form}
             labelAlign="left"
             validateMessages={VALIDATION_MESSAGES}
           >
-            <h1 className="login__title">{getText('title')}</h1>
+            <h1 className="forgot-password__title">{getText('title')}</h1>
             <Form.Item
               name={FORGOT_PASSWORD_FORM_FIELDS.EMAIL}
               rules={[
