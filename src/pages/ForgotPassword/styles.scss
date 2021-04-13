@@ -1,0 +1,124 @@
+@import 'styles/mixins.scss';
+
+.forgot-password {
+  &__background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    height: 100vh;
+
+    &::before {
+      content: '';
+      margin-left: -48%;
+      background-image: url('/assets/images/bg-login-page.svg');
+      background-repeat: no-repeat;
+      background-size: auto 100%;
+      background-position: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+
+      @include respond-to('lg') {
+        content: none;
+      }
+    }
+  }
+
+  &__container {
+    display: flex;
+    justify-content: space-around;
+    background-color: $white;
+    width: 100%;
+    height: 100%;
+
+    @include respond-to('lg') {
+      box-shadow: 0 0.2rem 2rem 0 rgba(0, 0, 0, 0.02);
+      border-radius: 0.6rem;
+      width: auto;
+      height: auto;
+    }
+
+    @include respond-to('xxs') {
+      box-shadow: none;
+      border-radius: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__left-container {
+    margin: auto 0;
+    z-index: 0;
+
+    @include respond-to('lg') {
+      display: none;
+    }
+  }
+
+  &__form {
+    margin: auto 0 !important;
+    padding: 5rem 6.6rem 8.4rem 6.6rem !important;
+    width: 40rem;
+
+    @include respond-to('xs') {
+      padding: 4rem 3rem !important;
+    }
+  }
+
+  &__title {
+    font-weight: 600;
+    font-size: 2.4rem;
+  }
+
+  &__remember-me {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+  }
+
+  &__create-account {
+    text-align: center;
+    :not(:first-child) {
+      margin-left: 0.3rem;
+    }
+  }
+
+  &__language {
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+
+    .ant-select {
+      width: 11rem;
+    }
+
+    .ant-select-selector {
+      background-color: transparent !important;
+      color: $blue-7;
+      border-color: $blue-7 !important;
+    }
+
+    .ant-select-arrow {
+      color: $blue-7;
+    }
+
+    @include respond-to('lg') {
+      top: 4rem;
+      left: unset;
+    }
+
+    @include respond-to('xxs') {
+      .ant-select-selector {
+        color: $primary;
+        border-color: $primary !important;
+      }
+
+      .ant-select-arrow {
+        color: $primary;
+      }
+    }
+  }
+}
