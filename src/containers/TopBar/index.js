@@ -5,10 +5,10 @@ import './styles.scss';
 import NotficationRing from './NotficationRing';
 import AvatarUser from './AvatarUser';
 import TopCenter from './TopCenter';
+import LanguageSelector from './LanguageSelector';
 
 import Row from 'components/BasicComponent/Grid/Row';
 import Col from 'components/BasicComponent/Grid/Col';
-
 import Layout from 'components/BasicComponent/Layout';
 import Image from 'components/BasicComponent/Image';
 import logo from 'assets/logo/logo.png';
@@ -28,6 +28,9 @@ const TopBar = () => (
               <TopCenter />
             </div>
             <div className="user-info">
+              <div className="language__container">
+                <LanguageSelector />
+              </div>
               <NotficationRing />
               <AvatarUser />
             </div>

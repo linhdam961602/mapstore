@@ -23,6 +23,7 @@ import Divider from 'components/BasicComponent/Divider';
 import { REGISTER_URL } from 'constants/routes';
 import { createTranslatedText } from 'utils/text';
 import illustration from 'assets/images/illustration.svg';
+import LanguageSelector from 'containers/TopBar/LanguageSelector';
 
 const LoginPage = () => {
   const intl = useIntl();
@@ -41,6 +42,9 @@ const LoginPage = () => {
 
   return (
     <div className="login__background">
+      <div className="login__language">
+        <LanguageSelector />
+      </div>
       <div className="login__container">
         <div className="login__left-container">
           <img alt="Icewall Tailwind HTML Admin Template" src={illustration} />
