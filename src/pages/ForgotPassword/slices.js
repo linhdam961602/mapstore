@@ -1,14 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { createSliceSaga, SagaType } from 'redux-toolkit-saga';
 import { put, call } from 'redux-saga/effects';
-import { push } from 'connected-react-router';
 
 import * as forgotPasswordApis from './apis';
 
 import { errorHandler } from 'store/errorHandlerSaga';
 import { notificationActions } from 'containers/NotificationContainer/slices';
 import { SUCCESS_TYPE } from 'components/BasicComponent/Notification';
-import { LOGIN_URL } from 'constants/routes';
 
 const forgotPasswordSliceName = 'forgotPassword';
 

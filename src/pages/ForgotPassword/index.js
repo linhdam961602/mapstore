@@ -5,7 +5,7 @@
  *
  * This is the Register page.
  */
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 import get from 'lodash/get';
@@ -25,7 +25,7 @@ import Button from 'components/BasicComponent/Button';
 import Input from 'components/BasicComponent/Input';
 
 import { useInjectReducer, useInjectSaga } from 'hooks/useInjector';
-import { LAYOUT_8_16, VALIDATION_MESSAGES } from 'constants/form';
+import { VALIDATION_MESSAGES } from 'constants/form';
 import { createTranslatedText } from 'utils/text';
 import illustration from 'assets/images/illustration.svg';
 import LanguageSelector from 'containers/TopBar/LanguageSelector';
