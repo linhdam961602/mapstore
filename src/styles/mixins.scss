@@ -14,6 +14,7 @@ $black: #0000000b;
 $black-o4: rgba($black, 0.4);
 $black-o09: rgba($black, 0.09);
 $grey-main: #f1f5f8;
+$grey: #dddddd;
 $black-o85: rgba($black, 0.85);
 // Icewall Theme
 $primary: #142e71;
@@ -83,12 +84,12 @@ $breakpoints: (
   }
 }
 
-.reset-space{
+.reset-space {
   margin: 0;
   padding: 0;
 }
 
-.titlePage{
+.titlePage {
   font-weight: bold;
   font-size: 2rem;
   margin: 1rem 0 2rem 0;
@@ -100,14 +101,14 @@ $breakpoints: (
   padding: 2rem;
   border-bottom: 1px solid $pale-blue;
   .information {
-      margin: 0 0 0 2rem;
-      .primary-text {
-          font-weight: 700;
-          @extend .reset-space;
-      }
-      .secondary-text {
-          color: $secondary-text;
-          @extend .reset-space;
-      }
+    margin: 0 0 0 2rem;
+    .primary-text {
+      font-weight: 700;
+      @extend .reset-space;
+    }
+    .secondary-text {
+      color: $secondary-text;
+      @extend .reset-space;
+    }
   }
 }

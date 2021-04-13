@@ -1,0 +1,235 @@
+@import 'styles/mixins.scss';
+
+.titleHasTag {
+  margin-bottom: 1.5rem;
+
+  .subTitle {
+    display: inline-block;
+    margin-right: 1.5rem;
+  }
+}
+
+.radioGroup {
+  margin-bottom: 3rem;
+
+  .ant-radio-button-wrapper {
+    line-height: 4.5rem;
+    text-align: center;
+    border-radius: 3px;
+    margin-right: 2rem;
+    height: 4.5rem;
+    min-width: 15rem;
+    opacity: 0.8;
+
+    &:hover {
+      color: $green;
+    }
+
+    .ant-radio-button-wrapper-checked {
+      opacity: 1;
+    }
+  }
+
+  .ant-radio-button.ant-radio-button-checked {
+    background-color: $green;
+    border-radius: 3px;
+  }
+
+  .ant-radio-group-solid .ant-radio-button-wrapper-checked {
+    border-color: $green;
+  }
+
+  .ant-radio-button-wrapper-checked.ant-radio-button-wrapper:first-child {
+    border-right-color: $green;
+  }
+
+  .ant-radio-button-wrapper:not(:first-child)::before {
+    content: none;
+  }
+
+  .ant-radio-button-wrapper {
+    border-width: 1px;
+  }
+
+  .ant-radio-button-wrapper-checked:hover {
+    background-color: $green !important;
+    border-color: $green !important;
+  }
+}
+
+.step {
+  .stepDesc {
+    margin-bottom: 2.5rem;
+
+    &__title {
+      font-weight: bold;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      color: #0fa54a;
+    }
+
+    .numberStep {
+      display: inline-block;
+      position: relative;
+      margin-top: 1rem;
+      margin-right: 1rem;
+
+      &__bg {
+        display: inline-block;
+        width: 3rem;
+        height: 3rem;
+        background-color: $green;
+        border: 1px solid $green;
+        border-radius: 0.8rem;
+        z-index: 1;
+        transform: rotate(45deg);
+      }
+
+      &__nb {
+        color: $white;
+        text-align: center;
+        position: absolute;
+        left: 1rem;
+        z-index: 2;
+      }
+    }
+  }
+}
+
+.products {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 2rem;
+
+  .item {
+    border: 1px solid $grey;
+    border-radius: 1rem;
+    padding: 2.5rem;
+    margin-right: 2rem;
+
+    .ant-radio-inner {
+      display: none;
+    }
+
+    &:hover {
+      cursor: pointer;
+      border: 1px solid $green;
+      transition-duration: 1s;
+    }
+
+    &__capacity {
+      font-size: 1.6rem;
+      font-weight: bold;
+    }
+
+    &__price {
+      .unit {
+        font-size: 2.4rem;
+        font-weight: bold;
+      }
+
+      .ruler {
+        border-top: 3px solid $green;
+        width: 4rem;
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+      }
+    }
+
+    &__list {
+      list-style-type: none;
+      padding-left: 0;
+      margin-bottom: 2rem;
+
+      li {
+        margin-bottom: 0.5rem;
+      }
+    }
+
+    &__time {
+      margin-bottom: 2rem;
+    }
+
+    &__btn {
+      text-align: center;
+      visibility: visible;
+      opacity: 1;
+      transition: opacity 1s linear;
+
+      .ant-btn {
+        color: $white;
+        background-color: $green;
+        border-radius: 0.3rem;
+
+        &:hover {
+          background-color: $white;
+          border: 1px solid $green;
+          color: $green;
+          font-weight: bold;
+        }
+      }
+    }
+
+    &.ant-radio-wrapper-checked {
+      overflow: hidden;
+      position: relative;
+      border: 1px solid $green;
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: -1.8rem;
+        transform: rotate(45deg);
+        right: -3.2rem;
+        width: 10rem;
+        height: 5rem;
+        background-color: $green;
+        transition-duration: 1s;
+      }
+
+      &:after {
+        opacity: 1;
+        height: 1rem;
+        width: 2rem;
+        border-right: 3px solid $white;
+        border-top: 3px solid $white;
+        content: '';
+        top: 1rem;
+        right: 0.9rem;
+        position: absolute;
+        transform: rotate(136deg);
+        transition-duration: 1s;
+      }
+
+      .item {
+        &__btn {
+          visibility: hidden;
+          opacity: 0;
+          transition: visibility 0s 1s, opacity 1s linear;
+        }
+      }
+    }
+
+    .ant-checkbox-inner {
+      background-color: $white;
+      border-color: $green;
+
+      &:after {
+        position: absolute;
+        top: 31%;
+        left: 22%;
+        display: table;
+        width: 0.9rem;
+        height: 1.5rem;
+        border: 2px solid $green;
+        border-top: 0;
+        border-left: 0;
+      }
+    }
+  }
+}
+
+.configurationInfo {
+  background-color: $grey-main;
+}

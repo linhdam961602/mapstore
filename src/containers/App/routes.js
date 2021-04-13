@@ -5,6 +5,7 @@ import {
   LOGIN_URL,
   REGISTER_URL,
   PROFILE,
+  CLOUD_HOSTING,
   FORGOT_URL,
 } from 'constants/routes';
 
@@ -18,6 +19,11 @@ export const layoutRoutes = [
     exact: true,
     path: PROFILE,
     component: lazy(() => import('pages/PersonalInfomation')),
+  },
+  {
+    exact: true,
+    path: CLOUD_HOSTING,
+    component: lazy(() => import('pages/Services/CloudHostingPage')),
   },
 ];
 
