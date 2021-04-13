@@ -57,4 +57,17 @@ const registration = {
   },
 };
 
-export { login, registration };
+const forgotPassword = {
+  title: 'Forgot Password',
+  labels: {
+    email: 'Email Address',
+  },
+  placeholders: {
+    email: 'Enter your email',
+  },
+  buttons: {
+    submit: 'Submit',
+  },
+};
+
+export { login, registration, forgotPassword };

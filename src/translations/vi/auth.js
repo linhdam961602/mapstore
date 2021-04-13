@@ -57,4 +57,17 @@ const registration = {
   },
 };
 
-export { login, registration };
+const forgotPassword = {
+  title: 'Quên mật khẩu',
+  labels: {
+    email: 'Địa chỉ email',
+  },
+  placeholders: {
+    email: 'Nhập email',
+  },
+  buttons: {
+    submit: 'Gửi',
+  },
+};
+
+export { login, registration, forgotPassword };

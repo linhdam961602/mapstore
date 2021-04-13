@@ -20,7 +20,7 @@ import Checkbox from 'components/BasicComponent/Checkbox';
 import Button from 'components/BasicComponent/Button';
 import { useInjectSaga } from 'hooks/useInjector';
 import Divider from 'components/BasicComponent/Divider';
-import { REGISTER_URL } from 'constants/routes';
+import { FORGOT_URL, REGISTER_URL } from 'constants/routes';
 import { createTranslatedText } from 'utils/text';
 import illustration from 'assets/images/illustration.svg';
 import LanguageSelector from 'containers/TopBar/LanguageSelector';
@@ -96,7 +96,7 @@ const LoginPage = () => {
               <Checkbox>{getText('text.rememberMe')}</Checkbox>
             </Form.Item>
 
-            <a className="login-form-forgot" href="">
+            <a className="login-form-forgot" href={FORGOT_URL}>
               {getText('text.forgotPassword')}
             </a>
           </div>
