@@ -14,7 +14,6 @@ const sidebarLeft = {
   dedicatedServer: 'Delicated Server',
   license: 'License',
   electronicInvoice: 'Hóa đơn điện tử',
-  serviceDomain: 'Dịch vụ tên miền',
   tinoFone: 'TinoFone',
   domain: 'Tên miền',
   manageDomain: 'Quản lý tên miền',
@@ -26,6 +25,12 @@ const sidebarLeft = {
   quotes: 'Báo giá của tôi',
   massPayment: 'Thanh toán hàng loạt',
   tinoAccount: 'Tài khoản Tino',
+  support: 'Hỗ trợ',
+  hosting: 'Hosting',
+  email: 'Email',
+  vps: 'VPS',
+  assistant: 'Trợ lý Tino',
+  ssl: 'SSL',
 };
 
 const sidebarRight = {

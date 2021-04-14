@@ -13,8 +13,7 @@ const sidebarLeft = {
   colocation: 'Colocation',
   dedicatedServer: 'Delicated Server',
   license: 'License',
-  electronicInvoice: 'electronicInvoice',
-  serviceDomain: 'Service domain',
+  electronicInvoice: 'Electronic Invoice',
   tinoFone: 'TinoFone',
   domain: 'Domain',
   manageDomain: 'Manage domain',
@@ -26,6 +25,12 @@ const sidebarLeft = {
   quotes: 'My quotes',
   massPayment: 'Mass payment',
   tinoAccount: 'Account Tino',
+  support: 'Support',
+  hosting: 'Hosting',
+  email: 'Email',
+  vps: 'VPS',
+  assistant: 'Tino assistant',
+  ssl: 'SSL',
 };
 
 const sidebarRight = {
