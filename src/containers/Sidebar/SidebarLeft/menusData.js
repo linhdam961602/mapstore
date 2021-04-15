@@ -23,7 +23,7 @@ const menusData = (intl) => {
     {
       key: '',
       path: '/',
-      name: getText('homePage'),
+      name: getText('myPage'),
       icon: <HomeOutlined />,
       role: 'user',
       hideInmenu: false,

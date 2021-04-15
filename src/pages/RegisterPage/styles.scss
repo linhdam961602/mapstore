@@ -80,8 +80,18 @@
   }
 
   &__button-wrapper {
+    display: flex;
+    justify-content: flex-start;
+
+    @include respond-to('lg') {
+      justify-content: center;
+    }
+
     :not(:first-child) {
       margin-left: 0.6rem;
+    }
+    .tino__button {
+      width: 9.6rem;
     }
   }
 

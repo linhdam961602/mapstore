@@ -2,7 +2,7 @@ import { combineReducers } from '@reduxjs/toolkit';
 import { connectRouter } from 'connected-react-router';
 
 import { authReducer, authSliceName } from 'pages/LoginPage/slices';
-import { userReducer, userSliceName } from 'pages/HomePage/slices';
+import { userReducer, userSliceName } from 'pages/MyPage/slices';
 import {
   languageReducer,
   languageSliceName,

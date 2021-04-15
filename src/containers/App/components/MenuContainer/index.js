@@ -34,7 +34,7 @@ export default function MenuContainer() {
 
   const renderMenu = () => (
     <Switch>
-      {routes.publicRoutes.map((route) => (
+      {routes.fluidRoutes.map((route) => (
         <PublicRoute
           key={uuid()}
           path={route.path}
@@ -43,14 +43,23 @@ export default function MenuContainer() {
         />
       ))}
       <MainLayout>
-        {routes.layoutRoutes.map((route) => (
-          <PrivateRoute
-            key={uuid()}
-            path={route.path}
-            exact={route.exact}
-            component={route.component}
-          />
-        ))}
+        {routes.layoutRoutes.map((route) =>
+          route.isPrivate ? (
+            <PrivateRoute
+              key={uuid()}
+              path={route.path}
+              exact={route.exact}
+              component={route.component}
+            />
+          ) : (
+            <PublicRoute
+              key={uuid()}
+              path={route.path}
+              exact={route.exact}
+              component={route.component}
+            />
+          ),
+        )}
       </MainLayout>
     </Switch>
   );

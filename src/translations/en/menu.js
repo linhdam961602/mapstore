@@ -1,5 +1,6 @@
 const sidebarLeft = {
   homePage: 'Home page',
+  myPage: 'My page',
   service: 'Service',
   viewAll: 'View all',
   cloudHosting: 'Cloud Hosting',
@@ -42,4 +43,12 @@ const sidebarRight = {
   securitySetting: 'Security Settings',
 };
 
-export { sidebarLeft, sidebarRight };
+const dropdownMenu = {
+  profile: 'User profile',
+  logout: 'Logout',
+  emmtyNoti: 'No Notification',
+  login: 'Login',
+  signup: 'Register',
+};
+
+export { sidebarLeft, sidebarRight, dropdownMenu };

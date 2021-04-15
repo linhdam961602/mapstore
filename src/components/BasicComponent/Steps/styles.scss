@@ -1,6 +1,12 @@
 @import 'styles/mixins.scss';
 
 .tino__steps {
+  .ant-steps-item-icon {
+    width: 4rem;
+    height: 4rem;
+    line-height: 4rem;
+  }
+
   .ant-steps-item-process {
     .ant-steps-item-icon {
       background-color: $primary;
