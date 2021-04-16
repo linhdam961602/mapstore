@@ -10,7 +10,7 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-import { HOME_URI } from 'constants/routes';
+import { MY_PAGE_URI } from 'constants/routes';
 import { useAuth } from 'hooks/useAuth';
 
 const PublicRoute = ({ component: Component, ...rest }) => {
@@ -20,7 +20,11 @@ const PublicRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={(props) =>
-        isAuthenticated ? <Redirect to={HOME_URI} /> : <Component {...props} />
+        isAuthenticated ? (
+          <Redirect to={MY_PAGE_URI} />
+        ) : (
+          <Component {...props} />
+        )
       }
     />
   );

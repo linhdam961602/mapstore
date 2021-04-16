@@ -165,8 +165,33 @@
     font-weight: 600;
     color: $white;
   }
+}
 
-  @include respond-to('xs') {
+.desktop-only {
+  @include respond-to('sm') {
     display: none;
+  }
+}
+
+.mobile__menu {
+  display: none;
+  height: 5.4rem;
+  align-items: center;
+  padding: 0 2rem;
+
+  @include respond-to('sm') {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .logo {
+    width: 2.4rem;
+    cursor: pointer;
+  }
+
+  .hamburger {
+    transform: rotate(-90deg);
+    width: 3.2rem;
+    cursor: pointer;
   }
 }
