@@ -2,6 +2,8 @@
 
 .statistic {
   position: relative;
+
+  @include transition(all 0.3s ease-in-out);
   .ant-statistic {
     background-color: $white;
     display: flex;
@@ -11,7 +13,7 @@
     position: relative;
   }
   &:before {
-    content: "";
+    content: '';
     width: 90%;
     background: #f9fafc;
     box-shadow: 0 0.3rem 2rem $black;
@@ -25,11 +27,13 @@
     left: 0;
   }
   &:hover {
-    box-shadow: 0 0.3rem 2rem $black-o4;
     border-radius: $radius-normal;
     cursor: pointer;
+    box-shadow: 0 2rem 2.5rem -0.5rem rgba($white, 0.1),
+      0 1rem 1rem -0.5rem rgba($white, 0.04);
+    transform: scale(1.05);
   }
-  .ant-statistic-title{
+  .ant-statistic-title {
     justify-content: flex-end;
     display: flex;
     align-items: center;
@@ -39,7 +43,7 @@
     font-size: 1.8rem;
     font-weight: 500;
   }
-  .ant-statistic-content{
+  .ant-statistic-content {
     display: flex;
     justify-content: space-between;
     flex-direction: row-reverse;
