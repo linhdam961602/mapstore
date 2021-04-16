@@ -7,21 +7,21 @@ import { LogoutOutlined } from '@ant-design/icons';
 import menusData from '../menusData';
 
 import * as authSelector from 'pages/LoginPage/selector';
-
 import Menu from 'components/BasicComponent/Menu';
 import { createTranslatedText } from 'utils/text';
+import { authActions } from 'pages/LoginPage/slices';
+import { useAuth } from 'hooks/useAuth';
 
 import '../styles.scss';
-import { authActions } from 'pages/LoginPage/slices';
 
 const { Item } = Menu;
 
 const DropdownMenu = () => {
-  const isLogin = true;
+  const { isAuthenticated } = useAuth();
   const intl = useIntl();
   const dispatch = useDispatch();
   const menusDataIntl = useMemo(() => menusData(intl), [intl]);
-  const getText = createTranslatedText('mypage.dropdownMenu', intl);
+  const getText = createTranslatedText('dropdownMenu', intl);
 
   const onLogout = useCallback(() => {
     dispatch(authActions.logout());
@@ -30,8 +30,7 @@ const DropdownMenu = () => {
 
   return (
     <div className="dropdown-menu">
-      <div className={`information ${isLogin ? 'show' : 'hidden'}`}>
-        {/* // TODO: Remove when get API user detail */}
+      <div className={`information ${isAuthenticated ? 'show' : 'hidden'}`}>
         <p className="primary-text">{`${userInfo?.firstname} ${userInfo?.lastname}`}</p>
         <p className="secondary-text">{userInfo?.email}</p>
       </div>

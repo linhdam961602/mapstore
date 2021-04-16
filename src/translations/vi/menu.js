@@ -1,5 +1,6 @@
 const sidebarLeft = {
   homePage: 'Trang chủ',
+  myPage: 'My page',
   service: 'Dịch vụ',
   viewAll: 'Xem tất cả',
   cloudHosting: 'Cloud Hosting',
@@ -42,4 +43,12 @@ const sidebarRight = {
   securitySetting: 'Cài đặt bảo mật',
 };
 
-export { sidebarLeft, sidebarRight };
+const dropdownMenu = {
+  profile: 'Thông tin cá nhân',
+  logout: 'Đăng xuất',
+  emmtyNoti: 'Không có thông báo nào',
+  login: 'Đăng nhập',
+  signup: 'Đăng kí',
+};
+
+export { sidebarLeft, sidebarRight, dropdownMenu };

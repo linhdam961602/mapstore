@@ -1,4 +1,5 @@
 export const HOME_URI = '/';
+export const MY_PAGE_URI = '/my-page';
 export const LOGIN_URL = '/login';
 export const FORGOT_URL = '/forgot-password';
 export const REGISTER_URL = '/signup';

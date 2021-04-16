@@ -29,6 +29,8 @@ import { LAYOUT_8_16, VALIDATION_MESSAGES } from 'constants/form';
 import { createTranslatedText } from 'utils/text';
 import illustration from 'assets/images/illustration.svg';
 import LanguageSelector from 'containers/TopBar/LanguageSelector';
+import Row from 'components/BasicComponent/Grid/Row';
+import Col from 'components/BasicComponent/Grid/Col';
 
 const { Step } = Steps;
 
@@ -112,26 +114,34 @@ const RegisterPage = () => {
               onTypeChange,
             })}
           </div>
-          <div className="register__button-wrapper">
-            {curStep > 0 && (
-              <Button onClick={onGoPrev}>{getText('buttons.prev')}</Button>
-            )}
-            {curStep < steps.length - 1 && (
-              <Button type="primary" onClick={onGoNext}>
-                {getText('buttons.next')}
-              </Button>
-            )}
-            {curStep === steps.length - 1 && (
-              <Button
-                type="primary"
-                htmlType="submit"
-                className="register__button"
-                // disabled={!curCaptcha}
-              >
-                {getText('buttons.register')}
-              </Button>
-            )}
-          </div>
+
+          <Row gutter={16}>
+            <Col lg={12} xs={24}>
+              <div className="register__button-wrapper">
+                {curStep > 0 && (
+                  <Button onClick={onGoPrev}>{getText('buttons.prev')}</Button>
+                )}
+                {curStep < steps.length - 1 && (
+                  <Button type="primary" onClick={onGoNext}>
+                    {getText('buttons.next')}
+                  </Button>
+                )}
+                {curStep === steps.length - 1 && (
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    className="register__button"
+                    // disabled={!curCaptcha}
+                  >
+                    {getText('buttons.register')}
+                  </Button>
+                )}
+              </div>
+            </Col>
+            <Col lg={12} xs={24}>
+              Already have an account? Login
+            </Col>
+          </Row>
         </Form>
       </div>
     </div>

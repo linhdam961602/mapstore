@@ -3,7 +3,7 @@ import { UserOutlined } from '@ant-design/icons';
 import { createTranslatedText } from 'utils/text';
 
 const menusData = (intl) => {
-  const getText = createTranslatedText('mypage.dropdownMenu', intl);
+  const getText = createTranslatedText('dropdownMenu', intl);
 
   return [
     {
