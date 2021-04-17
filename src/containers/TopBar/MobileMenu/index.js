@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 import classNames from 'classnames';
 
 import hamburger from 'assets/images/hamburger.svg';
-import mobileLogo from 'assets/images/logo-small.svg';
+import logo from 'assets/logo/tino-logo.svg';
 import Navigation from 'containers/Sidebar/Navigation';
 import menusData from 'containers/Sidebar/SidebarLeft/menusData';
 
@@ -18,7 +18,7 @@ const MobileMenu = () => {
   return (
     <div className="mobile__menu mobile-only">
       <div className="mobile__menu--bar">
-        <img className="logo" alt="mobileLogo" src={mobileLogo} />
+        <img className="logo" alt="logo" src={logo} />
         <a
           href=""
           onClick={(e) => {

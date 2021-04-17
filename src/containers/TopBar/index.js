@@ -14,7 +14,7 @@ import Row from 'components/BasicComponent/Grid/Row';
 import Col from 'components/BasicComponent/Grid/Col';
 import Layout from 'components/BasicComponent/Layout';
 import Image from 'components/BasicComponent/Image';
-import logo from 'assets/logo/logo.png';
+import logo from 'assets/logo/tino-logo.svg';
 
 import { useAuth } from 'hooks/useAuth';
 import { LOGIN_URL, REGISTER_URL } from 'constants/routes';
