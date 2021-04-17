@@ -42,7 +42,7 @@ const LoginPage = () => {
     dispatch(authActions.login(values));
   }, [dispatch, form]);
 
-  const responseGoogle = (response) => {
+  const responseGoogle = () => {
     // Handle response
   };
 
