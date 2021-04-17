@@ -10,7 +10,7 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-import { LOGIN_URL } from 'constants/routes';
+import { HOME_URI } from 'constants/routes';
 import { useAuth } from 'hooks/useAuth';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -21,7 +21,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={(props) =>
-        isAuthenticated ? <Component {...props} /> : <Redirect to={LOGIN_URL} />
+        isAuthenticated ? <Component {...props} /> : <Redirect to={HOME_URI} />
       }
     />
   );

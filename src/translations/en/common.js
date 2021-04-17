@@ -49,6 +49,7 @@ const common = {
     ip_banned_already: 'Your IP has been banned!',
     wronglogin: 'Wrong login!',
     ipnotallowed: 'Your IP is not allowed!',
+    token_expired: 'token_expired',
   },
   info: {
     generated_reset_request: 'generated_reset_request',

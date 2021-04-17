@@ -11,7 +11,7 @@ export const login = (payload) =>
     .post(LOGIN_API_URL, payload)
     .then((response) => response)
     .catch((err) => {
-      console.error('Error Login Error:', err);
+      console.error(err);
 
       throw err;
     });
@@ -21,7 +21,7 @@ export const logout = () =>
     .post(LOGOUT_API_URL)
     .then((response) => response)
     .catch((err) => {
-      console.error('Error Login Error:', err);
+      console.error(err);
 
       throw err;
     });
@@ -31,7 +31,7 @@ export const getUserInfo = () =>
     .get(USER_INFO_API_URL)
     .then((response) => response)
     .catch((err) => {
-      console.error('Error Login Error:', err);
+      console.error(err);
 
       throw err;
     });

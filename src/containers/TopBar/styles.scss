@@ -41,12 +41,8 @@
       .ant-avatar {
         margin: 0 0 0 3rem;
         &:hover {
-          -webkit-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-          -o-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-          transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-          -webkit-transition-duration: 0.3s;
-          -o-transition-duration: 0.3s;
-          transition-duration: 0.3s;
+          @include transition-timing-function(cubic-bezier(0.4, 0, 0.2, 1));
+          @include transition-duration(0.3s);
           -webkit-transform: scale(0.95);
           -ms-transform: scale(0.95);
           transform: scale(0.95);
@@ -167,31 +163,54 @@
   }
 }
 
-.desktop-only {
-  @include respond-to('sm') {
-    display: none;
-  }
-}
-
 .mobile__menu {
-  display: none;
-  height: 5.4rem;
-  align-items: center;
-  padding: 0 2rem;
+  &--bar {
+    display: none;
+    height: 5.4rem;
+    align-items: center;
+    padding: 0 2rem;
 
-  @include respond-to('sm') {
-    display: flex;
-    justify-content: space-between;
+    @include respond-to('sm') {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .logo {
+      width: 2.4rem;
+      cursor: pointer;
+    }
+
+    .hamburger {
+      transform: rotate(-90deg);
+      width: 3.2rem;
+      cursor: pointer;
+    }
   }
 
-  .logo {
-    width: 2.4rem;
-    cursor: pointer;
+  &--list {
+    overflow: hidden;
+    @include transition(height 400ms linear !important);
+    height: 0;
+    background: transparent !important;
+    padding-top: 1.6rem;
+    padding-bottom: 1.6rem;
+
+    &.ant-menu {
+      border-top-width: 0.1rem;
+    }
+    &.ant-menu .ant-menu-item a,
+    .ant-menu-submenu-title {
+      color: $white;
+    }
+
+    .ant-menu-sub {
+      background: $blue-3 !important;
+      border-radius: 0.6rem !important;
+    }
   }
 
-  .hamburger {
-    transform: rotate(-90deg);
-    width: 3.2rem;
-    cursor: pointer;
+  &--list-active {
+    height: fit-content;
+    border-top: 1px solid $astronaut;
   }
 }

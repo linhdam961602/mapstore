@@ -49,6 +49,7 @@ const common = {
     ip_banned_already: 'IP của bạn đã bị cấm!',
     wronglogin: 'Đăng nhập sai!',
     ipnotallowed: 'IP của bạn không được phép truy cập!',
+    token_expired: 'token_expired',
   },
   info: {
     generated_reset_request: 'generated_reset_request',

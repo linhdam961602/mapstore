@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 
 import { Link } from 'react-router-dom';
 
@@ -6,7 +7,12 @@ import Menu from 'components/BasicComponent/Menu';
 
 const { SubMenu } = Menu;
 
-const Navigation = (props) => {
+const Navigation = ({ className, ...props }) => {
+  const classes = classNames({
+    navigation: true,
+    [className]: className,
+  });
+
   const getNavMenuItems = (menusData) => {
     if (!menusData) {
       return [];
@@ -58,7 +64,7 @@ const Navigation = (props) => {
 
   const { menusData } = props;
   return (
-    <Menu key="Menu" theme="dark" mode="inline" className="navigation">
+    <Menu key="Menu" theme="dark" mode="inline" className={classes}>
       {getNavMenuItems(menusData)}
     </Menu>
   );

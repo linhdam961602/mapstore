@@ -8,3 +8,4 @@ export const INVALID_SESSION_TIMEOUT = '1000';
 
 export const INVALID_TOKEN = 'invalid_token';
 export const UNAUTHORIZED = 'unauthorized';
+export const TOKEN_EXPIRED = 'token_expired';

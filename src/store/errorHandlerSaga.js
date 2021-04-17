@@ -9,7 +9,7 @@ import { createTranslatedText } from 'utils/text';
 import * as authHelper from 'utils/authHelper';
 import history from 'utils/history';
 import { LOGIN_URL } from 'constants/routes';
-import { INVALID_TOKEN, UNAUTHORIZED } from 'constants/auth';
+import { INVALID_TOKEN, UNAUTHORIZED, TOKEN_EXPIRED } from 'constants/auth';
 
 const getText = createTranslatedText('common.error', intl);
 const ERROR_HANDLER = 'ERROR_HANDLER';
@@ -24,7 +24,8 @@ function* handler(action) {
 
   if (error && error.messageCodes) {
     const message = error.messageCodes.reduce(
-      (con, msg) => `${getText(con)}\n${getText(msg)}`,
+      (con, msg) => `${con && getText(con)} ${getText(msg)}`,
+      '',
     );
     yield put(
       notificationActions.showNotification({
@@ -35,7 +36,8 @@ function* handler(action) {
 
     if (
       error.messageCodes.includes(INVALID_TOKEN) ||
-      error.messageCodes.includes(UNAUTHORIZED)
+      error.messageCodes.includes(UNAUTHORIZED) ||
+      error.messageCodes.includes(TOKEN_EXPIRED)
     ) {
       // Kickout user
       authHelper.clearUserCredential();
