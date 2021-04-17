@@ -7,6 +7,7 @@
     align-items: center;
     display: flex;
     height: 100vh;
+    flex-direction: column;
 
     &::before {
       content: '';
@@ -99,6 +100,10 @@
     top: 4rem;
     left: 4rem;
 
+    img.logo {
+      margin-bottom: 1rem;
+    }
+
     .ant-select {
       width: 11rem;
     }
@@ -114,8 +119,8 @@
     }
 
     @include respond-to('lg') {
-      top: 4rem;
-      left: unset;
+      position: unset;
+      margin-bottom: 2rem;
     }
 
     @include respond-to('xxs') {

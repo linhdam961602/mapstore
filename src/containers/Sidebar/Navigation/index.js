@@ -7,7 +7,7 @@ import Menu from 'components/BasicComponent/Menu';
 
 const { SubMenu } = Menu;
 
-const Navigation = ({ className, ...props }) => {
+const Navigation = ({ className, children: navChildren, ...props }) => {
   const classes = classNames({
     navigation: true,
     [className]: className,
@@ -65,6 +65,7 @@ const Navigation = ({ className, ...props }) => {
   const { menusData } = props;
   return (
     <Menu key="Menu" theme="dark" mode="inline" className={classes}>
+      {navChildren}
       {getNavMenuItems(menusData)}
     </Menu>
   );

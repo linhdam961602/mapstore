@@ -26,6 +26,7 @@ import { createTranslatedText } from 'utils/text';
 import illustration from 'assets/images/illustration.svg';
 import LanguageSelector from 'containers/TopBar/LanguageSelector';
 import { GOOGLE_OAUTH_CLIENT_KEY } from 'constants/common';
+import logo from 'assets/logo/tino-logo.svg';
 
 const LoginPage = () => {
   const intl = useIntl();
@@ -49,6 +50,7 @@ const LoginPage = () => {
   return (
     <div className="login__background">
       <div className="login__language">
+        <img className="logo" alt="logo" src={logo} />
         <LanguageSelector />
       </div>
       <div className="login__container">

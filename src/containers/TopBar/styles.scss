@@ -213,4 +213,14 @@
     height: fit-content;
     border-top: 1px solid $pale-blue-o1;
   }
+
+  &--language {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    .ant-select {
+      width: 11rem;
+    }
+  }
 }

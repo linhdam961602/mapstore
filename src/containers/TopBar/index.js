@@ -32,7 +32,11 @@ const TopBar = () => {
   return (
     <>
       <Header className="topBar">
-        <MobileMenu />
+        <MobileMenu
+          isAuthenticated={isAuthenticated}
+          intl={intl}
+          getText={getText}
+        />
         <Row>
           <Col xs={24} sm={24} md={4} lg={4} xl={4} className="desktop-only">
             <Image width={100} src={logo} preview={false} />
