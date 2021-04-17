@@ -43,7 +43,7 @@ const LoginPage = () => {
   }, [dispatch, form]);
 
   const responseGoogle = (response) => {
-    console.log(response);
+    // Handle response
   };
 
   return (
