@@ -24,6 +24,7 @@ import { FORGOT_URL, REGISTER_URL } from 'constants/routes';
 import { createTranslatedText } from 'utils/text';
 import illustration from 'assets/images/illustration.svg';
 import LanguageSelector from 'containers/TopBar/LanguageSelector';
+import logo from 'assets/logo/tino-logo.svg';
 
 const LoginPage = () => {
   const intl = useIntl();
@@ -40,9 +41,14 @@ const LoginPage = () => {
     dispatch(authActions.login(values));
   }, [dispatch, form]);
 
+  const responseGoogle = () => {
+    // Handle response
+  };
+
   return (
     <div className="login__background">
       <div className="login__language">
+        <img className="logo" alt="logo" src={logo} />
         <LanguageSelector />
       </div>
       <div className="login__container">
@@ -64,6 +70,7 @@ const LoginPage = () => {
               {
                 type: 'email',
                 message: 'The input is not valid E-mail!',
+                // TODO: translation
               },
               {
                 required: true,
@@ -111,6 +118,24 @@ const LoginPage = () => {
             <a href={REGISTER_URL}>{getText('text.createAcc')}</a>
           </div>
           <Divider plain>{getText('text.useAcc')}</Divider>
+          {/* TODO: integrate later
+          <GoogleLogin
+            clientId={GOOGLE_OAUTH_CLIENT_KEY}
+            render={(renderProps) => (
+              <Button
+                className="login__button-with-google"
+                block
+                icon={<GoogleOutlined style={{ color: '#ec5741' }} />}
+                onClick={renderProps.onClick}
+                disabled={renderProps.disabled}
+              >
+                {getText('buttons.loginWGoogle')}
+              </Button>
+            )}
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
+            cookiePolicy="single_host_origin"
+          /> */}
           <Button
             className="login__button-with-google"
             block

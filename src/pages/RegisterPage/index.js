@@ -28,6 +28,7 @@ import { useInjectReducer, useInjectSaga } from 'hooks/useInjector';
 import { LAYOUT_8_16, VALIDATION_MESSAGES } from 'constants/form';
 import { createTranslatedText } from 'utils/text';
 import illustration from 'assets/images/illustration.svg';
+import logo from 'assets/logo/tino-logo.svg';
 import LanguageSelector from 'containers/TopBar/LanguageSelector';
 import Row from 'components/BasicComponent/Grid/Row';
 import Col from 'components/BasicComponent/Grid/Col';
@@ -85,6 +86,7 @@ const RegisterPage = () => {
   return (
     <div className="register__background">
       <div className="register__language">
+        <img className="logo" alt="logo" src={logo} />
         <LanguageSelector />
       </div>
       <div className="register__container">

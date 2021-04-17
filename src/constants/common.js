@@ -60,6 +60,8 @@ export const REGEX_EMAIL = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.
 
 // TODO: update site key
 export const RECAPTCHA_SITE_KEY = '6LeQzZEaAAAAAF7YBftua2kmrlNuz3qwVyRiO0Zo';
+export const GOOGLE_OAUTH_CLIENT_KEY =
+  '380098082846-augssf22mlmhesmgrq74i1jb7nsk1jl8.apps.googleusercontent.com';
 
 // Avatar
 export const AVATAR_SIZE_32 = 32;

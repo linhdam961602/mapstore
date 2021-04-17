@@ -13,7 +13,7 @@ body {
   background-color: transparent;
   padding: 1.6rem 2rem;
   @include respond-to('md') {
-    padding: 0.8rem 1rem;
+    padding: 1.6rem 2rem;
   }
   .header {
     padding: 0;
@@ -21,11 +21,8 @@ body {
   .site-layout {
     position: relative;
     margin: 5rem 0 0 0;
-    background-color: transparent;
-    padding: 1.6rem 2rem;
-    @include respond-to('md') {
-      padding: 0.8rem 1rem;
-    }
+    border-radius: 2rem;
+    background-color: $blue-4;
     &:before {
       content: '';
       height: 100%;
@@ -45,6 +42,7 @@ body {
     }
   }
 }
+
 .content_wrapper {
   padding: 2rem;
   background-color: $grey-main;

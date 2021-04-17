@@ -7,7 +7,7 @@ export const forgotPassword = (payload) =>
     .post(FORGOT_PASSWORD_API_URL, payload)
     .then((response) => response)
     .catch((err) => {
-      console.error('Error Login Error:', err);
+      console.error(err);
 
       throw err;
     });

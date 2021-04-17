@@ -93,6 +93,17 @@ const authSliceSaga = createSliceSaga({
         yield put(errorHandler(error));
       }
     },
+    *loginWGoogle(action) {
+      try {
+        const { tokenObj } = action.payload;
+        if (tokenObj) {
+          auth.setAccessToken(tokenObj.access_token, tokenObj.expires_in);
+          auth.setExpireIn(tokenObj.expires_in);
+        }
+      } catch (err) {
+        yield put(errorHandler(err));
+      }
+    },
     *logout() {
       try {
         const { data } = yield call(authApis.logout);

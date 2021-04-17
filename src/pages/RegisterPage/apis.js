@@ -7,7 +7,7 @@ export const signup = (payload) =>
     .post(REGISTER_API_URL, payload)
     .then((response) => response)
     .catch((err) => {
-      console.error('Error Login Error:', err);
+      console.error(err);
 
       throw err;
     });

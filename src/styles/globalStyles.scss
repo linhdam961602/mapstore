@@ -25,3 +25,16 @@ code {
   border-radius: 0.6rem !important;
   border: 1px solid $pale-blue !important;
 }
+
+.desktop-only {
+  @include respond-to('sm') {
+    display: none;
+  }
+}
+
+.mobile-only {
+  display: none;
+  @include respond-to('sm') {
+    display: inherit;
+  }
+}

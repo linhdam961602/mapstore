@@ -44,7 +44,7 @@ export default function MenuContainer() {
       ))}
       <MainLayout>
         {routes.layoutRoutes.map((route) =>
-          route.isPrivate ? (
+          route.isPrivate || isAuthenticated ? (
             <PrivateRoute
               key={uuid()}
               path={route.path}
