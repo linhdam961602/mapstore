@@ -22,12 +22,7 @@ body {
     position: relative;
     margin: 5rem 0 0 0;
     border-radius: 2rem;
-    // background-color: transparent;
     background-color: $blue-4;
-    // padding: 1.6rem 2rem;
-    // @include respond-to('md') {
-    //   padding: 0.8rem 1rem;
-    // }
     &:before {
       content: '';
       height: 100%;
