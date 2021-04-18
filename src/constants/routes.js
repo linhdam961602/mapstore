@@ -4,7 +4,7 @@ export const LOGIN_URL = '/login';
 export const FORGOT_URL = '/forgot-password';
 export const REGISTER_URL = '/signup';
 export const PROFILE = '/profile';
-export const DOMAIN_URL = '/domain';
+export const REGIST_DOMAIN_URL = '/regist-domain';
 export const HOSTING_URL = '/hosting';
 export const EMAIL_URL = '/email';
 export const VPS_URL = '/vps';
@@ -15,6 +15,7 @@ export const ELECTRIC_BILL_URL = '/electric-bill';
 export const ASSISTANT_URL = '/assistant';
 export const MY_PAYMENT_URL = '/my-payment';
 export const SUPPORT_URL = '/support';
+export const CART_URL = '/cart';
 
 // STORE
 export const STORE = '/store';

@@ -1,7 +1,7 @@
 import { HomeOutlined, CloudServerOutlined } from '@ant-design/icons';
 
 import {
-  DOMAIN_URL,
+  REGIST_DOMAIN_URL,
   HOSTING_URL,
   EMAIL_URL,
   VPS_URL,
@@ -36,7 +36,7 @@ const menusData = (intl) => {
       children: [
         {
           key: 3,
-          path: DOMAIN_URL,
+          path: REGIST_DOMAIN_URL,
           name: getText('domain'),
           icon: '',
           role: '',

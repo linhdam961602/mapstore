@@ -66,6 +66,12 @@ const common = {
     vi: 'Tiếng Việt',
     en: 'Tiếng Anh',
   },
+  unit: 'VND/năm',
+  action: {
+    search: 'Tìm kiếm',
+    remove: 'Xóa',
+    register: 'Đăng ký',
+  },
 };
 
 export { common };

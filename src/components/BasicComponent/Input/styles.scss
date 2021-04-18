@@ -1,6 +1,10 @@
 @import 'styles/mixins.scss';
 
 .tino__input {
-  border-radius: 0.6rem;
+  border-radius: $radius-normal;
   border: 1px solid $pale-blue;
+  .ant-input-search-button {
+    background-color: $primary;
+    border: none;
+  }
 }

@@ -8,6 +8,7 @@ import {
   CLOUD_HOSTING,
   FORGOT_URL,
   MY_PAGE_URI,
+  REGIST_DOMAIN_URL,
 } from 'constants/routes';
 
 export const layoutRoutes = [
@@ -34,6 +35,12 @@ export const layoutRoutes = [
     path: CLOUD_HOSTING,
     component: lazy(() => import('pages/Services/CloudHostingPage')),
     isPrivate: false,
+  },
+  {
+    exact: true,
+    path: REGIST_DOMAIN_URL,
+    component: lazy(() => import('pages/Services/RegisterDomain')),
+    isPrivate: true,
   },
 ];
 

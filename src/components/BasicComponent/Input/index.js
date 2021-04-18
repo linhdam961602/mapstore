@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 import './styles.scss';
 
-const { Password, Group } = AntdInput;
+const { Password, Group, Search } = AntdInput;
 
 const Input = ({ className, ...props }) => {
   const classes = classNames({
@@ -21,5 +21,6 @@ const Input = ({ className, ...props }) => {
 
 Input.Password = Password;
 Input.Group = Group;
+Input.Search = Search;
 
 export default Input;

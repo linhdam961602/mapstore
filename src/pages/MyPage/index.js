@@ -11,8 +11,6 @@ import UserBasicInfo from './UserBasicInfo';
 
 import * as userSelector from './selector';
 
-// import * as userSelector from './selector';
-
 import { createTranslatedText } from 'utils/text';
 
 import './styles.scss';

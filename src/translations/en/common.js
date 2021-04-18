@@ -66,6 +66,12 @@ const common = {
     vi: 'Vietnamese',
     en: 'English',
   },
+  unit: 'VND/year',
+  action: {
+    search: 'Search',
+    remove: 'Xóa',
+    register: 'Register',
+  },
 };
 
 export { common };

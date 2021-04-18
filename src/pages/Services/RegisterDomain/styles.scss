@@ -1,0 +1,99 @@
+@import 'styles/mixins.scss';
+
+.registDomain {
+    .banner {
+        background-color: rgba($color: $primary, $alpha: 0.8);
+        margin: 0 -2rem 0 -2rem;
+        padding: 3rem 0;
+        .ant-input-group-wrapper {
+            width: 60%;
+            margin-left: 20%;
+            border: none;
+            outline: none;
+            @include respond-to('sm') {
+                width: 90%;
+                margin-left: 5%;
+            }
+        }
+    }
+    .line-block {
+        background-color: $white;
+        margin: 0 -2rem 3rem -2rem;
+        padding: 1rem 2rem;
+    }
+    .result-search {
+        span {
+            color: $primary;
+            font-weight: bold;
+        }
+    }
+    .domain-list {
+        height: 30rem; // Height = 6rem(hight of item) x item per page (default 5)
+        overflow: auto;
+        @include respond-to('sm') {
+            height: 33rem;
+        }
+        .ant-list-items {
+            .ant-list-item {
+                @include respond-to('sm') {
+                    height: 7rem;
+                }
+                .price {
+                    color: $danger;
+                }
+                .ant-list-item-action {
+                    @include respond-to('sm') {
+                        margin-left: 0;
+                        width: 100%;
+                        display: flex;
+                        flex-direction: revert;
+                        justify-content: flex-end;
+                        margin: 1rem 0;
+                    }
+                    li {
+                        @extend .reset-space;
+                    }
+                    .tino__button {
+                        height: 2.8rem;
+                        &.cart-action {
+                            padding: 0 0.8rem;
+                            margin: 0 0 0 1rem;
+                            .anticon + span{
+                                margin-left: 0.4rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .domain-price-header {
+        font-weight: bold;
+        text-align: center;
+        margin-top: 2rem;
+    }
+    .card-domain-price {
+        width: 18rem;
+        border-radius: $radius-normal;        
+        &:hover {
+            box-shadow: 0 0.3rem 2rem $black-o4;
+            border-radius: $radius-normal;
+            cursor: pointer;
+        }
+        .ant-card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            p {
+                @extend .reset-space;
+            }
+            .name {
+                font-size: 2rem;
+                font-weight: bold;
+                color: $primary;
+                margin: 0 0 1rem 0;
+            }
+        }
+    }
+}
