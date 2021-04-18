@@ -9,6 +9,8 @@ import React, { useCallback, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { useDispatch } from 'react-redux';
 
+import { Link } from 'react-router-dom';
+
 import { INITIAL_VALUES } from './constants';
 import './styles.scss';
 import {
@@ -32,6 +34,7 @@ import logo from 'assets/logo/tino-logo.svg';
 import LanguageSelector from 'containers/TopBar/LanguageSelector';
 import Row from 'components/BasicComponent/Grid/Row';
 import Col from 'components/BasicComponent/Grid/Col';
+import { LOGIN_URL } from 'constants/routes';
 
 const { Step } = Steps;
 
@@ -118,7 +121,7 @@ const RegisterPage = () => {
           </div>
 
           <Row gutter={16}>
-            <Col lg={12} xs={24}>
+            <Col xl={12} xs={24}>
               <div className="register__button-wrapper">
                 {curStep > 0 && (
                   <Button onClick={onGoPrev}>{getText('buttons.prev')}</Button>
@@ -140,8 +143,9 @@ const RegisterPage = () => {
                 )}
               </div>
             </Col>
-            <Col lg={12} xs={24}>
-              Already have an account? Login
+            <Col xl={12} xs={24} className="register__link">
+              <span>{getText('labels.alreadyHaveAcc')}</span>
+              <Link to={LOGIN_URL}>{getText('buttons.login')}</Link>
             </Col>
           </Row>
         </Form>

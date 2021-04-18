@@ -45,11 +45,13 @@ const registration = {
     currency: 'Currency',
     birthday: 'Birthday',
     address: 'Address',
+    alreadyHaveAcc: 'Already have an account?',
   },
   buttons: {
     register: 'Register an account',
     next: 'Next',
     prev: 'Previous',
+    login: 'Login',
   },
   errors: {
     agreement: 'You must agree with the terms and conditions.',
