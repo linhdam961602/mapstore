@@ -45,11 +45,13 @@ const registration = {
     currency: 'Tiền tệ',
     birthday: 'Ngày sinh',
     address: 'Địa chỉ',
+    alreadyHaveAcc: 'Bạn đã có tài khoản rồi?',
   },
   buttons: {
     register: 'Đăng ký tài khoản',
     next: 'Tiếp',
     prev: 'Trở về',
+    login: 'Đăng nhập',
   },
   errors: {
     agreement: 'Bạn phải đồng ý với các điều khoản và điều kiện.',

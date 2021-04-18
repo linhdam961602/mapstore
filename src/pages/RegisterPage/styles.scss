@@ -137,4 +137,16 @@
       }
     }
   }
+  &__link {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    :not(:first-child) {
+      margin-left: 0.4rem;
+    }
+    @include respond-to('lg') {
+      justify-content: center;
+      margin-top: 2rem;
+    }
+  }
 }
