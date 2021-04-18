@@ -12,9 +12,6 @@
     width: 10rem !important;
     min-width: 10rem !important;
     max-width: 10rem !important;
-    i.ant-menu-submenu-arrow {
-      display: none;
-    }
   }
   @include respond-to('sm') {
     display: none;
