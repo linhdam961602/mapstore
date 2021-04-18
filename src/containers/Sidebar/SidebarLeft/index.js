@@ -8,17 +8,28 @@ import menusData from './menusData';
 import './styles.scss';
 
 import Layout from 'components/BasicComponent/Layout';
+import history from 'utils/history';
+import { useAuth } from 'hooks/useAuth';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 
 const { Sider } = Layout;
 
 const SidebarLeft = () => {
   const intl = useIntl();
-  const menusDataIntl = useMemo(() => menusData(intl), [intl]);
+  const { isAuthenticated } = useAuth();
+  const menusDataIntl = useMemo(() => menusData(intl, isAuthenticated), [
+    intl,
+    isAuthenticated,
+  ]);
+  const { width } = useWindowDimensions();
 
   return (
     <>
-      <Sider className="sidebarLeft_wrapper">
-        <Navigation menusData={menusDataIntl} />
+      <Sider className="sidebarLeft_wrapper" collapsed={width <= 991}>
+        <Navigation
+          menusData={menusDataIntl}
+          activeMenu={history.location.pathname}
+        />
       </Sider>
     </>
   );

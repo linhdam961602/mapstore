@@ -13,18 +13,19 @@ import {
   MY_PAYMENT_URL,
   SUPPORT_URL,
   MY_PAGE_URI,
+  HOME_URI,
 } from 'constants/routes';
 
 import { createTranslatedText } from 'utils/text';
 
-const menusData = (intl) => {
+const menusData = (intl, isAuthenticated) => {
   const getText = createTranslatedText('sidebarLeft', intl);
 
   return [
     {
       key: '',
-      path: MY_PAGE_URI,
-      name: getText('myPage'),
+      path: isAuthenticated ? MY_PAGE_URI : HOME_URI,
+      name: isAuthenticated ? getText('myPage') : getText('homePage'),
       icon: <HomeOutlined />,
       role: 'user',
       hideInmenu: false,
