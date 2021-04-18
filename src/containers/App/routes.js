@@ -40,7 +40,7 @@ export const layoutRoutes = [
     exact: true,
     path: REGIST_DOMAIN_URL,
     component: lazy(() => import('pages/Services/RegisterDomain')),
-    isPrivate: true,
+    isPrivate: false,
   },
 ];
 
