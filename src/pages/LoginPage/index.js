@@ -41,10 +41,6 @@ const LoginPage = () => {
     dispatch(authActions.login(values));
   }, [dispatch, form]);
 
-  const responseGoogle = () => {
-    // Handle response
-  };
-
   return (
     <div className="login__background">
       <div className="login__language">

@@ -12,6 +12,7 @@ import {
   ASSISTANT_URL,
   MY_PAYMENT_URL,
   SUPPORT_URL,
+  MY_PAGE_URI,
 } from 'constants/routes';
 
 import { createTranslatedText } from 'utils/text';
@@ -22,7 +23,7 @@ const menusData = (intl) => {
   return [
     {
       key: '',
-      path: '/',
+      path: MY_PAGE_URI,
       name: getText('myPage'),
       icon: <HomeOutlined />,
       role: 'user',

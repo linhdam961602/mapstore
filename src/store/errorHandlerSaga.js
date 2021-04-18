@@ -24,7 +24,7 @@ function* handler(action) {
 
   if (error && error.messageCodes) {
     const message = error.messageCodes.reduce(
-      (con, msg) => `${con && getText(con)} ${getText(msg)}`,
+      (con, msg) => `${con && getText(con)}${getText(msg)}`,
       '',
     );
     yield put(

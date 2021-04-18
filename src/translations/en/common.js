@@ -69,7 +69,7 @@ const common = {
   unit: 'VND/year',
   action: {
     search: 'Search',
-    remove: 'Xóa',
+    remove: 'Remove',
     register: 'Register',
   },
 };
