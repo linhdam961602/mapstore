@@ -21,22 +21,48 @@ const Footer = () => {
   const getText = createTranslatedText('footer', intl);
 
   return (
-    <div className="footer__wrapper">
+    <div className="footer">
       <Row gutter={16}>
-        <Col span={8}>
-          <p className="footer__primary_title">{getText('companyName')}</p>
-          <p className="footer__text">
-            {getText('address')}
-            <br /> {getText('phone')} <br /> {getText('email')}
-            <br /> {getText('website')} <br /> {getText('gpkdNo')}
-          </p>
+        <Col xs={24} sm={24} md={24} lg={8} xl={8}>
+          <p className="primary-title">{getText('companyName')}</p>
+          <p className="normail-text">{getText('address')}</p>
+          <p className="normail-text">{getText('phone')}</p>
+          <p className="normail-text">{getText('email')}</p>
+          <p className="normail-text">{getText('website')}</p>
+          <p className="normail-text">{getText('gpkdNo')}</p>
         </Col>
-        <Col span={8}>
-          <p className="footer__text">
-            {getText('term')} <br /> {getText('privatePolicy')}
-            <br /> {getText('complaintPolicy')} <br />{' '}
-            {getText('paymentPolicy')}
-          </p>
+        <Col xs={24} sm={24} md={24} lg={8} xl={8}>
+          <p className="primary-title">{getText('policy')}</p>
+          <div className="list-policy-link">
+            <a
+              href="https://tinohost.com/dieu-khoan-su-dung-dich-vu/?_ga=2.149463478.1283718076.1618676218-746246564.1615803349"
+              target="_blank"
+              className="normail-text"
+            >
+              {getText('term')}
+            </a>
+            <a
+              href="https://tinohost.com/chinh-sach-bao-mat/?_ga=2.149463478.1283718076.1618676218-746246564.1615803349"
+              target="_blank"
+              className="normail-text"
+            >
+              {getText('privatePolicy')}
+            </a>
+            <a
+              href="https://tinohost.com/tranh-chap-khieu-nai/?_ga=2.149463478.1283718076.1618676218-746246564.1615803349"
+              target="_blank"
+              className="normail-text"
+            >
+              {getText('complaintPolicy')}
+            </a>
+            <a
+              href="https://tinohost.com/huong-dan-thanh-toan/?_ga=2.149463478.1283718076.1618676218-746246564.1615803349"
+              target="_blank"
+              className="normail-text"
+            >
+              {getText('paymentPolicy')}
+            </a>
+          </div>
           <a
             href="http://online.gov.vn/HomePage/CustomWebsiteDisplay.aspx?DocId=55603"
             target="_blank"
@@ -44,17 +70,18 @@ const Footer = () => {
             <Image width={170} src={bct} preview={false} />
           </a>
         </Col>
-        <Col span={8}>
-          <p className="footer__primary_title">{getText('paymentPartner')}</p>
-          <Image width={75} src={tienmat} preview={false} />
-          <Image width={75} src={banking} preview={false} />
-          <Image width={75} src={visa} preview={false} />
-          <Image width={75} src={mastercard} preview={false} />
-          <br />
-          <Image width={75} src={jcb} preview={false} />
-          <Image width={75} src={vnpay} preview={false} />
-          <Image width={75} src={momo} preview={false} />
-          <Image width={75} src={paypal} preview={false} />
+        <Col xs={24} sm={24} md={24} lg={8} xl={8}>
+          <p className="primary-title">{getText('paymentPartner')}</p>
+          <div className="list-icon-partner">
+            <Image src={tienmat} preview={false} />
+            <Image src={banking} preview={false} />
+            <Image src={visa} preview={false} />
+            <Image src={mastercard} preview={false} />
+            <Image src={jcb} preview={false} />
+            <Image src={vnpay} preview={false} />
+            <Image src={momo} preview={false} />
+            <Image src={paypal} preview={false} />
+          </div>
         </Col>
       </Row>
     </div>

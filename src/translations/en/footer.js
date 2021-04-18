@@ -12,6 +12,7 @@ const footer = {
   complaintPolicy: 'Complaint Handling Policy',
   paymentPolicy: 'Payment Policy',
   paymentPartner: 'Payment partner',
+  policy: 'Policy',
 };
 
 export { footer };

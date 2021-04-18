@@ -11,6 +11,7 @@ const footer = {
   complaintPolicy: 'Chính sách xử lý khiếu nại',
   paymentPolicy: 'Chính sách thanh toán',
   paymentPartner: 'Đối tác thanh toán',
+  policy: 'Chính sách',
 };
 
 export { footer };
