@@ -1,0 +1,23 @@
+@import 'styles/mixins.scss';
+
+.my-infor-page {
+    .form-group {
+        background-color: $white;
+        border-radius: $radius-normal;
+        padding: 2rem;
+        margin: 0 0 2rem 0;
+        &:last-child {
+            margin: 0;
+        }
+        .title {
+            font-weight: bold;
+            font-size: 1.8rem;
+        }
+    }
+    .ant-form-item {
+        margin: 0 0 1rem 0;
+        .tino__button {
+            margin-bottom: -1rem;
+        }
+    }
+}

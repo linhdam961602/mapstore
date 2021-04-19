@@ -49,6 +49,13 @@ const mypage = {
       address: 'Address',
     },
   },
+  changePass: {
+    labels: {
+      oldPassword: 'Old password',
+      newPassword: 'New password',
+      rePassword: 'Re-enter new password',
+    },
+  },
 };
 
 export { mypage };

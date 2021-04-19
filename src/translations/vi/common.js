@@ -50,6 +50,7 @@ const common = {
     wronglogin: 'Đăng nhập sai!',
     ipnotallowed: 'IP của bạn không được phép truy cập!',
     token_expired: 'token_expired',
+    passwordNotMatch: 'Mật khẩu không khớp!',
   },
   info: {
     generated_reset_request: 'generated_reset_request',

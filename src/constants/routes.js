@@ -16,6 +16,7 @@ export const ASSISTANT_URL = '/assistant';
 export const MY_PAYMENT_URL = '/my-payment';
 export const SUPPORT_URL = '/support';
 export const CART_URL = '/cart';
+export const CHANGE_PASS = '/change-password';
 
 // STORE
 export const STORE = '/store';

@@ -50,6 +50,13 @@ const mypage = {
       address: 'Địa chỉ',
     },
   },
+  changePass: {
+    labels: {
+      oldPassword: 'Mật khẩu cũ',
+      newPassword: 'Mật khẩu mới',
+      rePassword: 'Nhập lại mật khẩu mới',
+    },
+  },
 };
 
 export { mypage };

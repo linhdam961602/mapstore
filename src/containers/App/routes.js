@@ -9,6 +9,7 @@ import {
   FORGOT_URL,
   MY_PAGE_URI,
   REGIST_DOMAIN_URL,
+  CHANGE_PASS,
 } from 'constants/routes';
 
 export const layoutRoutes = [
@@ -28,6 +29,12 @@ export const layoutRoutes = [
     exact: true,
     path: PROFILE,
     component: lazy(() => import('pages/PersonalInfomation')),
+    isPrivate: true,
+  },
+  {
+    exact: true,
+    path: CHANGE_PASS,
+    component: lazy(() => import('pages/ChangePass')),
     isPrivate: true,
   },
   {

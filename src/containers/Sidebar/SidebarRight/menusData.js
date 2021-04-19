@@ -6,6 +6,8 @@ import {
   LockOutlined,
 } from '@ant-design/icons';
 
+import { PROFILE, CHANGE_PASS } from 'constants/routes';
+
 import { createTranslatedText } from 'utils/text';
 
 const menusData = (intl) => {
@@ -14,7 +16,7 @@ const menusData = (intl) => {
   return [
     {
       key: 'myInfo',
-      path: '/profile',
+      path: PROFILE,
       name: getText('myInfo'),
       icon: <UserOutlined />,
     },
@@ -27,7 +29,7 @@ const menusData = (intl) => {
     {
       key: 3,
       name: getText('changePass'),
-      path: '/change-pass',
+      path: CHANGE_PASS,
       icon: <LockOutlined />,
     },
     {
