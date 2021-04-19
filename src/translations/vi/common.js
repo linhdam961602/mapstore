@@ -71,6 +71,7 @@ const common = {
     search: 'Tìm kiếm',
     remove: 'Xóa',
     register: 'Đăng ký',
+    save: 'Lưu',
   },
 };
 

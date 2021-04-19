@@ -36,7 +36,7 @@ const sidebarLeft = {
 
 const sidebarRight = {
   overView: 'Account Overview',
-  persionnalInfo: 'Persional Information',
+  myInfo: 'My Information',
   contactList: 'Contact List',
   emailHistory: 'Email history',
   changePass: 'Change Password',

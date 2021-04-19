@@ -17,7 +17,7 @@ const GridOpenSupportTicket = () => {
   const intl = useIntl();
   const getText = createTranslatedText('mypage.gridOpenSupportTicket', intl);
   const columnsIntl = useMemo(() => columns(intl), [intl]);
-  const listInvoiceOverDue = useSelector(userSelector.selectListAllTicket);
+  const listTicket = useSelector(userSelector.selectListAllTicket);
 
   return (
     <div className="customGrid">
@@ -31,9 +31,11 @@ const GridOpenSupportTicket = () => {
         </a>
       </div>
       <Table
-        dataSource={listInvoiceOverDue}
+        dataSource={listTicket}
         columns={columnsIntl}
-        pagination={{ pageSize: PAGE_SIZE_DEFAULT }}
+        pagination={
+          listTicket?.lenght > 0 ? { pageSize: PAGE_SIZE_DEFAULT } : false
+        }
       />
     </div>
   );

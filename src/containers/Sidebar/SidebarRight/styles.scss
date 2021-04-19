@@ -15,13 +15,20 @@
             padding: 2rem;
             border-bottom: 1px solid $pale-blue;
             .information {
-                margin: 0 0 0 2rem;
+                margin: 0 0 0 1rem;
+                white-space: nowrap;
+                overflow: hidden;
                 .primary-text {
                     font-weight: 700;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                     @extend .reset-space;
                 }
                 .secondary-text {
                     color: $secondary-text;
+                    font-size: 1.4rem;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                     @extend .reset-space;
                 }
             }

@@ -1,0 +1,34 @@
+export const USER_INFORMATION_FORM_FIELDS = {
+  FIRST_NAME: 'firstname',
+  LAST_NAME: 'lastname',
+  PHONE: 'phonenumber',
+  CALLING_CODE: 'country-calling-code-phonenumber',
+  EMAIL: 'email',
+  BIRTHDAY: 'birthday',
+  NATIONAL_ID: 'nationalid',
+  COMPANY_NAME: 'companyname',
+  TAX_ID: 'taxid',
+  ADDRESS_1: 'address1',
+  CITY: 'city',
+  STATE: 'state',
+  COUNTRY: 'country',
+};
+
+export const TERMS_OF_SERVICE_URL =
+  'https://tinohost.com/dieu-khoan-su-dung-dich-vu/';
+
+export const INITIAL_VALUES = {
+  [USER_INFORMATION_FORM_FIELDS.FIRST_NAME]: '',
+  [USER_INFORMATION_FORM_FIELDS.LAST_NAME]: '',
+  [USER_INFORMATION_FORM_FIELDS.CALLING_CODE]: '+84',
+  [USER_INFORMATION_FORM_FIELDS.PHONE]: '',
+  [USER_INFORMATION_FORM_FIELDS.EMAIL]: '',
+  [USER_INFORMATION_FORM_FIELDS.BIRTHDAY]: '',
+  [USER_INFORMATION_FORM_FIELDS.NATIONAL_ID]: '',
+  [USER_INFORMATION_FORM_FIELDS.COMPANY_NAME]: '',
+  [USER_INFORMATION_FORM_FIELDS.TAX_ID]: '',
+  [USER_INFORMATION_FORM_FIELDS.ADDRESS_1]: '',
+  [USER_INFORMATION_FORM_FIELDS.CITY]: '',
+  [USER_INFORMATION_FORM_FIELDS.STATE]: '',
+  [USER_INFORMATION_FORM_FIELDS.COUNTRY]: '',
+};

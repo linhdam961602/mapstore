@@ -16,6 +16,8 @@ import Input from 'components/BasicComponent/Input';
 import { useInjectSaga, useInjectReducer } from 'hooks/useInjector';
 import Select from 'components/BasicComponent/Select';
 
+import { onlyNumber } from 'utils';
+
 const FlagIcon = ({ flag, name }) => (
   <img src={flag} alt={name} className="flag" />
 );
@@ -87,7 +89,7 @@ const PhoneInput = ({
       >
         {renderOptions()}
       </Select>
-      <Input {...props} className="phone-input" />
+      <Input onKeyDown={onlyNumber} {...props} className="phone-input" />
     </Input.Group>
   );
 };

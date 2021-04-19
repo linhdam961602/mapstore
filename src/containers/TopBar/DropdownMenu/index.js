@@ -22,11 +22,11 @@ const DropdownMenu = () => {
   const dispatch = useDispatch();
   const menusDataIntl = useMemo(() => menusData(intl), [intl]);
   const getText = createTranslatedText('dropdownMenu', intl);
+  const userInfo = useSelector(authSelector.selectUserInfo);
 
   const onLogout = useCallback(() => {
     dispatch(authActions.logout());
   }, [dispatch]);
-  const userInfo = useSelector(authSelector.selectUserInfo);
 
   return (
     <div className="dropdown-menu">

@@ -13,9 +13,9 @@ const menusData = (intl) => {
 
   return [
     {
-      key: 'persionalInfo',
+      key: 'myInfo',
       path: '/profile',
-      name: getText('persionnalInfo'),
+      name: getText('myInfo'),
       icon: <UserOutlined />,
     },
     {

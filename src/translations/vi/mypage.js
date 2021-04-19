@@ -32,6 +32,24 @@ const mypage = {
     emmtyNoti: 'Không có thông báo nào',
   },
   wallet: 'Số dư',
+  myInformation: {
+    personalInfo: 'Thông tin cá nhân',
+    paymentAddress: 'Địa chỉ thanh toán',
+    labels: {
+      typeOfSubj: 'Loại chủ thể',
+      compName: 'Tên công ty',
+      taxCode: 'Mã số thuế',
+      firstName: 'Tên',
+      lastName: 'Họ',
+      email: 'Địa chỉ email',
+      phone: 'Số điện thoại',
+      country: 'Quốc gia',
+      province: 'Tỉnh/Thành phố',
+      district: 'Quận/Huyện',
+      birthday: 'Ngày sinh',
+      address: 'Địa chỉ',
+    },
+  },
 };
 
 export { mypage };

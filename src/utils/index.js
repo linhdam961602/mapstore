@@ -13,6 +13,7 @@ import _isInteger from 'lodash/isInteger';
 import toNumber from 'lodash/toNumber';
 import flattenDeep from 'lodash/flattenDeep';
 import isArray from 'lodash/isArray';
+import parsePhoneNumber from 'libphonenumber-js';
 
 import {
   isNumber,
@@ -206,4 +207,9 @@ export const onlyNumber = (e) => {
   } else {
     e.preventDefault();
   }
+};
+
+export const getPhoneWithoutCode = (number) => {
+  const phoneNumber = parsePhoneNumber(number);
+  return phoneNumber ? phoneNumber.nationalNumber : '';
 };

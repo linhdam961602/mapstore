@@ -36,7 +36,7 @@ const sidebarLeft = {
 
 const sidebarRight = {
   overView: 'Tổng quan tài khoản',
-  persionnalInfo: 'Thông tin cá nhân',
+  myInfo: 'Thông tin của tôi',
   contactList: 'Danh sách liên hệ',
   emailHistory: 'Lịch sử email',
   changePass: 'Thay đổi mật khẩu',

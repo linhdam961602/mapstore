@@ -71,6 +71,7 @@ const common = {
     search: 'Search',
     remove: 'Remove',
     register: 'Register',
+    save: 'Save',
   },
 };
 

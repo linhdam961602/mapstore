@@ -34,7 +34,11 @@ const GridInvoceDue = () => {
       <Table
         dataSource={listInvoiceOverDue}
         columns={columnsIntl}
-        pagination={{ pageSize: PAGE_SIZE_DEFAULT }}
+        pagination={
+          listInvoiceOverDue?.lenght > 0
+            ? { pageSize: PAGE_SIZE_DEFAULT }
+            : false
+        }
       />
     </div>
   );
