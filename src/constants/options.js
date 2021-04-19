@@ -3,13 +3,16 @@ import { createTranslatedText } from 'utils/text';
 
 const getText = createTranslatedText('common.labels', intl);
 
+export const TYPE_PRIVATE = 'Private';
+export const TYPE_COMPANY = 'Company';
+
 export const TYPES_OF_SUBJECT = {
   PERSONAL: {
-    value: 'Private',
+    value: TYPE_PRIVATE,
     label: getText('personal'),
   },
   COMPANY: {
-    value: 'Company',
+    value: TYPE_COMPANY,
     label: getText('company'),
   },
 };

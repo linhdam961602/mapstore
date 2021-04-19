@@ -11,7 +11,7 @@ import { useDispatch } from 'react-redux';
 
 import { Link } from 'react-router-dom';
 
-import { INITIAL_VALUES } from './constants';
+import { REGISTER_FORM_FIELDS, INITIAL_VALUES } from './constants';
 import './styles.scss';
 import {
   registerSliceName,
@@ -67,6 +67,9 @@ const RegisterPage = () => {
 
   const onFinish = useCallback(() => {
     const values = form.getFieldsValue(true); // Get all fields
+    values.phonenumber = `${values[REGISTER_FORM_FIELDS.CALLING_CODE]} ${
+      values[REGISTER_FORM_FIELDS.PHONE]
+    }`;
     dispatch(registerActions.signup(values));
   }, [dispatch, form]);
 

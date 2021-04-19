@@ -1,4 +1,5 @@
 export const USER_INFORMATION_FORM_FIELDS = {
+  ID: 'id',
   FIRST_NAME: 'firstname',
   LAST_NAME: 'lastname',
   PHONE: 'phonenumber',
@@ -12,12 +13,15 @@ export const USER_INFORMATION_FORM_FIELDS = {
   CITY: 'city',
   STATE: 'state',
   COUNTRY: 'country',
+  POSTCODE: 'postcode',
+  TYPE: 'type',
 };
 
 export const TERMS_OF_SERVICE_URL =
   'https://tinohost.com/dieu-khoan-su-dung-dich-vu/';
 
 export const INITIAL_VALUES = {
+  [USER_INFORMATION_FORM_FIELDS.ID]: '',
   [USER_INFORMATION_FORM_FIELDS.FIRST_NAME]: '',
   [USER_INFORMATION_FORM_FIELDS.LAST_NAME]: '',
   [USER_INFORMATION_FORM_FIELDS.CALLING_CODE]: '+84',
@@ -31,4 +35,6 @@ export const INITIAL_VALUES = {
   [USER_INFORMATION_FORM_FIELDS.CITY]: '',
   [USER_INFORMATION_FORM_FIELDS.STATE]: '',
   [USER_INFORMATION_FORM_FIELDS.COUNTRY]: '',
+  [USER_INFORMATION_FORM_FIELDS.POSTCODE]: '760000',
+  [USER_INFORMATION_FORM_FIELDS.TYPE]: '',
 };

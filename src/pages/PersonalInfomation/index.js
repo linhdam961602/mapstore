@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useIntl } from 'react-intl';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { USER_INFORMATION_FORM_FIELDS, INITIAL_VALUES } from './constants';
+import { contactActions, contactSaga, contactSliceName } from './slices';
 
 import * as authSelector from 'pages/LoginPage/selector';
 import Form from 'components/BasicComponent/Form';
@@ -15,6 +16,7 @@ import { onlyNumber, getPhoneWithoutCode } from 'utils';
 import { createTranslatedText } from 'utils/text';
 import { REGEX_EMAIL } from 'constants/common';
 import { VALIDATION_MESSAGES } from 'constants/form';
+import { useInjectSaga } from 'hooks/useInjector';
 
 import './styles.scss';
 import Row from 'components/BasicComponent/Grid/Row';
@@ -22,6 +24,12 @@ import Col from 'components/BasicComponent/Grid/Col';
 
 import SidebarRight from 'containers/Sidebar/SidebarRight';
 import PhoneInput from 'containers/PhoneInputContainer';
+
+import {
+  TYPES_OF_SUBJECT,
+  TYPE_PRIVATE,
+  TYPE_COMPANY,
+} from 'constants/options';
 
 const { Item } = Form;
 
@@ -34,22 +42,37 @@ const PersonalInfomation = () => {
   );
   const getTextCommon = createTranslatedText('common', intl);
   const [form] = Form.useForm();
+  const dispatch = useDispatch();
 
+  useInjectSaga({ key: contactSliceName, saga: contactSaga });
   const userInfo = useSelector(authSelector.selectUserInfo);
 
   useEffect(() => {
     if (userInfo) {
       const convertUserInfo = { ...userInfo };
-      convertUserInfo.phonenumber = getPhoneWithoutCode(
-        convertUserInfo.phonenumber,
+      convertUserInfo[USER_INFORMATION_FORM_FIELDS.PHONE] = getPhoneWithoutCode(
+        convertUserInfo[USER_INFORMATION_FORM_FIELDS.PHONE],
       );
+      convertUserInfo[
+        USER_INFORMATION_FORM_FIELDS.TYPE
+      ] = convertUserInfo.company ? TYPE_COMPANY : TYPE_PRIVATE;
       form.setFieldsValue(convertUserInfo);
     }
   }, [form, userInfo]);
 
-  const onFinish = () => {
-    // TODO: Call API update user info.
+  const convertData = (data) => {
+    const cData = data;
+    cData.phonenumber = `${cData[USER_INFORMATION_FORM_FIELDS.CALLING_CODE]} ${
+      cData[USER_INFORMATION_FORM_FIELDS.PHONE]
+    }`;
+    delete cData[USER_INFORMATION_FORM_FIELDS.CALLING_CODE];
+    return cData;
   };
+
+  const onFinish = useCallback(() => {
+    const values = form.getFieldsValue();
+    dispatch(contactActions.saveContact(convertData(values)));
+  }, [dispatch, form]);
 
   return (
     <div className="mypage">
@@ -73,10 +96,24 @@ const PersonalInfomation = () => {
               <Row gutter={16}>
                 <Col sm={24} md={12} lg={12} xl={8}>
                   <Item
+                    name={USER_INFORMATION_FORM_FIELDS.TYPE}
+                    label={getTextPersionalInfo('labels.typeOfSubj')}
+                  >
+                    <Select
+                      options={Object.values(TYPES_OF_SUBJECT)}
+                      disabled
+                    />
+                  </Item>
+                </Col>
+                <Col sm={24} md={12} lg={12} xl={8}>
+                  <Item
                     name={USER_INFORMATION_FORM_FIELDS.LAST_NAME}
                     label={getTextPersionalInfo('labels.lastName')}
                     rules={[{ required: true }]}
                   >
+                    <Input />
+                  </Item>
+                  <Item name={USER_INFORMATION_FORM_FIELDS.POSTCODE} hidden>
                     <Input />
                   </Item>
                 </Col>
@@ -89,6 +126,8 @@ const PersonalInfomation = () => {
                     <Input />
                   </Item>
                 </Col>
+              </Row>
+              <Row gutter={16}>
                 <Col sm={24} md={12} lg={12} xl={8}>
                   <Item
                     name={USER_INFORMATION_FORM_FIELDS.BIRTHDAY}
@@ -97,9 +136,7 @@ const PersonalInfomation = () => {
                     <DatePicker />
                   </Item>
                 </Col>
-              </Row>
-              <Row gutter={16}>
-                <Col sm={24} md={12} lg={12} xl={12}>
+                <Col sm={24} md={12} lg={12} xl={8}>
                   <Item name={USER_INFORMATION_FORM_FIELDS.CALLING_CODE} hidden>
                     <Input />
                   </Item>
@@ -122,7 +159,7 @@ const PersonalInfomation = () => {
                     />
                   </Item>
                 </Col>
-                <Col sm={24} md={12} lg={12} xl={12}>
+                <Col sm={24} md={12} lg={12} xl={8}>
                   <Item
                     name={USER_INFORMATION_FORM_FIELDS.EMAIL}
                     label={getTextPersionalInfo('labels.email')}
