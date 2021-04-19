@@ -8,6 +8,7 @@ import { userActions, userSaga, userSliceName } from './slices';
 import GridInvoceDue from './GridInvoceDue';
 import GridOpenSupportTicket from './GridOpenSupportTicket';
 import UserBasicInfo from './UserBasicInfo';
+import GridMyService from './GridMyService';
 
 import * as userSelector from './selector';
 
@@ -92,6 +93,11 @@ const MyPage = () => {
       <Row>
         <Col xs={24} sm={24} md={24} lg={24} xl={24}>
           <GridOpenSupportTicket />
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={24} sm={24} md={24} lg={24} xl={24}>
+          <GridMyService />
         </Col>
       </Row>
     </div>

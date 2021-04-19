@@ -26,6 +26,18 @@ const mypage = {
     },
     mySupportTicket: 'My support ticket',
   },
+  gridMyService: {
+    heading: 'My Service Active',
+    columns: {
+      id: 'ID',
+      category: 'Category',
+      domain: 'Domain',
+      name: 'Name',
+      nextDue: 'Next Due Date',
+      total: 'Total',
+      status: 'Status',
+    },
+  },
   dropdownMenu: {
     profile: 'User profile',
     logout: 'Logout',

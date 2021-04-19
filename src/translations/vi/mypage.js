@@ -26,6 +26,18 @@ const mypage = {
     },
     mySupportTicket: 'Quản lý ticket',
   },
+  gridMyService: {
+    heading: 'Dịch vụ của tôi',
+    columns: {
+      id: 'ID',
+      category: 'Thể loại',
+      domain: 'Domain',
+      name: 'Tên',
+      nextDue: 'Ngày hết hạn kế tiếp',
+      total: 'Tổng cộng',
+      status: 'Trạng thái',
+    },
+  },
   dropdownMenu: {
     profile: 'Thông tin cá nhân',
     logout: 'Đăng xuất',

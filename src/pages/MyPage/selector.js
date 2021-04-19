@@ -24,3 +24,8 @@ export const selectListAllTicket = createSelector(
   userStore,
   (state) => state.listTicket?.tickets,
 );
+
+export const selectListServiceActive = createSelector(
+  userStore,
+  (state) => state.listServiceActive?.services,
+);

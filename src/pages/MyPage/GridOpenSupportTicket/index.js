@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import * as userSelector from '../selector';
 
-import { columns } from './mockup';
+import { columns } from './columns';
 
 import Image from 'components/BasicComponent/Image';
 import Table from 'components/BasicComponent/Table';
