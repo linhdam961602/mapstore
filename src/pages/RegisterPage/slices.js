@@ -16,6 +16,8 @@ const initialState = {
   isLoading: false,
   error: null,
   extendTime: 0,
+  countryList: [],
+  stateCityData: [],
 };
 
 const registerSlice = createSlice({
@@ -34,6 +36,14 @@ const registerSlice = createSlice({
       ...state,
       isLoading: false,
       error: action.payload,
+    }),
+    fetchStateCitySuccess: (state, action) => ({
+      ...state,
+      stateCityData: action.payload,
+    }),
+    fetchCountriesSuccess: (state, action) => ({
+      ...state,
+      countryList: action.payload,
     }),
   },
 });
@@ -63,6 +73,33 @@ const registerSliceSaga = createSliceSaga({
         }
       } catch (error) {
         yield put(reducerActions.registerFailure(error));
+        yield put(errorHandler(error));
+      }
+    },
+    *fetchCountries() {
+      try {
+        const { data } = yield call(registerApis.getCountryList);
+        if (data) {
+          const filteredData = data.map(({ name }) => ({
+            name,
+          }));
+          yield put(reducerActions.fetchCountriesSuccess(filteredData));
+        }
+      } catch (error) {
+        yield put(errorHandler(error));
+      }
+    },
+    *fetchStateCity() {
+      try {
+        const { data } = yield call(registerApis.getStateCity);
+        if (data) {
+          const filteredData = data.map(({ name, level2s }) => ({
+            name,
+            districts: level2s,
+          }));
+          yield put(reducerActions.fetchStateCitySuccess(filteredData));
+        }
+      } catch (error) {
         yield put(errorHandler(error));
       }
     },

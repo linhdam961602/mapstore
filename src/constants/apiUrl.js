@@ -8,3 +8,7 @@ export const LIST_INVOICE_API_URL = 'invoice';
 export const LIST_TICKET_API_URL = 'tickets';
 export const FORGOT_PASSWORD_API_URL = 'password/forgot';
 export const RESET_PASSWORD_API_URL = 'password/change';
+
+export const REST_COUNTRIES_API_URL = 'https://restcountries.eu/rest/v2/all';
+
+export const DVHCVN_JSON_URL = 'dvhcvn.json';

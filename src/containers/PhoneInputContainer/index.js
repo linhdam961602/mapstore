@@ -26,11 +26,12 @@ const PhoneInput = ({
   className,
   countryCode = '+84',
   onChangeCountry,
-  disabledDropdown,
+  disabledDropdown = false,
   ...props
 }) => {
   useInjectReducer({ key: countrySliceName, reducer: countryReducer });
   useInjectSaga({ key: countrySliceName, saga: countrySaga });
+
   const dispatch = useDispatch();
 
   const classes = classNames({
@@ -89,7 +90,7 @@ const PhoneInput = ({
       >
         {renderOptions()}
       </Select>
-      <Input onKeyDown={onlyNumber} {...props} className="phone-input" />
+      <Input onKeyDown={onlyNumber} className="phone-input" {...props} />
     </Input.Group>
   );
 };

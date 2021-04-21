@@ -1,4 +1,5 @@
-import React, { useEffect, useCallback, useMemo } from 'react';
+/* eslint-disable indent */
+import React, { useEffect, useCallback, useMemo, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -12,24 +13,26 @@ import DatePicker from 'components/BasicComponent/DatePicker';
 import Select from 'components/BasicComponent/Select';
 import Button from 'components/BasicComponent/Button';
 
-import { onlyNumber, getPhoneWithoutCode } from 'utils';
+import { onlyNumber, getPhoneWithoutCode, convertDate } from 'utils';
 import { createTranslatedText } from 'utils/text';
 import { REGEX_EMAIL } from 'constants/common';
 import { VALIDATION_MESSAGES } from 'constants/form';
 import { useInjectSaga } from 'hooks/useInjector';
 
-import './styles.scss';
 import Row from 'components/BasicComponent/Grid/Row';
 import Col from 'components/BasicComponent/Grid/Col';
 
 import SidebarRight from 'containers/Sidebar/SidebarRight';
 import PhoneInput from 'containers/PhoneInputContainer';
+import AddressInput from 'containers/AddressInputContainer';
 
 import {
   TYPES_OF_SUBJECT,
   TYPE_PRIVATE,
   TYPE_COMPANY,
 } from 'constants/options';
+
+import './styles.scss';
 
 const { Item } = Form;
 
@@ -41,35 +44,80 @@ const PersonalInfomation = () => {
   const typeOfSubjIntl = useMemo(() => TYPES_OF_SUBJECT(intl), [intl]);
   const [form] = Form.useForm();
 
+  const [curCountry, setCurCountry] = useState(null);
+  const [curProvince, setCurProvince] = useState(null);
+
   useInjectSaga({ key: contactSliceName, saga: contactSaga });
   const userInfo = useSelector(authSelector.selectUserInfo);
 
   useEffect(() => {
     if (userInfo) {
-      const convertUserInfo = { ...userInfo };
+      const convertUserInfo = {
+        ...userInfo,
+        [USER_INFORMATION_FORM_FIELDS.BIRTHDAY]: convertDate(
+          userInfo[USER_INFORMATION_FORM_FIELDS.BIRTHDAY],
+        ),
+      };
       convertUserInfo[USER_INFORMATION_FORM_FIELDS.PHONE] = getPhoneWithoutCode(
         convertUserInfo[USER_INFORMATION_FORM_FIELDS.PHONE],
       );
       convertUserInfo[
         USER_INFORMATION_FORM_FIELDS.TYPE
       ] = convertUserInfo.company ? TYPE_COMPANY : TYPE_PRIVATE;
+
       form.setFieldsValue(convertUserInfo);
+
+      setCurProvince(convertUserInfo[USER_INFORMATION_FORM_FIELDS.CITY]);
+      setCurCountry(convertUserInfo[USER_INFORMATION_FORM_FIELDS.COUNTRY]);
     }
   }, [form, userInfo]);
 
-  const convertData = (data) => {
-    const cData = data;
-    cData.phonenumber = `${cData[USER_INFORMATION_FORM_FIELDS.CALLING_CODE]} ${
-      cData[USER_INFORMATION_FORM_FIELDS.PHONE]
-    }`;
-    delete cData[USER_INFORMATION_FORM_FIELDS.CALLING_CODE];
-    return cData;
-  };
+  const convertData = useCallback(
+    (data) => {
+      const cData = data;
+      cData.phonenumber = `${
+        cData[USER_INFORMATION_FORM_FIELDS.CALLING_CODE]
+      } ${cData[USER_INFORMATION_FORM_FIELDS.PHONE]}`;
+
+      delete cData[USER_INFORMATION_FORM_FIELDS.CALLING_CODE];
+      return {
+        ...cData,
+        [USER_INFORMATION_FORM_FIELDS.BIRTHDAY]: convertDate(
+          userInfo[USER_INFORMATION_FORM_FIELDS.BIRTHDAY],
+        ),
+      };
+    },
+    [userInfo],
+  );
 
   const onFinish = useCallback(() => {
     const values = form.getFieldsValue();
     dispatch(contactActions.saveContact(convertData(values)));
-  }, [dispatch, form]);
+  }, [convertData, dispatch, form]);
+
+  const onCountryChange = useCallback(
+    (value) => {
+      setCurCountry(value);
+      form.setFieldsValue({
+        [USER_INFORMATION_FORM_FIELDS.CITY]: '',
+        [USER_INFORMATION_FORM_FIELDS.STATE]: '',
+        [USER_INFORMATION_FORM_FIELDS.ADDRESS_1]: '',
+      });
+    },
+    [form],
+  );
+
+  const onProvinceChange = useCallback(
+    (value) => {
+      setCurProvince(value);
+      // Clear current selected district
+      form.setFieldsValue({
+        [USER_INFORMATION_FORM_FIELDS.STATE]: '',
+        [USER_INFORMATION_FORM_FIELDS.ADDRESS_1]: '',
+      });
+    },
+    [form],
+  );
 
   return (
     <div className="mypage">
@@ -193,7 +241,57 @@ const PersonalInfomation = () => {
                   </Item>
                 </Col>
               </Row>
+
               <Row gutter={16}>
+                <AddressInput
+                  defaultCountry={curCountry}
+                  defaultProvince={curProvince}
+                  renderCountryWrapper={(children) => (
+                    <Col lg={12} xs={24}>
+                      <Item
+                        name={USER_INFORMATION_FORM_FIELDS.COUNTRY}
+                        label={getTextCommon('userInfo.labels.country')}
+                      >
+                        {children}
+                      </Item>
+                    </Col>
+                  )}
+                  onCountryChange={onCountryChange}
+                  renderProvinceWrapper={(children) => (
+                    <Col lg={12} xs={24}>
+                      <Item
+                        name={USER_INFORMATION_FORM_FIELDS.CITY}
+                        label={getTextCommon('userInfo.labels.province')}
+                      >
+                        {children}
+                      </Item>
+                    </Col>
+                  )}
+                  onProvinceChange={onProvinceChange}
+                  renderDistrictWrapper={(children) => (
+                    <Col lg={12} xs={24}>
+                      <Item
+                        name={USER_INFORMATION_FORM_FIELDS.STATE}
+                        label={getTextCommon('userInfo.labels.district')}
+                      >
+                        {children}
+                      </Item>
+                    </Col>
+                  )}
+                  renderAddressWrapper={(children) => (
+                    <Col lg={12} xs={24}>
+                      <Item
+                        name={USER_INFORMATION_FORM_FIELDS.ADDRESS_1}
+                        label={getTextCommon('userInfo.labels.address')}
+                      >
+                        {children}
+                      </Item>
+                    </Col>
+                  )}
+                />
+              </Row>
+
+              {/* <Row gutter={16}>
                 <Col sm={24} md={12} lg={12} xl={12}>
                   <Item
                     name={USER_INFORMATION_FORM_FIELDS.COUNTRY}
@@ -229,6 +327,7 @@ const PersonalInfomation = () => {
                   </Item>
                 </Col>
               </Row>
+            */}
             </div>
             <Row gutter={16}>
               <Col sm={12} md={6} lg={3} xl={3}>

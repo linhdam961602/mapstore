@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
+import * as dayjs from 'dayjs';
 
 import { DEFAULT_LOCALE } from 'translations/i18n';
-
 import { LANGUAGE } from 'constants/common';
 import localStorageService from 'utils/localStorage';
 
@@ -19,6 +19,7 @@ const languageSlice = createSlice({
       // Save to local storage
       localStorageService.setItem(LANGUAGE, action.payload);
 
+      dayjs.locale(action.payload);
       return {
         ...state,
         locale: action.payload,

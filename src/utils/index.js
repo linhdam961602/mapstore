@@ -23,6 +23,7 @@ import {
   isShift,
   isBackspaceOrDelete,
 } from 'utils/inputValidator';
+import { NORMAL_DATE_FORMAT } from 'constants/common';
 
 export const encodeToBase64 = (input) => btoa(input);
 export const decodeFromBase64 = (input) => atob(input);
@@ -213,3 +214,6 @@ export const getPhoneWithoutCode = (number) => {
   const phoneNumber = parsePhoneNumber(number);
   return phoneNumber ? phoneNumber.nationalNumber : '';
 };
+
+export const convertDate = (date, format = NORMAL_DATE_FORMAT) =>
+  date ? dayjs(date).format(format) : null;

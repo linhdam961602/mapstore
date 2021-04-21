@@ -8,7 +8,6 @@
 import React, { useCallback, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { useDispatch } from 'react-redux';
-
 import { Link } from 'react-router-dom';
 
 import { REGISTER_FORM_FIELDS, INITIAL_VALUES } from './constants';

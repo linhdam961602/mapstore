@@ -1,22 +1,6 @@
 import axios from 'axios';
 
-import {
-  DVHCVN_JSON_URL,
-  REGISTER_API_URL,
-  REST_COUNTRIES_API_URL,
-} from 'constants/apiUrl';
-
-import apiClient from 'apis/apiClient';
-
-export const signup = (payload) =>
-  apiClient
-    .post(REGISTER_API_URL, payload)
-    .then((response) => response)
-    .catch((err) => {
-      console.error(err);
-
-      throw err;
-    });
+import { DVHCVN_JSON_URL, REST_COUNTRIES_API_URL } from 'constants/apiUrl';
 
 export const getCountryList = () =>
   axios

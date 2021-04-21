@@ -1,5 +1,6 @@
 import { UserOutlined } from '@ant-design/icons';
 
+import { PROFILE } from 'constants/routes';
 import { createTranslatedText } from 'utils/text';
 
 const menusData = (intl) => {
@@ -8,7 +9,7 @@ const menusData = (intl) => {
   return [
     {
       key: 1,
-      path: '/profile',
+      path: PROFILE,
       name: getText('profile'),
       icon: <UserOutlined />,
     },

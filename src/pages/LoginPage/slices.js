@@ -15,6 +15,7 @@ const initialState = {
   isLoading: false,
   error: null,
   extendTime: 0,
+  userInfo: null,
 };
 
 const authSlice = createSlice({
