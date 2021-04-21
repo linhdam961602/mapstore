@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useMemo } from 'react';
+import React, { useEffect, useCallback, useMemo, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -24,6 +24,7 @@ import Col from 'components/BasicComponent/Grid/Col';
 
 import SidebarRight from 'containers/Sidebar/SidebarRight';
 import PhoneInput from 'containers/PhoneInputContainer';
+import AddressInput from 'containers/AddressInputContainer';
 
 import {
   TYPES_OF_SUBJECT,
@@ -41,6 +42,9 @@ const PersonalInfomation = () => {
   const typeOfSubjIntl = useMemo(() => TYPES_OF_SUBJECT(intl), [intl]);
   const [form] = Form.useForm();
 
+  const [curCountry, setCurCountry] = useState(null);
+  const [curProvince, setCurProvince] = useState(null);
+
   useInjectSaga({ key: contactSliceName, saga: contactSaga });
   const userInfo = useSelector(authSelector.selectUserInfo);
 
@@ -54,6 +58,8 @@ const PersonalInfomation = () => {
         USER_INFORMATION_FORM_FIELDS.TYPE
       ] = convertUserInfo.company ? TYPE_COMPANY : TYPE_PRIVATE;
       form.setFieldsValue(convertUserInfo);
+      setCurProvince(convertUserInfo[USER_INFORMATION_FORM_FIELDS.CITY]);
+      setCurCountry(convertUserInfo[USER_INFORMATION_FORM_FIELDS.COUNTRY]);
     }
   }, [form, userInfo]);
 
@@ -70,6 +76,30 @@ const PersonalInfomation = () => {
     const values = form.getFieldsValue();
     dispatch(contactActions.saveContact(convertData(values)));
   }, [dispatch, form]);
+
+  const onCountryChange = useCallback(
+    (value) => {
+      setCurCountry(value);
+      form.setFieldsValue({
+        [USER_INFORMATION_FORM_FIELDS.CITY]: '',
+        [USER_INFORMATION_FORM_FIELDS.STATE]: '',
+        [USER_INFORMATION_FORM_FIELDS.ADDRESS_1]: '',
+      });
+    },
+    [form],
+  );
+
+  const onProvinceChange = useCallback(
+    (value) => {
+      setCurProvince(value);
+      // Clear current selected district
+      form.setFieldsValue({
+        [USER_INFORMATION_FORM_FIELDS.STATE]: '',
+        [USER_INFORMATION_FORM_FIELDS.ADDRESS_1]: '',
+      });
+    },
+    [form],
+  );
 
   return (
     <div className="mypage">
@@ -193,7 +223,57 @@ const PersonalInfomation = () => {
                   </Item>
                 </Col>
               </Row>
+
               <Row gutter={16}>
+                <AddressInput
+                  defaultCountry={curCountry}
+                  defaultProvince={curProvince}
+                  renderCountryWrapper={(children) => (
+                    <Col lg={12} xs={24}>
+                      <Form.Item
+                        name={USER_INFORMATION_FORM_FIELDS.COUNTRY}
+                        label={getTextCommon('userInfo.labels.country')}
+                      >
+                        {children}
+                      </Form.Item>
+                    </Col>
+                  )}
+                  onCountryChange={onCountryChange}
+                  renderProvinceWrapper={(children) => (
+                    <Col lg={12} xs={24}>
+                      <Form.Item
+                        name={USER_INFORMATION_FORM_FIELDS.CITY}
+                        label={getTextCommon('userInfo.labels.province')}
+                      >
+                        {children}
+                      </Form.Item>
+                    </Col>
+                  )}
+                  onProvinceChange={onProvinceChange}
+                  renderDistrictWrapper={(children) => (
+                    <Col lg={12} xs={24}>
+                      <Form.Item
+                        name={USER_INFORMATION_FORM_FIELDS.STATE}
+                        label={getTextCommon('userInfo.labels.district')}
+                      >
+                        {children}
+                      </Form.Item>
+                    </Col>
+                  )}
+                  renderAddressWrapper={(children) => (
+                    <Col lg={12} xs={24}>
+                      <Form.Item
+                        name={USER_INFORMATION_FORM_FIELDS.ADDRESS_1}
+                        label={getTextCommon('userInfo.labels.address')}
+                      >
+                        {children}
+                      </Form.Item>
+                    </Col>
+                  )}
+                />
+              </Row>
+
+              {/* <Row gutter={16}>
                 <Col sm={24} md={12} lg={12} xl={12}>
                   <Item
                     name={USER_INFORMATION_FORM_FIELDS.COUNTRY}
@@ -229,6 +309,7 @@ const PersonalInfomation = () => {
                   </Item>
                 </Col>
               </Row>
+            */}
             </div>
             <Row gutter={16}>
               <Col sm={12} md={6} lg={3} xl={3}>

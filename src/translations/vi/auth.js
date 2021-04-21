@@ -24,10 +24,6 @@ const registration = {
     perInfo: 'Thông tin cá nhân',
     accSec: 'Bảo mật tài khoản',
   },
-  errors: {
-    agreement: 'Bạn phải đồng ý với các điều khoản và điều kiện.',
-    recaptcha: 'Vui lòng click vào ô xác nhận “Tôi không phải là người máy”.',
-  },
 };
 
 const forgotPassword = {

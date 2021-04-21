@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const REST_COUNTRIES_API_URL = 'https://restcountries.eu/rest/v2/all';
+import { REST_COUNTRIES_API_URL } from 'constants/apiUrl';
 
 export const getCountryList = () =>
   axios

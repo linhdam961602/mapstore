@@ -24,10 +24,6 @@ const registration = {
     perInfo: 'Personal information',
     accSec: 'Account security',
   },
-  errors: {
-    agreement: 'You must agree with the terms and conditions.',
-    recaptcha: 'Please click on the “I am not a robot” confirmation box.',
-  },
 };
 
 const forgotPassword = {

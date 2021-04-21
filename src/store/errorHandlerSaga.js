@@ -23,10 +23,13 @@ function* handler(action) {
   const error = get(action, 'payload', {});
 
   if (error && error.messageCodes) {
-    const message = error.messageCodes.reduce(
-      (con, msg) => `${con && getText(con)}${getText(msg)}`,
-      '',
-    );
+    let message = '';
+    // eslint-disable-next-line array-callback-return
+    error.messageCodes.map((msg) => {
+      const hasMessage = !!intl.messages[`common.error.${msg}`];
+      message += hasMessage ? getText(msg) : msg;
+    });
+
     yield put(
       notificationActions.showNotification({
         type: ERROR_TYPE,
