@@ -18,7 +18,6 @@ import { REGEX_EMAIL } from 'constants/common';
 import { VALIDATION_MESSAGES } from 'constants/form';
 import { useInjectSaga } from 'hooks/useInjector';
 
-import './styles.scss';
 import Row from 'components/BasicComponent/Grid/Row';
 import Col from 'components/BasicComponent/Grid/Col';
 
@@ -31,6 +30,8 @@ import {
   TYPE_PRIVATE,
   TYPE_COMPANY,
 } from 'constants/options';
+
+import './styles.scss';
 
 const { Item } = Form;
 
@@ -230,44 +231,44 @@ const PersonalInfomation = () => {
                   defaultProvince={curProvince}
                   renderCountryWrapper={(children) => (
                     <Col lg={12} xs={24}>
-                      <Form.Item
+                      <Item
                         name={USER_INFORMATION_FORM_FIELDS.COUNTRY}
                         label={getTextCommon('userInfo.labels.country')}
                       >
                         {children}
-                      </Form.Item>
+                      </Item>
                     </Col>
                   )}
                   onCountryChange={onCountryChange}
                   renderProvinceWrapper={(children) => (
                     <Col lg={12} xs={24}>
-                      <Form.Item
+                      <Item
                         name={USER_INFORMATION_FORM_FIELDS.CITY}
                         label={getTextCommon('userInfo.labels.province')}
                       >
                         {children}
-                      </Form.Item>
+                      </Item>
                     </Col>
                   )}
                   onProvinceChange={onProvinceChange}
                   renderDistrictWrapper={(children) => (
                     <Col lg={12} xs={24}>
-                      <Form.Item
+                      <Item
                         name={USER_INFORMATION_FORM_FIELDS.STATE}
                         label={getTextCommon('userInfo.labels.district')}
                       >
                         {children}
-                      </Form.Item>
+                      </Item>
                     </Col>
                   )}
                   renderAddressWrapper={(children) => (
                     <Col lg={12} xs={24}>
-                      <Form.Item
+                      <Item
                         name={USER_INFORMATION_FORM_FIELDS.ADDRESS_1}
                         label={getTextCommon('userInfo.labels.address')}
                       >
                         {children}
-                      </Form.Item>
+                      </Item>
                     </Col>
                   )}
                 />
