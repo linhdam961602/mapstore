@@ -60,7 +60,8 @@ const RegisterPage = () => {
   const intl = useIntl();
   const dispatch = useDispatch();
   const [form] = Form.useForm();
-  const getText = createTranslatedText('registration', intl);
+  const getTextRegistration = createTranslatedText('registration', intl);
+  const getTextCommon = createTranslatedText('common', intl);
 
   const [curType, setCurType] = useState(null);
   const [curStep, setCurStep] = useState(0);
@@ -108,7 +109,7 @@ const RegisterPage = () => {
           labelAlign="left"
           validateMessages={VALIDATION_MESSAGES}
         >
-          <h1 className="register__title">{getText('title')}</h1>
+          <h1 className="register__title">{getTextRegistration('title')}</h1>
           <Steps current={curStep} className="site-navigation-steps">
             {steps.map((item) => (
               <Step key={item.key} disabled />
@@ -117,7 +118,8 @@ const RegisterPage = () => {
           <div className="register__steps-content">
             {steps[curStep].contentRender({
               form,
-              getText,
+              getTextCommon,
+              getTextRegistration,
               curType,
               onTypeChange,
             })}
@@ -127,11 +129,13 @@ const RegisterPage = () => {
             <Col xl={12} xs={24}>
               <div className="register__button-wrapper">
                 {curStep > 0 && (
-                  <Button onClick={onGoPrev}>{getText('buttons.prev')}</Button>
+                  <Button onClick={onGoPrev}>
+                    {getTextCommon('action.prev')}
+                  </Button>
                 )}
                 {curStep < steps.length - 1 && (
                   <Button type="primary" onClick={onGoNext}>
-                    {getText('buttons.next')}
+                    {getTextCommon('action.next')}
                   </Button>
                 )}
                 {curStep === steps.length - 1 && (
@@ -141,14 +145,14 @@ const RegisterPage = () => {
                     className="register__button"
                     // disabled={!curCaptcha}
                   >
-                    {getText('buttons.register')}
+                    {getTextCommon('action.register')}
                   </Button>
                 )}
               </div>
             </Col>
             <Col xl={12} xs={24} className="register__link">
-              <span>{getText('labels.alreadyHaveAcc')}</span>
-              <Link to={LOGIN_URL}>{getText('buttons.login')}</Link>
+              <span>{getTextCommon('userInfo.labels.alreadyHaveAcc')}</span>
+              <Link to={LOGIN_URL}>{getTextCommon('action.login')}</Link>
             </Col>
           </Row>
         </Form>

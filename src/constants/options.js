@@ -1,75 +1,29 @@
-import { intl } from 'containers/LanguageProviderContainer';
 import { createTranslatedText } from 'utils/text';
-
-const getText = createTranslatedText('common.labels', intl);
 
 export const TYPE_PRIVATE = 'Private';
 export const TYPE_COMPANY = 'Company';
 
-export const TYPES_OF_SUBJECT = {
-  PERSONAL: {
-    value: TYPE_PRIVATE,
-    label: getText('personal'),
-  },
-  COMPANY: {
-    value: TYPE_COMPANY,
-    label: getText('company'),
-  },
-};
-
-export const TYPES_OF_PERSONAL_TITLE = {
-  NONE: {
-    value: '',
-    label: getText('none'),
-  },
-  MR: {
-    value: 'mr',
-    label: getText('mr'),
-  },
-  MRS: {
-    value: 'mrs',
-    label: getText('mrs'),
-  },
-  MISS: {
-    value: 'miss',
-    label: getText('miss'),
-  },
-};
-
-export const TYPES_OF_HOW_TO_FIND = {
-  FACEBOOK: {
-    value: 'facebook',
-    label: getText('facebook'),
-  },
-  GOOGLE: {
-    value: 'google',
-    label: getText('google'),
-  },
-  FRIENDS: {
-    value: 'friendAdvise',
-    label: getText('friendAdvise'),
-  },
-  ADS: {
-    value: 'ads',
-    label: getText('ads'),
-  },
-  SEARCH_ENGINES: {
-    value: 'searchEngines',
-    label: getText('searchEngines'),
-  },
-  OTHERS: {
-    value: 'otherSources',
-    label: getText('otherSources'),
-  },
+export const TYPES_OF_SUBJECT = (intl) => {
+  const getTextTypeOfSubject = createTranslatedText('common.labels', intl);
+  return {
+    PERSONAL: {
+      value: TYPE_PRIVATE,
+      label: getTextTypeOfSubject('personal'),
+    },
+    COMPANY: {
+      value: TYPE_COMPANY,
+      label: getTextTypeOfSubject('company'),
+    },
+  };
 };
 
 export const TYPES_OF_CURRENCY = {
   VND: {
     value: 'VND',
-    label: getText('vnd'),
+    label: 'VND',
   },
   USD: {
     value: 'USD',
-    label: getText('usd'),
+    label: 'USD',
   },
 };

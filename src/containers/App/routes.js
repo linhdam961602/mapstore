@@ -10,6 +10,7 @@ import {
   MY_PAGE_URI,
   REGIST_DOMAIN_URL,
   CHANGE_PASS,
+  CONTACT_LIST,
 } from 'constants/routes';
 
 export const layoutRoutes = [
@@ -35,6 +36,12 @@ export const layoutRoutes = [
     exact: true,
     path: CHANGE_PASS,
     component: lazy(() => import('pages/ChangePass')),
+    isPrivate: true,
+  },
+  {
+    exact: true,
+    path: CONTACT_LIST,
+    component: lazy(() => import('pages/ContactList')),
     isPrivate: true,
   },
   {

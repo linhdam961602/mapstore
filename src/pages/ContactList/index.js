@@ -1,22 +1,18 @@
-import React, { useEffect, useCallback, useMemo } from 'react';
+import React, { useCallback } from 'react';
 import { useIntl } from 'react-intl';
-import { useDispatch, useSelector } from 'react-redux';
 
-import { USER_INFORMATION_FORM_FIELDS, INITIAL_VALUES } from './constants';
-import { contactActions, contactSaga, contactSliceName } from './slices';
+import { CONTACT_LIST_FORM_FIELDS, INITIAL_VALUES } from './constants';
 
-import * as authSelector from 'pages/LoginPage/selector';
 import Form from 'components/BasicComponent/Form';
 import Input from 'components/BasicComponent/Input';
 import DatePicker from 'components/BasicComponent/DatePicker';
 import Select from 'components/BasicComponent/Select';
 import Button from 'components/BasicComponent/Button';
 
-import { onlyNumber, getPhoneWithoutCode } from 'utils';
+import { onlyNumber } from 'utils';
 import { createTranslatedText } from 'utils/text';
-import { REGEX_EMAIL } from 'constants/common';
+import { REGEX_EMAIL, REGEX_PASSWORD } from 'constants/common';
 import { VALIDATION_MESSAGES } from 'constants/form';
-import { useInjectSaga } from 'hooks/useInjector';
 
 import './styles.scss';
 import Row from 'components/BasicComponent/Grid/Row';
@@ -24,52 +20,19 @@ import Col from 'components/BasicComponent/Grid/Col';
 
 import SidebarRight from 'containers/Sidebar/SidebarRight';
 import PhoneInput from 'containers/PhoneInputContainer';
-
-import {
-  TYPES_OF_SUBJECT,
-  TYPE_PRIVATE,
-  TYPE_COMPANY,
-} from 'constants/options';
+import PasswordMeterInput from 'components/BasicComponent/PasswordMeterInput';
 
 const { Item } = Form;
 
-const PersonalInfomation = () => {
+const ContactList = () => {
   const intl = useIntl();
   const getTextSideBarRight = createTranslatedText('sidebarRight', intl);
   const getTextCommon = createTranslatedText('common', intl);
-  const dispatch = useDispatch();
-  const typeOfSubjIntl = useMemo(() => TYPES_OF_SUBJECT(intl), [intl]);
   const [form] = Form.useForm();
 
-  useInjectSaga({ key: contactSliceName, saga: contactSaga });
-  const userInfo = useSelector(authSelector.selectUserInfo);
-
-  useEffect(() => {
-    if (userInfo) {
-      const convertUserInfo = { ...userInfo };
-      convertUserInfo[USER_INFORMATION_FORM_FIELDS.PHONE] = getPhoneWithoutCode(
-        convertUserInfo[USER_INFORMATION_FORM_FIELDS.PHONE],
-      );
-      convertUserInfo[
-        USER_INFORMATION_FORM_FIELDS.TYPE
-      ] = convertUserInfo.company ? TYPE_COMPANY : TYPE_PRIVATE;
-      form.setFieldsValue(convertUserInfo);
-    }
-  }, [form, userInfo]);
-
-  const convertData = (data) => {
-    const cData = data;
-    cData.phonenumber = `${cData[USER_INFORMATION_FORM_FIELDS.CALLING_CODE]} ${
-      cData[USER_INFORMATION_FORM_FIELDS.PHONE]
-    }`;
-    delete cData[USER_INFORMATION_FORM_FIELDS.CALLING_CODE];
-    return cData;
-  };
-
   const onFinish = useCallback(() => {
-    const values = form.getFieldsValue();
-    dispatch(contactActions.saveContact(convertData(values)));
-  }, [dispatch, form]);
+    // TODO: Call API save contact
+  }, []);
 
   return (
     <div className="mypage">
@@ -90,54 +53,59 @@ const PersonalInfomation = () => {
           >
             <div className="form-group">
               <p className="title">
-                {getTextCommon('userInfo.groups.personalInfo')}
+                {getTextCommon('userInfo.groups.chooseContact')}
+              </p>
+              <Row gutter={16}>
+                <Col sm={24} md={12} lg={12} xl={12}>
+                  <Item name={CONTACT_LIST_FORM_FIELDS.CONTACT_ID}>
+                    {/* TODO: Integrate API get list contact */}
+                    <Select options={null} />
+                  </Item>
+                </Col>
+              </Row>
+            </div>
+            <div className="form-group">
+              <p className="title">
+                {getTextCommon('userInfo.groups.contactDetail')}
               </p>
               <Row gutter={16}>
                 <Col sm={24} md={12} lg={12} xl={8}>
                   <Item
-                    name={USER_INFORMATION_FORM_FIELDS.TYPE}
-                    label={getTextCommon('userInfo.labels.typeOfSubj')}
-                  >
-                    <Select options={Object.values(typeOfSubjIntl)} disabled />
-                  </Item>
-                </Col>
-                <Col sm={24} md={12} lg={12} xl={8}>
-                  <Item
-                    name={USER_INFORMATION_FORM_FIELDS.LAST_NAME}
+                    name={CONTACT_LIST_FORM_FIELDS.LAST_NAME}
                     label={getTextCommon('userInfo.labels.lastName')}
                     rules={[{ required: true }]}
                   >
                     <Input />
                   </Item>
-                  <Item name={USER_INFORMATION_FORM_FIELDS.POSTCODE} hidden>
+                  <Item name={CONTACT_LIST_FORM_FIELDS.POSTCODE} hidden>
                     <Input />
                   </Item>
                 </Col>
                 <Col sm={24} md={12} lg={12} xl={8}>
                   <Item
-                    name={USER_INFORMATION_FORM_FIELDS.FIRST_NAME}
+                    name={CONTACT_LIST_FORM_FIELDS.FIRST_NAME}
                     label={getTextCommon('userInfo.labels.firstName')}
                     rules={[{ required: true }]}
                   >
                     <Input />
                   </Item>
                 </Col>
-              </Row>
-              <Row gutter={16}>
                 <Col sm={24} md={12} lg={12} xl={8}>
                   <Item
-                    name={USER_INFORMATION_FORM_FIELDS.BIRTHDAY}
+                    name={CONTACT_LIST_FORM_FIELDS.BIRTHDAY}
                     label={getTextCommon('userInfo.labels.birthday')}
                   >
                     <DatePicker />
                   </Item>
                 </Col>
-                <Col sm={24} md={12} lg={12} xl={8}>
-                  <Item name={USER_INFORMATION_FORM_FIELDS.CALLING_CODE} hidden>
+              </Row>
+              <Row gutter={16}>
+                <Col sm={24} md={12} lg={12} xl={12}>
+                  <Item name={CONTACT_LIST_FORM_FIELDS.CALLING_CODE} hidden>
                     <Input />
                   </Item>
                   <Item
-                    name={USER_INFORMATION_FORM_FIELDS.PHONE}
+                    name={CONTACT_LIST_FORM_FIELDS.PHONE}
                     label={getTextCommon('userInfo.labels.phone')}
                     rules={[{ required: true }]}
                   >
@@ -145,19 +113,19 @@ const PersonalInfomation = () => {
                       disabledDropdown
                       className="register__phone-input"
                       countryCode={form.getFieldValue(
-                        USER_INFORMATION_FORM_FIELDS.CALLING_CODE,
+                        CONTACT_LIST_FORM_FIELDS.CALLING_CODE,
                       )}
                       onChangeCountry={(value) => {
                         form.setFieldsValue({
-                          [USER_INFORMATION_FORM_FIELDS.CALLING_CODE]: value,
+                          [CONTACT_LIST_FORM_FIELDS.CALLING_CODE]: value,
                         });
                       }}
                     />
                   </Item>
                 </Col>
-                <Col sm={24} md={12} lg={12} xl={8}>
+                <Col sm={24} md={12} lg={12} xl={12}>
                   <Item
-                    name={USER_INFORMATION_FORM_FIELDS.EMAIL}
+                    name={CONTACT_LIST_FORM_FIELDS.EMAIL}
                     label={getTextCommon('userInfo.labels.email')}
                     rules={[
                       { required: true },
@@ -170,15 +138,10 @@ const PersonalInfomation = () => {
                   </Item>
                 </Col>
               </Row>
-            </div>
-            <div className="form-group">
-              <p className="title">
-                {getTextCommon('userInfo.groups.paymentAddress')}
-              </p>
               <Row gutter={16}>
                 <Col sm={24} md={12} lg={12} xl={12}>
                   <Item
-                    name={USER_INFORMATION_FORM_FIELDS.COMPANY_NAME}
+                    name={CONTACT_LIST_FORM_FIELDS.COMPANY_NAME}
                     label={getTextCommon('userInfo.labels.compName')}
                   >
                     <Input />
@@ -186,7 +149,7 @@ const PersonalInfomation = () => {
                 </Col>
                 <Col sm={24} md={12} lg={12} xl={12}>
                   <Item
-                    name={USER_INFORMATION_FORM_FIELDS.TAX_ID}
+                    name={CONTACT_LIST_FORM_FIELDS.TAX_ID}
                     label={getTextCommon('userInfo.labels.taxCode')}
                   >
                     <Input onKeyDown={onlyNumber} />
@@ -196,7 +159,7 @@ const PersonalInfomation = () => {
               <Row gutter={16}>
                 <Col sm={24} md={12} lg={12} xl={12}>
                   <Item
-                    name={USER_INFORMATION_FORM_FIELDS.COUNTRY}
+                    name={CONTACT_LIST_FORM_FIELDS.COUNTRY}
                     label={getTextCommon('userInfo.labels.country')}
                   >
                     <Select />
@@ -204,7 +167,7 @@ const PersonalInfomation = () => {
                 </Col>
                 <Col sm={24} md={12} lg={12} xl={12}>
                   <Item
-                    name={USER_INFORMATION_FORM_FIELDS.ADDRESS_1}
+                    name={CONTACT_LIST_FORM_FIELDS.ADDRESS_1}
                     label={getTextCommon('userInfo.labels.address')}
                   >
                     <Input />
@@ -214,7 +177,7 @@ const PersonalInfomation = () => {
               <Row gutter={16}>
                 <Col sm={24} md={12} lg={12} xl={12}>
                   <Item
-                    name={USER_INFORMATION_FORM_FIELDS.CITY}
+                    name={CONTACT_LIST_FORM_FIELDS.CITY}
                     label={getTextCommon('userInfo.labels.province')}
                   >
                     <Select />
@@ -222,10 +185,56 @@ const PersonalInfomation = () => {
                 </Col>
                 <Col sm={24} md={12} lg={12} xl={12}>
                   <Item
-                    name={USER_INFORMATION_FORM_FIELDS.STATE}
+                    name={CONTACT_LIST_FORM_FIELDS.STATE}
                     label={getTextCommon('userInfo.labels.district')}
                   >
                     <Select />
+                  </Item>
+                </Col>
+              </Row>
+            </div>
+            <div className="form-group">
+              <p className="title">
+                {getTextCommon('userInfo.groups.accountSecurity')}
+              </p>
+              <Row gutter={16}>
+                <Col sm={24} md={12} lg={12} xl={12}>
+                  <Item
+                    name={CONTACT_LIST_FORM_FIELDS.NEW_PASS}
+                    label={getTextCommon('userInfo.labels.password')}
+                    rules={[
+                      { required: true },
+                      {
+                        pattern: REGEX_PASSWORD,
+                      },
+                    ]}
+                  >
+                    <PasswordMeterInput />
+                  </Item>
+                </Col>
+                <Col sm={24} md={24} lg={12} xl={12}>
+                  <Item
+                    name={CONTACT_LIST_FORM_FIELDS.RE_PASS}
+                    label={getTextCommon('userInfo.labels.repassword')}
+                    rules={[
+                      { required: true },
+                      ({ getFieldValue }) => ({
+                        validator(_, value) {
+                          if (
+                            !value ||
+                            getFieldValue(CONTACT_LIST_FORM_FIELDS.NEW_PASS) ===
+                              value
+                          ) {
+                            return Promise.resolve();
+                          }
+                          return Promise.reject(
+                            new Error(getTextCommon('error.passwordNotMatch')), // TODO: update translation
+                          );
+                        },
+                      }),
+                    ]}
+                  >
+                    <Input type="password" />
                   </Item>
                 </Col>
               </Row>
@@ -246,4 +255,4 @@ const PersonalInfomation = () => {
   );
 };
 
-export default PersonalInfomation;
+export default ContactList;

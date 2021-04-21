@@ -17,6 +17,7 @@ export const MY_PAYMENT_URL = '/my-payment';
 export const SUPPORT_URL = '/support';
 export const CART_URL = '/cart';
 export const CHANGE_PASS = '/change-password';
+export const CONTACT_LIST = '/contact-list';
 
 // STORE
 export const STORE = '/store';

@@ -44,23 +44,6 @@ const mypage = {
     emmtyNoti: 'No Notification',
   },
   wallet: 'Wallet',
-  myInformation: {
-    personalInfo: 'Personal Information',
-    paymentAddress: 'Payment Address',
-    labels: {
-      compName: 'Company name',
-      taxCode: 'Tax code',
-      firstName: 'First name',
-      lastName: 'Last name',
-      email: 'Email Address',
-      phone: 'Phone',
-      country: 'Country',
-      province: 'Province/City',
-      district: 'District',
-      birthday: 'Birthday',
-      address: 'Address',
-    },
-  },
   changePass: {
     labels: {
       oldPassword: 'Old password',

@@ -6,7 +6,7 @@ import {
   LockOutlined,
 } from '@ant-design/icons';
 
-import { PROFILE, CHANGE_PASS } from 'constants/routes';
+import { PROFILE, CHANGE_PASS, CONTACT_LIST } from 'constants/routes';
 
 import { createTranslatedText } from 'utils/text';
 
@@ -23,7 +23,7 @@ const menusData = (intl) => {
     {
       key: 2,
       name: getText('contactList'),
-      path: '/contact-list',
+      path: CONTACT_LIST,
       icon: <UsergroupDeleteOutlined />,
     },
     {

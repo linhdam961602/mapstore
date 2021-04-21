@@ -4,34 +4,24 @@ import { REGISTER_FORM_FIELDS } from '../constants';
 
 import Form from 'components/BasicComponent/Form';
 import Input from 'components/BasicComponent/Input';
-import Select from 'components/BasicComponent/Select';
 import Grid from 'components/BasicComponent/Grid';
 import PhoneInput from 'containers/PhoneInputContainer';
-import { TYPES_OF_PERSONAL_TITLE } from 'constants/options';
 import PasswordMeterInput from 'components/BasicComponent/PasswordMeterInput';
 import { REGEX_EMAIL, REGEX_PASSWORD } from 'constants/common';
 
 const { Row, Col } = Grid;
 
-const Step2 = ({ form, getText }) => (
+const Step2 = ({ form, getTextCommon, getTextRegistration }) => (
   <>
     {/* Personal Information */}
     <h3 className="register__form-section--title">
-      {getText('headings.perInfo')}
+      {getTextRegistration('headings.perInfo')}
     </h3>
     <Row gutter={16}>
-      <Col span={24}>
-        <Form.Item
-          name={REGISTER_FORM_FIELDS.PERSONAL_TITLE}
-          label={getText('labels.youAre')}
-        >
-          <Select options={Object.values(TYPES_OF_PERSONAL_TITLE)} />
-        </Form.Item>
-      </Col>
       <Col md={12} xs={24}>
         <Form.Item
           name={REGISTER_FORM_FIELDS.LAST_NAME}
-          label={getText('labels.lastName')}
+          label={getTextCommon('userInfo.labels.lastName')}
           rules={[{ required: true }]}
         >
           <Input />
@@ -40,7 +30,7 @@ const Step2 = ({ form, getText }) => (
       <Col md={12} xs={24}>
         <Form.Item
           name={REGISTER_FORM_FIELDS.FIRST_NAME}
-          label={getText('labels.firstName')}
+          label={getTextCommon('userInfo.labels.firstName')}
           rules={[{ required: true }]}
         >
           <Input />
@@ -51,7 +41,7 @@ const Step2 = ({ form, getText }) => (
       <Col span={24}>
         <Form.Item
           name={REGISTER_FORM_FIELDS.EMAIL}
-          label={getText('labels.email')}
+          label={getTextCommon('userInfo.labels.email')}
           rules={[
             { required: true },
             {
@@ -68,7 +58,7 @@ const Step2 = ({ form, getText }) => (
         </Form.Item>
         <Form.Item
           name={REGISTER_FORM_FIELDS.PHONE}
-          label={getText('labels.phone')}
+          label={getTextCommon('userInfo.labels.phone')}
           rules={[{ required: true }]}
         >
           <PhoneInput
@@ -87,13 +77,13 @@ const Step2 = ({ form, getText }) => (
 
     {/* Account Security */}
     <h3 className="register__form-section--title">
-      {getText('headings.accSec')}
+      {getTextRegistration('headings.accSec')}
     </h3>
     <Row gutter={16}>
       <Col span={24}>
         <Form.Item
           name={REGISTER_FORM_FIELDS.PASSWORD}
-          label={getText('labels.password')}
+          label={getTextCommon('userInfo.labels.password')}
           rules={[
             { required: true },
             {
@@ -107,7 +97,7 @@ const Step2 = ({ form, getText }) => (
       <Col span={24}>
         <Form.Item
           name={REGISTER_FORM_FIELDS.PASSWORD_2}
-          label={getText('labels.repassword')}
+          label={getTextCommon('userInfo.labels.repassword')}
           rules={[
             { required: true },
             ({ getFieldValue }) => ({

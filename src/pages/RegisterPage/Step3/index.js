@@ -10,13 +10,12 @@ import Grid from 'components/BasicComponent/Grid';
 import DatePicker from 'components/BasicComponent/DatePicker';
 import Checkbox from 'components/BasicComponent/Checkbox';
 import { RECAPTCHA_SITE_KEY } from 'constants/common';
-import { LAYOUT_12_12 } from 'constants/form';
-import { TYPES_OF_HOW_TO_FIND, TYPES_OF_CURRENCY } from 'constants/options';
+import { TYPES_OF_CURRENCY } from 'constants/options';
 import useWindowDimensions from 'hooks/useWindowDimensions';
 
 const { Row, Col } = Grid;
 
-const Step3 = ({ getText }) => {
+const Step3 = ({ getTextCommon }) => {
   const { width } = useWindowDimensions();
 
   return (
@@ -25,7 +24,7 @@ const Step3 = ({ getText }) => {
         <Col lg={12} xs={24}>
           <Form.Item
             name={REGISTER_FORM_FIELDS.BIRTHDAY}
-            label={getText('labels.birthday')}
+            label={getTextCommon('userInfo.labels.birthday')}
           >
             <DatePicker />
           </Form.Item>
@@ -33,7 +32,7 @@ const Step3 = ({ getText }) => {
         <Col lg={12} xs={24}>
           <Form.Item
             name={REGISTER_FORM_FIELDS.NATIONAL_ID}
-            label={getText('labels.idPp')}
+            label={getTextCommon('userInfo.labels.idPp')}
           >
             <Input />
           </Form.Item>
@@ -43,7 +42,7 @@ const Step3 = ({ getText }) => {
         <Col lg={12} xs={24}>
           <Form.Item
             name={REGISTER_FORM_FIELDS.COUNTRY}
-            label={getText('labels.country')}
+            label={getTextCommon('userInfo.labels.country')}
           >
             <Select />
           </Form.Item>
@@ -51,7 +50,7 @@ const Step3 = ({ getText }) => {
         <Col lg={12} xs={24}>
           <Form.Item
             name={REGISTER_FORM_FIELDS.CITY}
-            label={getText('labels.province')}
+            label={getTextCommon('userInfo.labels.province')}
           >
             <Select />
           </Form.Item>
@@ -61,7 +60,7 @@ const Step3 = ({ getText }) => {
         <Col lg={12} xs={24}>
           <Form.Item
             name={REGISTER_FORM_FIELDS.STATE}
-            label={getText('labels.district')}
+            label={getTextCommon('userInfo.labels.district')}
           >
             <Select />
           </Form.Item>
@@ -69,7 +68,7 @@ const Step3 = ({ getText }) => {
         <Col lg={12} xs={24}>
           <Form.Item
             name={REGISTER_FORM_FIELDS.ADDRESS_1}
-            label={getText('labels.address')}
+            label={getTextCommon('userInfo.labels.address')}
           >
             <Input />
           </Form.Item>
@@ -79,20 +78,9 @@ const Step3 = ({ getText }) => {
         <Col lg={12} xs={24}>
           <Form.Item
             name={REGISTER_FORM_FIELDS.CURRENCY}
-            label={getText('labels.currency')}
+            label={getTextCommon('userInfo.labels.currency')}
           >
-            <Select options={Object.values(TYPES_OF_CURRENCY)} />
-          </Form.Item>
-        </Col>
-      </Row>
-      <Row gutter={16}>
-        <Col span={24}>
-          <Form.Item
-            name={REGISTER_FORM_FIELDS.HOW_TO_FIND}
-            label={getText('labels.howFindUs')}
-            {...LAYOUT_12_12}
-          >
-            <Select options={Object.values(TYPES_OF_HOW_TO_FIND)} />
+            <Select options={Object.values(TYPES_OF_CURRENCY)} disabled />
           </Form.Item>
         </Col>
       </Row>
@@ -104,7 +92,7 @@ const Step3 = ({ getText }) => {
             validator: (_, value) =>
               value
                 ? Promise.resolve()
-                : Promise.reject(new Error(getText('errors.recaptcha'))),
+                : Promise.reject(new Error(getTextCommon('errors.recaptcha'))),
           },
         ]}
       >
@@ -122,14 +110,14 @@ const Step3 = ({ getText }) => {
             validator: (_, value) =>
               value
                 ? Promise.resolve()
-                : Promise.reject(new Error(getText('errors.agreement'))),
+                : Promise.reject(new Error(getTextCommon('errors.agreement'))),
           },
         ]}
       >
         <Checkbox>
-          {getText('labels.agreement')}
+          {getTextCommon('userInfo.labels.agreement')}
           <a href={TERMS_OF_SERVICE_URL} target="_blank">
-            {getText('labels.termsOfService')}
+            {getTextCommon('userInfo.labels.termsOfService')}
           </a>
         </Checkbox>
       </Form.Item>
