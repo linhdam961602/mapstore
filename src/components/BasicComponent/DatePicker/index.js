@@ -11,16 +11,19 @@ import './styles.scss';
 
 import { NORMAL_DATE_FORMAT } from 'constants/common';
 
-const DatePicker = ({ className, format, locale = 'vi', ...rest }, ref) => {
+const DatePicker = (
+  { className, format = NORMAL_DATE_FORMAT, locale = 'vi', value, ...rest },
+  ref,
+) => {
   const classes = classNames({
     tino__datepicker: true,
-    [className]: className || '',
+    [className]: className,
   });
 
   return (
     <AntdDatePicker
       locale={locale === 'vi' ? localeVN : localeEN}
-      format={format || NORMAL_DATE_FORMAT}
+      format={format}
       className={classes}
       {...rest}
       ref={ref}

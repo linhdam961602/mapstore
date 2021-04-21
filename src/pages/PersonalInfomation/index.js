@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import React, { useEffect, useCallback, useMemo, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,7 +13,7 @@ import DatePicker from 'components/BasicComponent/DatePicker';
 import Select from 'components/BasicComponent/Select';
 import Button from 'components/BasicComponent/Button';
 
-import { onlyNumber, getPhoneWithoutCode } from 'utils';
+import { onlyNumber, getPhoneWithoutCode, convertDate } from 'utils';
 import { createTranslatedText } from 'utils/text';
 import { REGEX_EMAIL } from 'constants/common';
 import { VALIDATION_MESSAGES } from 'constants/form';
@@ -51,32 +52,48 @@ const PersonalInfomation = () => {
 
   useEffect(() => {
     if (userInfo) {
-      const convertUserInfo = { ...userInfo };
+      const convertUserInfo = {
+        ...userInfo,
+        [USER_INFORMATION_FORM_FIELDS.BIRTHDAY]: convertDate(
+          userInfo[USER_INFORMATION_FORM_FIELDS.BIRTHDAY],
+        ),
+      };
       convertUserInfo[USER_INFORMATION_FORM_FIELDS.PHONE] = getPhoneWithoutCode(
         convertUserInfo[USER_INFORMATION_FORM_FIELDS.PHONE],
       );
       convertUserInfo[
         USER_INFORMATION_FORM_FIELDS.TYPE
       ] = convertUserInfo.company ? TYPE_COMPANY : TYPE_PRIVATE;
+
       form.setFieldsValue(convertUserInfo);
+
       setCurProvince(convertUserInfo[USER_INFORMATION_FORM_FIELDS.CITY]);
       setCurCountry(convertUserInfo[USER_INFORMATION_FORM_FIELDS.COUNTRY]);
     }
   }, [form, userInfo]);
 
-  const convertData = (data) => {
-    const cData = data;
-    cData.phonenumber = `${cData[USER_INFORMATION_FORM_FIELDS.CALLING_CODE]} ${
-      cData[USER_INFORMATION_FORM_FIELDS.PHONE]
-    }`;
-    delete cData[USER_INFORMATION_FORM_FIELDS.CALLING_CODE];
-    return cData;
-  };
+  const convertData = useCallback(
+    (data) => {
+      const cData = data;
+      cData.phonenumber = `${
+        cData[USER_INFORMATION_FORM_FIELDS.CALLING_CODE]
+      } ${cData[USER_INFORMATION_FORM_FIELDS.PHONE]}`;
+
+      delete cData[USER_INFORMATION_FORM_FIELDS.CALLING_CODE];
+      return {
+        ...cData,
+        [USER_INFORMATION_FORM_FIELDS.BIRTHDAY]: convertDate(
+          userInfo[USER_INFORMATION_FORM_FIELDS.BIRTHDAY],
+        ),
+      };
+    },
+    [userInfo],
+  );
 
   const onFinish = useCallback(() => {
     const values = form.getFieldsValue();
     dispatch(contactActions.saveContact(convertData(values)));
-  }, [dispatch, form]);
+  }, [convertData, dispatch, form]);
 
   const onCountryChange = useCallback(
     (value) => {
