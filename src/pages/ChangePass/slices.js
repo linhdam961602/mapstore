@@ -30,7 +30,7 @@ const resetPasswordSlice = createSlice({
       isLoading: false,
       error: action.payload,
     }),
-    resetPasswordSuccess: (state, action) => ({
+    resetPasswordSuccess: (state) => ({
       ...state,
       isLoading: false,
     }),

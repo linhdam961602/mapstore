@@ -1,6 +1,7 @@
 @import 'styles/mixins.scss';
 
-.titleHasTag {
+.cloudHostingPage {
+  background-color: $grey-1;
   margin-bottom: 1.5rem;
 
   .subTitle {
@@ -66,7 +67,7 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-      color: #0fa54a;
+      color: $green;
     }
 
     .numberStep {
@@ -107,6 +108,7 @@
     border-radius: 1rem;
     padding: 2.5rem;
     margin-right: 2rem;
+    background-color: $white;
 
     .ant-radio-inner {
       display: none;
@@ -231,5 +233,192 @@
 }
 
 .configurationInfo {
-  background-color: $grey-main;
+  background-color: $white;
+  padding: 2rem 2rem 3rem;
+
+  &__note {
+    padding: 0.8rem 1.6rem;
+    background-color: $grey-2;
+    margin-bottom: 2rem;
+
+    .info-icon {
+      width: 2rem;
+      margin-right: 1rem;
+    }
+  }
+
+  &__desc {
+    margin-bottom: 2rem;
+  }
+
+  &__security {
+    .ant-checkbox-checked {
+      .ant-checkbox-inner {
+        background-color: $green;
+        border-color: $green;
+      }
+    }
+
+    .ant-checkbox-wrapper:hover .ant-checkbox-inner,
+    .ant-checkbox:hover .ant-checkbox-inner,
+    .ant-checkbox-input:focus + .ant-checkbox-inner {
+      border-color: $green;
+    }
+  }
+
+  .security {
+    &__checkbox {
+      border: 1px solid $red-1;
+      margin-bottom: 1.5rem;
+      padding: 1rem 1.5rem;
+      min-width: 100%;
+      background-color: $red-2;
+
+      p {
+        margin-bottom: 0;
+      }
+
+      &.ant-checkbox-wrapper-checked {
+        border-color: $green;
+        background-color: $green-1;
+      }
+    }
+  }
+
+  .packages {
+    margin-bottom: 2rem;
+
+    &__time {
+      font-weight: bold;
+    }
+
+    &__price {
+      font-weight: bold;
+      color: $danger;
+    }
+
+    &__sale-price {
+      text-decoration-line: line-through;
+      color: $grey-4;
+    }
+
+    &__sale-percent {
+      color: $white;
+      text-align: center;
+      font-weight: bold;
+      position: absolute;
+      top: 0.5rem;
+      right: 1rem;
+
+      .percent {
+        font-size: 1.8rem;
+        line-height: 1;
+      }
+    }
+
+    &__info {
+      overflow: hidden;
+      flex-direction: column-reverse;
+      position: relative;
+      min-height: 12rem;
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: -1.2rem;
+        right: -2px;
+        width: 6.6rem;
+        height: 5.4rem;
+        background-color: $grey-6;
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+        transform: rotate(-20deg);
+      }
+
+      &:after {
+        content: '';
+        position: absolute;
+        top: 0.8rem;
+        right: -0.8rem;
+        width: 5.7rem;
+        height: 5.1rem;
+        background-color: $grey-6;
+        border-bottom-right-radius: 0.6rem;
+        border-bottom-left-radius: 0.6rem;
+
+        transform: rotate(15deg);
+      }
+
+      span:last-child {
+        min-height: 6.5rem;
+        z-index: 2;
+      }
+
+      &.ant-radio-wrapper-checked {
+        &:before,
+        &:after {
+          background-color: $red;
+        }
+      }
+
+      &--sale {
+        &:before,
+        &:after {
+          background-color: $blue-8;
+        }
+      }
+    }
+  }
+
+  .capacity {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    &__title {
+      margin-bottom: 1rem;
+    }
+
+    &__vps {
+      margin: 0 auto;
+    }
+
+    &__view {
+      width: 100%;
+      background-color: $grey-5;
+      border: none;
+
+      .view-icon {
+        width: 1.5rem;
+        margin-right: 0.8rem;
+      }
+    }
+  }
+
+  .packages {
+    display: flex;
+    align-items: stretch;
+
+    &__info {
+      border: 1px solid $grey-3;
+      border-radius: 1rem;
+      padding: 0.5rem;
+      margin-right: 2rem;
+
+      .ant-radio-inner {
+        display: none;
+      }
+
+      &:hover {
+        cursor: pointer;
+        border: 1px solid $green;
+        transition-duration: 1s;
+      }
+
+      &.ant-radio-wrapper-checked {
+        overflow: hidden;
+        border: 1px solid $green;
+      }
+    }
+  }
 }

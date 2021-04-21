@@ -5,6 +5,7 @@ export const FORGOT_URL = '/forgot-password';
 export const REGISTER_URL = '/signup';
 export const PROFILE = '/profile';
 export const REGIST_DOMAIN_URL = '/regist-domain';
+export const DOMAIN_URL = '/domain';
 export const HOSTING_URL = '/hosting';
 export const EMAIL_URL = '/email';
 export const VPS_URL = '/vps';
@@ -21,4 +22,4 @@ export const CONTACT_LIST = '/contact-list';
 
 // STORE
 export const STORE = '/store';
-export const CLOUD_HOSTING = `${STORE}/cloud-hosting`;
+export const CLOUD_HOSTING = '/cloud-hosting';
