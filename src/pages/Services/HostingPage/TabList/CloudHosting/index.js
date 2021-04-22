@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { useIntl } from 'react-intl';
-import { DatabaseOutlined } from '@ant-design/icons';
+import {
+  DatabaseOutlined,
+  UserOutlined,
+  DownOutlined,
+} from '@ant-design/icons';
 import Tag from 'antd/es/tag';
 import Form from 'antd/es/form';
 import Radio from 'antd/es/radio';
@@ -9,8 +13,13 @@ import Checkbox from 'antd/es/checkbox';
 import Button from 'antd/es/button';
 import Row from 'antd/es/row';
 import Col from 'antd/es/col';
-import 'antd/es/tag/style/css';
+import Menu from 'antd/es/menu';
+import Dropdown from 'antd/es/dropdown';
+import Input from 'antd/es/input';
+import 'antd/es/menu/style/css';
+import 'antd/es/input/style/css';
 import 'antd/es/dropdown/style/css';
+import 'antd/es/tag/style/css';
 import 'antd/es/checkbox/style/css';
 import 'antd/es/radio/style/css';
 import 'antd/es/button/style/css';
@@ -37,6 +46,20 @@ const CloudHostingBusiness = () => {
   const onChange = (e) => {
     setValue(e.target.value);
   };
+
+  const menu = (
+    <Menu>
+      <Menu.Item key="1" icon={<UserOutlined />}>
+        1st menu item
+      </Menu.Item>
+      <Menu.Item key="2" icon={<UserOutlined />}>
+        2nd menu item
+      </Menu.Item>
+      <Menu.Item key="3" icon={<UserOutlined />}>
+        3rd menu item
+      </Menu.Item>
+    </Menu>
+  );
 
   return (
     <div className="mypage cloudHostingPage">
@@ -250,6 +273,169 @@ const CloudHostingBusiness = () => {
             </div>
           </div>
         </div>
+
+        <table className="panel">
+          <thead>
+            <tr>
+              <td>IP</td>
+              <td>OPERATING SYSTEM 2</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <Dropdown overlay={menu}>
+                  <Button>
+                    1 IP <DownOutlined />
+                  </Button>
+                </Dropdown>
+              </td>
+              <td>
+                <Dropdown overlay={menu}>
+                  <Button>
+                    Ubuntu 16 <DownOutlined />
+                  </Button>
+                </Dropdown>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table className="panel">
+          <thead>
+            <tr>
+              <td>SSD DISK</td>
+              <td>RAM</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <Dropdown overlay={menu}>
+                  <Button>
+                    20 GB (Đã bao gồm) <DownOutlined />
+                  </Button>
+                </Dropdown>
+              </td>
+              <td>
+                <Dropdown overlay={menu}>
+                  <Button>
+                    1 GB (Đã bao gồm) <DownOutlined />
+                  </Button>
+                </Dropdown>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table className="panel">
+          <thead>
+            <tr>
+              <td colSpan="2">CONTROL PANEL</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <Radio.Group onChange={onChange} value={value}>
+                  <Radio value={1}>A</Radio>
+                  <Radio value={2}>B</Radio>
+                  <Radio value={3}>C</Radio>
+                  <Radio value={4}>D</Radio>
+                </Radio.Group>
+              </td>
+              <td>
+                <Radio.Group onChange={onChange} value={value}>
+                  <Radio value={5}>A</Radio>
+                  <Radio value={6}>B</Radio>
+                  <Radio value={7}>C</Radio>
+                  <Radio value={8}>D</Radio>
+                </Radio.Group>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table className="panel">
+          <thead>
+            <tr>
+              <td>SUBPRODUCTS</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className="td--border-bottom">
+                <Checkbox value="vps-1024">
+                  <p>VPS Pro - VPS 1024</p>
+                </Checkbox>
+                <div className="time">
+                  <Dropdown overlay={menu}>
+                    <Button>
+                      Theo 1 tháng <DownOutlined />
+                    </Button>
+                  </Dropdown>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td className="td--border-bottom">
+                <Checkbox value="vps-2048">
+                  <p>VPS Pro - VPS 2048</p>
+                </Checkbox>
+              </td>
+            </tr>
+            <tr>
+              <td className="td--border-bottom">
+                <Checkbox value="vps-3072">
+                  <p>VPS Pro - VPS 3072</p>
+                </Checkbox>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table className="panel">
+          <thead>
+            <tr>
+              <td>DOMAIN</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <Dropdown overlay={menu}>
+                  <Button>
+                    1 IP <DownOutlined />
+                  </Button>
+                </Dropdown>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table className="panel">
+          <thead>
+            <tr>
+              <td>PROMOTION CODE</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <Form layout="inline">
+                  <Form.Item name="promotionCode">
+                    <Input placeholder="Enter Promotion Code" />
+                  </Form.Item>
+                  <Form.Item>
+                    <Button type="primary" htmlType="submit">
+                      Submit
+                    </Button>
+                  </Form.Item>
+                </Form>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </Form>
     </div>
   );

@@ -234,7 +234,9 @@
 
 .configurationInfo {
   background-color: $white;
+  border: 1px solid $grey-7;
   padding: 2rem 2rem 3rem;
+  margin-bottom: 2rem;
 
   &__note {
     padding: 0.8rem 1.6rem;
@@ -419,6 +421,58 @@
         overflow: hidden;
         border: 1px solid $primary;
       }
+    }
+  }
+}
+
+.panel {
+  background-color: $white;
+  border: 1px solid $grey-7;
+  width: 100%;
+  margin-bottom: 2rem;
+
+  thead {
+    background-color: $light-gray-2;
+
+    td {
+      font-weight: bold;
+      padding: 1rem 1.5rem;
+      width: 50%;
+    }
+  }
+
+  tbody {
+    td {
+      padding: 2rem 1.5rem;
+
+      &.td--border-bottom {
+        border-bottom: 1px solid $grey-8;
+      }
+    }
+
+    .ant-btn {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .ant-radio-wrapper {
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .ant-radio-checked .ant-radio-inner {
+      border-color: $primary;
+      background-color: $primary;
+
+      &:after {
+        background-color: $white;
+      }
+    }
+
+    .time {
+      padding-left: 2.5rem;
     }
   }
 }
