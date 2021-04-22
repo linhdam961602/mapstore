@@ -1,0 +1,8 @@
+@import 'styles/mixins.scss';
+
+.tino__tabs {
+  .ant-tabs-tab {
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+}

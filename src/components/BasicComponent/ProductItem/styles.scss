@@ -1,0 +1,131 @@
+@import 'styles/mixins.scss';
+
+.item {
+  border: 1px solid $grey;
+  border-radius: 1rem;
+  padding: 2.5rem;
+  margin-right: 2rem;
+  background-color: $white;
+
+  &__favorite {
+    border: 1px solid $red;
+  }
+
+  .ant-radio-inner {
+    display: none;
+  }
+  &:hover {
+    cursor: pointer;
+    border: 1px solid $primary;
+    transition-duration: 1s;
+  }
+
+  &__capacity {
+    font-size: 1.6rem;
+    font-weight: bold;
+  }
+
+  &__price {
+    .unit {
+      font-size: 2.4rem;
+      font-weight: bold;
+    }
+
+    .ruler {
+      border-top: 3px solid $primary;
+      width: 4rem;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__list {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 2rem;
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  &__time {
+    margin-bottom: 2rem;
+  }
+
+  &__btn {
+    text-align: center;
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 1s linear;
+
+    .ant-btn {
+      color: $white;
+      border-radius: 0.3rem;
+
+      &:hover {
+        background-color: $white;
+        border: 1px solid $primary;
+        color: $primary;
+        font-weight: bold;
+      }
+    }
+  }
+
+  &.ant-radio-wrapper-checked {
+    overflow: hidden;
+    position: relative;
+    border: 1px solid $primary;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: -1.8rem;
+      transform: rotate(45deg);
+      right: -3.2rem;
+      width: 10rem;
+      height: 5rem;
+      background-color: $primary;
+      transition-duration: 1s;
+    }
+
+    &:after {
+      opacity: 1;
+      height: 1rem;
+      width: 2rem;
+      border-right: 3px solid $white;
+      border-top: 3px solid $white;
+      content: '';
+      top: 1rem;
+      right: 0.9rem;
+      position: absolute;
+      transform: rotate(136deg);
+      transition-duration: 1s;
+    }
+
+    .item {
+      &__btn {
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s 1s, opacity 1s linear;
+      }
+    }
+  }
+
+  .ant-checkbox-inner {
+    background-color: $white;
+    border-color: $primary;
+
+    &:after {
+      position: absolute;
+      top: 31%;
+      left: 22%;
+      display: table;
+      width: 0.9rem;
+      height: 1.5rem;
+      border: 2px solid $primary;
+      border-top: 0;
+      border-left: 0;
+    }
+  }
+}

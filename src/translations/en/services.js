@@ -5,4 +5,20 @@ const services = {
   },
 };
 
-export { services };
+const hostingService = {
+  tabs: {
+    cloudHosting: 'Cloud Hosting',
+    cloudHostingBusiness: 'Cloud Hosting Business',
+    cloudHostingSeo: 'Cloud Hosting SEO',
+    unlimitedHosting: 'Unlimited Hosting',
+  },
+};
+
+const products = {
+  labels: { month: 'month' },
+  buttons: {
+    order: 'Order',
+  },
+};
+
+export { services, hostingService, products };

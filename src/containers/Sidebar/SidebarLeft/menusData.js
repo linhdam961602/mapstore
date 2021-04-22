@@ -12,7 +12,6 @@ import {
   ASSISTANT_URL,
   MY_PAYMENT_URL,
   SUPPORT_URL,
-  CLOUD_HOSTING,
   MY_PAGE_URI,
   HOME_URI,
 } from 'constants/routes';
@@ -105,14 +104,6 @@ const menusData = (intl, isAuthenticated) => {
           key: 11,
           path: ASSISTANT_URL,
           name: getText('assistant'),
-          icon: '',
-          role: '',
-          hideInmenu: false,
-        },
-        {
-          key: 4,
-          path: CLOUD_HOSTING,
-          name: getText('cloudHosting'),
           icon: '',
           role: '',
           hideInmenu: false,
