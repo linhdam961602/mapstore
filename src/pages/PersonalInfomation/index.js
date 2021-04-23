@@ -1,10 +1,9 @@
-/* eslint-disable indent */
 import React, { useEffect, useCallback, useMemo, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { USER_INFORMATION_FORM_FIELDS, INITIAL_VALUES } from './constants';
-import { contactActions, contactSaga, contactSliceName } from './slices';
+import { clientActions, clientSaga, clientSliceName } from './slices';
 
 import * as authSelector from 'pages/LoginPage/selector';
 import Form from 'components/BasicComponent/Form';
@@ -47,7 +46,7 @@ const PersonalInfomation = () => {
   const [curCountry, setCurCountry] = useState(null);
   const [curProvince, setCurProvince] = useState(null);
 
-  useInjectSaga({ key: contactSliceName, saga: contactSaga });
+  useInjectSaga({ key: clientSliceName, saga: clientSaga });
   const userInfo = useSelector(authSelector.selectUserInfo);
 
   useEffect(() => {
@@ -92,7 +91,7 @@ const PersonalInfomation = () => {
 
   const onFinish = useCallback(() => {
     const values = form.getFieldsValue();
-    dispatch(contactActions.saveContact(convertData(values)));
+    dispatch(clientActions.saveClientInformation(convertData(values)));
   }, [convertData, dispatch, form]);
 
   const onCountryChange = useCallback(
@@ -290,44 +289,6 @@ const PersonalInfomation = () => {
                   )}
                 />
               </Row>
-
-              {/* <Row gutter={16}>
-                <Col sm={24} md={12} lg={12} xl={12}>
-                  <Item
-                    name={USER_INFORMATION_FORM_FIELDS.COUNTRY}
-                    label={getTextCommon('userInfo.labels.country')}
-                  >
-                    <Select />
-                  </Item>
-                </Col>
-                <Col sm={24} md={12} lg={12} xl={12}>
-                  <Item
-                    name={USER_INFORMATION_FORM_FIELDS.ADDRESS_1}
-                    label={getTextCommon('userInfo.labels.address')}
-                  >
-                    <Input />
-                  </Item>
-                </Col>
-              </Row>
-              <Row gutter={16}>
-                <Col sm={24} md={12} lg={12} xl={12}>
-                  <Item
-                    name={USER_INFORMATION_FORM_FIELDS.CITY}
-                    label={getTextCommon('userInfo.labels.province')}
-                  >
-                    <Select />
-                  </Item>
-                </Col>
-                <Col sm={24} md={12} lg={12} xl={12}>
-                  <Item
-                    name={USER_INFORMATION_FORM_FIELDS.STATE}
-                    label={getTextCommon('userInfo.labels.district')}
-                  >
-                    <Select />
-                  </Item>
-                </Col>
-              </Row>
-            */}
             </div>
             <Row gutter={16}>
               <Col sm={12} md={6} lg={3} xl={3}>

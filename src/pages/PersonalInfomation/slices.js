@@ -2,11 +2,14 @@ import { createSlice } from '@reduxjs/toolkit';
 import { createSliceSaga, SagaType } from 'redux-toolkit-saga';
 import { put, call } from 'redux-saga/effects';
 
-import * as userApis from './apis';
+import * as clientApis from './apis';
 
 import { errorHandler } from 'store/errorHandlerSaga';
 
-const contactSliceName = 'contact';
+import { notificationActions } from 'containers/NotificationContainer/slices';
+import { SUCCESS_TYPE } from 'components/BasicComponent/Notification';
+
+const clientSliceName = 'clientInformation';
 
 const initialState = {
   isLoading: false,
@@ -14,39 +17,47 @@ const initialState = {
   extendTime: 0,
 };
 
-const contactSlice = createSlice({
-  name: contactSliceName,
+const clientSlice = createSlice({
+  name: clientSliceName,
   initialState,
   reducers: {
-    saveContactProcessing: (state) => ({
+    saveClientProcessing: (state) => ({
       ...state,
       isLoading: true,
     }),
-    saveContactFailure: (state, action) => ({
+    saveClientFailure: (state, action) => ({
       ...state,
       isLoading: false,
       error: action.payload,
     }),
-    saveContactSuccess: (state, action) => ({
+    saveClientSuccess: (state) => ({
       ...state,
       isLoading: false,
-      listServiceActive: action.payload,
     }),
   },
 });
 
-const { actions: reducerActions, reducer: contactReducer } = contactSlice;
+const { actions: reducerActions, reducer: clientReducer } = clientSlice;
 
-const contactSliceSaga = createSliceSaga({
-  name: contactSliceName,
+const clientSliceSaga = createSliceSaga({
+  name: clientSliceName,
   caseSagas: {
-    *saveContact(action) {
+    *saveClientInformation(action) {
       try {
-        yield put(reducerActions.saveContactProcessing());
-        const { data } = yield call(userApis.saveContact, action.payload);
-        yield put(reducerActions.saveContactSuccess(data));
+        yield put(reducerActions.saveClientProcessing());
+        const { data } = yield call(
+          clientApis.saveClientInformation,
+          action.payload,
+        );
+        yield put(reducerActions.saveClientSuccess(data));
+        yield put(
+          notificationActions.showNotification({
+            type: SUCCESS_TYPE,
+            message: data.info[0],
+          }),
+        );
       } catch (err) {
-        yield put(reducerActions.saveContactFailure(err));
+        yield put(reducerActions.saveClientFailure(err));
         yield put(errorHandler(err));
       }
     },
@@ -55,15 +66,15 @@ const contactSliceSaga = createSliceSaga({
   sagaType: SagaType.TakeLatest,
 });
 
-const { saga: contactSaga, actions: sagaActions } = contactSliceSaga;
+const { saga: clientSaga, actions: sagaActions } = clientSliceSaga;
 
-const contactActions = { ...reducerActions, ...sagaActions };
+const clientActions = { ...reducerActions, ...sagaActions };
 
 export {
   initialState,
-  contactSliceName,
-  contactActions,
-  contactReducer,
-  contactSaga,
-  contactSliceSaga,
+  clientSliceName,
+  clientActions,
+  clientReducer,
+  clientSaga,
+  clientSliceSaga,
 };

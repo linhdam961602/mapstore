@@ -3,6 +3,7 @@ import { connectRouter } from 'connected-react-router';
 
 import { authReducer, authSliceName } from 'pages/LoginPage/slices';
 import { userReducer, userSliceName } from 'pages/MyPage/slices';
+import { contactReducer, contactSliceName } from 'pages/ContactList/slices';
 import {
   languageReducer,
   languageSliceName,
@@ -16,6 +17,7 @@ function createReducer(injectedReducers = {}) {
     [authSliceName]: authReducer,
     [userSliceName]: userReducer,
     [languageSliceName]: languageReducer,
+    [contactSliceName]: contactReducer,
     ...injectedReducers,
   });
   return rootReducer;

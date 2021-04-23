@@ -1,6 +1,6 @@
 import {
   LOGIN_API_URL,
-  USER_INFO_API_URL,
+  CLIENT_INFO_API_URL,
   LOGOUT_API_URL,
 } from 'constants/apiUrl';
 
@@ -28,7 +28,7 @@ export const logout = () =>
 
 export const getUserInfo = () =>
   apiClient
-    .get(USER_INFO_API_URL)
+    .get(CLIENT_INFO_API_URL)
     .then((response) => response)
     .catch((err) => {
       console.error(err);

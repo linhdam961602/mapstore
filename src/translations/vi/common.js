@@ -80,6 +80,7 @@ const common = {
     next: 'Tiếp',
     prev: 'Trở về',
     login: 'Đăng nhập',
+    addNewContact: 'Thêm liên hệ mới',
   },
   userInfo: {
     groups: {

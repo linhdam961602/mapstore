@@ -1,18 +1,22 @@
-import React, { useCallback } from 'react';
+import React, { useEffect, useCallback, useMemo } from 'react';
 import { useIntl } from 'react-intl';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { CONTACT_LIST_FORM_FIELDS, INITIAL_VALUES } from './constants';
+import { contactActions, contactSaga, contactSliceName } from './slices';
 
-import Form from 'components/BasicComponent/Form';
-import Input from 'components/BasicComponent/Input';
-import DatePicker from 'components/BasicComponent/DatePicker';
-import Select from 'components/BasicComponent/Select';
-import Button from 'components/BasicComponent/Button';
+import * as contactSelector from './selector';
 
+import { REGEX_EMAIL, REGEX_PASSWORD } from 'constants/common';
+import { ADD_NEW_CONTACT } from 'constants/options';
+import { VALIDATION_MESSAGES } from 'constants/form';
 import { onlyNumber } from 'utils';
 import { createTranslatedText } from 'utils/text';
-import { REGEX_EMAIL, REGEX_PASSWORD } from 'constants/common';
-import { VALIDATION_MESSAGES } from 'constants/form';
+import Button from 'components/BasicComponent/Button';
+import Select from 'components/BasicComponent/Select';
+import DatePicker from 'components/BasicComponent/DatePicker';
+import Input from 'components/BasicComponent/Input';
+import Form from 'components/BasicComponent/Form';
 
 import './styles.scss';
 import Row from 'components/BasicComponent/Grid/Row';
@@ -22,6 +26,8 @@ import SidebarRight from 'containers/Sidebar/SidebarRight';
 import PhoneInput from 'containers/PhoneInputContainer';
 import PasswordMeterInput from 'components/BasicComponent/PasswordMeterInput';
 
+import { useInjectSaga } from 'hooks/useInjector';
+
 const { Item } = Form;
 
 const ContactList = () => {
@@ -29,10 +35,41 @@ const ContactList = () => {
   const getTextSideBarRight = createTranslatedText('sidebarRight', intl);
   const getTextCommon = createTranslatedText('common', intl);
   const [form] = Form.useForm();
+  const dispatch = useDispatch();
+  const optionAddNewContact = useMemo(() => ADD_NEW_CONTACT(intl), [intl]);
+
+  useInjectSaga({ key: contactSliceName, saga: contactSaga });
+
+  const listContactDropdown = useSelector(
+    contactSelector.selectListContactDropdown,
+  );
+  const contactDetail = useSelector(contactSelector.selectContactDetail);
+
+  const isNew = listContactDropdown.some((item) => item.value === 'add');
+  if (!isNew || listContactDropdown.lenght === 0) {
+    listContactDropdown.push(optionAddNewContact);
+  }
+
+  useEffect(() => {
+    dispatch(contactActions.getListContact());
+  }, [dispatch]);
+
+  useEffect(() => {
+    form.setFieldsValue({
+      ...contactDetail,
+      [CONTACT_LIST_FORM_FIELDS.CONTACT_ID]: listContactDropdown[0]?.value,
+    });
+  }, [form, listContactDropdown, contactDetail]);
 
   const onFinish = useCallback(() => {
     // TODO: Call API save contact
   }, []);
+
+  const onChangeContact = (value) => {
+    if (value !== 'add') {
+      dispatch(contactActions.getContactDetail(value));
+    }
+  };
 
   return (
     <div className="mypage">
@@ -58,8 +95,10 @@ const ContactList = () => {
               <Row gutter={16}>
                 <Col sm={24} md={12} lg={12} xl={12}>
                   <Item name={CONTACT_LIST_FORM_FIELDS.CONTACT_ID}>
-                    {/* TODO: Integrate API get list contact */}
-                    <Select options={null} />
+                    <Select
+                      onChange={onChangeContact}
+                      options={listContactDropdown}
+                    />
                   </Item>
                 </Col>
               </Row>

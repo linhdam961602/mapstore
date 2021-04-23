@@ -80,6 +80,7 @@ const common = {
     next: 'Next',
     prev: 'Previous',
     login: 'Login',
+    addNewContact: 'Add new contact',
   },
   userInfo: {
     groups: {

@@ -17,6 +17,14 @@ export const TYPES_OF_SUBJECT = (intl) => {
   };
 };
 
+export const ADD_NEW_CONTACT = (intl) => {
+  const getTextAddNewContact = createTranslatedText('common.action', intl);
+  return {
+    value: 'add',
+    label: getTextAddNewContact('addNewContact'),
+  };
+};
+
 export const TYPES_OF_CURRENCY = {
   VND: {
     value: 'VND',
