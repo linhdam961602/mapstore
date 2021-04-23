@@ -9,7 +9,8 @@ import {
   serviceActions,
 } from '../slices';
 
-import CloudHosting from './TabList/CloudHosting';
+import TabDetail from './TabDetail';
+import { HOSTING_INDEX } from './constant';
 
 // import { hostingData } from './mockData';
 
@@ -25,7 +26,11 @@ const HostingPage = () => {
 
   const hostingTabs = useSelector(
     (state) =>
-      get(state, [serviceSliceName, 'categories', 2, 'subcategories'], []),
+      get(
+        state,
+        [serviceSliceName, 'categories', HOSTING_INDEX, 'subcategories'],
+        [],
+      ),
     shallowEqual,
   );
 
@@ -39,7 +44,7 @@ const HostingPage = () => {
         {hostingTabs.map((tab) => (
           <TabPane tab={tab.name} key={tab.id}>
             {/* TODO: update later */}
-            <CloudHosting />
+            <TabDetail tabId={tab.id} tabName={tab.name} />
           </TabPane>
         ))}
       </Tabs>

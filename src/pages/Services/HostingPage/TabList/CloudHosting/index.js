@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet';
 import { useIntl } from 'react-intl';
 import {
@@ -27,25 +27,25 @@ import 'antd/es/row/style/css';
 import 'antd/es/col/style/css';
 
 import './styles.scss';
-import { cloudHostingData } from './mockData';
+// import { cloudHostingData } from './mockData';
 
 import vps from 'assets/icon/icon_vps.svg';
 import infoIcon from 'assets/icon/icon_information-button.svg';
 import backArrow from 'assets/icon/icon_back-arrow.svg';
 import { createTranslatedText } from 'utils/text';
-import ProductItem from 'components/BasicComponent/ProductItem';
+// import ProductItem from 'components/BasicComponent/ProductItem';
 
 const CloudHostingBusiness = () => {
   const intl = useIntl();
   const getText = createTranslatedText('services', intl);
 
-  const handleMenuClick = () => {};
+  // const handleMenuClick = () => {};
 
-  const [value, setValue] = useState(1);
+  // const [value, setValue] = useState(1);
 
-  const onChange = (e) => {
-    setValue(e.target.value);
-  };
+  // const onChange = (e) => {
+  //   setValue(e.target.value);
+  // };
 
   const menu = (
     <Menu>
@@ -110,19 +110,19 @@ const CloudHostingBusiness = () => {
             </div>
           </div>
 
-          <Radio.Group className="products" value={value} onChange={onChange}>
+          {/* <Radio.Group className="products" value={value} onChange={onChange}>
             <Row gutter={[16, 16]}>
               {cloudHostingData.map((info) => (
                 <Col xl={8} md={12} xs={24} key={info.name}>
                   <ProductItem
                     handleMenuClick={handleMenuClick}
-                    value={info.name}
+                    value={info.id}
                     info={info}
                   />
                 </Col>
               ))}
             </Row>
-          </Radio.Group>
+          </Radio.Group> */}
 
           <div className="stepDesc">
             <div className="stepDesc__title">

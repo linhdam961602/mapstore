@@ -10,8 +10,10 @@ const serviceSliceName = 'service';
 
 const initialState = {
   isLoading: false,
+  isFetchingProducts: false,
   error: null,
   categories: null,
+  products: [],
 };
 
 const serviceSlice = createSlice({
@@ -32,6 +34,20 @@ const serviceSlice = createSlice({
       ...action.payload,
       isLoading: false,
     }),
+    fetchProductsProcessing: (state) => ({
+      ...state,
+      isFetchingProducts: true,
+    }),
+    fetchProductsFailure: (state, action) => ({
+      ...state,
+      isFetchingProducts: false,
+      error: action.payload,
+    }),
+    fetchProductsSuccess: (state, action) => ({
+      ...state,
+      ...action.payload,
+      isFetchingProducts: false,
+    }),
   },
 });
 
@@ -47,6 +63,22 @@ const serviceSliceSaga = createSliceSaga({
         yield put(reducerActions.fetchCategorySuccess(data));
       } catch (err) {
         yield put(reducerActions.fetchCategoryFailure(err));
+        yield put(errorHandler(err));
+      }
+    },
+    *fetchProductsByCategory(action) {
+      try {
+        yield put(reducerActions.fetchProductsProcessing());
+        const { data } = yield call(
+          serviceApis.getProductByCategory,
+          action.payload,
+        );
+
+        if (data) {
+          yield put(reducerActions.fetchProductsSuccess(data));
+        }
+      } catch (err) {
+        yield put(reducerActions.fetchProductsFailure(err));
         yield put(errorHandler(err));
       }
     },
