@@ -7,12 +7,18 @@ import Form from 'components/BasicComponent/Form';
 import Input from 'components/BasicComponent/Input';
 import Select from 'components/BasicComponent/Select';
 import Grid from 'components/BasicComponent/Grid';
-import { TYPES_OF_SUBJECT } from 'constants/options';
+import { TYPE_COMPANY, TYPES_OF_SUBJECT } from 'constants/options';
 import { onlyNumber } from 'utils';
 
 const { Row, Col } = Grid;
 
-const Step1 = ({ curType, getTextCommon, onTypeChange }) => {
+const Step1 = ({
+  form,
+  curType,
+  getTextCommon,
+  getTextRegistration,
+  onTypeChange,
+}) => {
   const intl = useIntl();
   const typeOfSubjIntl = useMemo(() => TYPES_OF_SUBJECT(intl), [intl]);
 
@@ -36,13 +42,20 @@ const Step1 = ({ curType, getTextCommon, onTypeChange }) => {
       {curType === typeOfSubjIntl.COMPANY.value && (
         <div>
           <h3 className="register__form-section--title">
-            {getTextCommon('headings.compInfo')}
+            {getTextRegistration('headings.compInfo')}
           </h3>
           <Row gutter={16}>
             <Col xl={24} lg={12} xs={24}>
               <Form.Item
                 name={REGISTER_FORM_FIELDS.COMPANY_NAME}
                 label={getTextCommon('userInfo.labels.compName')}
+                rules={[
+                  {
+                    required:
+                      form.getFieldValue(REGISTER_FORM_FIELDS.TYPE) ===
+                      TYPE_COMPANY,
+                  },
+                ]}
               >
                 <Input />
               </Form.Item>
@@ -51,6 +64,13 @@ const Step1 = ({ curType, getTextCommon, onTypeChange }) => {
               <Form.Item
                 name={REGISTER_FORM_FIELDS.TAX_ID}
                 label={getTextCommon('userInfo.labels.taxCode')}
+                rules={[
+                  {
+                    required:
+                      form.getFieldValue(REGISTER_FORM_FIELDS.TYPE) ===
+                      TYPE_COMPANY,
+                  },
+                ]}
               >
                 <Input onKeyDown={onlyNumber} />
               </Form.Item>

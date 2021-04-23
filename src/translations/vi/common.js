@@ -51,10 +51,6 @@ const common = {
     passwordNotMatch: 'Mật khẩu không khớp!',
     agreement: 'Bạn phải đồng ý với các điều khoản và điều kiện.',
     recaptcha: 'Vui lòng click vào ô xác nhận “Tôi không phải là người máy”.',
-    field_marked_required: 'field_marked_required',
-    phonenumber_error: 'phonenumber_error',
-    lastname_error: 'lastname_error',
-    firstname_error: 'firstname_error',
   },
   info: {
     generated_reset_request: 'generated_reset_request',

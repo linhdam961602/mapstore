@@ -5,7 +5,7 @@ export const REGISTER_FORM_FIELDS = {
   FIRST_NAME: 'firstname',
   LAST_NAME: 'lastname',
   PHONE: 'phonenumber',
-  CALLING_CODE: 'country-calling-code-phonenumber',
+  CALLING_CODE: 'country-calling-code-phonenumber', // exclude
   EMAIL: 'email',
   BIRTHDAY: 'birthday',
   NATIONAL_ID: 'nationalid',
@@ -16,15 +16,22 @@ export const REGISTER_FORM_FIELDS = {
   STATE: 'state',
   COUNTRY: 'country',
   PASSWORD: 'password',
-  PASSWORD_2: 'password2',
+  PASSWORD_2: 'password2', // excluded
   CURRENCY: 'currency',
-
-  // TODO: update later
-  PERSONAL_TITLE: 'title',
-  HOW_TO_FIND: 'howToFind',
-  AGREEMENT: 'agreement',
-  RECAPTCHA: 'recaptcha',
+  PERSONAL_TITLE: 'title', // excluded
+  HOW_TO_FIND: 'howToFind', // excluded
+  AGREEMENT: 'agreement', // excluded
+  RECAPTCHA: 'recaptcha', // excluded
 };
+
+export const EXCLUDED_REGISTER_FORM_FIELDS = [
+  REGISTER_FORM_FIELDS.CALLING_CODE,
+  REGISTER_FORM_FIELDS.PASSWORD_2,
+  REGISTER_FORM_FIELDS.PERSONAL_TITLE,
+  REGISTER_FORM_FIELDS.HOW_TO_FIND,
+  REGISTER_FORM_FIELDS.AGREEMENT,
+  REGISTER_FORM_FIELDS.RECAPTCHA,
+];
 
 export const TERMS_OF_SERVICE_URL =
   'https://tinohost.com/dieu-khoan-su-dung-dich-vu/';

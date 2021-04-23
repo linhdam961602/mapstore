@@ -9,8 +9,13 @@ import React, { useCallback, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import omit from 'lodash/omit';
 
-import { REGISTER_FORM_FIELDS, INITIAL_VALUES } from './constants';
+import {
+  REGISTER_FORM_FIELDS,
+  INITIAL_VALUES,
+  EXCLUDED_REGISTER_FORM_FIELDS,
+} from './constants';
 import './styles.scss';
 import {
   registerSliceName,
@@ -70,12 +75,23 @@ const RegisterPage = () => {
     values.phonenumber = `${values[REGISTER_FORM_FIELDS.CALLING_CODE]} ${
       values[REGISTER_FORM_FIELDS.PHONE]
     }`;
-    dispatch(registerActions.signup(values));
+    // exclude unused fields
+    const validFields = omit(values, EXCLUDED_REGISTER_FORM_FIELDS);
+
+    dispatch(registerActions.signup(validFields));
   }, [dispatch, form]);
 
-  const onTypeChange = useCallback((value) => {
-    setCurType(value);
-  }, []);
+  const onTypeChange = useCallback(
+    (value) => {
+      setCurType(value);
+      // Clear company's fields
+      form.setFieldsValue({
+        [REGISTER_FORM_FIELDS.COMPANY_NAME]: '',
+        [REGISTER_FORM_FIELDS.TAX_ID]: '',
+      });
+    },
+    [form],
+  );
 
   const onGoPrev = useCallback(() => {
     setCurStep(curStep - 1);
@@ -83,9 +99,7 @@ const RegisterPage = () => {
 
   const onGoNext = useCallback(async () => {
     // Validate
-    if (curStep === 1) {
-      await form.validateFields();
-    }
+    await form.validateFields();
     setCurStep(curStep + 1);
   }, [curStep, form]);
 

@@ -51,10 +51,6 @@ const common = {
     passwordNotMatch: 'The two passwords that you entered do not match!',
     agreement: 'You must agree with the terms and conditions.',
     recaptcha: 'Please click on the “I am not a robot” confirmation box.',
-    field_marked_required: 'field_marked_required',
-    phonenumber_error: 'phonenumber_error',
-    lastname_error: 'lastname_error',
-    firstname_error: 'firstname_error',
   },
   info: {
     generated_reset_request: 'generated_reset_request',

@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import React, { useCallback } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { useSelector } from 'react-redux';
@@ -23,6 +24,7 @@ import {
   languageSliceName,
 } from 'containers/LanguageProviderContainer/slices';
 import AddressInput from 'containers/AddressInputContainer';
+import { onlyNumber } from 'utils';
 
 const { Row, Col } = Grid;
 
@@ -56,6 +58,7 @@ const Step3 = ({ form, getTextCommon }) => {
           <Form.Item
             name={REGISTER_FORM_FIELDS.BIRTHDAY}
             label={getTextCommon('userInfo.labels.birthday')}
+            rules={[{ required: true }]}
           >
             <DatePicker locale={locale} />
           </Form.Item>
@@ -64,8 +67,9 @@ const Step3 = ({ form, getTextCommon }) => {
           <Form.Item
             name={REGISTER_FORM_FIELDS.NATIONAL_ID}
             label={getTextCommon('userInfo.labels.idPp')}
+            rules={[{ required: true }]}
           >
-            <Input />
+            <Input onKeyDown={onlyNumber} />
           </Form.Item>
         </Col>
       </Row>
