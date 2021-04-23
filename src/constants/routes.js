@@ -23,3 +23,4 @@ export const CONTACT_LIST = '/contact-list';
 // STORE
 export const STORE = '/store';
 export const CLOUD_HOSTING = '/cloud-hosting';
+export const EMAIL_HISTORY = '/email-history';

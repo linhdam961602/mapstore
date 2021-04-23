@@ -6,7 +6,12 @@ import {
   LockOutlined,
 } from '@ant-design/icons';
 
-import { PROFILE, CHANGE_PASS, CONTACT_LIST } from 'constants/routes';
+import {
+  PROFILE,
+  CHANGE_PASS,
+  CONTACT_LIST,
+  EMAIL_HISTORY,
+} from 'constants/routes';
 
 import { createTranslatedText } from 'utils/text';
 
@@ -41,7 +46,7 @@ const menusData = (intl) => {
     {
       key: 5,
       name: getText('emailHistory'),
-      path: '/email-history',
+      path: EMAIL_HISTORY,
       icon: <HistoryOutlined />,
     },
   ];

@@ -11,6 +11,7 @@ import {
   CHANGE_PASS,
   CONTACT_LIST,
   HOSTING_URL,
+  EMAIL_HISTORY,
 } from 'constants/routes';
 
 export const layoutRoutes = [
@@ -55,6 +56,12 @@ export const layoutRoutes = [
     path: REGIST_DOMAIN_URL,
     component: lazy(() => import('pages/Services/RegisterDomain')),
     isPrivate: false,
+  },
+  {
+    exact: true,
+    path: EMAIL_HISTORY,
+    component: lazy(() => import('pages/EmailHistory')),
+    isPrivate: true,
   },
 ];
 
