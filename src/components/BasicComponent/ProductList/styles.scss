@@ -1,0 +1,96 @@
+@import 'styles/mixins.scss';
+
+.item {
+  background-color: $white;
+  padding: 1.6rem;
+  border-radius: $radius-normal;
+  position: relative;
+  box-shadow: 0 0.3rem 2rem $black;
+
+  &__wrapper {
+    position: relative;
+    margin-bottom: 1rem;
+
+    @include transition(all 0.3s ease-in-out);
+    &:before {
+      content: '';
+      width: 90%;
+      background: #f9fafc;
+      box-shadow: 0 0.3rem 2rem $black;
+      border-radius: $radius-normal;
+      height: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 0.8rem;
+      position: absolute;
+      right: 0;
+      left: 0;
+    }
+  }
+
+  &__capacity {
+    font-size: 1.6rem;
+    font-weight: bold;
+  }
+
+  &__price {
+    .unit {
+      font-size: 2.4rem;
+      font-weight: bold;
+    }
+  }
+
+  &__list {
+    margin-bottom: 2rem;
+
+    ul {
+      padding-left: 0;
+      list-style-type: none;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+      &:before {
+        content: '';
+        display: inline-block;
+        height: 1.2rem;
+        width: 1.4rem;
+        background-image: url('/assets/icon/icon_product-check.svg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        margin-right: 1rem;
+      }
+    }
+  }
+
+  &__time {
+    margin-bottom: 2rem;
+    width: 100%;
+  }
+
+  &__btn {
+    text-align: center;
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 1s linear;
+
+    .ant-btn {
+      // color: $white;
+      border-radius: 0.3rem;
+
+      &:hover {
+        background-color: $white;
+        border: 1px solid $primary;
+        color: $primary;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .ruler {
+    border-top: 3px solid $primary;
+    width: 4rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+}
