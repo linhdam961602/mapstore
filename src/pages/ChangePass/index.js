@@ -15,13 +15,12 @@ import { REGEX_PASSWORD } from 'constants/common';
 import Form from 'components/BasicComponent/Form';
 import Input from 'components/BasicComponent/Input';
 import Button from 'components/BasicComponent/Button';
+import Row from 'components/BasicComponent/Grid/Row';
+import Col from 'components/BasicComponent/Grid/Col';
 
 import { createTranslatedText } from 'utils/text';
 import { VALIDATION_MESSAGES } from 'constants/form';
 import { useInjectSaga } from 'hooks/useInjector';
-
-import Row from 'components/BasicComponent/Grid/Row';
-import Col from 'components/BasicComponent/Grid/Col';
 
 import PasswordMeterInput from 'components/BasicComponent/PasswordMeterInput';
 
