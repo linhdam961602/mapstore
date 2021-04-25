@@ -69,8 +69,8 @@ const ProductItem = ({
       </div>
       <div className="ruler" />
       <div className="item__list">
-        {/* TODO: Update after integrate full data */}
         {parse(description)}
+        {/* TODO: Remove after integrate full data */}
         {parse(mockDescription)}
       </div>
 

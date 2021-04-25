@@ -53,7 +53,6 @@ const VPSPage = () => {
 
   const onChangeTab = useCallback(
     (tabId) => {
-      console.log({ tabId });
       dispatch(serviceActions.fetchProductsByCategory(tabId));
     },
     [dispatch],
