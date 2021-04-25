@@ -19,8 +19,9 @@ export const SUPPORT_URL = '/support';
 export const CART_URL = '/cart';
 export const CHANGE_PASS = '/change-password';
 export const CONTACT_LIST = '/contact-list';
+export const EMAIL_HISTORY = '/email-history';
+export const SECURITY_SETTING_URL = '/security-setting';
 
 // STORE
 export const STORE = '/store';
 export const CLOUD_HOSTING = '/cloud-hosting';
-export const EMAIL_HISTORY = '/email-history';
