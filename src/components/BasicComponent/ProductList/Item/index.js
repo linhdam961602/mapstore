@@ -1,29 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import Radio from 'antd/es/radio';
-import 'antd/es/checkbox/style/css';
-import 'antd/es/radio/style/css';
+import React, { useCallback, useEffect, useState } from 'react';
 import parse from 'html-react-parser';
 import classNames from 'classnames';
 import { useIntl } from 'react-intl';
 
-import Button from '../Button';
-import Select from '../Select';
+import Button from 'components/BasicComponent/Button';
+import Select from 'components/BasicComponent/Select';
 
 import { createTranslatedText } from 'utils/text';
-import { mockDescription } from 'pages/Services/HostingPage/TabDetail/mockData';
+import { mockDescription } from 'pages/Services/components/TabDetail/mockData';
 
-import './styles.scss';
+import '../styles.scss';
+
+const PAYTYPE_FREE = 'Free';
 
 const ProductItem = ({
   className,
-  value,
   onSelectPeriod = () => {},
   name,
   unit = 'VND',
   description,
   favorite = false,
   periods = [], // title, price, value
-  ...props
+  paytype = '', // Regular, Free
 }) => {
   const intl = useIntl();
   const getText = createTranslatedText('products', intl);
@@ -37,13 +35,16 @@ const ProductItem = ({
     }
   }, [periods]);
 
-  const handleSelectPeriod = (option) => {
-    onSelectPeriod(option);
-    const selected = periods.find((p) => p.value === option.value);
-    if (selected) {
-      setSelectedPeriod(selected);
-    }
-  };
+  const handleSelectPeriod = useCallback(
+    (option) => {
+      onSelectPeriod(option);
+      const selected = periods.find((p) => p.value === option);
+      if (selected) {
+        setSelectedPeriod(selected);
+      }
+    },
+    [onSelectPeriod, periods],
+  );
 
   const classes = classNames({
     item: true,
@@ -52,29 +53,37 @@ const ProductItem = ({
   });
 
   return (
-    <Radio className={classes} value={value} {...props}>
+    <div className={classes}>
       <div className="item__capacity">{name}</div>
       <div className="item__price">
-        <span className="unit">
-          {selectedPeriod && selectedPeriod.price} {unit}
-        </span>
-        /{getText('labels.month')}
-        <div className="ruler"> </div>
+        {paytype === PAYTYPE_FREE ? (
+          <div className="unit">{paytype}</div>
+        ) : (
+          <>
+            <span className="unit">
+              {selectedPeriod && selectedPeriod.price} {unit}
+            </span>
+            <span>/{getText('labels.month')}</span>
+          </>
+        )}
       </div>
-      <ul className="item__list">
+      <div className="ruler" />
+      <div className="item__list">
         {/* TODO: Update after integrate full data */}
-        {/* {parse(description)} */}
+        {parse(description)}
         {parse(mockDescription)}
-      </ul>
+      </div>
 
-      {periods && (
+      {periods.length > 0 && (
         <Select
           onChange={handleSelectPeriod}
           className="item__time"
           value={selectedPeriod?.value}
           options={periods.map((item) => ({
             value: item.value,
-            label: `${item.title} = ${item.price} ${unit}`,
+            label: `${item.title} = ${item.price} ${unit}/${getText(
+              'labels.month',
+            )}`,
           }))}
         />
       )}
@@ -82,7 +91,7 @@ const ProductItem = ({
       <div className="item__btn">
         <Button type="primary">{getText('buttons.order')}</Button>
       </div>
-    </Radio>
+    </div>
   );
 };
 

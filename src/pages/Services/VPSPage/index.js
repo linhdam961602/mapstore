@@ -12,25 +12,23 @@ import {
 
 import TabDetail from '../components/TabDetail';
 
-import { HOSTING_INDEX } from './constant';
-
-// import { hostingData } from './mockData';
+import { VPS_INDEX } from './constant';
 
 import Tabs from 'components/BasicComponent/Tabs';
 import { useInjectReducer, useInjectSaga } from 'hooks/useInjector';
 
 const { TabPane } = Tabs;
 
-const HostingPage = () => {
+const VPSPage = () => {
   useInjectReducer({ key: serviceSliceName, reducer: serviceReducer });
   useInjectSaga({ key: serviceSliceName, saga: serviceSaga });
   const dispatch = useDispatch();
 
-  const hostingTabs = useSelector(
+  const vpsTabs = useSelector(
     (state) =>
       get(
         state,
-        [serviceSliceName, 'categories', HOSTING_INDEX, 'subcategories'],
+        [serviceSliceName, 'categories', VPS_INDEX, 'subcategories'],
         [],
       ),
     shallowEqual,
@@ -47,14 +45,15 @@ const HostingPage = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (hostingTabs.length > 0) {
-      const tabId = hostingTabs[0].id;
+    if (vpsTabs.length > 0) {
+      const tabId = vpsTabs[0].id;
       dispatch(serviceActions.fetchProductsByCategory(tabId));
     }
-  }, [dispatch, hostingTabs]);
+  }, [dispatch, vpsTabs]);
 
   const onChangeTab = useCallback(
     (tabId) => {
+      console.log({ tabId });
       dispatch(serviceActions.fetchProductsByCategory(tabId));
     },
     [dispatch],
@@ -64,11 +63,10 @@ const HostingPage = () => {
     <div>
       <Tabs
         onChange={onChangeTab}
-        defaultActiveKey={hostingTabs.length > 0 ? hostingTabs[0].id : ''}
+        defaultActiveKey={vpsTabs.length > 0 ? vpsTabs[0].id : ''}
       >
-        {hostingTabs.map((tab) => (
+        {vpsTabs.map((tab) => (
           <TabPane tab={tab.name} key={tab.id}>
-            {/* TODO: update later */}
             <TabDetail tabId={tab.id} tabName={tab.name} products={products} />
           </TabPane>
         ))}
@@ -77,4 +75,4 @@ const HostingPage = () => {
   );
 };
 
-export default HostingPage;
+export default VPSPage;

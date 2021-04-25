@@ -12,6 +12,7 @@ import {
   CONTACT_LIST,
   HOSTING_URL,
   EMAIL_HISTORY,
+  VPS_URL,
 } from 'constants/routes';
 
 export const layoutRoutes = [
@@ -49,6 +50,12 @@ export const layoutRoutes = [
     exact: true,
     path: HOSTING_URL,
     component: lazy(() => import('pages/Services/HostingPage')),
+    isPrivate: false,
+  },
+  {
+    exact: true,
+    path: VPS_URL,
+    component: lazy(() => import('pages/Services/VPSPage')),
     isPrivate: false,
   },
   {

@@ -48,6 +48,10 @@ const serviceSlice = createSlice({
       ...action.payload,
       isFetchingProducts: false,
     }),
+    clearProducts: (state) => ({
+      ...state,
+      products: initialState.products,
+    }),
   },
 });
 
