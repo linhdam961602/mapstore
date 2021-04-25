@@ -1,19 +1,31 @@
 @import 'styles/mixins.scss';
 
 .item {
-  border: 1px solid $grey;
-  border-radius: 1rem;
-  padding: 2.5rem;
   background-color: $white;
+  padding: 1.6rem;
+  border-radius: $radius-normal;
+  position: relative;
+  box-shadow: 0 0.3rem 2rem $black;
 
-  &__favorite {
-    border: 1px solid $red;
-  }
+  &__wrapper {
+    position: relative;
+    margin-bottom: 1rem;
 
-  &:hover {
-    cursor: pointer;
-    border: 1px solid $primary;
-    transition-duration: 1s;
+    @include transition(all 0.3s ease-in-out);
+    &:before {
+      content: '';
+      width: 90%;
+      background: #f9fafc;
+      box-shadow: 0 0.3rem 2rem $black;
+      border-radius: $radius-normal;
+      height: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 0.8rem;
+      position: absolute;
+      right: 0;
+      left: 0;
+    }
   }
 
   &__capacity {

@@ -19,7 +19,6 @@ const ProductItem = ({
   name,
   unit = 'VND',
   description,
-  favorite = false,
   periods = [], // title, price, value
   paytype = '', // Regular, Free
 }) => {
@@ -47,49 +46,50 @@ const ProductItem = ({
   );
 
   const classes = classNames({
-    item: true,
-    item__favorite: favorite,
+    item__wrapper: true,
     [className]: className,
   });
 
   return (
     <div className={classes}>
-      <div className="item__capacity">{name}</div>
-      <div className="item__price">
-        {paytype === PAYTYPE_FREE ? (
-          <div className="unit">{paytype}</div>
-        ) : (
-          <>
-            <span className="unit">
-              {selectedPeriod && selectedPeriod.price} {unit}
-            </span>
-            <span>/{getText('labels.month')}</span>
-          </>
+      <div className="item">
+        <div className="item__capacity">{name}</div>
+        <div className="item__price">
+          {paytype === PAYTYPE_FREE ? (
+            <div className="unit">{paytype}</div>
+          ) : (
+            <>
+              <span className="unit">
+                {selectedPeriod && selectedPeriod.price} {unit}
+              </span>
+              <span>/{getText('labels.month')}</span>
+            </>
+          )}
+        </div>
+        <div className="ruler" />
+        <div className="item__list">
+          {parse(description)}
+          {/* TODO: Remove after integrate full data */}
+          {parse(mockDescription)}
+        </div>
+
+        {periods.length > 0 && (
+          <Select
+            onChange={handleSelectPeriod}
+            className="item__time"
+            value={selectedPeriod?.value}
+            options={periods.map((item) => ({
+              value: item.value,
+              label: `${item.title} = ${item.price} ${unit}/${getText(
+                'labels.month',
+              )}`,
+            }))}
+          />
         )}
-      </div>
-      <div className="ruler" />
-      <div className="item__list">
-        {parse(description)}
-        {/* TODO: Remove after integrate full data */}
-        {parse(mockDescription)}
-      </div>
 
-      {periods.length > 0 && (
-        <Select
-          onChange={handleSelectPeriod}
-          className="item__time"
-          value={selectedPeriod?.value}
-          options={periods.map((item) => ({
-            value: item.value,
-            label: `${item.title} = ${item.price} ${unit}/${getText(
-              'labels.month',
-            )}`,
-          }))}
-        />
-      )}
-
-      <div className="item__btn">
-        <Button type="primary">{getText('buttons.order')}</Button>
+        <div className="item__btn">
+          <Button type="primary">{getText('buttons.order')}</Button>
+        </div>
       </div>
     </div>
   );
