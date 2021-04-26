@@ -11,7 +11,7 @@ import {
   CHANGE_PASS,
   CONTACT_LIST,
   EMAIL_HISTORY,
-  SECURITY_SETTING_URL,
+  SECURITY_SETTING,
 } from 'constants/routes';
 
 import { createTranslatedText } from 'utils/text';
@@ -41,7 +41,7 @@ const menusData = (intl) => {
     {
       key: 4,
       name: getText('securitySetting'),
-      path: SECURITY_SETTING_URL,
+      path: SECURITY_SETTING,
       icon: <SettingOutlined />,
     },
     {

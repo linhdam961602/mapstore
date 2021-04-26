@@ -12,6 +12,7 @@ import {
   CONTACT_LIST,
   HOSTING_URL,
   EMAIL_HISTORY,
+  SECURITY_SETTING,
   VPS_URL,
 } from 'constants/routes';
 
@@ -68,6 +69,12 @@ export const layoutRoutes = [
     exact: true,
     path: EMAIL_HISTORY,
     component: lazy(() => import('pages/EmailHistory')),
+    isPrivate: true,
+  },
+  {
+    exact: true,
+    path: SECURITY_SETTING,
+    component: lazy(() => import('pages/SecuritySetting')),
     isPrivate: true,
   },
 ];
