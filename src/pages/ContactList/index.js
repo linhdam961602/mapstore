@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useMemo } from 'react';
+import React, { useEffect, useCallback, useMemo, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -7,10 +7,10 @@ import { contactActions, contactSaga, contactSliceName } from './slices';
 
 import * as contactSelector from './selector';
 
-import { REGEX_EMAIL, REGEX_PASSWORD } from 'constants/common';
-import { ADD_NEW_CONTACT } from 'constants/options';
+import { REGEX_EMAIL } from 'constants/common';
+import { ADD_NEW_CONTACT, TYPES_OF_SUBJECT } from 'constants/options';
 import { VALIDATION_MESSAGES } from 'constants/form';
-import { onlyNumber } from 'utils';
+import { onlyNumber, convertDate, getPhoneWithoutCode } from 'utils';
 import { createTranslatedText } from 'utils/text';
 import Button from 'components/BasicComponent/Button';
 import Select from 'components/BasicComponent/Select';
@@ -24,28 +24,32 @@ import Col from 'components/BasicComponent/Grid/Col';
 
 import SidebarRight from 'containers/Sidebar/SidebarRight';
 import PhoneInput from 'containers/PhoneInputContainer';
-import PasswordMeterInput from 'components/BasicComponent/PasswordMeterInput';
+import AddressInput from 'containers/AddressInputContainer';
 
 import { useInjectSaga } from 'hooks/useInjector';
 
 const { Item } = Form;
 
 const ContactList = () => {
+  useInjectSaga({ key: contactSliceName, saga: contactSaga });
+
   const intl = useIntl();
+  const [form] = Form.useForm();
+  const optionAddNewContact = useMemo(() => ADD_NEW_CONTACT(intl), [intl]);
+  const typeOfSubjIntl = useMemo(() => TYPES_OF_SUBJECT(intl), [intl]);
+  const [isDisabled, setDisabled] = useState(true);
+  const [curCountry, setCurCountry] = useState(null);
+  const [curProvince, setCurProvince] = useState(null);
   const getTextSideBarRight = createTranslatedText('sidebarRight', intl);
   const getTextCommon = createTranslatedText('common', intl);
-  const [form] = Form.useForm();
   const dispatch = useDispatch();
-  const optionAddNewContact = useMemo(() => ADD_NEW_CONTACT(intl), [intl]);
-
-  useInjectSaga({ key: contactSliceName, saga: contactSaga });
 
   const listContactDropdown = useSelector(
     contactSelector.selectListContactDropdown,
   );
   const contactDetail = useSelector(contactSelector.selectContactDetail);
-
   const isNew = listContactDropdown.some((item) => item.value === 'add');
+
   if (!isNew || listContactDropdown.lenght === 0) {
     listContactDropdown.push(optionAddNewContact);
   }
@@ -55,21 +59,77 @@ const ContactList = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    form.setFieldsValue({
-      ...contactDetail,
-      [CONTACT_LIST_FORM_FIELDS.CONTACT_ID]: listContactDropdown[0]?.value,
-    });
-  }, [form, listContactDropdown, contactDetail]);
+    if (contactDetail) {
+      const convertContactDetail = {
+        ...contactDetail,
+        [CONTACT_LIST_FORM_FIELDS.CONTACT_ID]: listContactDropdown[0]?.value,
+        [CONTACT_LIST_FORM_FIELDS.PHONE]: getPhoneWithoutCode(
+          contactDetail[CONTACT_LIST_FORM_FIELDS.PHONE],
+        ),
+      };
 
-  const onFinish = useCallback(() => {
-    // TODO: Call API save contact
+      form.setFieldsValue(convertContactDetail);
+    }
+  }, [form, contactDetail, listContactDropdown]);
+
+  const convertPostData = useCallback((data) => {
+    const cData = {
+      ...data,
+      [CONTACT_LIST_FORM_FIELDS.PHONE]: `${
+        data[CONTACT_LIST_FORM_FIELDS.CALLING_CODE]
+      } ${data[CONTACT_LIST_FORM_FIELDS.PHONE]}`,
+      [CONTACT_LIST_FORM_FIELDS.BIRTHDAY]: convertDate(
+        data[CONTACT_LIST_FORM_FIELDS.BIRTHDAY],
+      ),
+    };
+
+    delete cData[CONTACT_LIST_FORM_FIELDS.CALLING_CODE];
+    return cData;
   }, []);
 
+  const onFinish = useCallback(() => {
+    const values = form.getFieldsValue();
+    if (values[CONTACT_LIST_FORM_FIELDS.CONTACT_ID] === 'add') {
+      delete values[CONTACT_LIST_FORM_FIELDS.CONTACT_ID];
+      dispatch(contactActions.addContactDetail(convertPostData(values)));
+    } else {
+      dispatch(contactActions.updateContactDetail(convertPostData(values)));
+    }
+    setDisabled(values[CONTACT_LIST_FORM_FIELDS.CONTACT_ID] !== 'add');
+  }, [convertPostData, dispatch, form]);
+
   const onChangeContact = (value) => {
+    setDisabled(value !== 'add');
     if (value !== 'add') {
       dispatch(contactActions.getContactDetail(value));
+    } else {
+      form.setFieldsValue(INITIAL_VALUES);
     }
   };
+
+  const onCountryChange = useCallback(
+    (value) => {
+      setCurCountry(value);
+      form.setFieldsValue({
+        [CONTACT_LIST_FORM_FIELDS.CITY]: '',
+        [CONTACT_LIST_FORM_FIELDS.STATE]: '',
+        [CONTACT_LIST_FORM_FIELDS.ADDRESS_1]: '',
+      });
+    },
+    [form],
+  );
+
+  const onProvinceChange = useCallback(
+    (value) => {
+      setCurProvince(value);
+      // Clear current selected district
+      form.setFieldsValue({
+        [CONTACT_LIST_FORM_FIELDS.STATE]: '',
+        [CONTACT_LIST_FORM_FIELDS.ADDRESS_1]: '',
+      });
+    },
+    [form],
+  );
 
   return (
     <div className="mypage">
@@ -108,31 +168,51 @@ const ContactList = () => {
                 {getTextCommon('userInfo.groups.contactDetail')}
               </p>
               <Row gutter={16}>
-                <Col sm={24} md={12} lg={12} xl={8}>
+                <Col sm={24} md={12} lg={12} xl={12}>
+                  <Item
+                    name={CONTACT_LIST_FORM_FIELDS.TYPE}
+                    label={getTextCommon('userInfo.labels.typeOfSubj')}
+                  >
+                    <Select
+                      options={Object.values(typeOfSubjIntl)}
+                      disabled={isDisabled}
+                    />
+                  </Item>
+                </Col>
+                <Col sm={24} md={12} lg={12} xl={12}>
                   <Item
                     name={CONTACT_LIST_FORM_FIELDS.LAST_NAME}
                     label={getTextCommon('userInfo.labels.lastName')}
                     rules={[{ required: true }]}
                   >
-                    <Input />
+                    <Input disabled={isDisabled} />
                   </Item>
                   <Item name={CONTACT_LIST_FORM_FIELDS.POSTCODE} hidden>
                     <Input />
                   </Item>
+                  <Item name={CONTACT_LIST_FORM_FIELDS.ID} hidden>
+                    <Input />
+                  </Item>
+                  <Item name={CONTACT_LIST_FORM_FIELDS.NATIONAL_ID} hidden>
+                    <Input />
+                  </Item>
                 </Col>
-                <Col sm={24} md={12} lg={12} xl={8}>
+              </Row>
+              <Row gutter={16}>
+                <Col sm={24} md={12} lg={12} xl={12}>
                   <Item
                     name={CONTACT_LIST_FORM_FIELDS.FIRST_NAME}
                     label={getTextCommon('userInfo.labels.firstName')}
                     rules={[{ required: true }]}
                   >
-                    <Input />
+                    <Input disabled={isDisabled} />
                   </Item>
                 </Col>
-                <Col sm={24} md={12} lg={12} xl={8}>
+                <Col sm={24} md={12} lg={12} xl={12}>
                   <Item
                     name={CONTACT_LIST_FORM_FIELDS.BIRTHDAY}
                     label={getTextCommon('userInfo.labels.birthday')}
+                    rules={[{ required: true }]}
                   >
                     <DatePicker />
                   </Item>
@@ -149,6 +229,7 @@ const ContactList = () => {
                     rules={[{ required: true }]}
                   >
                     <PhoneInput
+                      disabled={isDisabled}
                       disabledDropdown
                       className="register__phone-input"
                       countryCode={form.getFieldValue(
@@ -173,7 +254,7 @@ const ContactList = () => {
                       },
                     ]}
                   >
-                    <Input />
+                    <Input disabled={isDisabled} />
                   </Item>
                 </Col>
               </Row>
@@ -183,7 +264,7 @@ const ContactList = () => {
                     name={CONTACT_LIST_FORM_FIELDS.COMPANY_NAME}
                     label={getTextCommon('userInfo.labels.compName')}
                   >
-                    <Input />
+                    <Input disabled={isDisabled} />
                   </Item>
                 </Col>
                 <Col sm={24} md={12} lg={12} xl={12}>
@@ -191,91 +272,57 @@ const ContactList = () => {
                     name={CONTACT_LIST_FORM_FIELDS.TAX_ID}
                     label={getTextCommon('userInfo.labels.taxCode')}
                   >
-                    <Input onKeyDown={onlyNumber} />
+                    <Input disabled={isDisabled} onKeyDown={onlyNumber} />
                   </Item>
                 </Col>
               </Row>
               <Row gutter={16}>
-                <Col sm={24} md={12} lg={12} xl={12}>
-                  <Item
-                    name={CONTACT_LIST_FORM_FIELDS.COUNTRY}
-                    label={getTextCommon('userInfo.labels.country')}
-                  >
-                    <Select />
-                  </Item>
-                </Col>
-                <Col sm={24} md={12} lg={12} xl={12}>
-                  <Item
-                    name={CONTACT_LIST_FORM_FIELDS.ADDRESS_1}
-                    label={getTextCommon('userInfo.labels.address')}
-                  >
-                    <Input />
-                  </Item>
-                </Col>
-              </Row>
-              <Row gutter={16}>
-                <Col sm={24} md={12} lg={12} xl={12}>
-                  <Item
-                    name={CONTACT_LIST_FORM_FIELDS.CITY}
-                    label={getTextCommon('userInfo.labels.province')}
-                  >
-                    <Select />
-                  </Item>
-                </Col>
-                <Col sm={24} md={12} lg={12} xl={12}>
-                  <Item
-                    name={CONTACT_LIST_FORM_FIELDS.STATE}
-                    label={getTextCommon('userInfo.labels.district')}
-                  >
-                    <Select />
-                  </Item>
-                </Col>
-              </Row>
-            </div>
-            <div className="form-group">
-              <p className="title">
-                {getTextCommon('userInfo.groups.accountSecurity')}
-              </p>
-              <Row gutter={16}>
-                <Col sm={24} md={12} lg={12} xl={12}>
-                  <Item
-                    name={CONTACT_LIST_FORM_FIELDS.NEW_PASS}
-                    label={getTextCommon('userInfo.labels.password')}
-                    rules={[
-                      { required: true },
-                      {
-                        pattern: REGEX_PASSWORD,
-                      },
-                    ]}
-                  >
-                    <PasswordMeterInput />
-                  </Item>
-                </Col>
-                <Col sm={24} md={24} lg={12} xl={12}>
-                  <Item
-                    name={CONTACT_LIST_FORM_FIELDS.RE_PASS}
-                    label={getTextCommon('userInfo.labels.repassword')}
-                    rules={[
-                      { required: true },
-                      ({ getFieldValue }) => ({
-                        validator(_, value) {
-                          if (
-                            !value ||
-                            getFieldValue(CONTACT_LIST_FORM_FIELDS.NEW_PASS) ===
-                              value
-                          ) {
-                            return Promise.resolve();
-                          }
-                          return Promise.reject(
-                            new Error(getTextCommon('error.passwordNotMatch')), // TODO: update translation
-                          );
-                        },
-                      }),
-                    ]}
-                  >
-                    <Input type="password" />
-                  </Item>
-                </Col>
+                <AddressInput
+                  defaultCountry={curCountry}
+                  defaultProvince={curProvince}
+                  renderCountryWrapper={(children) => (
+                    <Col sm={24} md={12} lg={12} xl={12}>
+                      <Item
+                        name={CONTACT_LIST_FORM_FIELDS.COUNTRY}
+                        label={getTextCommon('userInfo.labels.country')}
+                      >
+                        {children}
+                      </Item>
+                    </Col>
+                  )}
+                  onCountryChange={onCountryChange}
+                  renderProvinceWrapper={(children) => (
+                    <Col sm={24} md={12} lg={12} xl={12}>
+                      <Item
+                        name={CONTACT_LIST_FORM_FIELDS.CITY}
+                        label={getTextCommon('userInfo.labels.province')}
+                      >
+                        {children}
+                      </Item>
+                    </Col>
+                  )}
+                  onProvinceChange={onProvinceChange}
+                  renderDistrictWrapper={(children) => (
+                    <Col sm={24} md={12} lg={12} xl={12}>
+                      <Item
+                        name={CONTACT_LIST_FORM_FIELDS.STATE}
+                        label={getTextCommon('userInfo.labels.district')}
+                      >
+                        {children}
+                      </Item>
+                    </Col>
+                  )}
+                  renderAddressWrapper={(children) => (
+                    <Col sm={24} md={12} lg={12} xl={12}>
+                      <Item
+                        name={CONTACT_LIST_FORM_FIELDS.ADDRESS_1}
+                        label={getTextCommon('userInfo.labels.address')}
+                      >
+                        {children}
+                      </Item>
+                    </Col>
+                  )}
+                />
               </Row>
             </div>
             <Row gutter={16}>

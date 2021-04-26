@@ -12,6 +12,9 @@ body {
   position: relative;
   background-color: transparent;
   padding: 1.6rem 2rem;
+  max-width: $max-width-page;
+  margin:  0 auto;
+
   @include respond-to('md') {
     padding: 1.6rem 2rem;
   }

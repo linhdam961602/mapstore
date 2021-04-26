@@ -5,6 +5,8 @@ import { put, call } from 'redux-saga/effects';
 import * as contactApis from './apis';
 
 import { errorHandler } from 'store/errorHandlerSaga';
+import { notificationActions } from 'containers/NotificationContainer/slices';
+import { SUCCESS_TYPE } from 'components/BasicComponent/Notification';
 
 const contactSliceName = 'contact';
 
@@ -46,6 +48,32 @@ const contactSlice = createSlice({
       isLoading: false,
       contactDetail: action.payload,
     }),
+    addContactDetailProcessing: (state) => ({
+      ...state,
+      isLoading: true,
+    }),
+    addContactDetailFailure: (state, action) => ({
+      ...state,
+      isLoading: false,
+      error: action.payload,
+    }),
+    addContactDetailSuccess: (state) => ({
+      ...state,
+      isLoading: false,
+    }),
+    updateContactDetailProcessing: (state) => ({
+      ...state,
+      isLoading: true,
+    }),
+    updateContactDetailFailure: (state, action) => ({
+      ...state,
+      isLoading: false,
+      error: action.payload,
+    }),
+    updateContactDetailSuccess: (state) => ({
+      ...state,
+      isLoading: false,
+    }),
   },
 });
 
@@ -79,6 +107,44 @@ const contactSliceSaga = createSliceSaga({
         yield put(reducerActions.getContactDetailSuccess(data));
       } catch (err) {
         yield put(reducerActions.getContactDetailFailure(err));
+        yield put(errorHandler(err));
+      }
+    },
+    *addContactDetail(payload) {
+      try {
+        yield put(reducerActions.addContactDetailProcessing());
+        const { data } = yield call(
+          contactApis.addContactDetail,
+          payload.payload,
+        );
+        yield put(reducerActions.addContactDetailSuccess());
+        yield put(
+          notificationActions.showNotification({
+            type: SUCCESS_TYPE,
+            message: data.info[0],
+          }),
+        );
+      } catch (err) {
+        yield put(reducerActions.addContactDetailFailure(err));
+        yield put(errorHandler(err));
+      }
+    },
+    *updateContactDetail(payload) {
+      try {
+        yield put(reducerActions.updateContactDetailProcessing());
+        const { data } = yield call(
+          contactApis.updateContactDetail,
+          payload.payload,
+        );
+        yield put(reducerActions.updateContactDetailSuccess());
+        yield put(
+          notificationActions.showNotification({
+            type: SUCCESS_TYPE,
+            message: data.info[0],
+          }),
+        );
+      } catch (err) {
+        yield put(reducerActions.updateContactDetailFailure(err));
         yield put(errorHandler(err));
       }
     },

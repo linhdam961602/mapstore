@@ -19,3 +19,21 @@ export const getContactDetail = (id) =>
       console.error('Error:', err);
       throw err;
     });
+
+export const addContactDetail = (payload) =>
+  apiClient
+    .post(CONTACT_INFO_API_URL, payload)
+    .then((response) => response)
+    .catch((err) => {
+      console.error('Error:', err);
+      throw err;
+    });
+
+export const updateContactDetail = (payload) =>
+  apiClient
+    .put(`${CONTACT_INFO_API_URL}/${payload.id}`, payload)
+    .then((response) => response)
+    .catch((err) => {
+      console.error('Error:', err);
+      throw err;
+    });

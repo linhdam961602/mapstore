@@ -56,13 +56,13 @@ const PersonalInfomation = () => {
         [USER_INFORMATION_FORM_FIELDS.BIRTHDAY]: convertDate(
           userInfo[USER_INFORMATION_FORM_FIELDS.BIRTHDAY],
         ),
+        [USER_INFORMATION_FORM_FIELDS.PHONE]: getPhoneWithoutCode(
+          userInfo[USER_INFORMATION_FORM_FIELDS.PHONE],
+        ),
+        [USER_INFORMATION_FORM_FIELDS.TYPE]: userInfo.company
+          ? TYPE_COMPANY
+          : TYPE_PRIVATE,
       };
-      convertUserInfo[USER_INFORMATION_FORM_FIELDS.PHONE] = getPhoneWithoutCode(
-        convertUserInfo[USER_INFORMATION_FORM_FIELDS.PHONE],
-      );
-      convertUserInfo[
-        USER_INFORMATION_FORM_FIELDS.TYPE
-      ] = convertUserInfo.company ? TYPE_COMPANY : TYPE_PRIVATE;
 
       form.setFieldsValue(convertUserInfo);
 
@@ -71,28 +71,28 @@ const PersonalInfomation = () => {
     }
   }, [form, userInfo]);
 
-  const convertData = useCallback(
-    (data) => {
-      const cData = data;
-      cData.phonenumber = `${
-        cData[USER_INFORMATION_FORM_FIELDS.CALLING_CODE]
-      } ${cData[USER_INFORMATION_FORM_FIELDS.PHONE]}`;
+  const convertPostData = useCallback((data) => {
+    const cData = {
+      ...data,
+      [USER_INFORMATION_FORM_FIELDS.PHONE]: `${
+        data[USER_INFORMATION_FORM_FIELDS.CALLING_CODE]
+      } ${data[USER_INFORMATION_FORM_FIELDS.PHONE]}`,
+      [USER_INFORMATION_FORM_FIELDS.BIRTHDAY]: convertDate(
+        data[USER_INFORMATION_FORM_FIELDS.BIRTHDAY],
+      ),
+      [USER_INFORMATION_FORM_FIELDS.NATIONAL_ID]: convertDate(
+        data[USER_INFORMATION_FORM_FIELDS.COUNTRY],
+      ),
+    };
 
-      delete cData[USER_INFORMATION_FORM_FIELDS.CALLING_CODE];
-      return {
-        ...cData,
-        [USER_INFORMATION_FORM_FIELDS.BIRTHDAY]: convertDate(
-          userInfo[USER_INFORMATION_FORM_FIELDS.BIRTHDAY],
-        ),
-      };
-    },
-    [userInfo],
-  );
+    delete cData[USER_INFORMATION_FORM_FIELDS.CALLING_CODE];
+    return cData;
+  }, []);
 
   const onFinish = useCallback(() => {
     const values = form.getFieldsValue();
-    dispatch(clientActions.saveClientInformation(convertData(values)));
-  }, [convertData, dispatch, form]);
+    dispatch(clientActions.saveClientInformation(convertPostData(values)));
+  }, [convertPostData, dispatch, form]);
 
   const onCountryChange = useCallback(
     (value) => {
@@ -175,6 +175,7 @@ const PersonalInfomation = () => {
                   <Item
                     name={USER_INFORMATION_FORM_FIELDS.BIRTHDAY}
                     label={getTextCommon('userInfo.labels.birthday')}
+                    rules={[{ required: true }]}
                   >
                     <DatePicker />
                   </Item>

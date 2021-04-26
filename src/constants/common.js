@@ -1,7 +1,5 @@
 export const SYSTEM_TITLE = 'Tinohost';
 
-export const PRIMARY_COLOR = '#2c64f0';
-
 // Network message
 export const NETWORK_ERROR = 'Network Error';
 export const SUCCESS = 'COM.SUCCESS_IN_SAVE_OR_MODIFY';
