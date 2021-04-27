@@ -1,5 +1,6 @@
 import React from 'react';
 import { PlusCircleOutlined } from '@ant-design/icons';
+import { useIntl } from 'react-intl';
 
 import { columns, dataSource } from './mockData';
 import './styles.scss';
@@ -7,33 +8,29 @@ import './styles.scss';
 import Button from 'components/BasicComponent/Button';
 import Tabs from 'components/BasicComponent/Tabs';
 import Table from 'components/BasicComponent/Table';
+import { createTranslatedText } from 'utils/text';
 
 const { TabPane } = Tabs;
 
 function SecuritySetting() {
+  const intl = useIntl();
+  const getText = createTranslatedText('information', intl);
+
   return (
     <>
       <Button type="primary" className="register-service-btn">
         <PlusCircleOutlined />
-        ĐĂNG KÍ DỊCH VỤ
+        {getText('registerService')}
       </Button>
 
       <div className="security-setting">
-        <h2>CÀI ĐẶT BẢO MẬT</h2>
+        <h2>{getText('securitySetting')}</h2>
 
-        <p>
-          Vui lòng lựa chọn 1 trong các tác vụ sau, việc này sẽ giúp tài khoản
-          của bạn an toàn hơn
-        </p>
+        <p>{getText('chooseSecurity')}</p>
 
         <Tabs defaultActiveKey={1}>
           <TabPane tab="Liên kết tài khoản" key="1">
-            <p>
-              Kết nối tài khoản của bạn với bất kì dịch vụ nào dưới đây để đơn
-              giản hóa trải nghiệm đăng nhập của bạn. Chúng tôi chỉ sử dụng
-              thông tin này để xác minh tài khoản của bạn và không bao giờ thay
-              bạn đăng nhập.
-            </p>
+            <p>{getText('connectAccount')}</p>
             <Table
               columns={columns}
               dataSource={dataSource}

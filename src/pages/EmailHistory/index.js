@@ -15,6 +15,7 @@ import { createTranslatedText } from 'utils/text';
 function EmailHistory() {
   const intl = useIntl();
   const getTextSideBarRight = createTranslatedText('sidebarRight', intl);
+  const getTextInfo = createTranslatedText('information', intl);
 
   return (
     <div className="mypage">
@@ -26,11 +27,11 @@ function EmailHistory() {
         <Col md={24} lg={18} xl={18}>
           <Button type="primary" className="register-service-btn">
             <PlusCircleOutlined />
-            ĐĂNG KÍ DỊCH VỤ
+            {getTextInfo('registerService')}
           </Button>
 
           <div className="email-history">
-            <h2>NHẬT KÝ EMAIL</h2>
+            <h2>{getTextInfo('emailHistory')}</h2>
 
             <Table
               columns={columns}
