@@ -1,5 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
+
+import { useInjectSaga } from 'redux-injectors';
+
+import { useDispatch, useSelector } from 'react-redux';
+
+import { domainActions, domainSliceName, domainSaga } from '../slices';
+
+import * as domainSelector from '../selector';
 
 import DomainPrice from './DomainPrice';
 import SearchBox from './SearchBox';
@@ -10,7 +18,7 @@ import { createTranslatedText } from 'utils/text';
 import Row from 'components/BasicComponent/Grid/Row';
 import Col from 'components/BasicComponent/Grid/Col';
 
-import './styles.scss';
+import '../styles.scss';
 
 // TODO: Remove when integrate API
 const mockData = [
@@ -58,12 +66,19 @@ const mockData = [
 
 const RegisterDomain = () => {
   const intl = useIntl();
+  const dispatch = useDispatch();
   const getText = createTranslatedText('mypage.service.domain', intl);
   const [keyword, setKeyword] = useState('');
 
+  useInjectSaga({ key: domainSliceName, saga: domainSaga });
+
+  const listDomainName = useSelector(domainSelector.selectListDomainName);
+
+  useEffect(() => {
+    dispatch(domainActions.getListDomainPrice());
+  }, [dispatch]);
+
   const onSearch = (value) => {
-    // eslint-disable-next-line no-console
-    console.log(value, getText(''));
     setKeyword(value);
   };
 
@@ -96,11 +111,16 @@ const RegisterDomain = () => {
           <div className="domain-price-header line-block">Domain Price</div>
         </Col>
       </Row>
-      <Row>
-        <Col xs={24} sm={24} md={24} lg={24} xl={24}>
-          {/* TODO: List domain price is waiting to confirm use API or hardcode */}
-          <DomainPrice domainName=".company" domainPrice={380000} />
-        </Col>
+      <Row gutter={[16, 16]}>
+        {listDomainName &&
+          Object.keys(listDomainName).map((key) => (
+            <Col key={key} xs={24} sm={24} md={12} lg={4} xl={4}>
+              <DomainPrice
+                domainName={key}
+                domainPrice={listDomainName[key].register}
+              />
+            </Col>
+          ))}
       </Row>
     </div>
   );

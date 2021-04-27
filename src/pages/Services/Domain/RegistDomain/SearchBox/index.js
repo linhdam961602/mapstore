@@ -6,7 +6,7 @@ import { LARGE } from 'constants/common';
 
 import Input from 'components/BasicComponent/Input';
 
-import '../styles.scss';
+import '../../styles.scss';
 
 const { Search } = Input;
 

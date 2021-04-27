@@ -62,7 +62,7 @@ export const layoutRoutes = [
   {
     exact: true,
     path: REGIST_DOMAIN_URL,
-    component: lazy(() => import('pages/Services/RegisterDomain')),
+    component: lazy(() => import('pages/Services/Domain/RegistDomain')),
     isPrivate: false,
   },
   {

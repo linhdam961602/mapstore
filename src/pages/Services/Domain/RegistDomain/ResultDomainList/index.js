@@ -10,7 +10,7 @@ import { CART_URL } from 'constants/routes';
 import List from 'components/BasicComponent/List';
 import Button from 'components/BasicComponent/Button';
 
-import '../styles.scss';
+import '../../styles.scss';
 
 const { Item } = List;
 
