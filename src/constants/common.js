@@ -70,3 +70,5 @@ export const PAGE_SIZE_DEFAULT = 20;
 
 // Size for alement
 export const LARGE = 'large';
+
+export const COMPONENT_IMPORTING_DELAY_MS = 300;

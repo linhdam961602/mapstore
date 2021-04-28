@@ -1,5 +1,6 @@
-import { lazy } from 'react';
+import pMinDelay from 'p-min-delay';
 
+import { lazy } from 'utils/component';
 import {
   HOME_URI,
   LOGIN_URL,
@@ -15,66 +16,96 @@ import {
   SECURITY_SETTING,
   VPS_URL,
 } from 'constants/routes';
+import { COMPONENT_IMPORTING_DELAY_MS } from 'constants/common';
 
 export const layoutRoutes = [
   {
     exact: true,
     path: HOME_URI,
-    component: lazy(() => import('pages/HomePage')),
+    component: lazy(() =>
+      pMinDelay(import('pages/HomePage'), COMPONENT_IMPORTING_DELAY_MS),
+    ),
     isPrivate: false,
   },
   {
     exact: true,
     path: MY_PAGE_URI,
-    component: lazy(() => import('pages/MyPage')),
+    component: lazy(() =>
+      pMinDelay(import('pages/MyPage'), COMPONENT_IMPORTING_DELAY_MS),
+    ),
     isPrivate: true,
   },
   {
     exact: true,
     path: PROFILE,
-    component: lazy(() => import('pages/PersonalInfomation')),
+    component: lazy(() =>
+      pMinDelay(
+        import('pages/PersonalInfomation'),
+        COMPONENT_IMPORTING_DELAY_MS,
+      ),
+    ),
     isPrivate: true,
   },
   {
     exact: true,
     path: CHANGE_PASS,
-    component: lazy(() => import('pages/ChangePass')),
+    component: lazy(() =>
+      pMinDelay(import('pages/ChangePass'), COMPONENT_IMPORTING_DELAY_MS),
+    ),
     isPrivate: true,
   },
   {
     exact: true,
     path: CONTACT_LIST,
-    component: lazy(() => import('pages/ContactList')),
+    component: lazy(() =>
+      pMinDelay(import('pages/ContactList'), COMPONENT_IMPORTING_DELAY_MS),
+    ),
     isPrivate: true,
   },
   {
     exact: true,
     path: HOSTING_URL,
-    component: lazy(() => import('pages/Services/HostingPage')),
+    component: lazy(() =>
+      pMinDelay(
+        import('pages/Services/HostingPage'),
+        COMPONENT_IMPORTING_DELAY_MS,
+      ),
+    ),
     isPrivate: false,
   },
   {
     exact: true,
     path: VPS_URL,
-    component: lazy(() => import('pages/Services/VPSPage')),
+    component: lazy(() =>
+      pMinDelay(import('pages/Services/VPSPage'), COMPONENT_IMPORTING_DELAY_MS),
+    ),
     isPrivate: false,
   },
   {
     exact: true,
     path: REGIST_DOMAIN_URL,
-    component: lazy(() => import('pages/Services/Domain/RegistDomain')),
+    component: lazy(() =>
+      pMinDelay(
+        import('pages/Services/Domain/RegistDomain'),
+        COMPONENT_IMPORTING_DELAY_MS,
+      ),
+    ),
     isPrivate: false,
   },
   {
     exact: true,
     path: EMAIL_HISTORY,
-    component: lazy(() => import('pages/EmailHistory')),
+    component: lazy(() =>
+      pMinDelay(import('pages/EmailHistory'), COMPONENT_IMPORTING_DELAY_MS),
+    ),
     isPrivate: true,
   },
   {
     exact: true,
     path: SECURITY_SETTING,
-    component: lazy(() => import('pages/SecuritySetting')),
+    component: lazy(() =>
+      pMinDelay(import('pages/SecuritySetting'), COMPONENT_IMPORTING_DELAY_MS),
+    ),
     isPrivate: true,
   },
 ];
@@ -83,19 +114,25 @@ export const fluidRoutes = [
   {
     exact: true,
     path: REGISTER_URL,
-    component: lazy(() => import('pages/RegisterPage')),
+    component: lazy(() =>
+      pMinDelay(import('pages/RegisterPage'), COMPONENT_IMPORTING_DELAY_MS),
+    ),
     isPrivate: false,
   },
   {
     exact: true,
     path: LOGIN_URL,
-    component: lazy(() => import('pages/LoginPage')),
+    component: lazy(() =>
+      pMinDelay(import('pages/LoginPage'), COMPONENT_IMPORTING_DELAY_MS),
+    ),
     isPrivate: false,
   },
   {
     exact: true,
     path: FORGOT_URL,
-    component: lazy(() => import('pages/ForgotPassword')),
+    component: lazy(() =>
+      pMinDelay(import('pages/ForgotPassword'), COMPONENT_IMPORTING_DELAY_MS),
+    ),
     isPrivate: false,
   },
 ];
