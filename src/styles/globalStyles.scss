@@ -38,3 +38,29 @@ code {
     display: inherit;
   }
 }
+
+.ant-layout-content {
+  height: 100%;
+}
+
+.lazy-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .ant-spin-dot-item {
+    background-color: $primary;
+  }
+
+  .ant-spin-text {
+    color: $primary;
+  }
+
+  .ant-spin.ant-spin-spinning {
+    width: 6rem !important;
+    position: relative;
+  }
+}
