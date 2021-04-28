@@ -1,13 +1,9 @@
 import React from 'react';
 import loadable from '@loadable/component';
 
-import Spinner from 'components/BasicComponent/Spinner';
+import Loading from 'components/LayoutComponent/Loading';
 
 export const lazy = (callback) =>
   loadable(callback, {
-    fallback: (
-      <div className="lazy-fallback">
-        <Spinner size="large" />
-      </div>
-    ),
+    fallback: <Loading />,
   });
