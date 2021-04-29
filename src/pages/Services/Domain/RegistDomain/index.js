@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useIntl } from 'react-intl';
+// import { useIntl } from 'react-intl';
 
 import { useInjectSaga } from 'redux-injectors';
 
@@ -13,7 +13,7 @@ import DomainPrice from './DomainPrice';
 import SearchBox from './SearchBox';
 import ResultDomainList from './ResultDomainList';
 
-import { createTranslatedText } from 'utils/text';
+// import { createTranslatedText } from 'utils/text';
 
 import Row from 'components/BasicComponent/Grid/Row';
 import Col from 'components/BasicComponent/Grid/Col';
@@ -65,9 +65,9 @@ const mockData = [
 ];
 
 const RegisterDomain = () => {
-  const intl = useIntl();
+  // const intl = useIntl();
   const dispatch = useDispatch();
-  const getText = createTranslatedText('mypage.service.domain', intl);
+  // const getText = createTranslatedText('mypage.service.domain', intl);
   const [keyword, setKeyword] = useState('');
 
   useInjectSaga({ key: domainSliceName, saga: domainSaga });
