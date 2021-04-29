@@ -48,7 +48,7 @@ const common = {
     ip_banned_already: 'IP của bạn đã bị cấm!',
     wronglogin: 'Đăng nhập sai!',
     ipnotallowed: 'IP của bạn không được phép truy cập!',
-    token_expired: 'token_expired',
+    token_expired: 'Token của bạn đã hết hạn.',
     passwordNotMatch: 'Mật khẩu không khớp!',
     agreement: 'Bạn phải đồng ý với các điều khoản và điều kiện.',
     recaptcha: 'Vui lòng click vào ô xác nhận “Tôi không phải là người máy”.',

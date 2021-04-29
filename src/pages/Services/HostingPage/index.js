@@ -14,10 +14,9 @@ import TabDetail from '../components/TabDetail';
 
 import { HOSTING_INDEX } from './constant';
 
-// import { hostingData } from './mockData';
-
 import Tabs from 'components/BasicComponent/Tabs';
 import { useInjectReducer, useInjectSaga } from 'hooks/useInjector';
+import Spinner from 'components/BasicComponent/Spinner';
 
 const { TabPane } = Tabs;
 
@@ -42,6 +41,10 @@ const HostingPage = () => {
     shallowEqual,
   );
 
+  const isLoadingTabs = useSelector((state) =>
+    get(state, [serviceSliceName, 'isLoading'], initialState.isLoading),
+  );
+
   useEffect(() => {
     dispatch(serviceActions.fetchCategory());
   }, [dispatch]);
@@ -61,7 +64,7 @@ const HostingPage = () => {
   );
 
   return (
-    <div>
+    <Spinner spinning={isLoadingTabs}>
       <Tabs
         onChange={onChangeTab}
         defaultActiveKey={hostingTabs.length > 0 ? hostingTabs[0].id : ''}
@@ -73,7 +76,7 @@ const HostingPage = () => {
           </TabPane>
         ))}
       </Tabs>
-    </div>
+    </Spinner>
   );
 };
 
