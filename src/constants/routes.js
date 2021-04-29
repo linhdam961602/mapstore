@@ -21,6 +21,7 @@ export const CHANGE_PASS = '/change-password';
 export const CONTACT_LIST = '/contact-list';
 export const EMAIL_HISTORY = '/email-history';
 export const SECURITY_SETTING = '/security-setting';
+export const NOT_FOUND = '/not-found';
 
 // STORE
 export const STORE = '/store';

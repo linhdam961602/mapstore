@@ -15,6 +15,7 @@ import {
   EMAIL_HISTORY,
   SECURITY_SETTING,
   VPS_URL,
+  NOT_FOUND,
 } from 'constants/routes';
 import { COMPONENT_IMPORTING_DELAY_MS } from 'constants/common';
 
@@ -132,6 +133,14 @@ export const fluidRoutes = [
     path: FORGOT_URL,
     component: lazy(() =>
       pMinDelay(import('pages/ForgotPassword'), COMPONENT_IMPORTING_DELAY_MS),
+    ),
+    isPrivate: false,
+  },
+  {
+    exact: true,
+    path: NOT_FOUND,
+    component: lazy(() =>
+      pMinDelay(import('pages/NotFoundPage'), COMPONENT_IMPORTING_DELAY_MS),
     ),
     isPrivate: false,
   },
