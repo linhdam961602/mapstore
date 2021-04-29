@@ -8,6 +8,11 @@
   height: 3.8rem;
   background-color: $secondary;
   color: $secondary-text;
+  &:hover,
+  &:focus,
+  &:active {
+    color: $primary;
+  }
 
   &--primary {
     background-color: $primary;

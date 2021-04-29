@@ -4,7 +4,6 @@ import * as menu from './menu';
 import * as footer from './footer';
 import * as mypage from './mypage';
 import * as services from './services';
-import * as information from './information';
 
 const combined = {
   ...common,
@@ -13,7 +12,6 @@ const combined = {
   ...footer,
   ...mypage,
   ...services,
-  ...information,
 };
 
 export default combined;

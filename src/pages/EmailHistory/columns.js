@@ -1,3 +1,5 @@
+import { createTranslatedText } from 'utils/text';
+
 export const dataSource = [
   {
     key: '1',
@@ -51,15 +53,18 @@ export const dataSource = [
   },
 ];
 
-export const columns = [
-  {
-    title: 'NGÀY GỬI MAIL',
-    dataIndex: 'dtSend',
-    key: 'date',
-  },
-  {
-    title: 'TIÊU ĐỀ THƯ',
-    dataIndex: 'title',
-    key: 'title',
-  },
-];
+export const columns = (intl) => {
+  const getText = createTranslatedText('mypage.emailHistory.columns', intl);
+  return [
+    {
+      title: getText('date'),
+      dataIndex: 'dtSend',
+      key: 'date',
+    },
+    {
+      title: getText('title'),
+      dataIndex: 'title',
+      key: 'title',
+    },
+  ];
+};

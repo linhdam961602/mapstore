@@ -51,6 +51,28 @@ const mypage = {
       rePassword: 'Re-enter new password',
     },
   },
+  securitySetting: {
+    chooseSecurity:
+      'Please choose one of the following actions, this will make your account more secure.',
+    connectAccount:
+      'Connect your account to any of the services below to simplify your sign-in experience. We only use this information to verify your account and never sign in for you.',
+    connectAccountTab: 'Account Links',
+    twoAuthenTab: 'Two-factor authentication',
+    oneAuthenTab: 'One-time login authentication (SSO)',
+    columns: {
+      supplier: 'Supplier',
+      name: 'Name',
+      email: 'Email',
+      action: 'Action',
+      removeLink: 'Unlink',
+    },
+  },
+  emailHistory: {
+    columns: {
+      date: 'Date',
+      title: 'Title',
+    },
+  },
 };
 
 export { mypage };

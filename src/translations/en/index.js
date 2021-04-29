@@ -3,7 +3,6 @@ import * as auth from './auth';
 import * as menu from './menu';
 import * as footer from './footer';
 import * as mypage from './mypage';
-import * as information from './information';
 
 const combined = {
   ...common,
@@ -11,7 +10,6 @@ const combined = {
   ...menu,
   ...footer,
   ...mypage,
-  ...information,
 };
 
 export default combined;

@@ -23,7 +23,7 @@ const ProductItem = ({
   paytype = '', // Regular, Free
 }) => {
   const intl = useIntl();
-  const getText = createTranslatedText('products', intl);
+  const getText = createTranslatedText('common', intl);
 
   const [selectedPeriod, setSelectedPeriod] = useState(null);
 
@@ -88,7 +88,7 @@ const ProductItem = ({
         )}
 
         <div className="item__btn">
-          <Button type="primary">{getText('buttons.order')}</Button>
+          <Button type="primary">{getText('action.order')}</Button>
         </div>
       </div>
     </div>

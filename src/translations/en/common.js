@@ -15,6 +15,7 @@ const common = {
     ads: 'Ads',
     searchEngines: 'Search engines',
     otherSources: 'Other souces',
+    month: 'Month',
   },
   tooltip: {
     password:
@@ -77,6 +78,8 @@ const common = {
     prev: 'Previous',
     login: 'Login',
     addNewContact: 'Add new contact',
+    registerService: 'Đăng ký dịch vụ',
+    order: 'Order',
   },
   userInfo: {
     groups: {

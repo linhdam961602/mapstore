@@ -1,15 +1,9 @@
 @import 'styles/mixins.scss';
 
-.register-service-btn {
-  margin-bottom: 2rem;
-}
-
 .security-setting {
-  .tino {
-    &__button {
-      border: 1px solid $primary;
-      background-color: $white;
-      color: $primary;
-    }
+  .form-group {
+    background-color: $white;
+    border-radius: $radius-normal;
+    padding: 2rem;
   }
 }

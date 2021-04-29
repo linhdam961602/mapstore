@@ -15,6 +15,7 @@ const common = {
     ads: 'Quảng cáo',
     searchEngines: 'Công cụ tìm kiếm',
     otherSources: 'Nguồn khác',
+    month: 'Tháng',
   },
   tooltip: {
     password:
@@ -77,6 +78,8 @@ const common = {
     prev: 'Trở về',
     login: 'Đăng nhập',
     addNewContact: 'Thêm liên hệ mới',
+    registerService: 'Register Service',
+    order: 'Đặt hàng',
   },
   userInfo: {
     groups: {
