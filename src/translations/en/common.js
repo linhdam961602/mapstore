@@ -48,7 +48,7 @@ const common = {
     ip_banned_already: 'Your IP has been banned!',
     wronglogin: 'Wrong login!',
     ipnotallowed: 'Your IP is not allowed!',
-    token_expired: 'token_expired',
+    token_expired: 'Your token has expired.',
     passwordNotMatch: 'The two passwords that you entered do not match!',
     agreement: 'You must agree with the terms and conditions.',
     recaptcha: 'Please click on the “I am not a robot” confirmation box.',

@@ -9,13 +9,13 @@ import {
   serviceActions,
   initialState,
 } from '../slices';
-
 import TabDetail from '../components/TabDetail';
 
 import { VPS_INDEX } from './constant';
 
 import Tabs from 'components/BasicComponent/Tabs';
 import { useInjectReducer, useInjectSaga } from 'hooks/useInjector';
+import Spinner from 'components/BasicComponent/Spinner';
 
 const { TabPane } = Tabs;
 
@@ -40,6 +40,10 @@ const VPSPage = () => {
     shallowEqual,
   );
 
+  const isLoadingTabs = useSelector((state) =>
+    get(state, [serviceSliceName, 'isLoading'], initialState.isLoading),
+  );
+
   useEffect(() => {
     dispatch(serviceActions.fetchCategory());
   }, [dispatch]);
@@ -59,7 +63,7 @@ const VPSPage = () => {
   );
 
   return (
-    <div>
+    <Spinner spinning={isLoadingTabs}>
       <Tabs
         onChange={onChangeTab}
         defaultActiveKey={vpsTabs.length > 0 ? vpsTabs[0].id : ''}
@@ -70,7 +74,7 @@ const VPSPage = () => {
           </TabPane>
         ))}
       </Tabs>
-    </div>
+    </Spinner>
   );
 };
 
