@@ -34,14 +34,14 @@ function SecuritySetting() {
             <div className="form-group">
               <p>{getText('chooseSecurity')}</p>
 
-              <Tabs defaultActiveKey={1}>
+              <Tabs defaultActiveKey={1} className="highlight">
                 <TabPane tab={getText('connectAccountTab')} key="1">
                   <p>{getText('connectAccount')}</p>
                   <Table
                     columns={columnsIntl}
                     dataSource={dataSource}
                     pagination={
-                      dataSource?.lenght > 0
+                      dataSource?.length > 0
                         ? { pageSize: PAGE_SIZE_DEFAULT }
                         : false
                     }

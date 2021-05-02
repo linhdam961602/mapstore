@@ -9,6 +9,11 @@
       border: none;
     }
   }
+  &.highlight {
+    .ant-tabs-nav {
+      background-color: rgba($color: $primary, $alpha: 0.1);
+    }
+  }
   .ant-tabs-nav-list {
     .ant-tabs-tab {
       padding: 0;

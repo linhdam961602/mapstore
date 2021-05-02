@@ -32,7 +32,7 @@ const GridMyService = () => {
         dataSource={listServiceActive}
         columns={columnsIntl}
         pagination={
-          listServiceActive?.lenght > 0
+          listServiceActive?.length > 0
             ? { pageSize: PAGE_SIZE_DEFAULT }
             : false
         }

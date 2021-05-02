@@ -30,7 +30,7 @@ function EmailHistory() {
               columns={columnsIntl}
               dataSource={dataSource}
               pagination={
-                dataSource?.lenght > 0 ? { pageSize: PAGE_SIZE_DEFAULT } : false
+                dataSource?.length > 0 ? { pageSize: PAGE_SIZE_DEFAULT } : false
               }
             />
           </div>

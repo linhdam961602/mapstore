@@ -26,6 +26,7 @@ import iconHosting from 'assets/icon/icon_hosting.png';
 import iconSupport from 'assets/icon/icon_support.png';
 
 import { useInjectSaga } from 'hooks/useInjector';
+
 const MyPage = () => {
   const intl = useIntl();
   const dispatch = useDispatch();

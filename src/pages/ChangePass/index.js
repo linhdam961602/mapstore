@@ -47,7 +47,7 @@ const ChangePass = () => {
 
   return (
     <div className="mypage">
-      <h1 className="titlePage">{getTextSideBarRight('myInfo')}</h1>
+      <h1 className="titlePage">{getTextSideBarRight('changePass')}</h1>
       <Row gutter={20}>
         <Col md={24} lg={6} xl={6}>
           <SidebarRight />

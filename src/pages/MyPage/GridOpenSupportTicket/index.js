@@ -34,7 +34,7 @@ const GridOpenSupportTicket = () => {
         dataSource={listTicket}
         columns={columnsIntl}
         pagination={
-          listTicket?.lenght > 0 ? { pageSize: PAGE_SIZE_DEFAULT } : false
+          listTicket?.length > 0 ? { pageSize: PAGE_SIZE_DEFAULT } : false
         }
       />
     </div>

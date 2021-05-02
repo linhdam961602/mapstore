@@ -29,3 +29,8 @@ export const selectListServiceActive = createSelector(
   userStore,
   (state) => state.listServiceActive?.services,
 );
+
+export const selectListAllInvoice = createSelector(
+  userStore,
+  (state) => state.listInvoice?.invoices,
+);
