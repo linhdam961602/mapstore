@@ -7,6 +7,7 @@ import { push, replace } from 'connected-react-router';
 
 import * as authApis from './apis';
 
+import { REDIRECT_REGEX } from 'constants/common';
 import * as auth from 'utils/authHelper';
 import { errorHandler } from 'store/errorHandlerSaga';
 import { LOGIN_URL, MY_PAGE_URI } from 'constants/routes';
@@ -100,11 +101,11 @@ const authSliceSaga = createSliceSaga({
             if (redirectUrlParams.origin === urlParams.origin) {
               redirect = redirect.substr(urlParams.origin.length);
 
-              if (window.routerBase !== '/') {
-                redirect = redirect.replace(window.routerBase, '/');
+              if (window.routerBase !== MY_PAGE_URI) {
+                redirect = redirect.replace(window.routerBase, MY_PAGE_URI);
               }
 
-              if (redirect.match(/^\/.*#/)) {
+              if (redirect.match(REDIRECT_REGEX)) {
                 redirect = redirect.substr(redirect.indexOf('#') + 1);
               }
             } else {
