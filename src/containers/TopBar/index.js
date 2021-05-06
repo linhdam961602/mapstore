@@ -1,3 +1,5 @@
+import { stringify } from 'querystring';
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useIntl } from 'react-intl';
@@ -48,7 +50,16 @@ const TopBar = () => {
               </>
             ) : (
               <div className="button__container desktop-only">
-                <Link to={LOGIN_URL}>{getText('login')}</Link>
+                <Link
+                  to={{
+                    pathname: LOGIN_URL,
+                    search: stringify({
+                      redirect: window.location.href,
+                    }),
+                  }}
+                >
+                  {getText('login')}
+                </Link>
                 <Button onClick={() => history.push(REGISTER_URL)}>
                   {getText('signup')}
                 </Button>
