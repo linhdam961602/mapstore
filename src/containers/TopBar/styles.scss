@@ -1,57 +1,28 @@
 @import 'styles/mixins.scss';
 
 .topBar {
-  background-color: transparent;
-  border-bottom: 1px solid $pale-blue-o1;
-  padding: 0 2rem;
-  @include respond-to('sm') {
-    height: auto;
-    padding: 0;
-  }
+  background-color: $white;
+  box-shadow: 0 1px 4px rgba(#001529, 0.8);
+  padding: 0 1.6rem;
+  height: 4.8rem;
+
   .top-right-wrapper {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    height: 64px;
-    @include respond-to('sm') {
-      border-top: 1px solid $pale-blue-o1;
-      padding: 0 2rem;
-    }
-    .breadcrumb {
-      .ant-breadcrumb {
-        .ant-breadcrumb-link {
-          color: $blue-7;
-          &.active {
-            font-weight: bold;
-          }
-        }
-        .ant-breadcrumb-separator {
-          color: $blue-7;
-        }
-        > span:last-child {
-          font-weight: bold;
-        }
-      }
-    }
+    height: 4.8rem;
+
     .user-info {
       display: flex;
       flex-direction: row;
       align-items: center;
       .ant-avatar {
         margin: 0 0 0 3rem;
-        &:hover {
-          @include transition-timing-function(cubic-bezier(0.4, 0, 0.2, 1));
-          @include transition-duration(0.3s);
-          -webkit-transform: scale(0.95);
-          -ms-transform: scale(0.95);
-          transform: scale(0.95);
-          cursor: pointer;
-        }
+        cursor: pointer;
       }
       .theRing {
-        color: $blue-7;
-        font-size: 1.8rem;
+        font-size: 1.6rem;
         &:hover {
           cursor: pointer;
         }
@@ -60,44 +31,17 @@
   }
 }
 .dropdown-menu {
-  color: $white;
-  background-color: $blue-6;
+  background-color: $white;
   border-radius: $radius-normal;
+  overflow: hidden;
   .information {
-    padding: 1rem 2rem;
+    padding: 0.8rem 1.6rem;
     .primary-text {
       font-weight: 700;
       @extend .reset-space;
     }
     .secondary-text {
-      color: $blue-5;
       @extend .reset-space;
-    }
-  }
-  .ant-menu {
-    background-color: $blue-6;
-    border: none;
-    padding: 1rem;
-    .ant-menu-item {
-      padding: 0 1rem;
-      margin: 0;
-      height: 3.6rem;
-      border-radius: $radius-normal;
-      display: flex;
-      align-items: center;
-      &.ant-menu-item-active,
-      &.ant-menu-item-selected {
-        background-color: $blue-4;
-      }
-      a,
-      .anticon {
-        color: $white;
-      }
-    }
-
-    &:last-child {
-      border-top: 1px solid $pale-blue-o1;
-      padding: 1rem;
     }
   }
 }
@@ -107,14 +51,14 @@
   border-radius: $radius-normal;
   .ant-list-items {
     @extend .reset-space;
-    padding: 2rem;
+    padding: 1.6rem;
     .ant-list-item {
       list-style: none;
-      padding: 0.5rem;
+      padding: 0.4rem;
       border: none;
       justify-content: start;
       .anticon {
-        margin: 0 1rem 0 0;
+        margin: 0 0.8rem 0 0;
       }
       &:hover {
         cursor: pointer;

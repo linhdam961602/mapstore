@@ -1,14 +1,6 @@
 @import 'styles/mixins.scss';
 
 .tino__spinner {
-  .ant-spin-dot-item {
-    background-color: $primary;
-  }
-
-  .ant-spin-text {
-    color: $primary;
-  }
-
   .ant-spin.ant-spin-spinning {
     width: 6rem !important;
     position: relative;

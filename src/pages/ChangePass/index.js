@@ -25,7 +25,7 @@ import { useInjectSaga } from 'hooks/useInjector';
 import PasswordMeterInput from 'components/BasicComponent/PasswordMeterInput';
 
 import SidebarRight from 'containers/Sidebar/SidebarRight';
-import './styles.scss';
+// import './styles.scss';
 
 const { Item } = Form;
 

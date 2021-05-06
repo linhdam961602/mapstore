@@ -11,6 +11,8 @@ import Layout from 'components/BasicComponent/Layout';
 import history from 'utils/history';
 import { useAuth } from 'hooks/useAuth';
 import useWindowDimensions from 'hooks/useWindowDimensions';
+import Image from 'components/BasicComponent/Image';
+import logo from 'assets/logo/tino-logo.svg';
 
 const { Sider } = Layout;
 
@@ -26,6 +28,7 @@ const SidebarLeft = () => {
   return (
     <>
       <Sider className="sidebarLeft_wrapper" collapsed={width <= 991}>
+        <Image src={logo} preview={false} />
         <Navigation
           menusData={menusDataIntl}
           activeMenu={history.location.pathname}

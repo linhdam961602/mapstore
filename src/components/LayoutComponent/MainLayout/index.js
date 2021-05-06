@@ -19,20 +19,18 @@ const MainLayout = (props) => {
   const getText = createTranslatedText('common.action', intl);
   return (
     <Layout className="layout_main">
-      <TopBar className="header" />
+      <Sider />
       <Layout className="site-layout">
-        <Sider />
-        <div className="content_wrapper">
-          <Content className="content">
-            <Button type="primary" className="register-service-btn">
-              <PlusCircleOutlined />
-              {getText('registerService')}
-            </Button>
-            {props.children}
-          </Content>
-        </div>
+        <TopBar className="header" />
+        <Content className="content">
+          <Button type="primary" className="register-service-btn">
+            <PlusCircleOutlined />
+            {getText('registerService')}
+          </Button>
+          {props.children}
+        </Content>
+        <Footer />
       </Layout>
-      <Footer />
     </Layout>
   );
 };

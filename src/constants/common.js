@@ -63,6 +63,7 @@ export const GOOGLE_OAUTH_CLIENT_KEY =
   '380098082846-augssf22mlmhesmgrq74i1jb7nsk1jl8.apps.googleusercontent.com';
 
 // Avatar
+export const AVATAR_SIZE_24 = 24;
 export const AVATAR_SIZE_32 = 32;
 export const AVATAR_SIZE_48 = 48;
 

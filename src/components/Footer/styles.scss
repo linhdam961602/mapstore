@@ -1,37 +1,32 @@
 @import 'styles/mixins.scss';
 
 .footer {
-    margin: $base-space;
-    .primary-title {
-        font-weight: bold;
-        text-transform: uppercase;
-        color: $pale-blue-o4;
-        margin: 0 0 0.8rem 0;
+  margin: $base-space;
+  .primary-title {
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0 0 0.8rem 0;
+  }
+  .normail-text {
+    font-size: 1.3rem;
+    @extend .reset-space;
+  }
+  .list-policy-link {
+    a {
+      display: block;
     }
-    .normail-text {
-        font-size: 1.3rem;
-        color: $pale-blue-o4;
-        @extend .reset-space;
-        &:hover {
-            color: $blue-7;
-        }
+  }
+  .list-icon-partner {
+    width: 40rem;
+    @include respond-to('md') {
+      width: 100%;
     }
-    .list-policy-link {
-        a {
-            display: block;
-        }
+    .ant-image {
+      width: 7.5rem;
+      margin: 0 0.6rem 0 0;
+      img {
+        border-radius: $radius-normal;
+      }
     }
-    .list-icon-partner {
-        width: 40rem;
-        @include respond-to('md') {
-            width: 100%;
-        }
-        .ant-image {
-            width: 7.5rem;
-            margin: 0 0.6rem 0 0;
-            img {
-                border-radius: $radius-normal;
-            }
-        }
-    }
+  }
 }

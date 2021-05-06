@@ -31,6 +31,7 @@ const LanguageSelector = () => {
       onChange={(value) => {
         dispatch(languageActions.changeLocale(value));
       }}
+      size="small"
     />
   );
 };

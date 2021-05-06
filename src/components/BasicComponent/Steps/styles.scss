@@ -6,26 +6,4 @@
     height: 4rem;
     line-height: 4rem;
   }
-
-  .ant-steps-item-process {
-    .ant-steps-item-icon {
-      background-color: $primary;
-      border-color: $primary;
-    }
-  }
-
-  .ant-steps-item-finish {
-    .ant-steps-item-icon {
-      border-color: $primary;
-    }
-  }
-
-  &.ant-steps-navigation {
-    .ant-steps-item::before {
-      background-color: $primary;
-    }
-  }
-  .ant-steps-item-finish .ant-steps-item-icon > .ant-steps-icon {
-    color: $primary;
-  }
 }
