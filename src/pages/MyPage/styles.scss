@@ -6,10 +6,17 @@
       margin-bottom: 1.6rem;
     }
   }
-  .userBaicInfo {
+  .form-group {
     background-color: $white;
-    margin: 2rem 0 0 0;
     border-radius: $radius-normal;
+    padding: 1.6rem;
+    .title {
+      font-weight: bold;
+      font-size: 1.8rem;
+    }
+  }
+  .userBaicInfo {
+    margin: 1.6rem 0;
     .avatarUser_wrapper {
       border: none;
     }
@@ -30,41 +37,42 @@
       }
     }
   }
-}
-.customGrid {
-  .headingGrid {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin: 3.2rem 0 1.6rem 0;
-    .left-content {
+
+  .customGrid {
+    margin: 0 0 1.6rem 0;
+    .headingGrid {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
-      h3 {
-        margin: 0 0 0 1.6rem;
-        padding: 0;
-        text-transform: capitalize;
-        font-weight: bold;
-        font-size: 1.6rem;
+      margin: 0 0 1.6rem 0;
+      .left-content {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        h3 {
+          margin: 0 0 0 1.6rem;
+          padding: 0;
+          text-transform: capitalize;
+          font-weight: bold;
+          font-size: 1.6rem;
+        }
+        .anticon {
+          font-size: 3rem;
+        }
       }
-      .anticon {
-        font-size: 3rem;
+      .link {
+        font-size: 1.4rem;
+        @include respond-to('md') {
+          display: none;
+        }
       }
     }
-    .link {
-      color: $link;
-      font-size: 1.4rem;
-      @include respond-to('md') {
-        display: none;
-      }
+    .ant-table-wrapper {
+      overflow: auto;
+      width: 100%;
+      background-color: $white;
     }
-  }
-  .ant-table-wrapper {
-    overflow: auto;
-    width: 100%;
-    background-color: $white;
   }
 }

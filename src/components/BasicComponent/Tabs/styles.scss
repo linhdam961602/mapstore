@@ -1,0 +1,41 @@
+@import 'styles/mixins.scss';
+
+.tino__tabs {
+  .ant-tabs-nav {
+    background-color: $white;
+    border-radius: $radius-normal;
+    padding: 0.8rem;
+    &::before {
+      border: none;
+    }
+  }
+  &.highlight {
+    .ant-tabs-nav {
+      background-color: rgba($color: $primary, $alpha: 0.1);
+    }
+  }
+  .ant-tabs-nav-list {
+    .ant-tabs-tab {
+      padding: 0;
+      font-weight: 700;
+      &:hover {
+        color: $primary;
+      }
+      &.ant-tabs-tab-active {
+        .ant-tabs-tab-btn {
+          color: $white;
+          background-color: $primary;
+          border-radius: 8px;
+        }
+      }
+      .ant-tabs-tab-btn {
+        padding: 0.8rem 1.6rem;
+        user-select: none;
+        cursor: pointer;
+      }
+    }
+    .ant-tabs-ink-bar {
+      display: none;
+    }
+  }
+}

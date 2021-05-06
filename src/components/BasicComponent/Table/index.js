@@ -4,8 +4,12 @@ import 'antd/es/table/style/css';
 
 const { Column, ColumnGroup } = AntdTable;
 
-function Table({ children, ...props }) {
-  return <AntdTable {...props}>{children}</AntdTable>;
+function Table({ children, size = 'small', ...props }) {
+  return (
+    <AntdTable {...props} size={size}>
+      {children}
+    </AntdTable>
+  );
 }
 
 Table.Column = Column;

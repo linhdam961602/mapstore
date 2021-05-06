@@ -21,7 +21,7 @@ const GridMyService = () => {
   const listServiceActive = useSelector(userSelector.selectListServiceActive);
 
   return (
-    <div className="customGrid">
+    <div className="customGrid form-group">
       <div className="headingGrid">
         <div className="left-content">
           <CloudServerOutlined />
@@ -32,7 +32,7 @@ const GridMyService = () => {
         dataSource={listServiceActive}
         columns={columnsIntl}
         pagination={
-          listServiceActive?.length > 0
+          listServiceActive?.length > PAGE_SIZE_DEFAULT
             ? { pageSize: PAGE_SIZE_DEFAULT }
             : false
         }

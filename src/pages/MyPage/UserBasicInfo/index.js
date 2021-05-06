@@ -19,7 +19,7 @@ const UserBasicInfo = () => {
   const userInfo = useSelector(authSelector.selectUserInfo);
 
   return (
-    <div className="userBaicInfo">
+    <div className="userBaicInfo form-group">
       <Row gutter={16}>
         <Col xs={24} sm={24} md={12} lg={6} xl={6}>
           <AvatarUser />

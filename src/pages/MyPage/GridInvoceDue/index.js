@@ -21,7 +21,7 @@ const GridInvoceDue = () => {
   const listInvoiceOverDue = useSelector(userSelector.selectListInvoiceOverDue);
 
   return (
-    <div className="customGrid">
+    <div className="customGrid form-group">
       <div className="headingGrid">
         <div className="left-content">
           <Image width={22} src={iconInvoiceDue} preview={false} />
@@ -35,7 +35,7 @@ const GridInvoceDue = () => {
         dataSource={listInvoiceOverDue}
         columns={columnsIntl}
         pagination={
-          listInvoiceOverDue?.length > 0
+          listInvoiceOverDue?.length > PAGE_SIZE_DEFAULT
             ? { pageSize: PAGE_SIZE_DEFAULT }
             : false
         }

@@ -20,7 +20,7 @@ const GridOpenSupportTicket = () => {
   const listTicket = useSelector(userSelector.selectListAllTicket);
 
   return (
-    <div className="customGrid">
+    <div className="customGrid form-group">
       <div className="headingGrid">
         <div className="left-content">
           <Image width={22} src={iconSupportTicket} preview={false} />
@@ -34,7 +34,9 @@ const GridOpenSupportTicket = () => {
         dataSource={listTicket}
         columns={columnsIntl}
         pagination={
-          listTicket?.length > 0 ? { pageSize: PAGE_SIZE_DEFAULT } : false
+          listTicket?.length > PAGE_SIZE_DEFAULT
+            ? { pageSize: PAGE_SIZE_DEFAULT }
+            : false
         }
       />
     </div>
