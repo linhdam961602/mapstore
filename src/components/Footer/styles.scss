@@ -1,7 +1,7 @@
 @import 'styles/mixins.scss';
 
 .footer {
-  margin: $base-space;
+  padding: $base-space;
   .primary-title {
     font-weight: bold;
     text-transform: uppercase;
@@ -17,13 +17,13 @@
     }
   }
   .list-icon-partner {
-    width: 40rem;
     @include respond-to('md') {
       width: 100%;
     }
     .ant-image {
       width: 7.5rem;
       margin: 0 0.6rem 0 0;
+
       img {
         border-radius: $radius-normal;
       }
