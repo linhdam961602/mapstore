@@ -13,14 +13,13 @@ import { Route, Redirect } from 'react-router-dom';
 import { MY_PAGE_URI } from 'constants/routes';
 import { useAuth } from 'hooks/useAuth';
 
-const PublicRoute = ({ component: Component, ...rest }) => {
+const PublicRoute = ({ component: Component, restricted = false, ...rest }) => {
   const { isAuthenticated } = useAuth();
-
   return (
     <Route
       {...rest}
       render={(props) =>
-        isAuthenticated ? (
+        isAuthenticated && restricted ? (
           <Redirect to={MY_PAGE_URI} />
         ) : (
           <Component {...props} />

@@ -40,11 +40,12 @@ export default function MenuContainer() {
           path={route.path}
           exact={route.exact}
           component={route.component}
+          restricted
         />
       ))}
       <MainLayout>
         {routes.layoutRoutes.map((route) =>
-          route.isPrivate || isAuthenticated ? (
+          route.isPrivate ? (
             <PrivateRoute
               key={uuid()}
               path={route.path}
