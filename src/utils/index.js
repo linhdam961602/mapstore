@@ -7,6 +7,8 @@
 /* eslint-disable no-restricted-syntax */
 // TODO: Fix eslint
 
+import { parse } from 'querystring';
+
 import dayjs from 'dayjs';
 import isEmpty from 'lodash/isEmpty';
 import _isInteger from 'lodash/isInteger';
@@ -217,3 +219,5 @@ export const getPhoneWithoutCode = (number) => {
 
 export const convertDate = (date, format = NORMAL_DATE_FORMAT) =>
   date ? dayjs(date).format(format) : null;
+
+export const getPageQuery = () => parse(window.location.href.split('?')[1]);

@@ -1,13 +1,17 @@
+import { stringify } from 'querystring';
+
 import { createSlice } from '@reduxjs/toolkit';
 import { createSliceSaga, SagaType } from 'redux-toolkit-saga';
 import { put, call } from 'redux-saga/effects';
-import { push } from 'connected-react-router';
+import { push, replace } from 'connected-react-router';
 
 import * as authApis from './apis';
 
+import { REDIRECT_REGEX } from 'constants/common';
 import * as auth from 'utils/authHelper';
 import { errorHandler } from 'store/errorHandlerSaga';
 import { LOGIN_URL, MY_PAGE_URI } from 'constants/routes';
+import { getPageQuery } from 'utils';
 
 const authSliceName = 'auth';
 
@@ -87,7 +91,29 @@ const authSliceSaga = createSliceSaga({
           yield put(authSliceSaga.actions.getUserInfo());
 
           // redirect to home page
-          yield put(push(MY_PAGE_URI));
+          const urlParams = new URL(window.location.href);
+          const params = getPageQuery();
+          let { redirect } = params;
+
+          if (redirect) {
+            const redirectUrlParams = new URL(redirect);
+
+            if (redirectUrlParams.origin === urlParams.origin) {
+              redirect = redirect.substr(urlParams.origin.length);
+
+              if (window.routerBase !== MY_PAGE_URI) {
+                redirect = redirect.replace(window.routerBase, MY_PAGE_URI);
+              }
+
+              if (redirect.match(REDIRECT_REGEX)) {
+                redirect = redirect.substr(redirect.indexOf('#') + 1);
+              }
+            } else {
+              yield put(push(MY_PAGE_URI));
+              return;
+            }
+          }
+          yield put(replace(redirect || MY_PAGE_URI));
         }
       } catch (error) {
         yield put(reducerActions.loginFailure(error));
@@ -112,8 +138,20 @@ const authSliceSaga = createSliceSaga({
           // Log out success
           auth.clearUserCredential();
 
-          // push to login
-          yield put(push(LOGIN_URL));
+          const { redirect } = getPageQuery(); // Note: There may be security issues, please note
+
+          if (window.location.pathname !== LOGIN_URL && !redirect) {
+            yield put(
+              replace({
+                // push to login
+                pathname: LOGIN_URL,
+                // save the place to redirect after logging in successfully
+                search: stringify({
+                  redirect: window.location.href,
+                }),
+              }),
+            );
+          }
         }
       } catch (err) {
         yield put(errorHandler(err));
