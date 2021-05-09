@@ -1,35 +1,12 @@
 /* stylelint-disable at-rule-empty-line-before,at-rule-name-space-after,at-rule-no-unknown */
 @import '../mixins';
 
-$theme: default;
-
-// The prefix to use on all css classes from ant.
-$ant-prefix: ant;
-
-// An override for the html selector for theme prefixes
-$html-selector: html;
-
 // Border color
 $border-color-base: rgba(0, 0, 0, 85%); // base border outline a component
 $border-color-split: rgba(0, 0, 0, 94%); // split border inside a component
 $border-color-inverse: $white;
 $border-width-base: 1px; // width of the border for a component
 $border-style-base: solid; // style of a components border
-
-// -------- Colors -----------
-$primary-color: #1890ff;
-$info-color: $primary-color;
-$success-color: #52c41a;
-$processing-color: #1890ff;
-$error-color: #f5222d;
-$highlight-color: #f5222d;
-$warning-color: #faad14;
-$normal-color: #d9d9d9;
-$white: #fff;
-$black: #000;
-
-// Base Scaffolding Variables
-// ---
 
 // Background color for `<body>`
 $body-background: #fff;
@@ -51,7 +28,7 @@ $icon-color-hover: rgba($black, 75%);
 $heading-color: rgba($black, 85%);
 $text-color-dark: rgba($white, 85%);
 $text-color-secondary-dark: rgba($white, 65%);
-$text-selection-bg: $primary-color;
+$text-selection-bg: $primary;
 $font-variant-base: tabular-nums;
 $font-feature-settings-base: 'tnum';
 $font-size-base: 14px;
@@ -78,242 +55,37 @@ $padding-xss: 4px; // more small
 $control-padding-horizontal: $padding-sm;
 $control-padding-horizontal-sm: $padding-xs;
 
-// vertical margins
-$margin-lg: 24px; // containers
-$margin-md: 16px; // small containers and buttons
-$margin-sm: 12px; // Form controls and items
-$margin-xs: 8px; // small items
-$margin-xss: 4px; // more small
-
 // height rules
-$height-base: 32px;
-$height-lg: 40px;
-$height-sm: 24px;
+$height-base: 3.2rem;
+$height-lg: 4rem;
+$height-sm: 2.4rem;
 
 // The background colors for active and hover states for things like
 // list items or table cells.
-$item-active-bg: $primary-color;
+$item-active-bg: $primary;
 $item-hover-bg: #f5f5f5;
 
 // ICONFONT
 $iconfont-css-prefix: anticon;
 
 // LINK
-$link-color: $primary-color;
+$link-color: $primary;
 $link-decoration: none;
 $link-hover-decoration: none;
 $link-focus-decoration: none;
 $link-focus-outline: 0;
 
-// Animation
-$ease-base-out: cubic-bezier(0.7, 0.3, 0.1, 1);
-$ease-base-in: cubic-bezier(0.9, 0, 0.3, 0.7);
-$ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
-$ease-in: cubic-bezier(0.55, 0.055, 0.675, 0.19);
-$ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1);
-$ease-out-back: cubic-bezier(0.12, 0.4, 0.29, 1.46);
-$ease-in-back: cubic-bezier(0.71, -0.46, 0.88, 0.6);
-$ease-in-out-back: cubic-bezier(0.71, -0.46, 0.29, 1.46);
-$ease-out-circ: cubic-bezier(0.08, 0.82, 0.17, 1);
-$ease-in-circ: cubic-bezier(0.6, 0.04, 0.98, 0.34);
-$ease-in-out-circ: cubic-bezier(0.78, 0.14, 0.15, 0.86);
-$ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1);
-$ease-in-quint: cubic-bezier(0.755, 0.05, 0.855, 0.06);
-$ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1);
-
-// Outline
-$outline-blur-size: 0;
-$outline-width: 2px;
-$outline-color: $primary-color;
-$outline-fade: 20%;
-
-$background-color-light: hsv(
-  0,
-  0,
-  98%
-); // background of header and selected item
-$background-color-base: hsv(0, 0, 96%); // Default grey background color
-
-// Disabled states
-$disabled-color: rgba(#000, 25%);
-$disabled-bg: $background-color-base;
-$disabled-color-dark: rgba(#fff, 35%);
-
-// Shadow
-$shadow-color: rgba(0, 0, 0, 0.15);
-$shadow-color-inverse: $component-background;
-$shadow-1-up: 0 -6px 16px -8px rgba(0, 0, 0, 0.08),
-  0 -9px 28px 0 rgba(0, 0, 0, 0.05), 0 -12px 48px 16px rgba(0, 0, 0, 0.03);
-$shadow-1-down: 0 6px 16px -8px rgba(0, 0, 0, 0.08),
-  0 9px 28px 0 rgba(0, 0, 0, 0.05), 0 12px 48px 16px rgba(0, 0, 0, 0.03);
-$shadow-1-left: -6px 0 16px -8px rgba(0, 0, 0, 0.08),
-  -9px 0 28px 0 rgba(0, 0, 0, 0.05), -12px 0 48px 16px rgba(0, 0, 0, 0.03);
-$shadow-1-right: 6px 0 16px -8px rgba(0, 0, 0, 0.08),
-  9px 0 28px 0 rgba(0, 0, 0, 0.05), 12px 0 48px 16px rgba(0, 0, 0, 0.03);
-$shadow-2: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08),
-  0 9px 28px 8px rgba(0, 0, 0, 0.05);
-$box-shadow-base: $shadow-2;
-
-// Buttons
-$btn-font-weight: 400;
-$btn-border-radius-base: $border-radius-base;
-$btn-border-radius-sm: $border-radius-base;
-$btn-border-width: $border-width-base;
-$btn-border-style: $border-style-base;
-$btn-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);
-$btn-primary-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
-$btn-text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
-
-$btn-primary-color: #fff;
-$btn-primary-bg: $primary-color;
-
-$btn-default-color: $text-color;
-$btn-default-bg: $component-background;
-$btn-default-border: $border-color-base;
-
-$btn-danger-color: #fff;
-$btn-danger-bg: $error-color;
-$btn-danger-border: $error-color;
-
-$btn-disable-color: $disabled-color;
-$btn-disable-bg: $disabled-bg;
-$btn-disable-border: $border-color-base;
-
-$btn-default-ghost-color: $component-background;
-$btn-default-ghost-bg: transparent;
-$btn-default-ghost-border: $component-background;
-
-$btn-font-size-lg: $font-size-lg;
-$btn-font-size-sm: $font-size-base;
-$btn-padding-horizontal-base: $padding-md - 1px;
-$btn-padding-horizontal-lg: $btn-padding-horizontal-base;
-$btn-padding-horizontal-sm: $padding-xs - 1px;
-
-$btn-height-base: $height-base;
-$btn-height-lg: $height-lg;
-$btn-height-sm: $height-sm;
-
-$btn-line-height: $line-height-base;
-
-$btn-circle-size: $btn-height-base;
-$btn-circle-size-lg: $btn-height-lg;
-$btn-circle-size-sm: $btn-height-sm;
-
-$btn-square-size: $btn-height-base;
-$btn-square-size-lg: $btn-height-lg;
-$btn-square-size-sm: $btn-height-sm;
-$btn-square-only-icon-size: $font-size-base + 2px;
-$btn-square-only-icon-size-sm: $font-size-base;
-$btn-square-only-icon-size-lg: $btn-font-size-lg + 2px;
-
-$btn-group-border: $primary-color;
-
-$btn-link-hover-bg: transparent;
-$btn-text-hover-bg: rgba(0, 0, 0, 0.018);
-
-// Checkbox
-$checkbox-size: 16px;
-$checkbox-color: $primary-color;
-$checkbox-check-color: #fff;
-$checkbox-check-bg: $checkbox-check-color;
-$checkbox-border-width: $border-width-base;
-$checkbox-group-item-margin-right: 8px;
-
-// Descriptions
-$descriptions-bg: #fafafa;
-$descriptions-title-margin-bottom: 20px;
-$descriptions-default-padding: $padding-md $padding-lg;
-$descriptions-middle-padding: $padding-sm $padding-lg;
-$descriptions-small-padding: $padding-xs $padding-md;
-$descriptions-item-padding-bottom: $padding-md;
-$descriptions-item-trailing-colon: true;
-$descriptions-item-label-colon-margin-right: 8px;
-$descriptions-item-label-colon-margin-left: 2px;
-$descriptions-extra-color: $text-color;
-
-// Divider
-$divider-text-padding: 1em;
-$divider-orientation-margin: 5%;
-$divider-color: rgba(0, 0, 0, 6%);
-
-// Dropdown
-$dropdown-selected-color: $primary-color;
-$dropdown-menu-submenu-disabled-bg: $component-background;
-
-// Empty
-$empty-font-size: $font-size-base;
-
-// Radio
-$radio-size: 16px;
-$radio-top: 0.2em;
-$radio-border-width: 1px;
-$radio-dot-size: $radio-size - 8px;
-$radio-dot-color: $primary-color;
-$radio-dot-disabled-color: rgba($black, 20%);
-$radio-solid-checked-color: $component-background;
-
-// Radio buttons
-$radio-button-bg: $btn-default-bg;
-$radio-button-checked-bg: $btn-default-bg;
-$radio-button-color: $btn-default-color;
-$radio-button-hover-color: $primary-color;
-$radio-button-active-color: $primary-color;
-$radio-disabled-button-checked-bg: tint($black, 90%);
-$radio-disabled-button-checked-color: $disabled-color;
-$radio-wrapper-margin-right: 8px;
-
-// Media queries breakpoints
-// $screen-xs and $screen-xs-min is not used in Grid
-// smallest break point is $screen-md
-$screen-xs: 480px;
-$screen-xs-min: $screen-xs;
-// 👆 Extra small screen / phone
-
-// 👇 Small screen / tablet
-$screen-sm: 576px;
-$screen-sm-min: $screen-sm;
-
-// Medium screen / desktop
-$screen-md: 768px;
-$screen-md-min: $screen-md;
-
-// Large screen / wide desktop
-$screen-lg: 992px;
-$screen-lg-min: $screen-lg;
-
-// Extra large screen / full hd
-$screen-xl: 1200px;
-$screen-xl-min: $screen-xl;
-
-// Extra extra large screen / large desktop
-$screen-xxl: 1600px;
-$screen-xxl-min: $screen-xxl;
-
-// provide a maximum
-$screen-xs-max: ($screen-sm-min - 1px);
-$screen-sm-max: ($screen-md-min - 1px);
-$screen-md-max: ($screen-lg-min - 1px);
-$screen-lg-max: ($screen-xl-min - 1px);
-$screen-xl-max: ($screen-xxl-min - 1px);
-
-// Grid system
-$grid-columns: 24;
-
 // Layout
 $layout-body-background: #f0f2f5;
 $layout-header-background: #001529;
-$layout-header-height: 64px;
-$layout-header-padding: 0 50px;
+$layout-header-height: 6.4rem;
+$layout-header-padding: 0 5rem;
 $layout-header-color: $text-color;
-$layout-footer-padding: 24px 50px;
+$layout-footer-padding: 2.4rem 5rem;
 $layout-footer-background: $layout-body-background;
 $layout-sider-background: $layout-header-background;
-$layout-trigger-height: 48px;
+$layout-trigger-height: 4.8rem;
 $layout-trigger-background: #002140;
 $layout-trigger-color: #fff;
-$layout-zero-trigger-width: 36px;
-$layout-zero-trigger-height: 42px;
-// Layout light theme
-$layout-sider-background-light: #fff;
-$layout-trigger-background-light: #fff;
-$layout-trigger-color-light: $text-color;
+$layout-zero-trigger-width: 3.6rem;
+$layout-zero-trigger-height: 4.2rem;
