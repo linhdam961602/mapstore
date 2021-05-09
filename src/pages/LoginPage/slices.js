@@ -1,5 +1,3 @@
-import { stringify } from 'querystring';
-
 import { createSlice } from '@reduxjs/toolkit';
 import { createSliceSaga, SagaType } from 'redux-toolkit-saga';
 import { put, call } from 'redux-saga/effects';
@@ -141,16 +139,7 @@ const authSliceSaga = createSliceSaga({
           const { redirect } = getPageQuery(); // Note: There may be security issues, please note
 
           if (window.location.pathname !== LOGIN_URL && !redirect) {
-            yield put(
-              replace({
-                // push to login
-                pathname: LOGIN_URL,
-                // save the place to redirect after logging in successfully
-                search: stringify({
-                  redirect: window.location.href,
-                }),
-              }),
-            );
+            auth.redirectFromLogin();
           }
         }
       } catch (err) {

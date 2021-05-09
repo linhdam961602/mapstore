@@ -1,10 +1,14 @@
+import { stringify as queryStringify } from 'querystring';
+
+import history from './history';
+
 import {
   EXPIRE_IN,
   COOKIE,
   ACCESS_TOKEN,
   REFRESH_TOKEN,
 } from 'constants/common';
-
+import { LOGIN_URL } from 'constants/routes';
 import localStorageService from 'utils/localStorage';
 import cookies from 'utils/cookies';
 
@@ -83,3 +87,13 @@ export const clearUserCredential = () => {
   clearAccessToken();
   clearRefreshToken();
 };
+
+export const redirectFromLogin = () =>
+  history.replace({
+    // push to login
+    pathname: LOGIN_URL,
+    // save the place to redirect after logging in successfully
+    search: queryStringify({
+      redirect: window.location.href,
+    }),
+  });

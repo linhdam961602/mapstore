@@ -7,8 +7,6 @@ import { ERROR_TYPE } from 'components/BasicComponent/Notification';
 import { intl } from 'containers/LanguageProviderContainer';
 import { createTranslatedText } from 'utils/text';
 import * as authHelper from 'utils/authHelper';
-import history from 'utils/history';
-import { LOGIN_URL } from 'constants/routes';
 import { INVALID_TOKEN, UNAUTHORIZED, TOKEN_EXPIRED } from 'constants/auth';
 
 const getText = createTranslatedText('common.error', intl);
@@ -44,7 +42,7 @@ function* handler(action) {
     ) {
       // Kickout user
       authHelper.clearUserCredential();
-      history.push(LOGIN_URL);
+      authHelper.redirectFromLogin();
     }
   }
   // Add ModalContainer on the page that required modal
