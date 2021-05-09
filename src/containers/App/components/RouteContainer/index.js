@@ -15,7 +15,6 @@ import PublicRoute from '../PublicRoute';
 import PrivateRoute from '../PrivateRoute';
 
 import * as routes from 'containers/App/routes';
-import MainLayout from 'components/LayoutComponent/MainLayout';
 import { authActions, authSliceName, authSaga } from 'pages/LoginPage/slices';
 import { useInjectSaga } from 'hooks/useInjector';
 import { useAuth } from 'hooks/useAuth';
