@@ -39,4 +39,9 @@ const forgotPassword = {
   },
 };
 
-export { login, registration, forgotPassword };
+const notFound = {
+  subTitle: 'Xin lỗi, trang bạn truy cập không tồn tại.',
+  back: 'Về Trang Chủ',
+};
+
+export { login, registration, forgotPassword, notFound };

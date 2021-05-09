@@ -12,18 +12,38 @@ import { Route, Redirect } from 'react-router-dom';
 
 import { HOME_URI } from 'constants/routes';
 import { useAuth } from 'hooks/useAuth';
+import MainLayout from 'components/LayoutComponent/MainLayout';
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
+const PrivateRoute = ({ component: Component, fluid = true, ...rest }) => {
   const { isAuthenticated } = useAuth();
   return (
     // Show the component only when the user is logged in
     // Otherwise, redirect the user to /signin page
-    <Route
-      {...rest}
-      render={(props) =>
-        isAuthenticated ? <Component {...props} /> : <Redirect to={HOME_URI} />
-      }
-    />
+    fluid ? (
+      <Route
+        {...rest}
+        render={(props) =>
+          isAuthenticated ? (
+            <Component {...props} />
+          ) : (
+            <Redirect to={HOME_URI} />
+          )
+        }
+      />
+    ) : (
+      <MainLayout>
+        <Route
+          {...rest}
+          render={(props) =>
+            isAuthenticated ? (
+              <Component {...props} />
+            ) : (
+              <Redirect to={HOME_URI} />
+            )
+          }
+        />{' '}
+      </MainLayout>
+    )
   );
 };
 

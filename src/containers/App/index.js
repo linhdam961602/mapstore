@@ -10,7 +10,7 @@ import React, { Suspense } from 'react';
 
 import Loading from 'components/LayoutComponent/Loading';
 import LoadingContainer from 'containers/LoadingContainer';
-import MenuContainer from 'containers/App/components/MenuContainer';
+import RouteContainer from 'containers/App/components/RouteContainer';
 import { NotificationContainer } from 'containers/NotificationContainer';
 
 export default function App() {
@@ -18,7 +18,7 @@ export default function App() {
     <LoadingContainer>
       <Suspense fallback={<Loading />}>
         <NotificationContainer />
-        <MenuContainer />
+        <RouteContainer />
       </Suspense>
     </LoadingContainer>
   );

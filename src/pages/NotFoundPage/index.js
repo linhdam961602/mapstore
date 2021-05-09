@@ -1,28 +1,32 @@
 import React from 'react';
+import { Button, Result } from 'antd';
+import { useIntl } from 'react-intl';
+
+import history from 'utils/history';
+import FluidLayout from 'components/LayoutComponent/FluidLayout';
+import { createTranslatedText } from 'utils/text';
 
 import './styles.scss';
+import { HOME_URI } from 'constants/routes';
 
-import Button from 'components/BasicComponent/Button';
-import errorIllustration from 'assets/icon/error-illustration.svg';
-
-function NotFoundPage() {
+const NotFoundPage = () => {
+  const intl = useIntl();
+  const getText = createTranslatedText('notFound', intl);
   return (
-    <div className="notFoundPage">
-      <div className="notFoundPage__img">
-        <img className="error-img" src={errorIllustration} alt="not found" />
-      </div>
-      <div className="notFoundPage__content">
-        <div className="notFoundPage__title">404</div>
-        <div className="notFoundPage__desc">
-          Oops. This page has gone missing.
-        </div>
-        <div className="notFoundPage__note">
-          You may have mistyped the address or the page may have moved.
-        </div>
-        <Button>Back to home</Button>
-      </div>
-    </div>
+    <FluidLayout>
+      <Result
+        status="404"
+        title="404"
+        subTitle={getText('subTitle')}
+        className="notfound"
+        extra={
+          <Button type="primary" onClick={() => history.push(HOME_URI)}>
+            {getText('back')}
+          </Button>
+        }
+      />
+    </FluidLayout>
   );
-}
+};
 
 export default NotFoundPage;

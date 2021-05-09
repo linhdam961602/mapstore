@@ -10,7 +10,6 @@ import NotficationRing from './NotficationRing';
 import AvatarUser from './AvatarUser';
 import TopCenter from './TopCenter';
 import LanguageSelector from './LanguageSelector';
-import MobileMenu from './MobileMenu';
 
 import Layout from 'components/BasicComponent/Layout';
 
@@ -30,11 +29,6 @@ const TopBar = () => {
   return (
     <>
       <Header className="topBar">
-        <MobileMenu
-          isAuthenticated={isAuthenticated}
-          intl={intl}
-          getText={getText}
-        />
         <div className="top-right-wrapper">
           <div className="breadcrumb">
             <TopCenter />
