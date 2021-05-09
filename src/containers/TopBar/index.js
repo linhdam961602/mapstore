@@ -1,4 +1,4 @@
-import { stringify } from 'querystring';
+import { stringify as queryStringify } from 'querystring';
 
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -10,7 +10,6 @@ import NotficationRing from './NotficationRing';
 import AvatarUser from './AvatarUser';
 import TopCenter from './TopCenter';
 import LanguageSelector from './LanguageSelector';
-import MobileMenu from './MobileMenu';
 
 import Layout from 'components/BasicComponent/Layout';
 
@@ -30,11 +29,6 @@ const TopBar = () => {
   return (
     <>
       <Header className="topBar">
-        <MobileMenu
-          isAuthenticated={isAuthenticated}
-          intl={intl}
-          getText={getText}
-        />
         <div className="top-right-wrapper">
           <div className="breadcrumb">
             <TopCenter />
@@ -50,7 +44,7 @@ const TopBar = () => {
                 <Link
                   to={{
                     pathname: LOGIN_URL,
-                    search: stringify({
+                    search: queryStringify({
                       redirect: window.location.href,
                     }),
                   }}
