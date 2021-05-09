@@ -31,6 +31,7 @@ const GridMyService = () => {
       <Table
         dataSource={listServiceActive}
         columns={columnsIntl}
+        rowKey="id"
         pagination={
           listServiceActive?.length > PAGE_SIZE_DEFAULT
             ? { pageSize: PAGE_SIZE_DEFAULT }

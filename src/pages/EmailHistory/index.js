@@ -10,7 +10,7 @@ import Col from 'components/BasicComponent/Grid/Col';
 import { createTranslatedText } from 'utils/text';
 import { PAGE_SIZE_DEFAULT } from 'constants/common';
 
-import './styles.scss';
+import 'styles/common.scss';
 
 function EmailHistory() {
   const intl = useIntl();
@@ -18,21 +18,25 @@ function EmailHistory() {
   const getTextSideBarRight = createTranslatedText('sidebarRight', intl);
 
   return (
-    <div className="email-history-page">
-      <h1 className="titlePage">{getTextSideBarRight('emailHistory')}</h1>
+    <div className="my-infor-page">
       <Row gutter={20}>
         <Col md={24} lg={6} xl={6}>
           <SidebarRight />
         </Col>
         <Col md={24} lg={18} xl={18}>
-          <div className="form-group">
-            <Table
-              columns={columnsIntl}
-              dataSource={dataSource}
-              pagination={
-                dataSource?.length > 0 ? { pageSize: PAGE_SIZE_DEFAULT } : false
-              }
-            />
+          <div className="my-infor-page-content">
+            <div className="form-group">
+              <p className="title">{getTextSideBarRight('emailHistory')}</p>
+              <Table
+                columns={columnsIntl}
+                dataSource={dataSource}
+                pagination={
+                  dataSource?.length > PAGE_SIZE_DEFAULT
+                    ? { pageSize: PAGE_SIZE_DEFAULT }
+                    : false
+                }
+              />
+            </div>
           </div>
         </Col>
       </Row>

@@ -31,13 +31,12 @@ import {
   TYPE_COMPANY,
 } from 'constants/options';
 
-import './styles.scss';
+import 'styles/common.scss';
 
 const { Item } = Form;
 
 const PersonalInfomation = () => {
   const intl = useIntl();
-  const getTextSideBarRight = createTranslatedText('sidebarRight', intl);
   const getTextCommon = createTranslatedText('common', intl);
   const dispatch = useDispatch();
   const typeOfSubjIntl = useMemo(() => TYPES_OF_SUBJECT(intl), [intl]);
@@ -119,188 +118,194 @@ const PersonalInfomation = () => {
   );
 
   return (
-    <div className="mypage">
-      <h1 className="titlePage">{getTextSideBarRight('myInfo')}</h1>
+    <div className="my-infor-page">
       <Row gutter={20}>
         <Col md={24} lg={6} xl={6}>
           <SidebarRight />
         </Col>
         <Col md={24} lg={18} xl={18}>
-          <Form
-            className="my-infor-page"
-            initialValues={INITIAL_VALUES}
-            onFinish={onFinish}
-            form={form}
-            labelAlign="left"
-            validateMessages={VALIDATION_MESSAGES}
-            layout="vertical"
-          >
-            <div className="form-group">
-              <p className="title">
-                {getTextCommon('userInfo.groups.personalInfo')}
-              </p>
-              <Row gutter={16}>
-                <Col sm={24} md={12} lg={12} xl={8}>
-                  <Item
-                    name={USER_INFORMATION_FORM_FIELDS.TYPE}
-                    label={getTextCommon('userInfo.labels.typeOfSubj')}
-                  >
-                    <Select options={Object.values(typeOfSubjIntl)} disabled />
-                  </Item>
-                </Col>
-                <Col sm={24} md={12} lg={12} xl={8}>
-                  <Item
-                    name={USER_INFORMATION_FORM_FIELDS.LAST_NAME}
-                    label={getTextCommon('userInfo.labels.lastName')}
-                    rules={[{ required: true }]}
-                  >
-                    <Input />
-                  </Item>
-                  <Item name={USER_INFORMATION_FORM_FIELDS.POSTCODE} hidden>
-                    <Input />
-                  </Item>
-                </Col>
-                <Col sm={24} md={12} lg={12} xl={8}>
-                  <Item
-                    name={USER_INFORMATION_FORM_FIELDS.FIRST_NAME}
-                    label={getTextCommon('userInfo.labels.firstName')}
-                    rules={[{ required: true }]}
-                  >
-                    <Input />
-                  </Item>
-                </Col>
-              </Row>
-              <Row gutter={16}>
-                <Col sm={24} md={12} lg={12} xl={8}>
-                  <Item
-                    name={USER_INFORMATION_FORM_FIELDS.BIRTHDAY}
-                    label={getTextCommon('userInfo.labels.birthday')}
-                    rules={[{ required: true }]}
-                  >
-                    <DatePicker />
-                  </Item>
-                </Col>
-                <Col sm={24} md={12} lg={12} xl={8}>
-                  <Item name={USER_INFORMATION_FORM_FIELDS.CALLING_CODE} hidden>
-                    <Input />
-                  </Item>
-                  <Item
-                    name={USER_INFORMATION_FORM_FIELDS.PHONE}
-                    label={getTextCommon('userInfo.labels.phone')}
-                    rules={[{ required: true }]}
-                  >
-                    <PhoneInput
-                      disabledDropdown
-                      className="register__phone-input"
-                      countryCode={form.getFieldValue(
-                        USER_INFORMATION_FORM_FIELDS.CALLING_CODE,
-                      )}
-                      onChangeCountry={(value) => {
-                        form.setFieldsValue({
-                          [USER_INFORMATION_FORM_FIELDS.CALLING_CODE]: value,
-                        });
-                      }}
-                    />
-                  </Item>
-                </Col>
-                <Col sm={24} md={12} lg={12} xl={8}>
-                  <Item
-                    name={USER_INFORMATION_FORM_FIELDS.EMAIL}
-                    label={getTextCommon('userInfo.labels.email')}
-                    rules={[
-                      { required: true },
-                      {
-                        pattern: REGEX_EMAIL,
-                      },
-                    ]}
-                  >
-                    <Input />
-                  </Item>
-                </Col>
-              </Row>
-            </div>
-            <div className="form-group">
-              <p className="title">
-                {getTextCommon('userInfo.groups.paymentAddress')}
-              </p>
-              <Row gutter={16}>
-                <Col sm={24} md={12} lg={12} xl={12}>
-                  <Item
-                    name={USER_INFORMATION_FORM_FIELDS.COMPANY_NAME}
-                    label={getTextCommon('userInfo.labels.compName')}
-                  >
-                    <Input />
-                  </Item>
-                </Col>
-                <Col sm={24} md={12} lg={12} xl={12}>
-                  <Item
-                    name={USER_INFORMATION_FORM_FIELDS.TAX_ID}
-                    label={getTextCommon('userInfo.labels.taxCode')}
-                  >
-                    <Input onKeyDown={onlyNumber} />
-                  </Item>
-                </Col>
-              </Row>
+          <div className="my-infor-page-content">
+            <Form
+              initialValues={INITIAL_VALUES}
+              onFinish={onFinish}
+              form={form}
+              labelAlign="left"
+              validateMessages={VALIDATION_MESSAGES}
+              layout="vertical"
+            >
+              <div className="form-group">
+                <p className="title">
+                  {getTextCommon('userInfo.groups.personalInfo')}
+                </p>
+                <Row gutter={16}>
+                  <Col sm={24} md={12} lg={12} xl={8}>
+                    <Item
+                      name={USER_INFORMATION_FORM_FIELDS.TYPE}
+                      label={getTextCommon('userInfo.labels.typeOfSubj')}
+                    >
+                      <Select
+                        options={Object.values(typeOfSubjIntl)}
+                        disabled
+                      />
+                    </Item>
+                  </Col>
+                  <Col sm={24} md={12} lg={12} xl={8}>
+                    <Item
+                      name={USER_INFORMATION_FORM_FIELDS.LAST_NAME}
+                      label={getTextCommon('userInfo.labels.lastName')}
+                      rules={[{ required: true }]}
+                    >
+                      <Input />
+                    </Item>
+                    <Item name={USER_INFORMATION_FORM_FIELDS.POSTCODE} hidden>
+                      <Input />
+                    </Item>
+                  </Col>
+                  <Col sm={24} md={12} lg={12} xl={8}>
+                    <Item
+                      name={USER_INFORMATION_FORM_FIELDS.FIRST_NAME}
+                      label={getTextCommon('userInfo.labels.firstName')}
+                      rules={[{ required: true }]}
+                    >
+                      <Input />
+                    </Item>
+                  </Col>
+                </Row>
+                <Row gutter={16}>
+                  <Col sm={24} md={12} lg={12} xl={8}>
+                    <Item
+                      name={USER_INFORMATION_FORM_FIELDS.BIRTHDAY}
+                      label={getTextCommon('userInfo.labels.birthday')}
+                      rules={[{ required: true }]}
+                    >
+                      <DatePicker />
+                    </Item>
+                  </Col>
+                  <Col sm={24} md={12} lg={12} xl={8}>
+                    <Item
+                      name={USER_INFORMATION_FORM_FIELDS.CALLING_CODE}
+                      hidden
+                    >
+                      <Input />
+                    </Item>
+                    <Item
+                      name={USER_INFORMATION_FORM_FIELDS.PHONE}
+                      label={getTextCommon('userInfo.labels.phone')}
+                      rules={[{ required: true }]}
+                    >
+                      <PhoneInput
+                        disabledDropdown
+                        className="register__phone-input"
+                        countryCode={form.getFieldValue(
+                          USER_INFORMATION_FORM_FIELDS.CALLING_CODE,
+                        )}
+                        onChangeCountry={(value) => {
+                          form.setFieldsValue({
+                            [USER_INFORMATION_FORM_FIELDS.CALLING_CODE]: value,
+                          });
+                        }}
+                      />
+                    </Item>
+                  </Col>
+                  <Col sm={24} md={12} lg={12} xl={8}>
+                    <Item
+                      name={USER_INFORMATION_FORM_FIELDS.EMAIL}
+                      label={getTextCommon('userInfo.labels.email')}
+                      rules={[
+                        { required: true },
+                        {
+                          pattern: REGEX_EMAIL,
+                        },
+                      ]}
+                    >
+                      <Input />
+                    </Item>
+                  </Col>
+                </Row>
+              </div>
+              <div className="form-group">
+                <p className="title">
+                  {getTextCommon('userInfo.groups.paymentAddress')}
+                </p>
+                <Row gutter={16}>
+                  <Col sm={24} md={12} lg={12} xl={12}>
+                    <Item
+                      name={USER_INFORMATION_FORM_FIELDS.COMPANY_NAME}
+                      label={getTextCommon('userInfo.labels.compName')}
+                    >
+                      <Input />
+                    </Item>
+                  </Col>
+                  <Col sm={24} md={12} lg={12} xl={12}>
+                    <Item
+                      name={USER_INFORMATION_FORM_FIELDS.TAX_ID}
+                      label={getTextCommon('userInfo.labels.taxCode')}
+                    >
+                      <Input onKeyDown={onlyNumber} />
+                    </Item>
+                  </Col>
+                </Row>
 
+                <Row gutter={16}>
+                  <AddressInput
+                    defaultCountry={curCountry}
+                    defaultProvince={curProvince}
+                    renderCountryWrapper={(children) => (
+                      <Col lg={12} xs={24}>
+                        <Item
+                          name={USER_INFORMATION_FORM_FIELDS.COUNTRY}
+                          label={getTextCommon('userInfo.labels.country')}
+                        >
+                          {children}
+                        </Item>
+                      </Col>
+                    )}
+                    onCountryChange={onCountryChange}
+                    renderProvinceWrapper={(children) => (
+                      <Col lg={12} xs={24}>
+                        <Item
+                          name={USER_INFORMATION_FORM_FIELDS.CITY}
+                          label={getTextCommon('userInfo.labels.province')}
+                        >
+                          {children}
+                        </Item>
+                      </Col>
+                    )}
+                    onProvinceChange={onProvinceChange}
+                    renderDistrictWrapper={(children) => (
+                      <Col lg={12} xs={24}>
+                        <Item
+                          name={USER_INFORMATION_FORM_FIELDS.STATE}
+                          label={getTextCommon('userInfo.labels.district')}
+                        >
+                          {children}
+                        </Item>
+                      </Col>
+                    )}
+                    renderAddressWrapper={(children) => (
+                      <Col lg={12} xs={24}>
+                        <Item
+                          name={USER_INFORMATION_FORM_FIELDS.ADDRESS_1}
+                          label={getTextCommon('userInfo.labels.address')}
+                        >
+                          {children}
+                        </Item>
+                      </Col>
+                    )}
+                  />
+                </Row>
+              </div>
               <Row gutter={16}>
-                <AddressInput
-                  defaultCountry={curCountry}
-                  defaultProvince={curProvince}
-                  renderCountryWrapper={(children) => (
-                    <Col lg={12} xs={24}>
-                      <Item
-                        name={USER_INFORMATION_FORM_FIELDS.COUNTRY}
-                        label={getTextCommon('userInfo.labels.country')}
-                      >
-                        {children}
-                      </Item>
-                    </Col>
-                  )}
-                  onCountryChange={onCountryChange}
-                  renderProvinceWrapper={(children) => (
-                    <Col lg={12} xs={24}>
-                      <Item
-                        name={USER_INFORMATION_FORM_FIELDS.CITY}
-                        label={getTextCommon('userInfo.labels.province')}
-                      >
-                        {children}
-                      </Item>
-                    </Col>
-                  )}
-                  onProvinceChange={onProvinceChange}
-                  renderDistrictWrapper={(children) => (
-                    <Col lg={12} xs={24}>
-                      <Item
-                        name={USER_INFORMATION_FORM_FIELDS.STATE}
-                        label={getTextCommon('userInfo.labels.district')}
-                      >
-                        {children}
-                      </Item>
-                    </Col>
-                  )}
-                  renderAddressWrapper={(children) => (
-                    <Col lg={12} xs={24}>
-                      <Item
-                        name={USER_INFORMATION_FORM_FIELDS.ADDRESS_1}
-                        label={getTextCommon('userInfo.labels.address')}
-                      >
-                        {children}
-                      </Item>
-                    </Col>
-                  )}
-                />
+                <Col sm={12} md={6} lg={3} xl={3}>
+                  <Item>
+                    <Button type="primary" htmlType="submit" block>
+                      {getTextCommon('action.save')}
+                    </Button>
+                  </Item>
+                </Col>
               </Row>
-            </div>
-            <Row gutter={16}>
-              <Col sm={12} md={6} lg={3} xl={3}>
-                <Item>
-                  <Button type="primary" htmlType="submit" block>
-                    {getTextCommon('action.save')}
-                  </Button>
-                </Item>
-              </Col>
-            </Row>
-          </Form>
+            </Form>
+          </div>
         </Col>
       </Row>
     </div>

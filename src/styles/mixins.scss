@@ -3,7 +3,7 @@
 $base-font-size: 1.6rem !default;
 $base-space: 1.6rem !default;
 $min-height-page: 100vh;
-$max-width-page: 192rem; 
+$max-width-page: 192rem;
 
 // Colors
 $green: #0fa54a;
@@ -14,7 +14,8 @@ $light-gray: #f5f7f9;
 $light-gray-2: #f6f7f8; // Default button background
 $google-red: #ec5741;
 $onyx: #363b3c;
-$black: #0000000b;
+$black: #000000;
+$black-2: #001529;
 $black-o4: rgba($black, 0.4);
 $black-o09: rgba($black, 0.09);
 $grey-main: #f1f5f8;
@@ -27,7 +28,8 @@ $grey-5: #e7e9e9;
 $grey-6: #f0f2f3;
 $grey-7: #f2f2f3;
 $grey-8: #f7f8f8;
-$black-o85: rgba($black, 0.85);
+$heading-2: rgba($black, 0.85);
+$border: #f0f0f0;
 // Icewall Theme
 $primary: #142e71;
 $secondary: #edf2f7;
@@ -104,28 +106,4 @@ $breakpoints: (
 .reset-space {
   margin: 0;
   padding: 0;
-}
-
-.titlePage {
-  font-weight: bold;
-  font-size: 2rem;
-  margin: 1rem 0 2rem 0;
-}
-.avatarUser_wrapper {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 2rem;
-  border-bottom: 1px solid $pale-blue;
-  .information {
-    margin: 0 0 0 2rem;
-    .primary-text {
-      font-weight: 700;
-      @extend .reset-space;
-    }
-    .secondary-text {
-      color: $secondary-text;
-      @extend .reset-space;
-    }
-  }
 }

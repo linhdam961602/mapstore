@@ -25,7 +25,7 @@ import { useInjectSaga } from 'hooks/useInjector';
 import PasswordMeterInput from 'components/BasicComponent/PasswordMeterInput';
 
 import SidebarRight from 'containers/Sidebar/SidebarRight';
-// import './styles.scss';
+import 'styles/common.scss';
 
 const { Item } = Form;
 
@@ -46,15 +46,14 @@ const ChangePass = () => {
   }, [dispatch, form]);
 
   return (
-    <div className="mypage">
-      <h1 className="titlePage">{getTextSideBarRight('changePass')}</h1>
+    <div className="my-infor-page">
       <Row gutter={20}>
         <Col md={24} lg={6} xl={6}>
           <SidebarRight />
         </Col>
         <Col md={24} lg={18} xl={18}>
           <Form
-            className="my-infor-page"
+            className="my-infor-page-content"
             initialValues={INITIAL_VALUES}
             onFinish={onFinish}
             form={form}
@@ -63,6 +62,7 @@ const ChangePass = () => {
             layout="vertical"
           >
             <div className="form-group">
+              <p className="title">{getTextSideBarRight('changePass')}</p>
               <Row gutter={16}>
                 <Col sm={24} md={24} lg={8} xl={8}>
                   <Item

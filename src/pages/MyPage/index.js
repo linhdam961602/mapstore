@@ -14,7 +14,6 @@ import * as userSelector from './selector';
 
 import { createTranslatedText } from 'utils/text';
 
-import './styles.scss';
 import Statistic from 'components/BasicComponent/Statistic';
 import Row from 'components/BasicComponent/Grid/Row';
 import Col from 'components/BasicComponent/Grid/Col';
@@ -26,6 +25,9 @@ import iconHosting from 'assets/icon/icon_hosting.png';
 import iconSupport from 'assets/icon/icon_support.png';
 
 import { useInjectSaga } from 'hooks/useInjector';
+
+import 'styles/common.scss';
+import './styles.scss';
 
 const MyPage = () => {
   const intl = useIntl();

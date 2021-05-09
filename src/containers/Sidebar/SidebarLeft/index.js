@@ -26,15 +26,14 @@ const SidebarLeft = () => {
   const { width } = useWindowDimensions();
 
   return (
-    <>
-      <Sider className="sidebarLeft_wrapper" collapsed={width <= 991}>
-        <Image src={logo} preview={false} />
-        <Navigation
-          menusData={menusDataIntl}
-          activeMenu={history.location.pathname}
-        />
-      </Sider>
-    </>
+    <Sider className="sidebarLeft_wrapper" collapsed={width <= 991}>
+      <Image src={logo} preview={false} />
+      <Navigation
+        theme="dark"
+        menusData={menusDataIntl}
+        activeMenu={history.location.pathname}
+      />
+    </Sider>
   );
 };
 

@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import get from 'lodash/get';
 import { useIntl } from 'react-intl';
 
-import Select from 'components/BasicComponent/Select';
+import Dropdown from 'components/BasicComponent/Dropdown';
+import Menu from 'components/BasicComponent/Menu';
 import {
   languageActions,
   languageSliceName,
@@ -11,6 +12,8 @@ import {
 } from 'containers/LanguageProviderContainer/slices';
 import { appLocales } from 'translations/i18n';
 import { createTranslatedText } from 'utils/text';
+
+const { Item } = Menu;
 
 const LanguageSelector = () => {
   const dispatch = useDispatch();
@@ -21,18 +24,43 @@ const LanguageSelector = () => {
     get(state, [languageSliceName, 'locale'], initialState.locale),
   );
 
+  const DropdownMenu = () => (
+    <div className="dropdown-menu">
+      <Menu>
+        <Item>
+          <a
+            role="button"
+            onClick={() =>
+              dispatch(languageActions.changeLocale(appLocales[0]))
+            }
+            tabIndex={0}
+          >
+            <span>{appLocales[0]}</span> <span>{getText(appLocales[0])}</span>
+          </a>
+        </Item>
+        <Item>
+          <a
+            role="button"
+            onClick={() =>
+              dispatch(languageActions.changeLocale(appLocales[1]))
+            }
+            tabIndex={0}
+          >
+            <span>{appLocales[1]}</span> <span>{getText(appLocales[1])}</span>
+          </a>
+        </Item>
+      </Menu>
+    </div>
+  );
+
   return (
-    <Select
-      value={locale}
-      options={appLocales.map((language) => ({
-        value: language,
-        label: getText(language),
-      }))}
-      onChange={(value) => {
-        dispatch(languageActions.changeLocale(value));
-      }}
-      size="small"
-    />
+    <Dropdown
+      overlay={<DropdownMenu />}
+      placement="bottomRight"
+      overlayClassName="overlay-dropdown-top"
+    >
+      <span>{locale}</span>
+    </Dropdown>
   );
 };
 

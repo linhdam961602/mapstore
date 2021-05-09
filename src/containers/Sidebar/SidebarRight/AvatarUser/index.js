@@ -28,7 +28,7 @@ const AvatarUser = (props) => {
   );
 
   return (
-    <div className="avatarUser_wrapper">
+    <div className="avatar-user-wrapper">
       <div>{imageAvatar}</div>
       <div className="information">
         <p className="primary-text">{`${userInfo?.firstname} ${userInfo?.lastname}`}</p>

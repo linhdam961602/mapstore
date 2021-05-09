@@ -40,9 +40,6 @@ const TopBar = () => {
             <TopCenter />
           </div>
           <div className="user-info">
-            <div className="language__container desktop-only">
-              <LanguageSelector />
-            </div>
             {isAuthenticated ? (
               <>
                 <NotficationRing />
@@ -65,6 +62,9 @@ const TopBar = () => {
                 </Button>
               </div>
             )}
+            <div className="language-container desktop-only">
+              <LanguageSelector />
+            </div>
           </div>
         </div>
       </Header>

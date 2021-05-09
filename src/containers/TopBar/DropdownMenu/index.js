@@ -37,7 +37,7 @@ const DropdownMenu = () => {
       {menusDataIntl.map((item) => {
         const { key, path, name, icon, target } = item;
         return (
-          <Menu key={key}>
+          <Menu key={key} className="group-top-menu">
             <Item key={path}>
               <Link to={path} target={target}>
                 {icon}

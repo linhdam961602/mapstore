@@ -11,6 +11,7 @@ const Navigation = ({
   className,
   children: navChildren,
   activeMenu = null,
+  theme = 'light',
   ...props
 }) => {
   const classes = classNames({
@@ -71,7 +72,7 @@ const Navigation = ({
   return (
     <Menu
       key="Menu"
-      theme="dark"
+      theme={theme}
       mode="inline"
       className={classes}
       selectedKeys={activeMenu ? [activeMenu] : []}

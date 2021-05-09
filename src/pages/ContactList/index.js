@@ -18,7 +18,6 @@ import DatePicker from 'components/BasicComponent/DatePicker';
 import Input from 'components/BasicComponent/Input';
 import Form from 'components/BasicComponent/Form';
 
-import './styles.scss';
 import Row from 'components/BasicComponent/Grid/Row';
 import Col from 'components/BasicComponent/Grid/Col';
 
@@ -27,6 +26,7 @@ import PhoneInput from 'containers/PhoneInputContainer';
 import AddressInput from 'containers/AddressInputContainer';
 
 import { useInjectSaga } from 'hooks/useInjector';
+import 'styles/common.scss';
 
 const { Item } = Form;
 
@@ -40,7 +40,6 @@ const ContactList = () => {
   const [isDisabled, setDisabled] = useState(true);
   const [curCountry, setCurCountry] = useState(null);
   const [curProvince, setCurProvince] = useState(null);
-  const getTextSideBarRight = createTranslatedText('sidebarRight', intl);
   const getTextCommon = createTranslatedText('common', intl);
   const dispatch = useDispatch();
 
@@ -132,15 +131,14 @@ const ContactList = () => {
   );
 
   return (
-    <div className="mypage">
-      <h1 className="titlePage">{getTextSideBarRight('contactList')}</h1>
+    <div className="my-infor-page">
       <Row gutter={20}>
         <Col md={24} lg={6} xl={6}>
           <SidebarRight />
         </Col>
         <Col md={24} lg={18} xl={18}>
           <Form
-            className="my-infor-page"
+            className="my-infor-page-content"
             initialValues={INITIAL_VALUES}
             onFinish={onFinish}
             form={form}

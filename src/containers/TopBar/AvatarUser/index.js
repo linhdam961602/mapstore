@@ -29,15 +29,13 @@ const AvatarUser = (props) => {
   );
 
   return (
-    <>
-      <Dropdown
-        overlay={<DropdownMenu />}
-        trigger="click"
-        placement="bottomRight"
-      >
-        {imageAvatar}
-      </Dropdown>
-    </>
+    <Dropdown
+      overlay={<DropdownMenu />}
+      placement="bottomRight"
+      overlayClassName="overlay-dropdown-top"
+    >
+      {imageAvatar}
+    </Dropdown>
   );
 };
 

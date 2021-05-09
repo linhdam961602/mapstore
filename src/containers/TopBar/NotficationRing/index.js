@@ -19,7 +19,7 @@ const NotficationRing = (props) => {
   const { list } = props;
 
   const theRing = (
-    <Badge dot={list?.lenght > 0} className="theRing">
+    <Badge size="small" count={list?.lenght || 1} className="theRing">
       <BellOutlined />
     </Badge>
   );
@@ -47,15 +47,13 @@ const NotficationRing = (props) => {
   );
 
   return (
-    <>
-      <Dropdown
-        overlay={<DropdownMenu />}
-        trigger="click"
-        placement="bottomRight"
-      >
-        {theRing}
-      </Dropdown>
-    </>
+    <Dropdown
+      overlay={<DropdownMenu />}
+      placement="bottomRight"
+      overlayClassName="overlay-dropdown-top"
+    >
+      {theRing}
+    </Dropdown>
   );
 };
 

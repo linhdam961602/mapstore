@@ -33,6 +33,7 @@ const GridOpenSupportTicket = () => {
       <Table
         dataSource={listTicket}
         columns={columnsIntl}
+        rowKey="ticket_number"
         pagination={
           listTicket?.length > PAGE_SIZE_DEFAULT
             ? { pageSize: PAGE_SIZE_DEFAULT }

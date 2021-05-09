@@ -10,24 +10,18 @@ import AvatarUser from './AvatarUser';
 
 import history from 'utils/history';
 
-import Layout from 'components/BasicComponent/Layout';
-
-const { Sider } = Layout;
-
 const SidebarRight = () => {
   const intl = useIntl();
   const menusDataIntl = useMemo(() => menusData(intl), [intl]);
 
   return (
-    <>
-      <Sider className="sidebarRight_wrapper">
-        <AvatarUser />
-        <Navigation
-          menusData={menusDataIntl}
-          activeMenu={history.location.pathname}
-        />
-      </Sider>
-    </>
+    <div className="sidebar-right-wrapper">
+      <AvatarUser />
+      <Navigation
+        menusData={menusDataIntl}
+        activeMenu={history.location.pathname}
+      />
+    </div>
   );
 };
 
