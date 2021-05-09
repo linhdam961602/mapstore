@@ -6,6 +6,7 @@ import './styles.scss';
 
 import logo from 'assets/logo/logo-tinohost.png';
 import LanguageSelector from 'containers/TopBar/LanguageSelector';
+import { HOME_URI } from 'constants/routes';
 
 const FluidLayout = ({ title, children }) => (
   <HelmetProvider>
@@ -21,7 +22,7 @@ const FluidLayout = ({ title, children }) => (
       <div className="fluid__content">
         <div className="fluid__top">
           <div className="fluid__header">
-            <Link to="/">
+            <Link to={HOME_URI}>
               <img alt="logo" className="fluid__logo" src={logo} />
             </Link>
           </div>
