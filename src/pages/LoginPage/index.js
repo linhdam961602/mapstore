@@ -22,9 +22,7 @@ import { useInjectSaga } from 'hooks/useInjector';
 import Divider from 'components/BasicComponent/Divider';
 import { FORGOT_URL, REGISTER_URL } from 'constants/routes';
 import { createTranslatedText } from 'utils/text';
-import illustration from 'assets/images/illustration.svg';
-import LanguageSelector from 'containers/TopBar/LanguageSelector';
-import logo from 'assets/logo/tino-logo.svg';
+import FluidLayout from 'components/LayoutComponent/FluidLayout';
 
 const LoginPage = () => {
   const intl = useIntl();
@@ -42,79 +40,71 @@ const LoginPage = () => {
   }, [dispatch, form]);
 
   return (
-    <div className="login__background">
-      <div className="login__language">
-        <img className="logo" alt="logo" src={logo} />
-        <LanguageSelector />
-      </div>
-      <div className="login__container">
-        <div className="login__left-container">
-          <img alt="Icewall Tailwind HTML Admin Template" src={illustration} />
-        </div>
-        <Form
-          className="login__form"
-          initialValues={{
-            remember: true,
-          }}
-          onFinish={onFinish}
-          form={form}
+    <FluidLayout>
+      <Form
+        className="login__form"
+        initialValues={{
+          remember: true,
+        }}
+        onFinish={onFinish}
+        form={form}
+      >
+        <h1 className="login__title">{getText('title')}</h1>
+        <Form.Item
+          name={LOGIN_FORM_FIELDS.USERNAME}
+          rules={[
+            {
+              type: 'email',
+              message: 'The input is not valid E-mail!',
+              // TODO: translation
+            },
+            {
+              required: true,
+              message: 'Please input your E-mail!',
+            },
+          ]}
         >
-          <h1 className="login__title">{getText('title')}</h1>
+          <Input placeholder={getText('placeholders.email')} />
+        </Form.Item>
+        <Form.Item
+          name={LOGIN_FORM_FIELDS.PASSWORD}
+          rules={[
+            {
+              required: true,
+              message: 'Please input your Password!',
+            },
+          ]}
+        >
+          <Input
+            type="password"
+            placeholder={getText('placeholders.password')}
+          />
+        </Form.Item>
+        <div className="login__remember-me">
           <Form.Item
-            name={LOGIN_FORM_FIELDS.USERNAME}
-            rules={[
-              {
-                type: 'email',
-                message: 'The input is not valid E-mail!',
-                // TODO: translation
-              },
-              {
-                required: true,
-                message: 'Please input your E-mail!',
-              },
-            ]}
+            name={LOGIN_FORM_FIELDS.REMEMBER}
+            valuePropName="checked"
+            noStyle
           >
-            <Input placeholder={getText('placeholders.email')} />
+            <Checkbox>{getText('text.rememberMe')}</Checkbox>
           </Form.Item>
-          <Form.Item
-            name={LOGIN_FORM_FIELDS.PASSWORD}
-            rules={[
-              {
-                required: true,
-                message: 'Please input your Password!',
-              },
-            ]}
-          >
-            <Input
-              type="password"
-              placeholder={getText('placeholders.password')}
-            />
-          </Form.Item>
-          <div className="login__remember-me">
-            <Form.Item
-              name={LOGIN_FORM_FIELDS.REMEMBER}
-              valuePropName="checked"
-              noStyle
-            >
-              <Checkbox>{getText('text.rememberMe')}</Checkbox>
-            </Form.Item>
 
-            <a className="login-form-forgot" href={FORGOT_URL}>
-              {getText('text.forgotPassword')}
-            </a>
-          </div>
+          <a className="login-form-forgot" href={FORGOT_URL}>
+            {getText('text.forgotPassword')}
+          </a>
+        </div>
 
-          <Form.Item>
-            <Button type="primary" htmlType="submit" block>
-              {getText('buttons.login')}
-            </Button>
-          </Form.Item>
-          <div className="login__create-account">
-            <span>{getText('text.notAMember')}</span>
-            <a href={REGISTER_URL}>{getText('text.createAcc')}</a>
-          </div>
-          <Divider plain>{getText('text.useAcc')}</Divider>
-          {/* TODO: integrate later
+        <Form.Item>
+          <Button type="primary" htmlType="submit" block>
+            {getText('buttons.login')}
+          </Button>
+        </Form.Item>
+        <div className="login__create-account">
+          <span>{getText('text.notAMember')}</span>
+          <a href={REGISTER_URL}>{getText('text.createAcc')}</a>
+        </div>
+        <Divider plain>{getText('text.useAcc')}</Divider>
+        {/* TODO: integrate later
           <GoogleLogin
             clientId={GOOGLE_OAUTH_CLIENT_KEY}
             render={(renderProps) => (
@@ -132,16 +122,15 @@ const LoginPage = () => {
             onFailure={responseGoogle}
             cookiePolicy="single_host_origin"
           /> */}
-          <Button
-            className="login__button-with-google"
-            block
-            icon={<GoogleOutlined style={{ color: '#ec5741' }} />}
-          >
-            {getText('buttons.loginWGoogle')}
-          </Button>
-        </Form>
-      </div>
-    </div>
+        <Button
+          className="login__button-with-google"
+          block
+          icon={<GoogleOutlined style={{ color: '#ec5741' }} />}
+        >
+          {getText('buttons.loginWGoogle')}
+        </Button>
+      </Form>
+    </FluidLayout>
   );
 };
 export default LoginPage;

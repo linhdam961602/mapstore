@@ -33,12 +33,10 @@ import Button from 'components/BasicComponent/Button';
 import { useInjectReducer, useInjectSaga } from 'hooks/useInjector';
 import { LAYOUT_8_16, VALIDATION_MESSAGES } from 'constants/form';
 import { createTranslatedText } from 'utils/text';
-import illustration from 'assets/images/illustration.svg';
-import logo from 'assets/logo/tino-logo.svg';
-import LanguageSelector from 'containers/TopBar/LanguageSelector';
 import Row from 'components/BasicComponent/Grid/Row';
 import Col from 'components/BasicComponent/Grid/Col';
 import { LOGIN_URL } from 'constants/routes';
+import FluidLayout from 'components/LayoutComponent/FluidLayout';
 
 const { Step } = Steps;
 
@@ -104,73 +102,64 @@ const RegisterPage = () => {
   }, [curStep, form]);
 
   return (
-    <div className="register__background">
-      <div className="register__language">
-        <img className="logo" alt="logo" src={logo} />
-        <LanguageSelector />
-      </div>
-      <div className="register__container">
-        <div className="register__left-container">
-          <img alt="Icewall Tailwind HTML Admin Template" src={illustration} />
+    <FluidLayout>
+      <Form
+        className="register__form"
+        initialValues={INITIAL_VALUES}
+        onFinish={onFinish}
+        form={form}
+        {...LAYOUT_8_16}
+        labelAlign="left"
+        validateMessages={VALIDATION_MESSAGES}
+      >
+        <h1 className="register__title">{getTextRegistration('title')}</h1>
+        <Steps current={curStep} className="site-navigation-steps">
+          {steps.map((item) => (
+            <Step key={item.key} disabled />
+          ))}
+        </Steps>
+        <div className="register__steps-content">
+          {steps[curStep].contentRender({
+            form,
+            getTextCommon,
+            getTextRegistration,
+            curType,
+            onTypeChange,
+          })}
         </div>
-        <Form
-          className="register__form"
-          initialValues={INITIAL_VALUES}
-          onFinish={onFinish}
-          form={form}
-          {...LAYOUT_8_16}
-          labelAlign="left"
-          validateMessages={VALIDATION_MESSAGES}
-        >
-          <h1 className="register__title">{getTextRegistration('title')}</h1>
-          <Steps current={curStep} className="site-navigation-steps">
-            {steps.map((item) => (
-              <Step key={item.key} disabled />
-            ))}
-          </Steps>
-          <div className="register__steps-content">
-            {steps[curStep].contentRender({
-              form,
-              getTextCommon,
-              getTextRegistration,
-              curType,
-              onTypeChange,
-            })}
-          </div>
 
-          <Row gutter={16}>
-            <Col xl={12} xs={24}>
-              <div className="register__button-wrapper">
-                {curStep > 0 && (
-                  <Button onClick={onGoPrev}>
-                    {getTextCommon('action.prev')}
-                  </Button>
-                )}
-                {curStep < steps.length - 1 && (
-                  <Button type="primary" onClick={onGoNext}>
-                    {getTextCommon('action.next')}
-                  </Button>
-                )}
-                {curStep === steps.length - 1 && (
-                  <Button
-                    type="primary"
-                    htmlType="submit"
-                    className="register__button"
-                    // disabled={!curCaptcha}
-                  >
-                    {getTextCommon('action.register')}
-                  </Button>
-                )}
-              </div>
-            </Col>
-            <Col xl={12} xs={24} className="register__link">
-              <span>{getTextCommon('userInfo.labels.alreadyHaveAcc')}</span>
-              <Link to={LOGIN_URL}>{getTextCommon('action.login')}</Link>
-            </Col>
-          </Row>
-        </Form>
-      </div>
-    </div>
+        <Row gutter={16}>
+          <Col xl={12} xs={24}>
+            <div className="register__button-wrapper">
+              {curStep > 0 && (
+                <Button onClick={onGoPrev}>
+                  {getTextCommon('action.prev')}
+                </Button>
+              )}
+              {curStep < steps.length - 1 && (
+                <Button type="primary" onClick={onGoNext}>
+                  {getTextCommon('action.next')}
+                </Button>
+              )}
+              {curStep === steps.length - 1 && (
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  className="register__button"
+                  // disabled={!curCaptcha}
+                >
+                  {getTextCommon('action.register')}
+                </Button>
+              )}
+            </div>
+          </Col>
+          <Col xl={12} xs={24} className="register__link">
+            <span>{getTextCommon('userInfo.labels.alreadyHaveAcc')}</span>
+            <Link to={LOGIN_URL}>{getTextCommon('action.login')}</Link>
+          </Col>
+        </Row>
+      </Form>
+    </FluidLayout>
   );
 };
 export default RegisterPage;

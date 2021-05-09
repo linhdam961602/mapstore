@@ -30,6 +30,7 @@ import { createTranslatedText } from 'utils/text';
 import illustration from 'assets/images/illustration.svg';
 import LanguageSelector from 'containers/TopBar/LanguageSelector';
 import Spinner from 'components/BasicComponent/Spinner';
+import FluidLayout from 'components/LayoutComponent/FluidLayout';
 
 const ForgotPasswordPage = () => {
   useInjectReducer({
@@ -55,49 +56,38 @@ const ForgotPasswordPage = () => {
 
   return (
     <Spinner spinning={isLoading}>
-      <div className="forgot-password__background">
-        <div className="forgot-password__language">
-          <LanguageSelector />
-        </div>
-        <div className="forgot-password__container">
-          <div className="forgot-password__left-container">
-            <img
-              alt="Icewall Tailwind HTML Admin Template"
-              src={illustration}
-            />
-          </div>
-          <Form
-            className="forgot-password__form"
-            initialValues={INITIAL_VALUES}
-            onFinish={onFinish}
-            form={form}
-            labelAlign="left"
-            validateMessages={VALIDATION_MESSAGES}
+      <FluidLayout>
+        <Form
+          className="forgot-password__form"
+          initialValues={INITIAL_VALUES}
+          onFinish={onFinish}
+          form={form}
+          labelAlign="left"
+          validateMessages={VALIDATION_MESSAGES}
+        >
+          <h1 className="forgot-password__title">{getText('title')}</h1>
+          <Form.Item
+            name={FORGOT_PASSWORD_FORM_FIELDS.EMAIL}
+            rules={[
+              {
+                type: 'email',
+                message: 'The input is not valid E-mail!',
+              },
+              {
+                required: true,
+                message: 'Please input your E-mail!',
+              },
+            ]}
           >
-            <h1 className="forgot-password__title">{getText('title')}</h1>
-            <Form.Item
-              name={FORGOT_PASSWORD_FORM_FIELDS.EMAIL}
-              rules={[
-                {
-                  type: 'email',
-                  message: 'The input is not valid E-mail!',
-                },
-                {
-                  required: true,
-                  message: 'Please input your E-mail!',
-                },
-              ]}
-            >
-              <Input placeholder={getText('placeholders.email')} />
-            </Form.Item>
-            <Form.Item>
-              <Button type="primary" htmlType="submit" block>
-                {getText('buttons.submit')}
-              </Button>
-            </Form.Item>
-          </Form>
-        </div>
-      </div>
+            <Input placeholder={getText('placeholders.email')} />
+          </Form.Item>
+          <Form.Item>
+            <Button type="primary" htmlType="submit" block>
+              {getText('buttons.submit')}
+            </Button>
+          </Form.Item>
+        </Form>
+      </FluidLayout>
     </Spinner>
   );
 };
