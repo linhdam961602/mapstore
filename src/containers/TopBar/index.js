@@ -1,4 +1,4 @@
-import { stringify } from 'querystring';
+import { stringify as queryStringify } from 'querystring';
 
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -44,7 +44,7 @@ const TopBar = () => {
                 <Link
                   to={{
                     pathname: LOGIN_URL,
-                    search: stringify({
+                    search: queryStringify({
                       redirect: window.location.href,
                     }),
                   }}
