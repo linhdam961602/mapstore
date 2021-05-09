@@ -27,8 +27,6 @@ import Input from 'components/BasicComponent/Input';
 import { useInjectReducer, useInjectSaga } from 'hooks/useInjector';
 import { VALIDATION_MESSAGES } from 'constants/form';
 import { createTranslatedText } from 'utils/text';
-import illustration from 'assets/images/illustration.svg';
-import LanguageSelector from 'containers/TopBar/LanguageSelector';
 import Spinner from 'components/BasicComponent/Spinner';
 import FluidLayout from 'components/LayoutComponent/FluidLayout';
 
