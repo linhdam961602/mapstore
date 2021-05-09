@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import './styles.scss';
 
-import logo from 'assets/logo/tino-logo.svg';
+import logo from 'assets/logo/logo-tinohost.png';
 import LanguageSelector from 'containers/TopBar/LanguageSelector';
 
 const FluidLayout = ({ title, children }) => (
