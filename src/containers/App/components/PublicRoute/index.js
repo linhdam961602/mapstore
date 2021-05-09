@@ -12,10 +12,17 @@ import { Route, Redirect } from 'react-router-dom';
 
 import { MY_PAGE_URI } from 'constants/routes';
 import { useAuth } from 'hooks/useAuth';
+import MainLayout from 'components/LayoutComponent/MainLayout';
 
-const PublicRoute = ({ component: Component, restricted = false, ...rest }) => {
+const PublicRoute = ({
+  component: Component,
+  fluid = true,
+  restricted = false,
+  ...rest
+}) => {
   const { isAuthenticated } = useAuth();
-  return (
+
+  return fluid ? (
     <Route
       {...rest}
       render={(props) =>
@@ -26,6 +33,19 @@ const PublicRoute = ({ component: Component, restricted = false, ...rest }) => {
         )
       }
     />
+  ) : (
+    <MainLayout>
+      <Route
+        {...rest}
+        render={(props) =>
+          isAuthenticated && restricted ? (
+            <Redirect to={MY_PAGE_URI} />
+          ) : (
+            <Component {...props} />
+          )
+        }
+      />
+    </MainLayout>
   );
 };
 

@@ -39,4 +39,9 @@ const forgotPassword = {
   },
 };
 
-export { login, registration, forgotPassword };
+const notFound = {
+  subTitle: 'Sorry, the page you visited does not exist.',
+  back: 'Back Home',
+};
+
+export { login, registration, forgotPassword, notFound };
