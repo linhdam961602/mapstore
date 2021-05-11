@@ -5,7 +5,10 @@
   flex-direction: column;
   height: 100vh;
   overflow: auto;
-  background: $layout-body-background;
+  background-repeat: no-repeat;
+  background-position: center 11rem;
+  background-size: 100%;
+  background-image: url('https://gw.alipayobjects.com/zos/rmsportal/TVYTbAXWheQpRcWDaDMu.svg');
 }
 
 .fluid__lang {
@@ -27,13 +30,6 @@
 }
 
 @include respond-to('md') {
-  .fluid__container {
-    background-image: url('https://gw.alipayobjects.com/zos/rmsportal/TVYTbAXWheQpRcWDaDMu.svg');
-    background-repeat: no-repeat;
-    background-position: center 11rem;
-    background-size: 100%;
-  }
-
   .fluid__content {
     padding: 3.2rem 0 2.4rem;
   }
