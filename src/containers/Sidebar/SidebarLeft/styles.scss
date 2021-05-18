@@ -1,9 +1,34 @@
 @import 'styles/mixins.scss';
 
-.sidebarLeft_wrapper {
+.sidebar-left-wrapper {
   .ant-image {
+    width: 100%;
+  }
+  .logo {
     width: 12rem;
     margin: 1.6rem auto;
     display: block;
+  }
+  .favicon {
+    width: 3.6rem;
+    margin: 1.6rem auto;
+    display: block;
+  }
+}
+.sidebar-left-drawer-wrapper {
+  .ant-image {
+    width: 100%;
+  }
+  .logo {
+    width: 12rem;
+    margin: 1.6rem auto;
+    display: block;
+  }
+  .ant-drawer-content-wrapper {
+    width: 60% !important;
+    .ant-drawer-body {
+      padding: 0;
+      background-color: $black-2;
+    }
   }
 }
