@@ -8,7 +8,6 @@ import Button from 'components/BasicComponent/Button';
 import Select from 'components/BasicComponent/Select';
 
 import { createTranslatedText } from 'utils/text';
-import { mockDescription } from 'pages/Services/components/TabDetail/mockData';
 
 import '../styles.scss';
 
@@ -67,11 +66,7 @@ const ProductItem = ({
         )}
       </div>
       <div className="ruler" />
-      <div className="item__list">
-        {parse(description)}
-        {/* TODO: Remove after integrate full data */}
-        {parse(mockDescription)}
-      </div>
+      <div className="item__list">{parse(description)}</div>
 
       {periods.length > 0 && (
         <Select

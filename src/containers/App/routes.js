@@ -17,6 +17,11 @@ import {
   VPS_URL,
   NOT_FOUND,
   MY_PAYMENT_URL,
+  EMAIL_URL,
+  SSL_URL,
+  LICENSE_URL,
+  TINOFONE_URL,
+  ELECTRIC_BILL_URL,
 } from 'constants/routes';
 import { COMPONENT_IMPORTING_DELAY_MS } from 'constants/common';
 
@@ -80,6 +85,58 @@ export const layoutRoutes = [
     path: VPS_URL,
     component: lazy(() =>
       pMinDelay(import('pages/Services/VPSPage'), COMPONENT_IMPORTING_DELAY_MS),
+    ),
+    isPrivate: false,
+  },
+  {
+    exact: true,
+    path: EMAIL_URL,
+    component: lazy(() =>
+      pMinDelay(
+        import('pages/Services/EmailPage'),
+        COMPONENT_IMPORTING_DELAY_MS,
+      ),
+    ),
+    isPrivate: false,
+  },
+  {
+    exact: true,
+    path: SSL_URL,
+    component: lazy(() =>
+      pMinDelay(import('pages/Services/SSLPage'), COMPONENT_IMPORTING_DELAY_MS),
+    ),
+    isPrivate: false,
+  },
+  {
+    exact: true,
+    path: LICENSE_URL,
+    component: lazy(() =>
+      pMinDelay(
+        import('pages/Services/LicensePage'),
+        COMPONENT_IMPORTING_DELAY_MS,
+      ),
+    ),
+    isPrivate: false,
+  },
+  {
+    exact: true,
+    path: TINOFONE_URL,
+    component: lazy(() =>
+      pMinDelay(
+        import('pages/Services/TinoFonePage'),
+        COMPONENT_IMPORTING_DELAY_MS,
+      ),
+    ),
+    isPrivate: false,
+  },
+  {
+    exact: true,
+    path: ELECTRIC_BILL_URL,
+    component: lazy(() =>
+      pMinDelay(
+        import('pages/Services/EInvoicePage'),
+        COMPONENT_IMPORTING_DELAY_MS,
+      ),
     ),
     isPrivate: false,
   },
