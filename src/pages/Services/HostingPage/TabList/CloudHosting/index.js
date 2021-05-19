@@ -7,18 +7,17 @@ import {
   DownOutlined,
 } from '@ant-design/icons';
 import Tag from 'antd/es/tag';
-import Form from 'antd/es/form';
 import Radio from 'antd/es/radio';
 import Checkbox from 'antd/es/checkbox';
 import Button from 'antd/es/button';
 import Row from 'antd/es/row';
 import Col from 'antd/es/col';
 import Menu from 'antd/es/menu';
-import Dropdown from 'antd/es/dropdown';
+// import Dropdown from 'antd/es/dropdown';
 import Input from 'antd/es/input';
 import 'antd/es/menu/style/css';
 import 'antd/es/input/style/css';
-import 'antd/es/dropdown/style/css';
+// import 'antd/es/dropdown/style/css';
 import 'antd/es/tag/style/css';
 import 'antd/es/checkbox/style/css';
 import 'antd/es/radio/style/css';
@@ -29,6 +28,8 @@ import 'antd/es/col/style/css';
 import './styles.scss';
 // import { cloudHostingData } from './mockData';
 
+import Form from 'components/BasicComponent/Form';
+import Dropdown from 'components/BasicComponent/Dropdown';
 import vps from 'assets/icon/icon_vps.svg';
 import infoIcon from 'assets/icon/icon_information-button.svg';
 import backArrow from 'assets/icon/icon_back-arrow.svg';

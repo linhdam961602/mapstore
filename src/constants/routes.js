@@ -17,6 +17,7 @@ export const ASSISTANT_URL = '/assistant';
 export const MY_PAYMENT_URL = '/my-payment';
 export const SUPPORT_URL = '/support';
 export const CART_URL = '/cart';
+export const TOP_UP_URL = '/top-up';
 export const CHANGE_PASS = '/change-password';
 export const CONTACT_LIST = '/contact-list';
 export const EMAIL_HISTORY = '/email-history';
