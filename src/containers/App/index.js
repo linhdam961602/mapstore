@@ -12,6 +12,7 @@ import enUS from 'antd/lib/locale/en_US';
 import viVN from 'antd/lib/locale/vi_VN';
 import dayjs from 'dayjs';
 import 'dayjs/locale/vi';
+import 'moment/locale/vi';
 
 import Loading from 'components/LayoutComponent/Loading';
 import LoadingContainer from 'containers/LoadingContainer';
