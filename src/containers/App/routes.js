@@ -17,6 +17,7 @@ import {
   VPS_URL,
   NOT_FOUND,
   MY_PAYMENT_URL,
+  TOP_UP_URL,
 } from 'constants/routes';
 import { COMPONENT_IMPORTING_DELAY_MS } from 'constants/common';
 
@@ -115,6 +116,14 @@ export const layoutRoutes = [
     path: MY_PAYMENT_URL,
     component: lazy(() =>
       pMinDelay(import('pages/MyPayment'), COMPONENT_IMPORTING_DELAY_MS),
+    ),
+    isPrivate: true,
+  },
+  {
+    exact: true,
+    path: TOP_UP_URL,
+    component: lazy(() =>
+      pMinDelay(import('pages/TopUp'), COMPONENT_IMPORTING_DELAY_MS),
     ),
     isPrivate: true,
   },

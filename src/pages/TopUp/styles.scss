@@ -1,0 +1,42 @@
+@import 'styles/mixins.scss';
+
+.top-up {
+  background-color: $white;
+  padding: 4rem;
+
+  .ant-radio-button-wrapper {
+    margin-right: 1.5rem;
+
+    &:first-child,
+    &:last-child {
+      border-radius: 0;
+    }
+  }
+}
+
+.note {
+  font-size: 1.4rem;
+  padding: 1rem 1.5rem;
+  margin-bottom: 2rem;
+  width: 100%;
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.btn-recharge {
+  min-width: 18rem;
+  text-transform: uppercase;
+}
+
+.payment-dropdown {
+  min-width: 25rem;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+
+  .anticon {
+    line-height: 25px;
+  }
+}
