@@ -11,12 +11,14 @@ import { createIntl, createIntlCache, IntlProvider } from 'react-intl';
 import * as dayjs from 'dayjs';
 import { useSelector } from 'react-redux';
 import get from 'lodash/get';
+import moment from 'moment';
 
 import { languageSliceName, initialState } from './slices';
 
 import { translationMessages, DEFAULT_LOCALE } from 'translations/i18n';
 
 dayjs.locale(DEFAULT_LOCALE);
+moment.locale(DEFAULT_LOCALE);
 
 export let intl = createIntl(
   {
@@ -48,6 +50,7 @@ function LanguageProvider({ messages, children }) {
       cache,
     );
     dayjs.locale(locale);
+    moment.locale(locale);
   }, [locale, messages]);
   return (
     <IntlProvider locale={locale} messages={messages[locale]}>
