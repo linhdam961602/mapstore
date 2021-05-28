@@ -69,6 +69,7 @@ const PasswordMeterInput = ({ value = '', onChange = () => {}, ...props }) => {
             </Tooltip>
           </>
         }
+        value={value}
         {...props}
       />
       <div className="password-meter__container">
