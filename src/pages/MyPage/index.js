@@ -48,7 +48,7 @@ const MyPage = () => {
 
   return (
     <div className="mypage">
-      <h1 className="titlePage">{getTextTitle('overView')}</h1>
+      <h1 className="title-page">{getTextTitle('overView')}</h1>
       <Row gutter={16}>
         <Col xs={24} sm={24} md={12} lg={6} xl={6}>
           <Statistic

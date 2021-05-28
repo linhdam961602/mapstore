@@ -133,7 +133,7 @@ const PersonalInfomation = () => {
               validateMessages={VALIDATION_MESSAGES}
               layout="vertical"
             >
-              <div className="form-group">
+              <div className="group-wrapper">
                 <p className="title">
                   {getTextCommon('userInfo.groups.personalInfo')}
                 </p>
@@ -223,7 +223,7 @@ const PersonalInfomation = () => {
                   </Col>
                 </Row>
               </div>
-              <div className="form-group">
+              <div className="group-wrapper">
                 <p className="title">
                   {getTextCommon('userInfo.groups.paymentAddress')}
                 </p>

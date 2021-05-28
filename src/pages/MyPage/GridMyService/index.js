@@ -21,7 +21,7 @@ const GridMyService = () => {
   const listServiceActive = useSelector(userSelector.selectListServiceActive);
 
   return (
-    <div className="customGrid form-group">
+    <div className="customGrid group-wrapper">
       <div className="headingGrid">
         <div className="left-content">
           <CloudServerOutlined />

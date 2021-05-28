@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 import { PlusCircleOutlined } from '@ant-design/icons';
 
 import { createTranslatedText } from 'utils/text';
@@ -17,9 +18,11 @@ const { Content } = Layout;
 
 const MainLayout = (props) => {
   const intl = useIntl();
+  const location = useLocation();
   const getText = createTranslatedText('common.action', intl);
   const [collapsed, setCollapsed] = useState(false);
   const { width } = useWindowDimensions();
+  const isShowButtonRegist = location.pathname === '/';
 
   const toggle = () => {
     setCollapsed(!collapsed);
@@ -35,10 +38,12 @@ const MainLayout = (props) => {
       <Layout className="site-layout">
         <TopBar onToggle={toggle} collapsed={collapsed} className="header" />
         <Content className="content">
-          <Button type="primary" className="register-service-btn">
-            <PlusCircleOutlined />
-            {getText('registerService')}
-          </Button>
+          {!isShowButtonRegist && (
+            <Button type="primary" className="register-service-btn">
+              <PlusCircleOutlined />
+              {getText('registerService')}
+            </Button>
+          )}
           {props.children}
         </Content>
         <Footer />

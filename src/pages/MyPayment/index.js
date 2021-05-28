@@ -36,7 +36,7 @@ const MyPayment = () => {
 
   return (
     <div className="customGrid">
-      <h1 className="titlePage">{getTextSidebarLeft('payment')}</h1>
+      <h1 className="title-page">{getTextSidebarLeft('payment')}</h1>
       <Row gutter={20}>
         <Col md={24} lg={6} xl={6}></Col>
       </Row>

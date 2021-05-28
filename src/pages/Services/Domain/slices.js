@@ -12,13 +12,15 @@ const initialState = {
   isLoading: false,
   error: null,
   extendTime: 0,
+  listDomainName: [],
+  domainAvailability: { available: true },
 };
 
 const authSlice = createSlice({
   name: domainSliceName,
   initialState,
   reducers: {
-    getListDomainPriceProcessing: (state) => ({
+    startLoading: (state) => ({
       ...state,
       isLoading: true,
     }),
@@ -29,8 +31,13 @@ const authSlice = createSlice({
     }),
     getListDomainPriceSuccess: (state, action) => ({
       ...state,
-      isLoading: true,
+      isLoading: false,
       listDomainName: action.payload,
+    }),
+    getDomainAvailabilitySuccess: (state, action) => ({
+      ...state,
+      isLoading: false,
+      domainAvailability: action.payload,
     }),
   },
 });
@@ -42,8 +49,20 @@ const domainSliceSaga = createSliceSaga({
   caseSagas: {
     *getListDomainPrice() {
       try {
-        yield put(reducerActions.getListDomainPriceProcessing());
+        yield put(reducerActions.startLoading());
         const { data } = yield call(domainApis.getListDomainPrice);
+        yield put(reducerActions.getListDomainPriceSuccess(data));
+      } catch (err) {
+        yield put(reducerActions.getListDomainPriceFailure(err));
+        yield put(errorHandler(err));
+      }
+    },
+    *getDomainAvailability() {
+      try {
+        yield put(reducerActions.startLoading());
+        const { data } = yield call(domainApis.chechDomainAvailability, {
+          name: 'nameValue',
+        });
         yield put(reducerActions.getListDomainPriceSuccess(data));
       } catch (err) {
         yield put(reducerActions.getListDomainPriceFailure(err));

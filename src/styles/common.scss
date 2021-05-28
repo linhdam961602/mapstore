@@ -4,34 +4,41 @@
   background-color: $white;
   padding: $base-space;
   border-radius: $radius-normal;
-  .title-page {
-    margin-right: 1.2rem;
-    margin-bottom: 0;
-    color: rgba(0, 0, 0, 0.85);
-    font-weight: 600;
-    font-size: 2rem;
-    line-height: 3.2rem;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-  .form-group {
-    .title {
-      margin-bottom: 1.2rem;
-      color: $heading-2;
-      font-weight: 500;
-      font-size: 2rem;
-      line-height: 2.8rem;
-    }
-  }
+
   .my-infor-page-content {
     padding: 0 2.4rem;
+    .group-wrapper {
+      padding: 0;
+    }
     .ant-form-item-control {
       .ant-picker {
         width: 100%;
       }
     }
   }
+}
+
+.group-wrapper {
+  background-color: $white;
+  padding: $base-space;
+  border-radius: $radius-normal;
+  .title {
+    margin-bottom: 1.2rem;
+    color: $heading-2;
+    font-weight: 500;
+    font-size: 2rem;
+    line-height: 2.8rem;
+  }
+}
+
+.title-page {
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: bold;
+  font-size: 2.2rem;
+  line-height: 3.2rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .avatar-user-wrapper {
