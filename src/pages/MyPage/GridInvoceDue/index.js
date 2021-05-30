@@ -21,7 +21,7 @@ const GridInvoceDue = () => {
   const listInvoiceOverDue = useSelector(userSelector.selectListInvoiceOverDue);
 
   return (
-    <div className="customGrid form-group">
+    <div className="customGrid group-wrapper">
       <div className="headingGrid">
         <div className="left-content">
           <Image width={22} src={iconInvoiceDue} preview={false} />

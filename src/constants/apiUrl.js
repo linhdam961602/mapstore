@@ -12,6 +12,7 @@ export const PRODUCT_API_URL = 'category/:id/product';
 export const FORGOT_PASSWORD_API_URL = 'password/forgot';
 export const RESET_PASSWORD_API_URL = 'password/change';
 export const DOMAIN_SALE_API_URL = 'domain/sale';
+export const CHECK_DOMAIN_AVAILABILITY = 'domain/lookup';
 
 export const REST_COUNTRIES_API_URL = 'https://restcountries.eu/rest/v2/all';
 

@@ -30,7 +30,7 @@ function SecuritySetting() {
         </Col>
         <Col md={24} lg={18} xl={18}>
           <div className="my-infor-page-content">
-            <div className="form-group">
+            <div className="group-wrapper">
               <p className="title">{getTextSideBarRight('securitySetting')}</p>
               <p>{getText('chooseSecurity')}</p>
 

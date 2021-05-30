@@ -70,7 +70,7 @@ const CloudHostingBusiness = () => {
         <meta name="cloud hosting" content="Cloud Hosting" />
       </Helmet>
 
-      <h1 className="titlePage">{getText('cloudHosting')}</h1>
+      <h1 className="title-page">{getText('cloudHosting')}</h1>
 
       <div>
         <div className="titleHasTag">

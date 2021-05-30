@@ -146,7 +146,7 @@ const ContactList = () => {
             validateMessages={VALIDATION_MESSAGES}
             layout="vertical"
           >
-            <div className="form-group">
+            <div className="group-wrapper">
               <p className="title">
                 {getTextCommon('userInfo.groups.chooseContact')}
               </p>
@@ -161,7 +161,7 @@ const ContactList = () => {
                 </Col>
               </Row>
             </div>
-            <div className="form-group">
+            <div className="group-wrapper">
               <p className="title">
                 {getTextCommon('userInfo.groups.contactDetail')}
               </p>

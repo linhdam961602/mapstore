@@ -23,7 +23,7 @@ const TabDetail = ({ tabName, products }) => {
         <meta name={tabName} content={tabName} />
       </Helmet>
 
-      <h1 className="titlePage">{tabName}</h1>
+      <h1 className="title-page">{tabName}</h1>
       <Spinner spinning={isFetchingProducts}>
         <ProductList products={products} />
       </Spinner>

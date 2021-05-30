@@ -12,6 +12,8 @@ import * as domainSelector from '../selector';
 import DomainPrice from './DomainPrice';
 import SearchBox from './SearchBox';
 import ResultDomainList from './ResultDomainList';
+import ExistResultSearch from './ExistResultSearch';
+import AvailableResultSearch from './AvailableResultSearch';
 
 // import { createTranslatedText } from 'utils/text';
 
@@ -73,6 +75,9 @@ const RegisterDomain = () => {
   useInjectSaga({ key: domainSliceName, saga: domainSaga });
 
   const listDomainName = useSelector(domainSelector.selectListDomainName);
+  const domainAvailability = useSelector(
+    domainSelector.selectDomainAvailability,
+  );
 
   useEffect(() => {
     dispatch(domainActions.getListDomainPrice());
@@ -80,48 +85,41 @@ const RegisterDomain = () => {
 
   const onSearch = (value) => {
     setKeyword(value);
+    // dispatch(domainActions.getDomainAvailability());
   };
 
   return (
     <div className="registDomain">
-      <h1 className="titlePage">Domain</h1>
-      <Row>
-        <Col xs={24} sm={24} md={24} lg={24} xl={24}>
-          <SearchBox onSearch={onSearch} />
-        </Col>
-      </Row>
+      <h1 className="title-page">Domain</h1>
+      <SearchBox onSearch={onSearch} />
       {keyword && (
         <>
-          <Row>
-            <Col xs={24} sm={24} md={24} lg={24} xl={24}>
-              <div className="result-search line-block">
-                Result for: <span>{keyword}</span>
-              </div>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={24} sm={24} md={24} lg={24} xl={24}>
-              <ResultDomainList dataSource={mockData} />
-            </Col>
-          </Row>
+          {domainAvailability ? (
+            <AvailableResultSearch domainName="test" />
+          ) : (
+            <ExistResultSearch domainName="test" />
+          )}
         </>
       )}
-      <Row>
-        <Col xs={24} sm={24} md={24} lg={24} xl={24}>
-          <div className="domain-price-header line-block">Domain Price</div>
-        </Col>
-      </Row>
-      <Row gutter={[16, 16]}>
-        {listDomainName &&
-          Object.keys(listDomainName).map((key) => (
-            <Col key={key} xs={24} sm={24} md={12} lg={4} xl={4}>
-              <DomainPrice
-                domainName={key}
-                domainPrice={listDomainName[key].register}
-              />
-            </Col>
-          ))}
-      </Row>
+      <ResultDomainList dataSource={mockData} />
+      <div className="group-wrapper domain-price-wrapper">
+        <Row>
+          <Col xs={24} sm={24} md={24} lg={24} xl={24}>
+            <div className="domain-price-header">Domain Price</div>
+          </Col>
+        </Row>
+        <Row gutter={[16, 16]}>
+          {listDomainName &&
+            Object.keys(listDomainName).map((key) => (
+              <Col key={key} xs={24} sm={24} md={12} lg={4} xl={4}>
+                <DomainPrice
+                  domainName={key}
+                  domainPrice={listDomainName[key].register}
+                />
+              </Col>
+            ))}
+        </Row>
+      </div>
     </div>
   );
 };

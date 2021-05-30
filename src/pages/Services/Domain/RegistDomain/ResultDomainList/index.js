@@ -20,26 +20,9 @@ const ResultDomainList = (props) => {
   const { dataSource } = props;
   const numberItemInCard = 10; // TODO: Get total services in cart.
 
-  // TODO
-  // const addtoCart = () => {
-  //   // TODO: add this item to cart
-  // };
-
   const removeFromCart = () => {
     // TODO: Remove this item from cart
   };
-
-  // TOTO
-  // const actionAddCard = [
-  //   <Button
-  //     type="primary"
-  //     key="regist-action"
-  //     className="regist-action"
-  //     onClick={addtoCart}
-  //   >
-  //     {getText('action.register')}
-  //   </Button>,
-  // ];
 
   const goToCart = () => {
     history.push(CART_URL);
@@ -66,7 +49,7 @@ const ResultDomainList = (props) => {
 
   return (
     <List
-      className="tino__list domain-list"
+      className="domain-list"
       // loading // TODO: Use loading from state
       itemLayout="horizontal"
       dataSource={dataSource}

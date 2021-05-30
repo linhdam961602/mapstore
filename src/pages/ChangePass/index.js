@@ -61,10 +61,10 @@ const ChangePass = () => {
             validateMessages={VALIDATION_MESSAGES}
             layout="vertical"
           >
-            <div className="form-group">
+            <div className="group-wrapper">
               <p className="title">{getTextSideBarRight('changePass')}</p>
               <Row gutter={16}>
-                <Col sm={24} md={24} lg={8} xl={8}>
+                <Col sm={24} md={24} lg={10} xl={10}>
                   <Item
                     name={CHANGE_PASS_FORM_FIELDS.OLD_PASS}
                     label={getTextChangePass('labels.oldPassword')}
@@ -75,7 +75,7 @@ const ChangePass = () => {
                 </Col>
               </Row>
               <Row gutter={16}>
-                <Col sm={24} md={24} lg={8} xl={8}>
+                <Col sm={24} md={24} lg={10} xl={10}>
                   <Item
                     name={CHANGE_PASS_FORM_FIELDS.NEW_PASS}
                     label={getTextChangePass('labels.newPassword')}
@@ -91,7 +91,7 @@ const ChangePass = () => {
                 </Col>
               </Row>
               <Row gutter={16}>
-                <Col sm={24} md={24} lg={8} xl={8}>
+                <Col sm={24} md={24} lg={10} xl={10}>
                   <Item
                     name={CHANGE_PASS_FORM_FIELDS.RE_PASS}
                     label={getTextChangePass('labels.rePassword')}

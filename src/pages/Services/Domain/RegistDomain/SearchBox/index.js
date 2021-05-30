@@ -16,9 +16,8 @@ const SearchBox = (props) => {
   const getTextCommon = createTranslatedText('common', intl);
   const { onSearch } = props;
   return (
-    <div className="banner">
+    <div className="group-wrapper">
       <Search
-        className="tino__input"
         placeholder={getTextDomain('placeHolderSearch')}
         allowClear
         enterButton={getTextCommon('action.search')}
