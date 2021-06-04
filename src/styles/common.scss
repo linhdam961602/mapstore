@@ -22,6 +22,12 @@
   background-color: $white;
   padding: $base-space;
   border-radius: $radius-normal;
+  &.spinning {
+    background-color: rgba($color: $ovelay-bg, $alpha: 0.5);
+    .ant-spin-blur {
+      overflow: unset;
+    }
+  }
   .title {
     margin-bottom: 1.2rem;
     color: $heading-2;

@@ -6,6 +6,7 @@ import { createTranslatedText } from 'utils/text';
 
 import Card from 'components/BasicComponent/Card';
 
+import 'styles/common.scss';
 import '../../styles.scss';
 
 const DomainPrice = (props) => {

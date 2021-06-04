@@ -1,48 +1,28 @@
 @import 'styles/mixins.scss';
 
-.registDomain {
-  // .group-info {
-  //   background-color: $white;
-  //   border-radius: $radius-normal;
-  //   padding: 1.6rem;
-  // }
-
-  .exist-result-search-wrapper {
+.regist-domain-page {
+  .status-search-wrapper {
     padding: 0;
-    height: 15rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: $white;
-    border-radius: $radius-normal;
-    color: $danger;
-    font-size: 2.4rem;
-    margin: 1.6rem 0;
-    .anticon {
-      font-size: 3.6rem;
-    }
-    p {
-      @extend .reset-space;
-    }
-  }
-  .available-result-search-wrapper {
-    padding: 0;
-    height: 15rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: $white;
-    border-radius: $radius-normal;
-    color: $primary;
-    font-size: 2.4rem;
-    margin: 1.6rem 0;
-    .anticon {
-      font-size: 3.6rem;
-    }
-    p {
-      @extend .reset-space;
+    .status {
+      height: 15rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.4rem;
+      margin: 1.6rem 0;
+      .anticon {
+        font-size: 3.6rem;
+      }
+      p {
+        @extend .reset-space;
+      }
+      &.available {
+        color: $primary;
+      }
+      &.unAvailable {
+        color: $danger;
+      }
     }
   }
 
@@ -101,6 +81,9 @@
   }
   .domain-price-wrapper {
     margin-top: 1.6rem;
+    &.spinning {
+      min-height: 18.6rem;
+    }
     .domain-price-header {
       font-weight: bold;
       text-align: center;

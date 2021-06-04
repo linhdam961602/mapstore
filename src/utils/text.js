@@ -1,4 +1,4 @@
 import { intl } from 'containers/LanguageProviderContainer';
 
-export const createTranslatedText = (base, t = intl) => (name) =>
-  t ? t.formatMessage({ id: `${base}.${name}` }) : `${base}.${name}`;
+export const createTranslatedText = (base, t = intl) => (name, params) =>
+  t ? t.formatMessage({ id: `${base}.${name}` }, params) : `${base}.${name}`;

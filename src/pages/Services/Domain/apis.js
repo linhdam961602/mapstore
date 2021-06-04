@@ -5,7 +5,7 @@ import {
 
 import apiClient from 'apis/apiClient';
 
-export const getListDomainPrice = () =>
+export const getListDomainExtension = () =>
   apiClient
     .get(DOMAIN_SALE_API_URL)
     .then((response) => response)

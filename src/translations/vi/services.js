@@ -2,6 +2,8 @@ const services = {
   cloudHosting: 'Cloud Hosting',
   domain: {
     placeHolderSearch: 'Nhập tên domain mà bạn muốn kiểm tra',
+    availableStatus: `Chúc mừng! {domain} có sẵn!`,
+    unAvailableStatus: `Domain {domain} đã có người đăng ký!`,
   },
 };
 

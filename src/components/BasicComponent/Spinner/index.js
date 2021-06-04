@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import 'antd/es/spin/style/css';
 
-import './styles.scss';
-
 function Spinner({ className, children, ...props }) {
   const classes = classNames({
     tino__spinner: true,

@@ -9,35 +9,45 @@ import { errorHandler } from 'store/errorHandlerSaga';
 const domainSliceName = 'domain';
 
 const initialState = {
-  isLoading: false,
   error: null,
   extendTime: 0,
-  listDomainName: [],
-  domainAvailability: { available: true },
+  listDomainExtension: [],
+  isLoadingListDomainExtension: false,
+  domainAvailability: { available: false }, // TODO: Waiting update response API.
+  isLoadingDomainAvailability: false,
 };
 
 const authSlice = createSlice({
   name: domainSliceName,
   initialState,
   reducers: {
-    startLoading: (state) => ({
+    getListDomainExtensionProcessing: (state) => ({
       ...state,
-      isLoading: true,
+      isLoadingListDomainExtension: true,
     }),
-    getListDomainPriceFailure: (state, action) => ({
+    getListDomainExtensionSuccess: (state, action) => ({
       ...state,
-      isLoading: false,
+      listDomainExtension: action.payload,
+      isLoadingListDomainExtension: false,
+    }),
+    getListDomainExtensionFailure: (state, action) => ({
+      ...state,
       error: action.payload,
+      isLoadingListDomainExtension: false,
     }),
-    getListDomainPriceSuccess: (state, action) => ({
+    getDomainAvailabilityProcessing: (state) => ({
       ...state,
-      isLoading: false,
-      listDomainName: action.payload,
+      isLoadingDomainAvailability: true,
     }),
     getDomainAvailabilitySuccess: (state, action) => ({
       ...state,
-      isLoading: false,
       domainAvailability: action.payload,
+      isLoadingDomainAvailability: false,
+    }),
+    getDomainAvailabilityFailure: (state, action) => ({
+      ...state,
+      error: action.payload,
+      isLoadingDomainAvailability: false,
     }),
   },
 });
@@ -47,25 +57,26 @@ const { actions: reducerActions, reducer: domainReducer } = authSlice;
 const domainSliceSaga = createSliceSaga({
   name: domainSliceName,
   caseSagas: {
-    *getListDomainPrice() {
+    *getListDomainExtension() {
       try {
-        yield put(reducerActions.startLoading());
-        const { data } = yield call(domainApis.getListDomainPrice);
-        yield put(reducerActions.getListDomainPriceSuccess(data));
+        yield put(reducerActions.getListDomainExtensionProcessing());
+        const { data } = yield call(domainApis.getListDomainExtension);
+        yield put(reducerActions.getListDomainExtensionSuccess(data));
       } catch (err) {
-        yield put(reducerActions.getListDomainPriceFailure(err));
+        yield put(reducerActions.getListDomainExtensionFailure(err));
         yield put(errorHandler(err));
       }
     },
-    *getDomainAvailability() {
+    *getDomainAvailability(payload) {
+      console.log('payload: ', payload);
       try {
-        yield put(reducerActions.startLoading());
+        yield put(reducerActions.getDomainAvailabilityProcessing());
         const { data } = yield call(domainApis.chechDomainAvailability, {
           name: 'nameValue',
         });
-        yield put(reducerActions.getListDomainPriceSuccess(data));
+        yield put(reducerActions.getDomainAvailabilitySuccess(data));
       } catch (err) {
-        yield put(reducerActions.getListDomainPriceFailure(err));
+        yield put(reducerActions.getDomainAvailabilityFailure(err));
         yield put(errorHandler(err));
       }
     },
